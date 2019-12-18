@@ -1,6 +1,6 @@
 package net.homecredit.trainee.drd.entity.blueprint.item;
 
-import net.homecredit.trainee.entity.inventory.armor.BodySection;
+import net.homecredit.trainee.drd.entity.inventory.armor.BodySection;
 
 import javax.persistence.*;
 import java.util.Set;

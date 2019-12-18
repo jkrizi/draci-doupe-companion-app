@@ -1,6 +1,6 @@
 package net.homecredit.trainee.drd.entity.blueprint.item;
 
-import net.homecredit.trainee.entity.shop.ItemType;
+import net.homecredit.trainee.drd.entity.shop.ItemType;
 
 import javax.persistence.*;
 import java.util.UUID;

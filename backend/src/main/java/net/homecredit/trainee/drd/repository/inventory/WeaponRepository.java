@@ -1,6 +1,6 @@
-package net.homecredit.trainee.repository.inventory;
+package net.homecredit.trainee.drd.repository.inventory;
 
-import net.homecredit.trainee.entity.inventory.weapon.Weapon;
+import net.homecredit.trainee.drd.entity.inventory.weapon.Weapon;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

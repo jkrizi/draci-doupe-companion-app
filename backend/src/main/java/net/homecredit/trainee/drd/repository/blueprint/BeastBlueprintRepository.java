@@ -1,6 +1,6 @@
-package net.homecredit.trainee.repository.blueprint;
+package net.homecredit.trainee.drd.repository.blueprint;
 
-import net.homecredit.trainee.entity.blueprint.BeastBlueprint;
+import net.homecredit.trainee.drd.entity.blueprint.BeastBlueprint;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;

@@ -1,7 +1,7 @@
 package net.homecredit.trainee.drd.entity.character.ability;
 
-import net.homecredit.trainee.entity.blueprint.BeastBlueprint;
-import net.homecredit.trainee.entity.character.Person;
+import net.homecredit.trainee.drd.entity.blueprint.BeastBlueprint;
+import net.homecredit.trainee.drd.entity.character.Person;
 
 import javax.persistence.*;
 import java.util.UUID;

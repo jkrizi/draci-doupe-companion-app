@@ -1,6 +1,6 @@
 package net.homecredit.trainee.drd.entity.blueprint.item;
 
-import net.homecredit.trainee.entity.character.skill.SkillKnowledge;
+import net.homecredit.trainee.drd.entity.character.skill.SkillKnowledge;
 
 import javax.persistence.*;
 import java.util.UUID;

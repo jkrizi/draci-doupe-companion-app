@@ -1,6 +1,6 @@
-package net.homecredit.trainee.repository.character;
+package net.homecredit.trainee.drd.repository.character;
 
-import net.homecredit.trainee.entity.character.profession.ProfessionKnowHow;
+import net.homecredit.trainee.drd.entity.character.profession.ProfessionKnowHow;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;

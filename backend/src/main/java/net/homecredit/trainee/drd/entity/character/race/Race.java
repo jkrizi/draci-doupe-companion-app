@@ -1,9 +1,9 @@
 package net.homecredit.trainee.drd.entity.character.race;
 
-import net.homecredit.trainee.entity.blueprint.PersonBlueprint;
-import net.homecredit.trainee.entity.character.CharacterSize;
-import net.homecredit.trainee.entity.character.Person;
-import net.homecredit.trainee.entity.inventory.weapon.Weapon;
+import net.homecredit.trainee.drd.entity.blueprint.PersonBlueprint;
+import net.homecredit.trainee.drd.entity.character.CharacterSize;
+import net.homecredit.trainee.drd.entity.character.Person;
+import net.homecredit.trainee.drd.entity.inventory.weapon.Weapon;
 
 import javax.persistence.*;
 import java.util.Collection;

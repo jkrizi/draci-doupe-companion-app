@@ -1,7 +1,7 @@
-package net.homecredit.trainee.service.character;
+package net.homecredit.trainee.drd.service.character;
 
-import net.homecredit.trainee.entity.character.ability.Ability;
-import net.homecredit.trainee.entity.character.race.Race;
+import net.homecredit.trainee.drd.entity.character.ability.Ability;
+import net.homecredit.trainee.drd.entity.character.race.Race;
 import org.springframework.stereotype.Service;
 
 @Service

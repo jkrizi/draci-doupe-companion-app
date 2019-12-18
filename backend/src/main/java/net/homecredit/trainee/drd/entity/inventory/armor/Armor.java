@@ -1,7 +1,7 @@
 package net.homecredit.trainee.drd.entity.inventory.armor;
 
-import net.homecredit.trainee.entity.inventory.Equipment;
-import net.homecredit.trainee.entity.inventory.StorageUnit;
+import net.homecredit.trainee.drd.entity.inventory.Equipment;
+import net.homecredit.trainee.drd.entity.inventory.StorageUnit;
 
 import javax.persistence.*;
 import java.util.Set;

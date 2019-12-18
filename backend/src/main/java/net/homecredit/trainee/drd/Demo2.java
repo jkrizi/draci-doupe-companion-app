@@ -1,29 +1,27 @@
-package net.homecredit.trainee;
+package net.homecredit.trainee.drd;
 
-import net.homecredit.trainee.entity.blueprint.item.*;
-import net.homecredit.trainee.entity.character.skill.SkillKnowledge;
-import net.homecredit.trainee.entity.inventory.armor.BodySection;
-import net.homecredit.trainee.entity.inventory.weapon.WeaponType;
-import net.homecredit.trainee.entity.shop.ItemType;
-import net.homecredit.trainee.repository.blueprint.GoodsBlueprintRepository;
-import net.homecredit.trainee.service.blueprint.ArmorBlueprintService;
-import net.homecredit.trainee.service.blueprint.GoodsBlueprintService;
-import net.homecredit.trainee.service.blueprint.TreasureBlueprintService;
-import net.homecredit.trainee.service.blueprint.WeaponBlueprintService;
-import net.homecredit.trainee.service.item.StorageService;
-import net.homecredit.trainee.service.item.WeaponService;
+import net.homecredit.trainee.drd.entity.blueprint.item.*;
+import net.homecredit.trainee.drd.entity.character.skill.SkillKnowledge;
+import net.homecredit.trainee.drd.entity.inventory.armor.BodySection;
+import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponType;
+import net.homecredit.trainee.drd.entity.shop.ItemType;
+import net.homecredit.trainee.drd.service.blueprint.ArmorBlueprintService;
+import net.homecredit.trainee.drd.service.blueprint.GoodsBlueprintService;
+import net.homecredit.trainee.drd.service.blueprint.TreasureBlueprintService;
+import net.homecredit.trainee.drd.service.blueprint.WeaponBlueprintService;
+import net.homecredit.trainee.drd.service.item.StorageService;
+import net.homecredit.trainee.drd.service.item.WeaponService;
 import net.homecredit.trainee.util.Color;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.EnumSet;
 import java.util.Set;
-import java.util.UUID;
 
 public class Demo2 {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+        ConfigurableApplicationContext applicationContext = new AnnotationConfigApplicationContext(BackEndApplication.class);
         StorageService storageService = applicationContext.getBean(StorageService.class);
 
         WeaponBlueprintService weaponBlueprintService = applicationContext.getBean(WeaponBlueprintService.class);

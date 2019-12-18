@@ -1,12 +1,12 @@
-package net.homecredit.trainee.service.item;
+package net.homecredit.trainee.drd.service.item;
 
-import net.homecredit.trainee.entity.character.ability.AbilityScore;
-import net.homecredit.trainee.entity.inventory.Equipment;
-import net.homecredit.trainee.entity.inventory.Inventory;
-import net.homecredit.trainee.entity.inventory.StorageUnit;
-import net.homecredit.trainee.entity.inventory.armor.Armor;
-import net.homecredit.trainee.entity.inventory.weapon.Weapon;
-import net.homecredit.trainee.repository.inventory.InventoryRepository;
+import net.homecredit.trainee.drd.entity.character.ability.AbilityScore;
+import net.homecredit.trainee.drd.entity.inventory.Equipment;
+import net.homecredit.trainee.drd.entity.inventory.Inventory;
+import net.homecredit.trainee.drd.entity.inventory.StorageUnit;
+import net.homecredit.trainee.drd.entity.inventory.armor.Armor;
+import net.homecredit.trainee.drd.entity.inventory.weapon.Weapon;
+import net.homecredit.trainee.drd.repository.inventory.InventoryRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;

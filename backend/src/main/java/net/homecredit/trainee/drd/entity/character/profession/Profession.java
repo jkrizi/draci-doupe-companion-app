@@ -1,6 +1,6 @@
 package net.homecredit.trainee.drd.entity.character.profession;
 
-import net.homecredit.trainee.entity.character.ability.Ability;
+import net.homecredit.trainee.drd.entity.character.ability.Ability;
 
 import java.util.HashMap;
 import java.util.Map;

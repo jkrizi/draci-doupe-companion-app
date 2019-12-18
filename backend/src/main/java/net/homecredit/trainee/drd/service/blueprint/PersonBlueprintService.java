@@ -1,10 +1,10 @@
-package net.homecredit.trainee.service.blueprint;
+package net.homecredit.trainee.drd.service.blueprint;
 
-import net.homecredit.trainee.entity.blueprint.PersonBlueprint;
-import net.homecredit.trainee.entity.character.Person;
-import net.homecredit.trainee.entity.character.profession.Profession;
-import net.homecredit.trainee.entity.character.race.Race;
-import net.homecredit.trainee.entity.inventory.Inventory;
+import net.homecredit.trainee.drd.entity.blueprint.PersonBlueprint;
+import net.homecredit.trainee.drd.entity.character.Person;
+import net.homecredit.trainee.drd.entity.character.profession.Profession;
+import net.homecredit.trainee.drd.entity.character.race.Race;
+import net.homecredit.trainee.drd.entity.inventory.Inventory;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,13 +1,13 @@
-package net.homecredit.trainee;
+package net.homecredit.trainee.drd;
 
-import net.homecredit.trainee.entity.blueprint.BeastBlueprint;
-import net.homecredit.trainee.entity.character.CharacterSize;
-import net.homecredit.trainee.entity.character.Vulnerability;
-import net.homecredit.trainee.entity.character.ability.Ability;
-import net.homecredit.trainee.entity.character.ability.AbilityScore;
-import net.homecredit.trainee.service.blueprint.BeastBlueprintService;
-import net.homecredit.trainee.service.character.BeastService;
-import net.homecredit.trainee.service.item.StorageService;
+import net.homecredit.trainee.drd.entity.blueprint.BeastBlueprint;
+import net.homecredit.trainee.drd.entity.character.CharacterSize;
+import net.homecredit.trainee.drd.entity.character.Vulnerability;
+import net.homecredit.trainee.drd.entity.character.ability.Ability;
+import net.homecredit.trainee.drd.entity.character.ability.AbilityScore;
+import net.homecredit.trainee.drd.service.blueprint.BeastBlueprintService;
+import net.homecredit.trainee.drd.service.character.BeastService;
+import net.homecredit.trainee.drd.service.item.StorageService;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -19,7 +19,7 @@ public class Demo {
 
     public static void main(String[] args) {
 
-        ConfigurableApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+        ConfigurableApplicationContext applicationContext = new AnnotationConfigApplicationContext(BackEndApplication.class);
         BeastBlueprintService beastBlueprintService = applicationContext.getBean(BeastBlueprintService.class);
         BeastService beastService =  applicationContext.getBean(BeastService.class);
         StorageService storageService = applicationContext.getBean(StorageService.class);

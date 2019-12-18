@@ -1,15 +1,15 @@
-package net.homecredit.trainee.service.blueprint;
+package net.homecredit.trainee.drd.service.blueprint;
 
-import net.homecredit.trainee.entity.blueprint.BeastBlueprint;
-import net.homecredit.trainee.entity.character.CharacterSize;
-import net.homecredit.trainee.entity.character.Vulnerability;
-import net.homecredit.trainee.entity.character.ability.Ability;
-import net.homecredit.trainee.entity.character.ability.AbilityScore;
-import net.homecredit.trainee.entity.character.combat.CombatValues;
-import net.homecredit.trainee.entity.inventory.Inventory;
-import net.homecredit.trainee.repository.blueprint.BeastBlueprintRepository;
-import net.homecredit.trainee.service.character.CombatService;
-import net.homecredit.trainee.service.item.InventoryService;
+import net.homecredit.trainee.drd.entity.blueprint.BeastBlueprint;
+import net.homecredit.trainee.drd.entity.character.CharacterSize;
+import net.homecredit.trainee.drd.entity.character.Vulnerability;
+import net.homecredit.trainee.drd.entity.character.ability.Ability;
+import net.homecredit.trainee.drd.entity.character.ability.AbilityScore;
+import net.homecredit.trainee.drd.entity.character.combat.CombatValues;
+import net.homecredit.trainee.drd.entity.inventory.Inventory;
+import net.homecredit.trainee.drd.repository.blueprint.BeastBlueprintRepository;
+import net.homecredit.trainee.drd.service.character.CombatService;
+import net.homecredit.trainee.drd.service.item.InventoryService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

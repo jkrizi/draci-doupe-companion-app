@@ -1,7 +1,7 @@
 package net.homecredit.trainee.drd.entity.blueprint.item;
 
 
-import net.homecredit.trainee.entity.inventory.weapon.WeaponType;
+import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponType;
 
 import javax.persistence.*;
 import java.util.Set;

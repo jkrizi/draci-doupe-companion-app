@@ -1,9 +1,8 @@
-package net.homecredit.trainee.service.character.profession;
+package net.homecredit.trainee.drd.service.character.profession;
 
-import net.homecredit.trainee.entity.character.Character;
-import net.homecredit.trainee.entity.character.Person;
-import net.homecredit.trainee.entity.character.profession.Profession;
-import net.homecredit.trainee.entity.character.profession.ProfessionKnowHow;
+import net.homecredit.trainee.drd.entity.character.Person;
+import net.homecredit.trainee.drd.entity.character.profession.Profession;
+import net.homecredit.trainee.drd.entity.character.profession.ProfessionKnowHow;
 import org.springframework.stereotype.Service;
 
 @Service

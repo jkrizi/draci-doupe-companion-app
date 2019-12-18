@@ -1,4 +1,4 @@
-package net.homecredit.trainee.service.character.profession;
+package net.homecredit.trainee.drd.service.character.profession;
 
 public class FighterService extends WarriorService{
 }

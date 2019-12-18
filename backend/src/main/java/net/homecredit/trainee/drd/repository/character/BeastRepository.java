@@ -1,6 +1,6 @@
-package net.homecredit.trainee.repository.character;
+package net.homecredit.trainee.drd.repository.character;
 
-import net.homecredit.trainee.entity.character.Beast;
+import net.homecredit.trainee.drd.entity.character.Beast;
 
 import javax.persistence.EntityManager;
 

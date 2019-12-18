@@ -1,14 +1,13 @@
-package net.homecredit.trainee.service.character;
+package net.homecredit.trainee.drd.service.character;
 
-import net.homecredit.trainee.entity.character.Character;
-import net.homecredit.trainee.entity.character.ability.Ability;
-import net.homecredit.trainee.entity.character.ability.AbilityScore;
-import net.homecredit.trainee.entity.character.combat.CombatModifier;
-import net.homecredit.trainee.entity.character.combat.CombatValues;
-import net.homecredit.trainee.entity.inventory.Inventory;
-import net.homecredit.trainee.entity.inventory.armor.Armor;
-import net.homecredit.trainee.entity.inventory.weapon.Weapon;
-import net.homecredit.trainee.service.item.InventoryService;
+import net.homecredit.trainee.drd.entity.character.ability.Ability;
+import net.homecredit.trainee.drd.entity.character.ability.AbilityScore;
+import net.homecredit.trainee.drd.entity.character.combat.CombatModifier;
+import net.homecredit.trainee.drd.entity.character.combat.CombatValues;
+import net.homecredit.trainee.drd.entity.inventory.Inventory;
+import net.homecredit.trainee.drd.entity.inventory.armor.Armor;
+import net.homecredit.trainee.drd.entity.inventory.weapon.Weapon;
+import net.homecredit.trainee.drd.service.item.InventoryService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,7 +29,7 @@ public class CombatService {
         return newCombatValues(abilityScoreMap, inventory, initiativeBase, new CombatModifier(0,0, 0));
     }
 
-    public CombatValues newCombatValues(Map<Ability,AbilityScore> abilityScoreMap, Inventory inventory, int initiativeBase, CombatModifier combatModifier) {
+    public CombatValues newCombatValues(Map<Ability, AbilityScore> abilityScoreMap, Inventory inventory, int initiativeBase, CombatModifier combatModifier) {
 
         int strength = abilityScoreMap.get(Ability.STRENGTH).getAbilityBonusValue();
         int dexterity = abilityScoreMap.get(Ability.DEXTERITY).getAbilityBonusValue();

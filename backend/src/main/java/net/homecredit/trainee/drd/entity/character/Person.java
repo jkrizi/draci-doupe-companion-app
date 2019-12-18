@@ -1,13 +1,13 @@
 package net.homecredit.trainee.drd.entity.character;
 
-import net.homecredit.trainee.entity.blueprint.PersonBlueprint;
-import net.homecredit.trainee.entity.character.ability.Ability;
-import net.homecredit.trainee.entity.character.ability.AbilityScore;
-import net.homecredit.trainee.entity.character.combat.CombatValues;
-import net.homecredit.trainee.entity.character.profession.ProfessionKnowHow;
-import net.homecredit.trainee.entity.character.race.Race;
-import net.homecredit.trainee.entity.character.skill.SkillKnowHow;
-import net.homecredit.trainee.entity.inventory.Inventory;
+import net.homecredit.trainee.drd.entity.blueprint.PersonBlueprint;
+import net.homecredit.trainee.drd.entity.character.ability.Ability;
+import net.homecredit.trainee.drd.entity.character.ability.AbilityScore;
+import net.homecredit.trainee.drd.entity.character.combat.CombatValues;
+import net.homecredit.trainee.drd.entity.character.profession.ProfessionKnowHow;
+import net.homecredit.trainee.drd.entity.character.race.Race;
+import net.homecredit.trainee.drd.entity.character.skill.SkillKnowHow;
+import net.homecredit.trainee.drd.entity.inventory.Inventory;
 
 import javax.persistence.*;
 import java.util.Collection;

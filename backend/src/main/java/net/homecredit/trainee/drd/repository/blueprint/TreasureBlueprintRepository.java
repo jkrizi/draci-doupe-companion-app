@@ -1,10 +1,9 @@
-package net.homecredit.trainee.repository.blueprint;
+package net.homecredit.trainee.drd.repository.blueprint;
 
-import net.homecredit.trainee.entity.blueprint.item.TreasureBlueprint;
+import net.homecredit.trainee.drd.entity.blueprint.item.TreasureBlueprint;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import java.util.UUID;
 
 @Repository

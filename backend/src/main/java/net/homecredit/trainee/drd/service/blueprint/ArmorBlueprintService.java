@@ -1,10 +1,10 @@
-package net.homecredit.trainee.service.blueprint;
+package net.homecredit.trainee.drd.service.blueprint;
 
-import net.homecredit.trainee.entity.blueprint.item.ArmorBlueprint;
-import net.homecredit.trainee.entity.inventory.armor.BodySection;
-import net.homecredit.trainee.entity.shop.ItemType;
-import net.homecredit.trainee.repository.blueprint.ArmorBlueprintRepository;
-import net.homecredit.trainee.service.shop.ShopService;
+import net.homecredit.trainee.drd.entity.blueprint.item.ArmorBlueprint;
+import net.homecredit.trainee.drd.entity.inventory.armor.BodySection;
+import net.homecredit.trainee.drd.entity.shop.ItemType;
+import net.homecredit.trainee.drd.repository.blueprint.ArmorBlueprintRepository;
+import net.homecredit.trainee.drd.service.shop.ShopService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

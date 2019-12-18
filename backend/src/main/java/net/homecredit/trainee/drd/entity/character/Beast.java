@@ -1,8 +1,8 @@
 package net.homecredit.trainee.drd.entity.character;
 
-import net.homecredit.trainee.entity.blueprint.BeastBlueprint;
-import net.homecredit.trainee.entity.character.combat.CombatValues;
-import net.homecredit.trainee.entity.inventory.Inventory;
+import net.homecredit.trainee.drd.entity.blueprint.BeastBlueprint;
+import net.homecredit.trainee.drd.entity.character.combat.CombatValues;
+import net.homecredit.trainee.drd.entity.inventory.Inventory;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -18,7 +18,7 @@ public class Beast implements Character {
     private String description;
     private int life;
     @Enumerated(EnumType.STRING)
-    @Column(name = "beast_size")
+    @Column(name = "BEAST_SIZE")
     private CharacterSize size;
     @OneToOne
     private Inventory inventory;

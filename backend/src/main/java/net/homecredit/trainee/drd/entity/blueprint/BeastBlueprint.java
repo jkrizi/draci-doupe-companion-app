@@ -1,12 +1,12 @@
 package net.homecredit.trainee.drd.entity.blueprint;
 
-import net.homecredit.trainee.entity.character.Beast;
-import net.homecredit.trainee.entity.character.CharacterSize;
-import net.homecredit.trainee.entity.character.Vulnerability;
-import net.homecredit.trainee.entity.character.ability.Ability;
-import net.homecredit.trainee.entity.character.ability.AbilityScore;
-import net.homecredit.trainee.entity.character.combat.CombatValues;
-import net.homecredit.trainee.entity.inventory.Inventory;
+import net.homecredit.trainee.drd.entity.character.Beast;
+import net.homecredit.trainee.drd.entity.character.CharacterSize;
+import net.homecredit.trainee.drd.entity.character.Vulnerability;
+import net.homecredit.trainee.drd.entity.character.ability.Ability;
+import net.homecredit.trainee.drd.entity.character.ability.AbilityScore;
+import net.homecredit.trainee.drd.entity.character.combat.CombatValues;
+import net.homecredit.trainee.drd.entity.inventory.Inventory;
 
 import javax.persistence.*;
 import java.util.*;

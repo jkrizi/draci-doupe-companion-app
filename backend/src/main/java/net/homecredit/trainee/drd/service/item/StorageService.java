@@ -1,9 +1,9 @@
-package net.homecredit.trainee.service.item;
+package net.homecredit.trainee.drd.service.item;
 
-import net.homecredit.trainee.entity.inventory.Equipment;
-import net.homecredit.trainee.entity.inventory.Inventory;
-import net.homecredit.trainee.entity.inventory.StorageUnit;
-import net.homecredit.trainee.repository.inventory.StorageRepository;
+import net.homecredit.trainee.drd.entity.inventory.Equipment;
+import net.homecredit.trainee.drd.entity.inventory.Inventory;
+import net.homecredit.trainee.drd.entity.inventory.StorageUnit;
+import net.homecredit.trainee.drd.repository.inventory.StorageRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

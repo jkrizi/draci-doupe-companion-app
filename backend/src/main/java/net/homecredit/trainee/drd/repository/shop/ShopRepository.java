@@ -1,6 +1,6 @@
-package net.homecredit.trainee.repository.shop;
+package net.homecredit.trainee.drd.repository.shop;
 
-import net.homecredit.trainee.entity.shop.ShopItem;
+import net.homecredit.trainee.drd.entity.shop.ShopItem;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

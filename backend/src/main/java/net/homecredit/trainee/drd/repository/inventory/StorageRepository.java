@@ -1,7 +1,6 @@
-package net.homecredit.trainee.repository.inventory;
+package net.homecredit.trainee.drd.repository.inventory;
 
-import net.homecredit.trainee.entity.inventory.StorageUnit;
-import net.homecredit.trainee.entity.inventory.weapon.Weapon;
+import net.homecredit.trainee.drd.entity.inventory.StorageUnit;
 
 import javax.persistence.EntityManager;
 import java.util.UUID;

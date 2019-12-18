@@ -1,8 +1,8 @@
 package net.homecredit.trainee.drd.entity.inventory.weapon;
 
-import net.homecredit.trainee.entity.blueprint.item.WeaponBlueprint;
-import net.homecredit.trainee.entity.inventory.Equipment;
-import net.homecredit.trainee.entity.inventory.StorageUnit;
+import net.homecredit.trainee.drd.entity.blueprint.item.WeaponBlueprint;
+import net.homecredit.trainee.drd.entity.inventory.Equipment;
+import net.homecredit.trainee.drd.entity.inventory.StorageUnit;
 
 import javax.persistence.*;
 import java.util.EnumSet;

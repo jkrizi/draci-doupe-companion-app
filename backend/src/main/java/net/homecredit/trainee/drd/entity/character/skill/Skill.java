@@ -1,6 +1,6 @@
 package net.homecredit.trainee.drd.entity.character.skill;
 
-import net.homecredit.trainee.entity.character.ability.Ability;
+import net.homecredit.trainee.drd.entity.character.ability.Ability;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

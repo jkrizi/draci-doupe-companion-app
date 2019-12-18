@@ -1,6 +1,6 @@
-package net.homecredit.trainee.repository.inventory;
+package net.homecredit.trainee.drd.repository.inventory;
 
-import net.homecredit.trainee.entity.inventory.Inventory;
+import net.homecredit.trainee.drd.entity.inventory.Inventory;
 
 import javax.persistence.EntityManager;
 

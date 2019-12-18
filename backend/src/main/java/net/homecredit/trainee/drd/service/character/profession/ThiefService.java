@@ -1,7 +1,7 @@
-package net.homecredit.trainee.service.character.profession;
+package net.homecredit.trainee.drd.service.character.profession;
 
-import net.homecredit.trainee.entity.character.profession.Profession;
-import net.homecredit.trainee.entity.character.profession.ProfessionKnowHow;
+import net.homecredit.trainee.drd.entity.character.profession.Profession;
+import net.homecredit.trainee.drd.entity.character.profession.ProfessionKnowHow;
 
 public class ThiefService implements ProfessionService {
 
