@@ -62,6 +62,21 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<!--<changeLogFile>src/main/resources/dbchangelog/dbchangelog.oracle.sql</changeLogFile>-->
+					<!--<outputChangeLogFile>src/main/resources/dbchangelog/dbchangelog.oracle.sql</outputChangeLogFile>-->
+					<!--<driver>oracle.jdbc.driver.OracleDriver</driver>-->
+					<!--<url>jdbc:oracle:thin:@localhost:1521:XE</url>-->
+					<!--<username>c##dracidoupe</username>-->
+					<!--<password>JavaTrainee</password>-->
+					<propertyFile>/src/main/resources/dbchangelog/liquibase.properties</propertyFile>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
