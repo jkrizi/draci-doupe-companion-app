@@ -54,13 +54,13 @@ public class BeastBlueprint {
 
     private int pugnacity;
     private int persistence;
-    private int tameAbility;
+    private int domestication;
 
     private boolean trained;
 
     public BeastBlueprint() {}
 
-    public BeastBlueprint(String beastOrigin, String name, String species, String description, int viability, int viabilityBonus, int manna, Map<Ability, AbilityScore> abilityMap, int mobility, EnumSet<CharacterSize> size, EnumSet<Vulnerability> vulnerabilities, Inventory inventory, CombatValues combatValues, int pugnacity, int persistence, int tameAbility, boolean trained) {
+    public BeastBlueprint(String beastOrigin, String name, String species, String description, int viability, int viabilityBonus, int manna, Map<Ability, AbilityScore> abilityMap, int mobility, EnumSet<CharacterSize> size, EnumSet<Vulnerability> vulnerabilities, Inventory inventory, CombatValues combatValues, int pugnacity, int persistence, int domestication, boolean trained) {
         this.id = UUID.randomUUID();
         this.beastOrigin = beastOrigin;
         this.name = name;
@@ -76,7 +76,7 @@ public class BeastBlueprint {
         this.inventory = inventory;
         this.pugnacity = pugnacity;
         this.persistence = persistence;
-        this.tameAbility = tameAbility;
+        this.domestication = domestication;
         this.trained = trained;
         this.combatValues = combatValues;
     }
@@ -217,12 +217,12 @@ public class BeastBlueprint {
         this.persistence = persistence;
     }
 
-    public int getTameAbility() {
-        return tameAbility;
+    public int getDomestication() {
+        return domestication;
     }
 
-    public void setTameAbility(int tameAbility) {
-        this.tameAbility = tameAbility;
+    public void setDomestication(int tameAbility) {
+        this.domestication = tameAbility;
     }
 
     public boolean isTrained() {
