@@ -1,11 +1,12 @@
 package net.homecredit.trainee.drd.entity.blueprint.item;
 
-import net.homecredit.trainee.util.Color;
+import net.homecredit.trainee.drd.util.Color;
 
 import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
+@Table(name = "GEMSTONE")
 public class GemStone {
 
     @Id
@@ -16,7 +17,8 @@ public class GemStone {
     @Column(name = "UNIT_PRICE")
     private double unitPrice;
 
-    public GemStone() {}
+    public GemStone() {
+    }
 
     public GemStone(String name, Color color, double unitPrice) {
         this.id = UUID.randomUUID();

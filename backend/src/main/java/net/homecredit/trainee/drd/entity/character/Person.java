@@ -62,7 +62,8 @@ public class Person implements Character {
     @ManyToOne
     private PersonBlueprint personBlueprint;
 
-    public Person() {}
+    public Person() {
+    }
 
     public Person(String name, String description, int level, int exp, int initialLife, int initialManna, int weight, int height, Race race, ProfessionKnowHow professionKnowHow, Map<Ability, AbilityScore> abilityMap, CombatValues combatValues, Inventory inventory, Collection<Beast> companion, Collection<SkillKnowHow> skillKnowHow) {
         this.id = UUID.randomUUID();

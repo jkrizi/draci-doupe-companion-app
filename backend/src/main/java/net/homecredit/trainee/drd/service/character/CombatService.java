@@ -25,8 +25,8 @@ public class CombatService {
         this.inventoryService = inventoryService;
     }
 
-    public CombatValues newCombatValues(Map<Ability,AbilityScore> abilityScoreMap, Inventory inventory, int initiativeBase) {
-        return newCombatValues(abilityScoreMap, inventory, initiativeBase, new CombatModifier(0,0, 0));
+    public CombatValues newCombatValues(Map<Ability, AbilityScore> abilityScoreMap, Inventory inventory, int initiativeBase) {
+        return newCombatValues(abilityScoreMap, inventory, initiativeBase, new CombatModifier(0, 0, 0));
     }
 
     public CombatValues newCombatValues(Map<Ability, AbilityScore> abilityScoreMap, Inventory inventory, int initiativeBase, CombatModifier combatModifier) {
@@ -60,7 +60,7 @@ public class CombatService {
 
     private int calculateDefense(int dexterity, List<Armor> equippedArmor, int weaponDefense, CombatModifier combatModifier) {
         int defense = dexterity + weaponDefense + combatModifier.getDefenseModifier();
-        for(Armor a: equippedArmor) {
+        for (Armor a : equippedArmor) {
             defense += a.getDefense();
         }
         return defense;

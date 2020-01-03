@@ -22,7 +22,8 @@ public class GoodsBlueprint implements ItemBlueprint {
     @Column(name = "ITEM_TYPE")
     private ItemType itemType;
 
-    public GoodsBlueprint () {}
+    public GoodsBlueprint() {
+    }
 
     public GoodsBlueprint(String name, String publicDescription, String privateDescription, int weight, ItemType itemType) {
         this.id = UUID.randomUUID();

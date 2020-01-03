@@ -13,7 +13,8 @@ public class ProfessionKnowHow {
     @Enumerated(EnumType.STRING)
     private Profession profession;
 
-    public ProfessionKnowHow() {}
+    public ProfessionKnowHow() {
+    }
 
     public ProfessionKnowHow(Profession profession) {
         this.id = UUID.randomUUID();

@@ -5,7 +5,7 @@ import net.homecredit.trainee.drd.entity.character.profession.ProfessionKnowHow;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RangerService implements ProfessionService{
+public class RangerService implements ProfessionService {
 
     @Override
     public ProfessionKnowHow startCareer(Profession profession) {

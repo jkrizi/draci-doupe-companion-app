@@ -17,7 +17,8 @@ public class SpellBook {
     @ManyToOne
     private Spell spell;
 
-    public SpellBook() {}
+    public SpellBook() {
+    }
 
     public SpellBook(WizardKnowHow wizardKnowHow, Spell spell) {
         this.id = UUID.randomUUID();

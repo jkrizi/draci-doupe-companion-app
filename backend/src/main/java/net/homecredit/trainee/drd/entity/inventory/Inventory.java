@@ -17,10 +17,11 @@ public class Inventory {
     private double coinPouch;
     @Column(name = "BANK_VAULT")
     private double bankVault;
-    @OneToMany(mappedBy = "inventory", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "inventory", cascade = CascadeType.ALL)
     private Collection<StorageUnit> storageUnits;
 
-    public  Inventory() {}
+    public Inventory() {
+    }
 
     public Inventory(int limitWeight, int contentWeight, double coinPouch, double bankVault, Collection<StorageUnit> storageUnits) {
         this.id = UUID.randomUUID();
@@ -77,5 +78,10 @@ public class Inventory {
 
     public void setStorageUnits(Collection<StorageUnit> storageUnits) {
         this.storageUnits = storageUnits;
+    }
+
+    //JZ-getter without attribute
+    public int getFreeSpace(){
+        return getLimitWeight() - getContentWeight();
     }
 }

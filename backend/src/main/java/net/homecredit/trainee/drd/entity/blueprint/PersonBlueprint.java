@@ -31,7 +31,8 @@ public class PersonBlueprint {
     @OneToMany(mappedBy = "personBlueprint")
     private Collection<Person> people;
 
-    public PersonBlueprint() {}
+    public PersonBlueprint() {
+    }
 
     public PersonBlueprint(String name, String description, int level, Race race, Profession profession, Inventory inventory, Collection<Person> people) {
         this.id = UUID.randomUUID();

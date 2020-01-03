@@ -6,7 +6,8 @@ public class CoinValue {
     private int silverCoins;
     private int bronzeCoins;
 
-    public CoinValue() {}
+    public CoinValue() {
+    }
 
     public CoinValue(int goldCoins, int silverCoins, int bronzeCoins) {
         this.goldCoins = goldCoins;

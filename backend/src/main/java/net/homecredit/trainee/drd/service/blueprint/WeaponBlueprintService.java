@@ -33,4 +33,8 @@ public class WeaponBlueprintService {
     public WeaponBlueprint findBlueprint(UUID id) {
         return weaponBlueprintRepository.find(id);
     }
+
+    public void deleteAll() {
+        weaponBlueprintRepository.deleteAll();
+    }
 }

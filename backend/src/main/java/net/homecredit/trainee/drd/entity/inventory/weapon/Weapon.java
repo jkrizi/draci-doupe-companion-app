@@ -1,8 +1,10 @@
 package net.homecredit.trainee.drd.entity.inventory.weapon;
 
+import net.homecredit.trainee.drd.entity.blueprint.item.ItemBlueprint;
 import net.homecredit.trainee.drd.entity.blueprint.item.WeaponBlueprint;
 import net.homecredit.trainee.drd.entity.inventory.Equipment;
 import net.homecredit.trainee.drd.entity.inventory.StorageUnit;
+import net.homecredit.trainee.drd.entity.shop.ItemType;
 
 import javax.persistence.*;
 import java.util.EnumSet;
@@ -22,7 +24,7 @@ public class Weapon extends Equipment {
     private int initiativeModifier;
 
     @ElementCollection
-    @CollectionTable(name="WEAPON_TYPE_BLUEPRINT", joinColumns = @JoinColumn(name = "WEAPON_BLUEPRINT_ID"))
+    @CollectionTable(name = "WEAPON_TYPE_BLUEPRINT", joinColumns = @JoinColumn(name = "WEAPON_BLUEPRINT_ID"))
     @Enumerated(EnumType.STRING)
     @Column(name = "WEAPON_TYPE")
     private Set<WeaponType> type;
@@ -39,10 +41,26 @@ public class Weapon extends Equipment {
     @Column(name = "MAX_MELEE_REACH")
     private int maxReach;
 
-    public Weapon() {}
+    public Weapon() {
+    }
+
+    public Weapon(WeaponBlueprint weaponBlueprint) {
+        super(weaponBlueprint, ItemType.WEAPONS);
+        this.equipped = false;
+        this.attack = weaponBlueprint.getAttack();
+        this.hurt = weaponBlueprint.getHurt();
+        this.defense = weaponBlueprint.getDefense();
+        this.initiativeModifier = weaponBlueprint.getInitiativeModifier();
+        this.type = EnumSet.copyOf(weaponBlueprint.getType());
+        this.shortRangeLimit = weaponBlueprint.getShortRangeLimit();
+        this.midRangeLimit = weaponBlueprint.getMidRangeLimit();
+        this.longRangeLimit = weaponBlueprint.getLongRangeLimit();
+        this.minReach = weaponBlueprint.getMinReach();
+        this.maxReach = weaponBlueprint.getMaxReach();
+    }
 
     public Weapon(WeaponBlueprint weaponBlueprint, StorageUnit storage) {
-        super(weaponBlueprint.getName(), weaponBlueprint.getPublicDescription(), weaponBlueprint.getWeight(), storage);
+        super(weaponBlueprint, storage, ItemType.WEAPONS);
         this.equipped = false;
         this.attack = weaponBlueprint.getAttack();
         this.hurt = weaponBlueprint.getHurt();

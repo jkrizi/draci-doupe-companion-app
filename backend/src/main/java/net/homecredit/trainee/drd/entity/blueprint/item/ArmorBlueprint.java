@@ -23,12 +23,13 @@ public class ArmorBlueprint implements ItemBlueprint {
     private int defense;
 
     @ElementCollection
-    @CollectionTable(name="ARMOR_COVERAGE_BLUEPRINT", joinColumns = @JoinColumn(name = "ARMOR_BLUEPRINT_ID"))
+    @CollectionTable(name = "ARMOR_COVERAGE_BLUEPRINT", joinColumns = @JoinColumn(name = "ARMOR_BLUEPRINT_ID"))
     @Enumerated(EnumType.STRING)
     @Column(name = "BODY_SECTION")
     private Set<BodySection> coverage;
 
-    public ArmorBlueprint() {}
+    public ArmorBlueprint() {
+    }
 
     public ArmorBlueprint(String name, String publicDescription, String privateDescription, int weight, int defense, Set<BodySection> coverage) {
         this.id = UUID.randomUUID();

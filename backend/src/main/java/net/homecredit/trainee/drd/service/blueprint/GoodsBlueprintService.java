@@ -21,14 +21,18 @@ public class GoodsBlueprintService {
         this.shopService = shopService;
     }
 
-    public GoodsBlueprint drawAndFileBlueprint(String name, String publicDescription, String privateDescription, int weight, ItemType itemType){
+    public GoodsBlueprint drawAndFileBlueprint(String name, String publicDescription, String privateDescription, int weight, ItemType itemType) {
         GoodsBlueprint goodsBlueprint = new GoodsBlueprint(name, publicDescription, privateDescription, weight, itemType);
         goodsBlueprintRepository.save(goodsBlueprint);
         shopService.createPriceTag(goodsBlueprint, itemType);
         return goodsBlueprint;
     }
 
-    public GoodsBlueprint findBlueprint(UUID id){
+    public GoodsBlueprint findBlueprint(UUID id) {
         return goodsBlueprintRepository.find(id);
+    }
+
+    public void deleteAll() {
+        goodsBlueprintRepository.deleteAll();
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -23,7 +24,19 @@ public class ShopService {
 
     public void createPriceTag(ItemBlueprint itemBlueprint, ItemType itemType) {
         List<LocalPrice> priceList = new ArrayList<>();
-        ShopItem shopItem =  new ShopItem(itemBlueprint.getName(), itemBlueprint.toString(), itemType, priceList, itemBlueprint.getId());
+        ShopItem shopItem = new ShopItem(itemBlueprint.getName(), itemBlueprint.getPublicDescription(), itemType, priceList, itemBlueprint.getId());
         shopRepository.save(shopItem);
+    }
+
+    public ShopItem findItem(UUID id) {
+        return shopRepository.find(id);
+    }
+
+    public void deleteAll() {
+        shopRepository.deleteAll();
+    }
+
+    public List<ShopItem> findAll() {
+        return shopRepository.findAll();
     }
 }

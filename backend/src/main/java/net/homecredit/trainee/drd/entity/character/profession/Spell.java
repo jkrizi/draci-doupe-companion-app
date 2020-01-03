@@ -25,7 +25,8 @@ public class Spell {
     @OneToMany(mappedBy = "spell")
     private Collection<SpellBook> spellBook;
 
-    public Spell() {}
+    public Spell() {
+    }
 
     public Spell(UUID id, String name, String description, int mannaCost, int rangeOrDiameter, int conjuring, int duration, Collection<SpellBook> spellBook) {
         this.id = UUID.randomUUID();

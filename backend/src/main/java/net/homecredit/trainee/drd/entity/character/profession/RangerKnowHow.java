@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
-public class RangerKnowHow extends ProfessionKnowHow{
+public class RangerKnowHow extends ProfessionKnowHow {
 
     @Column(name = "PYROKINESIS_LEVEL_LEARNED")
     private int pyrokinesisLevelLearned;
@@ -13,7 +13,8 @@ public class RangerKnowHow extends ProfessionKnowHow{
     @Column(name = "TELEPATHY_LEVEL_LEARNED")
     private int telepathyLevelLearned;
 
-    public RangerKnowHow() {}
+    public RangerKnowHow() {
+    }
 
     public RangerKnowHow(Profession profession, int pyrokinesisLevelLearned, int telekinesisLevelLearned, int telepathyLevelLearned) {
         super(profession);

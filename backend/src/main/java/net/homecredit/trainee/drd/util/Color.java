@@ -1,4 +1,4 @@
-package net.homecredit.trainee.util;
+package net.homecredit.trainee.drd.util;
 
 public enum Color {
     SEETHROUGH,

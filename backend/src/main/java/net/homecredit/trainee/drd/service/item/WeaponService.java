@@ -17,10 +17,13 @@ public class WeaponService {
         this.weaponRepository = weaponRepository;
     }
 
-    public Weapon forgeWeapon(WeaponBlueprint weaponBlueprint, StorageUnit ownerBackpack) {
-        Weapon weapon = new Weapon(weaponBlueprint, ownerBackpack);
+    public Weapon forgeWeapon(WeaponBlueprint weaponBlueprint) {
+        Weapon weapon = new Weapon(weaponBlueprint);
         weaponRepository.save(weapon);
         return weapon;
     }
 
+    public void deleteAll() {
+        weaponRepository.deleteAll();
+    }
 }

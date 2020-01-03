@@ -24,7 +24,8 @@ public class Beast implements Character {
     private Inventory inventory;
     private CombatValues combatValues;
 
-    public Beast() {}
+    public Beast() {
+    }
 
     public Beast(BeastBlueprint beastBlueprint, String name, String description, int life, CharacterSize size, Inventory inventory, CombatValues combatValues) {
         this.id = UUID.randomUUID();
@@ -34,7 +35,7 @@ public class Beast implements Character {
         this.life = life;
         this.size = size;
         this.inventory = inventory;
-        this.combatValues =  combatValues;
+        this.combatValues = combatValues;
     }
 
     public UUID getId() {

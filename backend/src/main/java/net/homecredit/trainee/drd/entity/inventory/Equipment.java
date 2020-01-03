@@ -1,5 +1,8 @@
 package net.homecredit.trainee.drd.entity.inventory;
 
+import net.homecredit.trainee.drd.entity.blueprint.item.ItemBlueprint;
+import net.homecredit.trainee.drd.entity.shop.ItemType;
+
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -12,9 +15,14 @@ public class Equipment {
     private String name;
     private String description;
     private int weight;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "storage_unit_id")
     private StorageUnit storage;
+
+    @Column(name = "ITEM_TYPE")
+    private ItemType itemType;
+    @Column(name = "BLUEPRINT_ID")
+    private UUID blueprintId;
 
     public Equipment() {
     }
@@ -23,18 +31,33 @@ public class Equipment {
      * Used for initialization of base Storage Units
      * These may not be included in other Storage Units and have no CoinValue
      */
-    public Equipment(String name, String description, int weight) {
+    public Equipment(String name, String description, int weight, ItemType itemType) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.description = description;
         this.weight = weight;
+        this.itemType = itemType;
+
+        ////////////
+        this.blueprintId = UUID.randomUUID();
     }
 
-    public Equipment(String name, String description, int weight, StorageUnit storage) {
+    public Equipment(ItemBlueprint itemBlueprint, ItemType itemType) {
         this.id = UUID.randomUUID();
-        this.name = name;
-        this.description = description;
-        this.weight = weight;
+        this.itemType = itemType;
+        this.blueprintId = itemBlueprint.getId();
+        this.name = itemBlueprint.getName();
+        this.description = itemBlueprint.getPublicDescription();
+        this.weight = itemBlueprint.getWeight();
+    }
+
+    public Equipment(ItemBlueprint itemBlueprint, StorageUnit storage, ItemType itemType) {
+        this.id = UUID.randomUUID();
+        this.itemType = itemType;
+        this.blueprintId = itemBlueprint.getId();
+        this.name = itemBlueprint.getName();
+        this.description = itemBlueprint.getPublicDescription();
+        this.weight = itemBlueprint.getWeight();
         this.storage = storage;
     }
 
@@ -76,5 +99,21 @@ public class Equipment {
 
     public void setStorage(StorageUnit storage) {
         this.storage = storage;
+    }
+
+    public ItemType getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(ItemType itemType) {
+        this.itemType = itemType;
+    }
+
+    public UUID getBlueprintId() {
+        return blueprintId;
+    }
+
+    public void setBlueprintId(UUID blueprintId) {
+        this.blueprintId = blueprintId;
     }
 }
