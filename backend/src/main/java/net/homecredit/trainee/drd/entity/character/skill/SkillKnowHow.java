@@ -20,7 +20,8 @@ public class SkillKnowHow {
     @Column(name = "skill_knowledge")
     private SkillKnowledge skillKnowledge;
 
-    public SkillKnowHow() {}
+    public SkillKnowHow() {
+    }
 
     public SkillKnowHow(Skill skill, int pointsTotal, int pointForNextLevel, SkillKnowledge skillKnowledge) {
         this.id = UUID.randomUUID();

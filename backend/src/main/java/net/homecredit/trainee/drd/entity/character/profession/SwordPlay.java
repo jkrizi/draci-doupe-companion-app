@@ -18,7 +18,8 @@ public class SwordPlay {
     @JoinColumn(name = "SWORDPLAY_MOVE")
     private SwordPlayMove swordPlayMove;
 
-    public SwordPlay() {}
+    public SwordPlay() {
+    }
 
     public SwordPlay(UUID id, WarriorKnowHow warriorKnowHow, SwordPlayMove swordPlayMove) {
         this.id = UUID.randomUUID();

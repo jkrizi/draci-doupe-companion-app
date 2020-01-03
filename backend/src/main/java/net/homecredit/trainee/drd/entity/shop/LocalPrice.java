@@ -17,7 +17,8 @@ public class LocalPrice {
     @JoinColumn(name = "SHOP_ITEM_ID")
     private ShopItem shopItem;
 
-    public LocalPrice () {}
+    public LocalPrice() {
+    }
 
     public LocalPrice(UUID id, double price, String dealLocation, ShopItem shopItem) {
         this.id = UUID.randomUUID();

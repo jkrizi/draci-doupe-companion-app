@@ -33,13 +33,13 @@ public class BeastBlueprint {
     private Map<Ability, AbilityScore> abilityMap = new HashMap<>();
 
     @ElementCollection
-    @CollectionTable(name="BEAST_SIZE", joinColumns = @JoinColumn(name = "BEAST_BLUEPRINT_ID"))
+    @CollectionTable(name = "BEAST_SIZE", joinColumns = @JoinColumn(name = "BEAST_BLUEPRINT_ID"))
     @Enumerated(EnumType.STRING)
     @Column(name = "CHARACTER_SIZE")
     private Set<CharacterSize> size;
 
     @ElementCollection
-    @CollectionTable(name="BEAST_VULNERABILITY", joinColumns = @JoinColumn(name = "BEAST_BLUEPRINT_ID"))
+    @CollectionTable(name = "BEAST_VULNERABILITY", joinColumns = @JoinColumn(name = "BEAST_BLUEPRINT_ID"))
     @Enumerated(EnumType.STRING)
     @Column(name = "VULNERABILITY")
     private Set<Vulnerability> vulnerabilities;
@@ -58,7 +58,8 @@ public class BeastBlueprint {
 
     private boolean trained;
 
-    public BeastBlueprint() {}
+    public BeastBlueprint() {
+    }
 
     public BeastBlueprint(String beastOrigin, String name, String species, String description, int viability, int viabilityBonus, int manna, Map<Ability, AbilityScore> abilityMap, int mobility, EnumSet<CharacterSize> size, EnumSet<Vulnerability> vulnerabilities, Inventory inventory, CombatValues combatValues, int pugnacity, int persistence, int domestication, boolean trained) {
         this.id = UUID.randomUUID();

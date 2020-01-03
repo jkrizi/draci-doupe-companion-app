@@ -23,22 +23,37 @@ public class ProfessionServiceFactory {
     }
 
     public ProfessionService selectProfessionService(Profession profession) {
-        switch(profession) {
-            case WARRIOR: return warriorService;
-            case FIGHTER:return warriorService;
-            case SWORDSMAN:return warriorService;
-            case RANGER: return rangerService;
-            case DRUID: return rangerService;
-            case STRIDER: return  rangerService;
-            case ALCHEMIST: return alchemistService;
-            case THEURGIST: return alchemistService;
-            case PYROFOR: return alchemistService;
-            case WIZARD: return wizardService;
-            case SORCERER: return wizardService;
-            case MAGE: return wizardService;
-            case THIEF: return thiefService;
-            case BURGLAR: return thiefService;
-            case SICCO: return thiefService;
+        switch (profession) {
+            case WARRIOR:
+                return warriorService;
+            case FIGHTER:
+                return warriorService;
+            case SWORDSMAN:
+                return warriorService;
+            case RANGER:
+                return rangerService;
+            case DRUID:
+                return rangerService;
+            case STRIDER:
+                return rangerService;
+            case ALCHEMIST:
+                return alchemistService;
+            case THEURGIST:
+                return alchemistService;
+            case PYROFOR:
+                return alchemistService;
+            case WIZARD:
+                return wizardService;
+            case SORCERER:
+                return wizardService;
+            case MAGE:
+                return wizardService;
+            case THIEF:
+                return thiefService;
+            case BURGLAR:
+                return thiefService;
+            case SICCO:
+                return thiefService;
         }
         throw new InvalidParameterException("No valid profession was selected!");
     }

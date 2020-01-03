@@ -24,7 +24,8 @@ public class AbilityScore {
     @JoinColumn(name = "person_id")
     private Person person;
 
-    public AbilityScore() {}
+    public AbilityScore() {
+    }
 
     public AbilityScore(Ability ability, int abilityValue, int abilityBonusValue) {
         this.id = UUID.randomUUID();
@@ -82,7 +83,7 @@ public class AbilityScore {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return ability.toString() + " " + getAbilityValue() + "/" + getAbilityBonusValue();
     }
 }

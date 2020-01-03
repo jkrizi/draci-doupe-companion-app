@@ -70,7 +70,8 @@ public class Race {
     @Column(name = "charisma_ability_correction")
     private int charismaAbilityCorrection;
 
-    public Race() {}
+    public Race() {
+    }
 
     public Race(String name, String description, int minWeight, int maxWeight, int minHeight, int maxHeight, CharacterSize size, Weapon weapon, Collection<PersonBlueprint> personBlueprint, int strengthNrOfThrows, int dexterityNrOfThrows, int resistanceNrOfThrows, int intelligenceNrOfThrows, int charismaNrOfThrows, int strengthAbilityBase, int dexterityAbilityBase, int resistanceAbilityBase, int intelligenceAbilityBase, int charismaAbilityBase, int strengthAbilityCorrection, int dexterityAbilityCorrection, int resistanceAbilityCorrection, int intelligenceAbilityCorrection, int charismaAbilityCorrection) {
         this.id = UUID.randomUUID();

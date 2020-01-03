@@ -38,12 +38,13 @@ public class WeaponBlueprint implements ItemBlueprint {
     private int maxReach;
 
     @ElementCollection
-    @CollectionTable(name="WEAPON_TYPE_BLUEPRINT", joinColumns = @JoinColumn(name = "WEAPON_BLUEPRINT_ID"))
+    @CollectionTable(name = "WEAPON_TYPE_BLUEPRINT", joinColumns = @JoinColumn(name = "WEAPON_BLUEPRINT_ID"))
     @Enumerated(EnumType.STRING)
     @Column(name = "WEAPON_TYPE")
     private Set<WeaponType> type;
 
-    public WeaponBlueprint() {}
+    public WeaponBlueprint() {
+    }
 
     public WeaponBlueprint(String name, String publicDescription, String privateDescription, int weight, int attack, int hurt, int defense, int initiativeModifier, int shortRangeLimit, int midRangeLimit, int longRangeLimit, int minReach, int maxReach, Set<WeaponType> type) {
         this.id = UUID.randomUUID();

@@ -1,11 +1,13 @@
 package net.homecredit.trainee.drd.repository.blueprint;
 
 import net.homecredit.trainee.drd.entity.blueprint.BeastBlueprint;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+@Repository
 public class BeastBlueprintRepository {
 
     private EntityManager entityManager;
@@ -23,7 +25,9 @@ public class BeastBlueprintRepository {
         return query.getResultList();
     }
 
-    public void deleteBlueprint(BeastBlueprint blueprint) {
-        entityManager.remove(blueprint);
+    public void deleteBlueprints() {
+        for (BeastBlueprint beastBlueprint : findAllBluePrints()) {
+            entityManager.remove(beastBlueprint);
+        }
     }
 }

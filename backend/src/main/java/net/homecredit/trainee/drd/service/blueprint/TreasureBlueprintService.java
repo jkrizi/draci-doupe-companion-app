@@ -24,14 +24,18 @@ public class TreasureBlueprintService {
         this.shopService = shopService;
     }
 
-    public TreasureBlueprint drawAndFileBlueprint(String name, String publicDescription, String privateDescription, GemStone gemStone, int stoneWeight, boolean polished, Metal material, int materialWeight, SkillKnowledge productQuality, double treasureValue){
+    public TreasureBlueprint drawAndFileBlueprint(String name, String publicDescription, String privateDescription, GemStone gemStone, int stoneWeight, boolean polished, Metal material, int materialWeight, SkillKnowledge productQuality, double treasureValue) {
         TreasureBlueprint treasureBlueprint = new TreasureBlueprint(name, publicDescription, privateDescription, gemStone, stoneWeight, polished, material, materialWeight, productQuality, treasureValue);
         treasureBlueprintRepository.save(treasureBlueprint);
         shopService.createPriceTag(treasureBlueprint, ItemType.TREASURE);
         return treasureBlueprint;
     }
 
-    public TreasureBlueprint findBlueprint(UUID id){
+    public TreasureBlueprint findBlueprint(UUID id) {
         return treasureBlueprintRepository.find(id);
+    }
+
+    public void deleteAll() {
+        treasureBlueprintRepository.deleteAll();
     }
 }

@@ -1,4 +1,4 @@
-package net.homecredit.trainee.util;
+package net.homecredit.trainee.drd.util;
 
 import java.util.Random;
 
@@ -11,6 +11,6 @@ public class Dice {
     }
 
     public synchronized int roll(int nrOfSides) {
-        return r.nextInt(nrOfSides)+1;
+        return r.nextInt(nrOfSides) + 1;
     }
 }

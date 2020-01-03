@@ -23,16 +23,18 @@ public class ArmorBlueprintService {
         this.shopService = shopService;
     }
 
-    public ArmorBlueprint drawAndFileBlueprint(String name, String publicDescription, String privateDescription, int weight, int defense, Set<BodySection> coverage){
+    public ArmorBlueprint drawAndFileBlueprint(String name, String publicDescription, String privateDescription, int weight, int defense, Set<BodySection> coverage) {
         ArmorBlueprint armorBlueprint = new ArmorBlueprint(name, publicDescription, privateDescription, weight, defense, coverage);
         armorBlueprintRepository.save(armorBlueprint);
         shopService.createPriceTag(armorBlueprint, ItemType.ARMOR);
         return armorBlueprint;
     }
 
-    public ArmorBlueprint findBlueprint(UUID id){
+    public ArmorBlueprint findBlueprint(UUID id) {
         return armorBlueprintRepository.find(id);
     }
 
-
+    public void deleteAll() {
+        armorBlueprintRepository.deleteAll();
+    }
 }

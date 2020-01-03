@@ -51,19 +51,17 @@ public class BeastBlueprintService {
         Inventory inventory = inventoryService.createInventory(abilityScoreMap.get(Ability.STRENGTH));
         CombatValues combatValues = combatService.newCombatValues(abilityScoreMap, inventory, initiativeBase);
 
-        return new BeastBlueprint(source,name,species,description,viability,viabilityBonus,manna,abilityScoreMap,mobility,size,vulnerability,inventory,combatValues,pugnacity,persistence,tameAbility,trained);
+        return new BeastBlueprint(source, name, species, description, viability, viabilityBonus, manna, abilityScoreMap, mobility, size, vulnerability, inventory, combatValues, pugnacity, persistence, tameAbility, trained);
     }
 
     public void saveBeastBlueprint(BeastBlueprint blueprint) {
-        for(AbilityScore a: blueprint.getAbilityMap().values()) {
+        for (AbilityScore a : blueprint.getAbilityMap().values()) {
             a.setBeastBlueprint(blueprint);
         }
         beastBlueprintRepository.saveBlueprint(blueprint);
     }
 
     public void deleteAll() {
-        for(BeastBlueprint cb: beastBlueprintRepository.findAllBluePrints()) {
-            beastBlueprintRepository.deleteBlueprint(cb);
-        }
+        beastBlueprintRepository.deleteBlueprints();
     }
 }

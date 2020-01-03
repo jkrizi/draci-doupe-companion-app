@@ -56,6 +56,11 @@ public class TreasureBlueprint implements ItemBlueprint {
         return id;
     }
 
+    @Override
+    public int getWeight() {
+        return getStoneWeight() + getMaterialWeight();
+    }
+
     public void setId(UUID id) {
         this.id = id;
     }

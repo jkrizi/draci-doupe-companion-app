@@ -14,7 +14,7 @@ import net.homecredit.trainee.drd.entity.inventory.Inventory;
 import net.homecredit.trainee.drd.service.character.profession.ProfessionService;
 import net.homecredit.trainee.drd.service.character.profession.ProfessionServiceFactory;
 import net.homecredit.trainee.drd.service.item.InventoryService;
-import net.homecredit.trainee.util.Dice;
+import net.homecredit.trainee.drd.util.Dice;
 
 import java.util.*;
 
@@ -66,21 +66,21 @@ public class PersonService {
     private Map<Ability, AbilityScore> randomiseAbilities(Race race, Profession profession) {
         Map<Ability, AbilityScore> abilityMap = new HashMap<>();
 
-        for(Ability ability: Ability.values()) {
+        for (Ability ability : Ability.values()) {
             AbilityScore abilityScore;
-            if(profession.getDominantAbilities().containsKey(ability)) {
+            if (profession.getDominantAbilities().containsKey(ability)) {
                 abilityScore = professionAbility(ability, profession, race);
             } else {
                 abilityScore = raceAbility(ability, race);
             }
-            abilityMap.put(ability,abilityScore);
+            abilityMap.put(ability, abilityScore);
         }
         return abilityMap;
     }
 
     private AbilityScore raceAbility(Ability ability, Race race) {
         int diceRollSum = 0;
-        for(int i = 0; i < raceService.getNrOfThrows(race, ability); i++) {
+        for (int i = 0; i < raceService.getNrOfThrows(race, ability); i++) {
             diceRollSum += dice.roll(6);
         }
         int abilityValue = raceService.getAbilityBase(race, ability) + diceRollSum;

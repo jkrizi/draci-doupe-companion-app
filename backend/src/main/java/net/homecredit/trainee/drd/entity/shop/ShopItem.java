@@ -23,7 +23,8 @@ public class ShopItem {
     @Column(name = "BLUEPRINT_ID")
     private UUID blueprintId;
 
-    public ShopItem() {}
+    public ShopItem() {
+    }
 
     public ShopItem(String name, String description, ItemType itemType, Collection<LocalPrice> priceList, UUID blueprintId) {
         this.id = UUID.randomUUID();
