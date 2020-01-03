@@ -13,7 +13,7 @@ public class LocalPrice {
     private double price;
     private String dealLocation;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SHOP_ITEM_ID")
     private ShopItem shopItem;
 

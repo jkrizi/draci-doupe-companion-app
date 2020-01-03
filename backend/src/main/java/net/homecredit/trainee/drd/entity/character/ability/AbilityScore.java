@@ -18,9 +18,9 @@ public class AbilityScore {
     private int abilityValue;
     @Column(name = "bonus")
     private int abilityBonusValue;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private BeastBlueprint beastBlueprint;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id")
     private Person person;
 

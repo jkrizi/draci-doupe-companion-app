@@ -17,7 +17,7 @@ public class TreasureBlueprint implements ItemBlueprint {
     @Column(name = "PRIVATE_DESCRIPTION")
     private String privateDescription;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private GemStone gemStone;
     @Column(name = "STONE_WEIGHT")
     private int stoneWeight;

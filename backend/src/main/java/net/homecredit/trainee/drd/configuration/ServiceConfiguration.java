@@ -96,8 +96,8 @@ public class ServiceConfiguration {
     }
 
     @Bean
-    public BuyService buyService(InventoryService inventoryService, StorageService storageService, ArmorService armorService, ArmorBlueprintService armorBlueprintService, GoodsService goodsService, GoodsBlueprintService goodsBlueprintService, TreasureService treasureService, TreasureBlueprintService treasureBlueprintService, WeaponService weaponService, WeaponBlueprintService weaponBlueprintService) {
-        return new BuyService(inventoryService, storageService, armorService, armorBlueprintService, goodsService, goodsBlueprintService, treasureService, treasureBlueprintService, weaponService, weaponBlueprintService);
+    public BuyService buyService(InventoryService inventoryService, ArmorService armorService, ArmorBlueprintService armorBlueprintService, GoodsService goodsService, GoodsBlueprintService goodsBlueprintService, TreasureService treasureService, TreasureBlueprintService treasureBlueprintService, WeaponService weaponService, WeaponBlueprintService weaponBlueprintService) {
+        return new BuyService(inventoryService, armorService, armorBlueprintService, goodsService, goodsBlueprintService, treasureService, treasureBlueprintService, weaponService, weaponBlueprintService);
     }
 
     @Bean

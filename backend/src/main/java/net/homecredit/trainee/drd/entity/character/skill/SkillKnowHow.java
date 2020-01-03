@@ -9,7 +9,7 @@ public class SkillKnowHow {
 
     @Id
     private UUID id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Skill skill;
     @Column(name = "points_total")
     private int pointsTotal;

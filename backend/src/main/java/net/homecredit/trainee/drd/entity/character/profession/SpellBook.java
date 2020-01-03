@@ -1,9 +1,6 @@
 package net.homecredit.trainee.drd.entity.character.profession;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -11,10 +8,10 @@ public class SpellBook {
 
     @Id
     private UUID id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "WIZARD_KNOWHOW_ID")
     private WizardKnowHow wizardKnowHow;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Spell spell;
 
     public SpellBook() {

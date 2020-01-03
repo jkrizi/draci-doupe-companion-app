@@ -21,12 +21,12 @@ public class PersonBlueprint {
     @Column(name = "person_level")
     private int level;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Race race;
     @Enumerated(EnumType.STRING)
     private Profession profession;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Inventory inventory;
     @OneToMany(mappedBy = "personBlueprint")
     private Collection<Person> people;

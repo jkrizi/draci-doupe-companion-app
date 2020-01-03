@@ -20,7 +20,7 @@ public class Beast implements Character {
     @Enumerated(EnumType.STRING)
     @Column(name = "BEAST_SIZE")
     private CharacterSize size;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Inventory inventory;
     private CombatValues combatValues;
 

@@ -27,10 +27,10 @@ public class BeastBlueprint {
     private int manna;
     private int mobility;
 
-    @OneToMany(mappedBy = "beastBlueprint", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "beastBlueprint", cascade = CascadeType.ALL, orphanRemoval = true)
     @MapKey(name = "ability")
     @MapKeyEnumerated
-    private Map<Ability, AbilityScore> abilityMap = new HashMap<>();
+    private Map<Ability, AbilityScore> abilityMap;
 
     @ElementCollection
     @CollectionTable(name = "BEAST_SIZE", joinColumns = @JoinColumn(name = "BEAST_BLUEPRINT_ID"))
@@ -47,7 +47,7 @@ public class BeastBlueprint {
     @OneToMany(mappedBy = "beastBlueprint", cascade = CascadeType.ALL)
     private Collection<Beast> beasts;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Inventory inventory;
 
     private CombatValues combatValues;
