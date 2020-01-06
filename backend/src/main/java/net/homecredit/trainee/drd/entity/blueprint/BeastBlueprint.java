@@ -1,5 +1,6 @@
 package net.homecredit.trainee.drd.entity.blueprint;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import net.homecredit.trainee.drd.entity.character.Beast;
 import net.homecredit.trainee.drd.entity.character.CharacterSize;
 import net.homecredit.trainee.drd.entity.character.Vulnerability;
@@ -17,7 +18,6 @@ public class BeastBlueprint {
 
     @Id
     private UUID id;
-    @Column(name = "BEAST_ORIGIN")
     private String beastOrigin;
     private String name;
     private String species;

@@ -1,5 +1,6 @@
 package net.homecredit.trainee.drd.entity.inventory;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import net.homecredit.trainee.drd.entity.shop.ItemType;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class StorageUnit extends Equipment {
     @OneToMany(mappedBy = "storage", cascade = CascadeType.ALL)
     private Set<Equipment> equipment;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private Inventory inventory;
 

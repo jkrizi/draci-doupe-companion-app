@@ -1,6 +1,5 @@
 package net.homecredit.trainee.drd.service.item;
 
-import net.homecredit.trainee.drd.entity.blueprint.item.ItemBlueprint;
 import net.homecredit.trainee.drd.entity.character.ability.AbilityScore;
 import net.homecredit.trainee.drd.entity.inventory.Equipment;
 import net.homecredit.trainee.drd.entity.inventory.Inventory;
@@ -13,9 +12,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Service
 @Transactional
@@ -35,7 +32,7 @@ public class InventoryService implements ApplicationListener<StorageEvent> {
     //creates Inventory with default Storage Unit
     public Inventory createInventory(AbilityScore strength) {
         int maximumCapacity = (CAPACITY_BASE + strength.getAbilityBonusValue() * CAPACITY_INCREMENT) * CAPACITY_STEPS;
-        Collection<StorageUnit> initialStorage = new ArrayList<>();
+        Set<StorageUnit> initialStorage = new HashSet<>();
         //value of coin pouch should be zero, just for testing it is 10
         Inventory initialInventory = new Inventory(maximumCapacity, 0, 10, 0, initialStorage);
 

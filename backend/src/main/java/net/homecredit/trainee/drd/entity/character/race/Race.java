@@ -200,4 +200,11 @@ public class Race {
     public int getCharismaAbilityCorrection() {
         return charismaAbilityCorrection;
     }
+
+    @Override
+    public String toString() {
+        return "Race{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }
