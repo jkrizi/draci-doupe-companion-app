@@ -1,7 +1,10 @@
 package net.homecredit.trainee.drd.entity.inventory;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -17,13 +20,14 @@ public class Inventory {
     private double coinPouch;
     @Column(name = "BANK_VAULT")
     private double bankVault;
+
     @OneToMany(mappedBy = "inventory", cascade = CascadeType.ALL)
-    private Collection<StorageUnit> storageUnits;
+    private Set<StorageUnit> storageUnits;
 
     public Inventory() {
     }
 
-    public Inventory(int limitWeight, int contentWeight, double coinPouch, double bankVault, Collection<StorageUnit> storageUnits) {
+    public Inventory(int limitWeight, int contentWeight, double coinPouch, double bankVault, Set<StorageUnit> storageUnits) {
         this.id = UUID.randomUUID();
         this.limitWeight = limitWeight;
         this.contentWeight = contentWeight;
@@ -72,11 +76,11 @@ public class Inventory {
         this.bankVault = bankVault;
     }
 
-    public Collection<StorageUnit> getStorageUnits() {
+    public Set<StorageUnit> getStorageUnits() {
         return storageUnits;
     }
 
-    public void setStorageUnits(Collection<StorageUnit> storageUnits) {
+    public void setStorageUnits(Set<StorageUnit> storageUnits) {
         this.storageUnits = storageUnits;
     }
 

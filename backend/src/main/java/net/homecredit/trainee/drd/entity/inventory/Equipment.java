@@ -18,6 +18,9 @@ public class Equipment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "storage_unit_id")
     private StorageUnit storage;
+    @Enumerated(value = EnumType.STRING)
+    private ItemType itemType;
+    private UUID blueprintId;
 
     @Column(name = "ITEM_TYPE")
     private ItemType itemType;
@@ -37,9 +40,6 @@ public class Equipment {
         this.description = description;
         this.weight = weight;
         this.itemType = itemType;
-
-        ////////////
-        this.blueprintId = UUID.randomUUID();
     }
 
     public Equipment(ItemBlueprint itemBlueprint, ItemType itemType) {
@@ -59,6 +59,7 @@ public class Equipment {
         this.description = itemBlueprint.getPublicDescription();
         this.weight = itemBlueprint.getWeight();
         this.storage = storage;
+        this.itemType = itemType;
     }
 
     public UUID getId() {

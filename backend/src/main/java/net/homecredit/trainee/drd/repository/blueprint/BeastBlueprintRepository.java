@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -20,9 +21,19 @@ public class BeastBlueprintRepository {
         entityManager.persist(blueprint);
     }
 
-    public List<BeastBlueprint> findAllBluePrints() {
-        TypedQuery<BeastBlueprint> query = entityManager.createQuery("select b from BeastBlueprint b", BeastBlueprint.class);
-        return query.getResultList();
+    public List<BeastBlueprint> findAll() {
+        TypedQuery<BeastBlueprint> query = entityManager.createQuery(
+                "select distinct b " +
+                        "from BeastBlueprint b " +
+                        "join fetch b.abilityMap " +
+                        "join fetch b.size " +
+                        "join fetch b.vulnerabilities " +
+                        "left join fetch b.beasts " +
+                        "join fetch b.inventory i " +
+                        "join fetch i.storageUnits u " +
+                        "left join fetch u.equipment", BeastBlueprint.class);
+        List<BeastBlueprint> beastBlueprints = query.getResultList();
+        return beastBlueprints;
     }
 
     public void deleteBlueprints() {

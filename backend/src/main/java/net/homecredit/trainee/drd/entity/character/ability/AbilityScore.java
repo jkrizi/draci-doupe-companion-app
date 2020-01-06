@@ -1,5 +1,6 @@
 package net.homecredit.trainee.drd.entity.character.ability;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import net.homecredit.trainee.drd.entity.blueprint.BeastBlueprint;
 import net.homecredit.trainee.drd.entity.character.Person;
 
@@ -18,6 +19,7 @@ public class AbilityScore {
     private int abilityValue;
     @Column(name = "bonus")
     private int abilityBonusValue;
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private BeastBlueprint beastBlueprint;
     @ManyToOne(fetch = FetchType.LAZY)

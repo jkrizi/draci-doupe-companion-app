@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -63,5 +64,9 @@ public class BeastBlueprintService {
 
     public void deleteAll() {
         beastBlueprintRepository.deleteBlueprints();
+    }
+
+    public List<BeastBlueprint> findAll() {
+        return beastBlueprintRepository.findAll();
     }
 }
