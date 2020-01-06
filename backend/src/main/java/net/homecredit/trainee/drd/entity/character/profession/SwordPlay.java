@@ -1,9 +1,6 @@
 package net.homecredit.trainee.drd.entity.character.profession;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -11,10 +8,10 @@ public class SwordPlay {
 
     @Id
     private UUID id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "WARRIOR_KNOWHOW")
     private WarriorKnowHow warriorKnowHow;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SWORDPLAY_MOVE")
     private SwordPlayMove swordPlayMove;
 

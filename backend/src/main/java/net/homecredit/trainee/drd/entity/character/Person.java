@@ -38,28 +38,28 @@ public class Person implements Character {
     private int weight;
     private int height;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Race race;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profession_knowhow_id")
     private ProfessionKnowHow professionKnowHow;
 
     @Embedded
     private CombatValues combatValues;
 
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
     @MapKey(name = "ability")
     @MapKeyEnumerated
     private Map<Ability, AbilityScore> abilityMap;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Inventory inventory;
     @OneToMany
     private Collection<Beast> companion;
     @OneToMany
     private Collection<SkillKnowHow> skillKnowHow;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private PersonBlueprint personBlueprint;
 
     public Person() {

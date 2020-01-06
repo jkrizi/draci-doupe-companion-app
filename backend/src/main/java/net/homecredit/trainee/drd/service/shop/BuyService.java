@@ -21,7 +21,6 @@ import java.util.UUID;
 @Transactional
 public class BuyService {
     private InventoryService inventoryService;
-    private StorageService storageService;
     private ArmorService armorService;
     private ArmorBlueprintService armorBlueprintService;
     private GoodsService goodsService;
@@ -31,9 +30,8 @@ public class BuyService {
     private WeaponService weaponService;
     private WeaponBlueprintService weaponBlueprintService;
 
-    public BuyService(InventoryService inventoryService, StorageService storageService, ArmorService armorService, ArmorBlueprintService armorBlueprintService, GoodsService goodsService, GoodsBlueprintService goodsBlueprintService, TreasureService treasureService, TreasureBlueprintService treasureBlueprintService, WeaponService weaponService, WeaponBlueprintService weaponBlueprintService) {
+    public BuyService(InventoryService inventoryService, ArmorService armorService, ArmorBlueprintService armorBlueprintService, GoodsService goodsService, GoodsBlueprintService goodsBlueprintService, TreasureService treasureService, TreasureBlueprintService treasureBlueprintService, WeaponService weaponService, WeaponBlueprintService weaponBlueprintService) {
         this.inventoryService = inventoryService;
-        this.storageService = storageService;
         this.armorService = armorService;
         this.armorBlueprintService = armorBlueprintService;
         this.goodsService = goodsService;

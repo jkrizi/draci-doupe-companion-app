@@ -1,34 +1,23 @@
 package net.homecredit.trainee.drd;
 
-import net.homecredit.trainee.drd.configuration.EnableItemModule;
-import net.homecredit.trainee.drd.configuration.ItemModuleConfiguration;
-import net.homecredit.trainee.drd.repository.blueprint.*;
-import net.homecredit.trainee.drd.repository.character.BeastRepository;
-import net.homecredit.trainee.drd.repository.character.KnowHowRepository;
-import net.homecredit.trainee.drd.repository.inventory.*;
-import net.homecredit.trainee.drd.repository.shop.ShopRepository;
+import net.homecredit.trainee.drd.configuration.RepositoryConfiguration;
+import net.homecredit.trainee.drd.configuration.ServiceConfiguration;
 import net.homecredit.trainee.drd.service.blueprint.*;
 import net.homecredit.trainee.drd.service.character.BeastService;
-import net.homecredit.trainee.drd.service.character.CombatService;
 import net.homecredit.trainee.drd.service.item.*;
 import net.homecredit.trainee.drd.service.shop.BuyService;
 import net.homecredit.trainee.drd.service.shop.ShopService;
-import net.homecredit.trainee.drd.util.Dice;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManager;
-import java.util.Random;
-
 @EnableTransactionManagement
-@SpringBootApplication
-//@EnableItemModule
-//@Import(ItemModuleConfiguration.class)
+@Configuration(proxyBeanMethods = false)
+@EnableAutoConfiguration
+@Import({RepositoryConfiguration.class, ServiceConfiguration.class})
 public class BackEndApplication {
 
     public static void main(String[] args) {
@@ -116,47 +105,6 @@ public class BackEndApplication {
 			);
 		}*/
     }
-
-    @Bean
-    public KnowHowRepository knowHowRepository(EntityManager em) {
-        return new KnowHowRepository(em);
-    }
-
-    @Bean
-    public BeastBlueprintService beastBlueprintService(BeastBlueprintRepository beastBlueprintRepository, InventoryService inventoryService, CombatService combatService) {
-        return new BeastBlueprintService(beastBlueprintRepository, inventoryService, combatService);
-    }
-
-    @Bean
-    public BeastService beastService(BeastRepository beastRepository, Dice dice, CombatService combatService, InventoryService inventoryService) {
-        return new BeastService(beastRepository, dice, combatService, inventoryService);
-    }
-
-    @Bean
-    public CombatService combatService(InventoryService inventoryService) {
-        return new CombatService(inventoryService);
-    }
-
-    @Bean
-    public Dice dice(Random random) {
-        return new Dice(random);
-    }
-
-    @Bean
-    public Random random() {
-        return new Random();
-    }
-
-    @Bean
-    public BeastBlueprintRepository beastBlueprintRepository(EntityManager em) {
-        return new BeastBlueprintRepository(em);
-    }
-
-    @Bean
-    public BeastRepository beastRepository(EntityManager em) {
-        return new BeastRepository(em);
-    }
-
 
 //	@Bean
 //	public SharedEntityManagerBean containerManagedEntityManager(EntityManagerFactory emf) {

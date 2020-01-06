@@ -15,9 +15,13 @@ import net.homecredit.trainee.drd.service.character.profession.ProfessionService
 import net.homecredit.trainee.drd.service.character.profession.ProfessionServiceFactory;
 import net.homecredit.trainee.drd.service.item.InventoryService;
 import net.homecredit.trainee.drd.util.Dice;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
+@Service
+@Transactional
 public class PersonService {
 
     private Dice dice;

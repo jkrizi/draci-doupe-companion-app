@@ -28,7 +28,7 @@ public class Race {
     @Column(name = "race_size")
     private CharacterSize size;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Weapon weapon;
 
     @OneToMany(mappedBy = "race", orphanRemoval = true, fetch = FetchType.LAZY)

@@ -1,12 +1,14 @@
 package net.homecredit.trainee.drd.repository.character;
 
 import net.homecredit.trainee.drd.entity.character.Beast;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.UUID;
 
+@Repository
 public class BeastRepository {
 
     private EntityManager entityManager;
