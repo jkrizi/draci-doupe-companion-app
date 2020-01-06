@@ -36,8 +36,8 @@ public class BeastBlueprintRepository {
         return beastBlueprints;
     }
 
-    public void deleteBlueprints() {
-        for (BeastBlueprint beastBlueprint : findAllBluePrints()) {
+    public void deleteAll() {
+        for (BeastBlueprint beastBlueprint : findAll()) {
             entityManager.remove(beastBlueprint);
         }
     }

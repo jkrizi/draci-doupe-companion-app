@@ -63,7 +63,7 @@ public class BeastBlueprintService {
     }
 
     public void deleteAll() {
-        beastBlueprintRepository.deleteBlueprints();
+        beastBlueprintRepository.deleteAll();
     }
 
     public List<BeastBlueprint> findAll() {

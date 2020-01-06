@@ -8,7 +8,6 @@ import net.homecredit.trainee.drd.entity.character.Vulnerability;
 import net.homecredit.trainee.drd.entity.character.ability.Ability;
 import net.homecredit.trainee.drd.entity.character.ability.AbilityScore;
 import net.homecredit.trainee.drd.entity.character.skill.SkillKnowledge;
-import net.homecredit.trainee.drd.entity.inventory.Equipment;
 import net.homecredit.trainee.drd.entity.inventory.armor.BodySection;
 import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponType;
 import net.homecredit.trainee.drd.entity.shop.ItemType;
@@ -30,15 +29,15 @@ public class Demo2 {
         System.out.println(weaponBlueprintService.findBlueprint(wb.getId()).getPublicDescription());
     }
 
-    public void setTestTreasureBlueprint(TreasureBlueprintService treasureBlueprintService) {
-        GemStone gemStone = new GemStone("gemstoneName", Color.BLACK, 1.5);
-        Metal material = Metal.BRONZE;
-        SkillKnowledge skill = SkillKnowledge.AVERAGE;
-
-        TreasureBlueprint tb = treasureBlueprintService.drawAndFileBlueprint("Treasure", "Pekny treasure", "private description", gemStone, 1, true, material, 10, skill, 1.5);
-        System.out.println(treasureBlueprintService.findBlueprint(tb.getId()).getPublicDescription());
-
-    }
+//    public void setTestTreasureBlueprint(TreasureBlueprintService treasureBlueprintService) {
+//        GemStoneBlueprint gemStone = new GemStoneBlueprint("gemstoneName", Color.BLACK, 1.5);
+//        Metal material = Metal.BRONZE;
+//        SkillKnowledge skill = SkillKnowledge.AVERAGE;
+//
+//        TreasureBlueprint tb = treasureBlueprintService.drawAndFileBlueprint("Treasure", "Pekny treasure", "private description", gemStone, 1, true, material, 10, skill, 1.5);
+//        System.out.println(treasureBlueprintService.findBlueprint(tb.getId()).getPublicDescription());
+//
+//    }
 
     public void setTestArmorBlueprint(ArmorBlueprintService armorBlueprintService) {
         Set<BodySection> coverage = EnumSet.of(BodySection.HEAD);

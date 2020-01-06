@@ -22,11 +22,6 @@ public class Equipment {
     private ItemType itemType;
     private UUID blueprintId;
 
-    @Column(name = "ITEM_TYPE")
-    private ItemType itemType;
-    @Column(name = "BLUEPRINT_ID")
-    private UUID blueprintId;
-
     public Equipment() {
     }
 
