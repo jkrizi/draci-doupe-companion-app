@@ -1,0 +1,118 @@
+<form class="my-4 mx-3" [formGroup]="raceForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" formControlName="name" id="name">
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea class="form-control" formControlName="description" id="description"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="size">Size</label>
+    <select class="form-control" formControlName="size" id="size">
+      <option *ngFor ="let size of sizes"> {{size}} </option>
+    </select>
+  </div>
+  <div class="form-row">
+    <div class="col">
+      <label for="min-weight">Minimal weight</label>
+      <input class="form-control" type="text" formControlName="minWeight" id="min-weight" >
+    </div>
+    <div class="col">
+      <label for="max-weight">Maximal weight</label>
+      <input class="form-control" type="text" formControlName="maxWeight" id="max-weight">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col">
+      <label for="min-height">Minimal height</label>
+      <input class="form-control" type="text" formControlName="minHeight" id="min-height" >
+    </div>
+    <div class="col">
+      <label for="max-height">Maximal height</label>
+      <input type="text" class="form-control" formControlName="maxHeight" id="max-height" >
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="racial-weapon">Racial weapon</label>
+    <select class="form-control" formControlName="racialWeapon" id="racial-weapon">
+      <option *ngFor ="let weapon of racialWeapons">{{weapon}}</option>
+    </select>
+  </div>
+  <div class="form-row">
+    <div class="col d-flex align-items-end">
+      <p>Number of throws</p>
+    </div>
+    <div class="col">
+      <label for="strength-throws">Strength</label>
+      <input type="text" class="form-control" formControlName="strengthThrows" id="strength-throws">
+    </div>
+    <div class="col">
+      <label for="dexterity-throws">Dexterity</label>
+      <input type="text" class="form-control" formControlName="dexterityThrows" id="dexterity-throws">
+    </div>
+    <div class="col">
+      <label for="resistance-throws">Resistance</label>
+      <input type="text" class="form-control" formControlName="resistanceThrows" id="resistance-throws">
+    </div>
+    <div class="col">
+      <label for="intelligence-throws">Intelligence</label>
+      <input type="text" class="form-control" formControlName="intelligenceThrows" id="intelligence-throws">
+    </div>
+    <div class="col">
+      <label for="charisma-throws">Charisma</label>
+      <input type="text" class="form-control" formControlName="charismaThrows" id="charisma-throws">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col d-flex align-items-end">
+      <p>Ability base</p>
+    </div>
+    <div class="col">
+      <label for="strength-base"></label>
+      <input type="text" class="form-control" formControlName="strengthBase" id="strength-base">
+    </div>
+    <div class="col">
+      <label for="dexterity-base"></label>
+      <input type="text" class="form-control" formControlName="dexterityBase" id="dexterity-base">
+    </div>
+    <div class="col">
+      <label for="resistance-base"></label>
+      <input type="text" class="form-control" formControlName="resistanceBase" id="resistance-base">
+    </div>
+    <div class="col">
+      <label for="intelligence-base"></label>
+      <input type="text" class="form-control" formControlName="intelligenceBase" id="intelligence-base">
+    </div>
+    <div class="col">
+      <label for="charisma-base"></label>
+      <input type="text" class="form-control" formControlName="charismaBase" id="charisma-base">
+    </div>
+  </div>
+  <div class="form-row mb-4">
+    <div class="col d-flex align-items-end">
+      <p>Ability correction</p>
+    </div>
+    <div class="col">
+      <label for="strength-correction"></label>
+      <input type="text" class="form-control" formControlName="strengthCorrection" id="strength-correction">
+    </div>
+    <div class="col">
+      <label for="dexterity-correction"></label>
+      <input type="text" class="form-control" formControlName="dexterityCorrection" id="dexterity-correction">
+    </div>
+    <div class="col">
+      <label for="resistance-correction"></label>
+      <input type="text" class="form-control" formControlName="resistanceCorrection" id="resistance-correction">
+    </div>
+    <div class="col">
+      <label for="intelligence-correction"></label>
+      <input type="text" class="form-control" formControlName="intelligenceCorrection" id="intelligence-correction">
+    </div>
+    <div class="col">
+      <label for="charisma-correction"></label>
+      <input type="text" class="form-control" formControlName="charismaCorrection" id="charisma-correction">
+    </div>
+  </div>
+  <app-form-controls></app-form-controls>
+</form>

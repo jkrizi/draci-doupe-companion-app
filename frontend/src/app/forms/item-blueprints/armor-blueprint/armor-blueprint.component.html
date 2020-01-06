@@ -1,0 +1,20 @@
+<form class="mx-3 my-4" [formGroup]="armorBlueprintForm" (ngSubmit)="onSubmit()">
+
+  <app-item-blueprint [parentForm]="armorBlueprintForm"></app-item-blueprint>
+
+  <div class="form-group">
+    <label for="defense">Defense</label>
+    <input type="text" class="form-control" formControlName="defense" id="defense">
+  </div>
+  <div class="d-flex mb-3">
+    <label for="coverage" class="align-self-end mr-2">Coverage</label>
+    <div id="coverage" class="btn-group-toggle mx-1" formArrayName="bodyCoverage" data-toggle="buttons" *ngFor ="let bodySection of bodySections, let i=index">
+      <label class="btn btn-outline-success" [ngClass]="bodySection.status ? 'active' : ''">
+        <input type="checkbox" [formControlName]="i" autocomplete="off" (click)="bodySection.status = !bodySection.status"> {{bodySection.name}}
+      </label>
+    </div>
+  </div>
+
+  <app-form-controls></app-form-controls>
+
+</form>

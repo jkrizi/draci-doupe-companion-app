@@ -1,0 +1,85 @@
+<label for="inventory" class="font-weight-bold">Inventory</label>
+<div id="inventory">
+  <div class="form-row">
+    <div class="col form-group">
+      <label for="weapon">Weapons</label>
+      <div class="d-flex">
+        <select class="form-control" id="weapon">
+          <option *ngFor ="let weapon of weaponBlueprint">{{weapon}}</option>
+        </select>
+        <button class="btn btn-success ml-1">+</button>
+      </div>
+    </div>
+    <div class="col form-group">
+      <label for="armor">Armor</label>
+      <div class="d-flex">
+        <select class="form-control" id="armor">
+          <option *ngFor ="let armor of armorBlueprint">{{armor}}</option>
+        </select>
+        <button class="btn btn-success ml-1">+</button>
+      </div>
+    </div>
+  </div>
+  <div class="mb-4 form-row">
+    <div class="col">
+      <div class="d-flex justify-content-between px-2 mb-1" *ngFor ="let weapon of weaponry, let i = index" formArrayName="weaponry">
+        <div class="text-truncate" [formControlName]="i">{{weapon}}</div>
+        <button class="btn btn-danger ml-1">-</button>
+      </div>
+    </div>
+    <div class="col">
+      <div class="d-flex justify-content-between px-2 mb-1" *ngFor ="let armor of armory; let i = index" formArrayName="armory">
+        <div class="text-truncate" [formControlName]="i">{{armor}}</div>
+        <button class="btn btn-danger">-</button>
+      </div>
+    </div>
+  </div>
+  <div class="form-row mb-4">
+    <div class="col form-group">
+      <label for="treasure">Treasures</label>
+      <div class="d-flex">
+        <select class="form-control" id="treasure">
+          <option *ngFor ="let treasure of treasureBlueprint">{{treasure}}</option>
+        </select>
+        <button class="btn btn-success ml-1">+</button>
+      </div>
+    </div>
+    <div class="col form-group">
+      <label for="good">Goods</label>
+      <div class="d-flex">
+        <select class="form-control" id="good">
+          <option *ngFor ="let good of goodBlueprint">{{good}}</option>
+        </select>
+        <button class="btn btn-success ml-1">+</button>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col">
+      <div class="d-flex justify-content-between px-2 mb-1" *ngFor ="let treasure of treasury; let i = index" formArrayName="treasury">
+        <div class="text-truncate" [formControlName]="i">{{treasure}}</div>
+        <button class="btn btn-danger ml-1">-</button>
+      </div>
+    </div>
+    <div class="col">
+      <div class="d-flex justify-content-between px-2 mb-1" *ngFor ="let good of goods; let i = index" formArrayName="goods">
+        <div class="text-truncate" [formControlName]="i">{{good}}</div>
+        <button class="btn btn-danger">-</button>
+      </div>
+    </div>
+  </div>
+  <div class="form-row mb-4" id="money">
+    <div class="col" [formGroup]="parentForm">
+      <label for="goldCoin">Gold</label>
+      <input type="tel" class="form-control" formControlName="goldCoin" id="goldCoin">
+    </div>
+    <div class="col" [formGroup]="parentForm">
+      <label for="silverCoin">Silver</label>
+      <input type="tel" class="form-control" formControlName="silverCoin" id="silverCoin">
+    </div>
+    <div class="col" [formGroup]="parentForm">
+      <label for="bronzeCoin">Bronze</label>
+      <input type="tel" class="form-control" formControlName="bronzeCoin" id="bronzeCoin">
+    </div>
+  </div>
+</div>
