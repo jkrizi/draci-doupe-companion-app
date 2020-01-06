@@ -1,8 +1,10 @@
 package net.homecredit.trainee.drd.entity.blueprint.item;
 
 import net.homecredit.trainee.drd.entity.character.skill.SkillKnowledge;
+import net.homecredit.trainee.drd.entity.inventory.GemStone;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.UUID;
 
 @Entity
@@ -17,12 +19,8 @@ public class TreasureBlueprint implements ItemBlueprint {
     @Column(name = "PRIVATE_DESCRIPTION")
     private String privateDescription;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private GemStone gemStone;
-    @Column(name = "STONE_WEIGHT")
-    private int stoneWeight;
-
-    private boolean polished;
+    @OneToMany(mappedBy = "treasureBlueprint", cascade = CascadeType.ALL)
+    private Collection<GemStone> gemStones;
 
     @Enumerated(EnumType.STRING)
     private Metal material;
@@ -38,15 +36,13 @@ public class TreasureBlueprint implements ItemBlueprint {
     public TreasureBlueprint() {
     }
 
-    public TreasureBlueprint(String name, String publicDescription, String privateDescription, GemStone gemStone, int stoneWeight, boolean polished, Metal material, int materialWeight, SkillKnowledge productQuality, double treasureValue) {
+    public TreasureBlueprint(String name, String publicDescription, String privateDescription, Collection<GemStone> gemStones, Metal material, int materialWeight, SkillKnowledge productQuality, double treasureValue) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.publicDescription = publicDescription;
         this.privateDescription = privateDescription;
-        this.gemStone = gemStone;
-        this.stoneWeight = stoneWeight;
+        this.gemStones = gemStones;
         this.material = material;
-        this.polished = polished;
         this.materialWeight = materialWeight;
         this.productQuality = productQuality;
         this.treasureValue = treasureValue;
@@ -58,7 +54,11 @@ public class TreasureBlueprint implements ItemBlueprint {
 
     @Override
     public int getWeight() {
-        return getStoneWeight() + getMaterialWeight();
+        int weight = getMaterialWeight();
+        for(GemStone gs: getGemStones()) {
+            weight += gs.getStoneWeight();
+        }
+        return weight;
     }
 
     public void setId(UUID id) {
@@ -90,20 +90,12 @@ public class TreasureBlueprint implements ItemBlueprint {
         this.privateDescription = privateDescription;
     }
 
-    public GemStone getGemStone() {
-        return gemStone;
+    public Collection<GemStone> getGemStones() {
+        return gemStones;
     }
 
-    public void setGemStone(GemStone gemStone) {
-        this.gemStone = gemStone;
-    }
-
-    public int getStoneWeight() {
-        return stoneWeight;
-    }
-
-    public void setStoneWeight(int stoneWeight) {
-        this.stoneWeight = stoneWeight;
+    public void setGemStones(Collection<GemStone> gemStones) {
+        this.gemStones = gemStones;
     }
 
     public Metal getMaterial() {
@@ -136,13 +128,5 @@ public class TreasureBlueprint implements ItemBlueprint {
 
     public void setTreasureValue(double treasureValue) {
         this.treasureValue = treasureValue;
-    }
-
-    public boolean isPolished() {
-        return polished;
-    }
-
-    public void setPolished(boolean polished) {
-        this.polished = polished;
     }
 }

@@ -225,3 +225,22 @@ alter table EQUIPMENT modify BLUEPRINT_ID null;
 --changeset Jan.Zatloukal:1576766708146-75
 alter table TREASURE_BLUEPRINT rename column GEMSTONE_ID to GEM_STONE_ID;
 
+--changeset Jiri.Kriz1:1576766708146-76
+rename GEMSTONE to GEM_STONE_BLUEPRINT;
+
+--changeset Jiri.Kriz1:1576766708146-77
+create table GEM_STONE
+(
+  ID RAW(16) not null
+    constraint GEM_STONE_pk
+      primary key,
+  STONE_WEIGHT NUMBER(6) not null,
+  STONE_PRICE FLOAT(22) not null,
+  POLISHED NUMBER(1) not null,
+  TREASURE_BLUEPRINT_ID RAW(16) not null
+    constraint GEM_STONE_TREASURE_BLUEPRINT_ID_fk
+      references TREASURE_BLUEPRINT,
+  GEM_STONE_BLUEPRINT_ID RAW(16) not null
+    constraint GEM_STONE_GEM_STONE_BLUEPRINT_ID_fk
+      references GEM_STONE_BLUEPRINT
+);

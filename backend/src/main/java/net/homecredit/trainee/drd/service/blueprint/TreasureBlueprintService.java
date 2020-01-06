@@ -1,15 +1,16 @@
 package net.homecredit.trainee.drd.service.blueprint;
 
-import net.homecredit.trainee.drd.entity.blueprint.item.GemStone;
 import net.homecredit.trainee.drd.entity.blueprint.item.Metal;
 import net.homecredit.trainee.drd.entity.blueprint.item.TreasureBlueprint;
 import net.homecredit.trainee.drd.entity.character.skill.SkillKnowledge;
+import net.homecredit.trainee.drd.entity.inventory.GemStone;
 import net.homecredit.trainee.drd.entity.shop.ItemType;
 import net.homecredit.trainee.drd.repository.blueprint.TreasureBlueprintRepository;
 import net.homecredit.trainee.drd.service.shop.ShopService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.UUID;
 
 @Service
@@ -24,8 +25,8 @@ public class TreasureBlueprintService {
         this.shopService = shopService;
     }
 
-    public TreasureBlueprint drawAndFileBlueprint(String name, String publicDescription, String privateDescription, GemStone gemStone, int stoneWeight, boolean polished, Metal material, int materialWeight, SkillKnowledge productQuality, double treasureValue) {
-        TreasureBlueprint treasureBlueprint = new TreasureBlueprint(name, publicDescription, privateDescription, gemStone, stoneWeight, polished, material, materialWeight, productQuality, treasureValue);
+    public TreasureBlueprint drawAndFileBlueprint(String name, String publicDescription, String privateDescription, Collection<GemStone> gemStones, Metal material, int materialWeight, SkillKnowledge productQuality, double treasureValue) {
+        TreasureBlueprint treasureBlueprint = new TreasureBlueprint(name, publicDescription, privateDescription, gemStones, material, materialWeight, productQuality, treasureValue);
         treasureBlueprintRepository.save(treasureBlueprint);
         shopService.createPriceTag(treasureBlueprint, ItemType.TREASURE);
         return treasureBlueprint;

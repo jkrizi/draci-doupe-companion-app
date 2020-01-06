@@ -2,25 +2,26 @@ package net.homecredit.trainee.drd.entity.blueprint.item;
 
 import net.homecredit.trainee.drd.util.Color;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
 import java.util.UUID;
 
 @Entity
-@Table(name = "GEMSTONE")
-public class GemStone {
+public class GemStoneBlueprint {
 
     @Id
     private UUID id;
     private String name;
     @Enumerated(EnumType.STRING)
     private Color color;
-    @Column(name = "UNIT_PRICE")
     private double unitPrice;
 
-    public GemStone() {
+    public GemStoneBlueprint() {
     }
 
-    public GemStone(String name, Color color, double unitPrice) {
+    public GemStoneBlueprint(String name, Color color, double unitPrice) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.color = color;
