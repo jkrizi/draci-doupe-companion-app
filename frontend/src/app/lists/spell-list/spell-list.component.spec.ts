@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SpellComponent } from './spell.component';
+import { SpellListComponent } from './spell-list.component';
 
-describe('SpellComponent', () => {
-  let component: SpellComponent;
-  let fixture: ComponentFixture<SpellComponent>;
+describe('SpellListComponent', () => {
+  let component: SpellListComponent;
+  let fixture: ComponentFixture<SpellListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SpellComponent ]
+      declarations: [ SpellListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SpellComponent);
+    fixture = TestBed.createComponent(SpellListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

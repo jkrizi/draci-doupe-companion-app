@@ -11,7 +11,7 @@ import {PersonBlueprintComponent} from './forms/character-blueprints/person-blue
 import {BeastBlueprintComponent} from './forms/character-blueprints/beast-blueprint/beast-blueprint.component';
 import {SkillComponent} from './forms/skill/skill.component';
 import {RaceComponent} from './forms/race/race.component';
-import {SpellComponent} from './forms/spell/spell.component';
+import {SpellFormComponent} from './forms/spell-form/spell-form.component';
 import {SwordPlayMoveComponent} from './forms/sword-play-move/sword-play-move.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
@@ -28,6 +28,8 @@ import { CombatValuesComponent } from './forms/character-blueprints/combat-value
 import {AppRoutingModule} from './app-routing.module';
 import { InventoryComponent } from './forms/character-blueprints/inventory/inventory.component';
 import { BeastBlueprintListComponent } from './lists/beast-blueprint-list/beast-blueprint-list.component';
+import { SpellListComponent } from './lists/spell-list/spell-list.component';
+import { SpellInputComponent } from './features/input/spell-input/spell-input.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,7 @@ import { BeastBlueprintListComponent } from './lists/beast-blueprint-list/beast-
     BeastBlueprintComponent,
     SkillComponent,
     RaceComponent,
-    SpellComponent,
+    SpellFormComponent,
     SwordPlayMoveComponent,
     InputComponent,
     FormControlsComponent,
@@ -54,7 +56,9 @@ import { BeastBlueprintListComponent } from './lists/beast-blueprint-list/beast-
     AbilitiesComponent,
     CombatValuesComponent,
     InventoryComponent,
-    BeastBlueprintListComponent
+    BeastBlueprintListComponent,
+    SpellListComponent,
+    SpellInputComponent,
   ],
   imports: [
     BrowserModule,
