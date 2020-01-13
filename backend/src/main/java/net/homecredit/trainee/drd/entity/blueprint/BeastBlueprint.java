@@ -18,7 +18,7 @@ public class BeastBlueprint {
 
     @Id
     private UUID id;
-    private String beastOrigin;
+    private String origin;
     private String name;
     private String species;
     private String description;
@@ -36,7 +36,7 @@ public class BeastBlueprint {
     @CollectionTable(name = "BEAST_SIZE", joinColumns = @JoinColumn(name = "BEAST_BLUEPRINT_ID"))
     @Enumerated(EnumType.STRING)
     @Column(name = "CHARACTER_SIZE")
-    private Set<CharacterSize> size;
+    private Set<CharacterSize> sizes;
 
     @ElementCollection
     @CollectionTable(name = "BEAST_VULNERABILITY", joinColumns = @JoinColumn(name = "BEAST_BLUEPRINT_ID"))
@@ -44,6 +44,7 @@ public class BeastBlueprint {
     @Column(name = "VULNERABILITY")
     private Set<Vulnerability> vulnerabilities;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "beastBlueprint", cascade = CascadeType.ALL)
     private Collection<Beast> beasts;
 
@@ -56,14 +57,14 @@ public class BeastBlueprint {
     private int persistence;
     private int domestication;
 
-    private boolean trained;
+    private boolean schooled;
 
     public BeastBlueprint() {
     }
 
-    public BeastBlueprint(String beastOrigin, String name, String species, String description, int viability, int viabilityBonus, int manna, Map<Ability, AbilityScore> abilityMap, int mobility, EnumSet<CharacterSize> size, EnumSet<Vulnerability> vulnerabilities, Inventory inventory, CombatValues combatValues, int pugnacity, int persistence, int domestication, boolean trained) {
+    public BeastBlueprint(String origin, String name, String species, String description, int viability, int viabilityBonus, int manna, Map<Ability, AbilityScore> abilityMap, int mobility, EnumSet<CharacterSize> sizes, EnumSet<Vulnerability> vulnerabilities, Inventory inventory, CombatValues combatValues, int pugnacity, int persistence, int domestication, boolean schooled) {
         this.id = UUID.randomUUID();
-        this.beastOrigin = beastOrigin;
+        this.origin = origin;
         this.name = name;
         this.species = species;
         this.description = description;
@@ -72,13 +73,13 @@ public class BeastBlueprint {
         this.manna = manna;
         this.abilityMap = abilityMap;
         this.mobility = mobility;
-        this.size = size;
+        this.sizes = sizes;
         this.vulnerabilities = vulnerabilities;
         this.inventory = inventory;
         this.pugnacity = pugnacity;
         this.persistence = persistence;
         this.domestication = domestication;
-        this.trained = trained;
+        this.schooled = schooled;
         this.combatValues = combatValues;
     }
 
@@ -90,12 +91,12 @@ public class BeastBlueprint {
         this.id = id;
     }
 
-    public String getBeastOrigin() {
-        return beastOrigin;
+    public String getOrigin() {
+        return origin;
     }
 
-    public void setBeastOrigin(String source) {
-        this.beastOrigin = source;
+    public void setOrigin(String origin) {
+        this.origin = origin;
     }
 
     public String getName() {
@@ -162,12 +163,12 @@ public class BeastBlueprint {
         this.abilityMap = abilityMap;
     }
 
-    public Set<CharacterSize> getSize() {
-        return size;
+    public Set<CharacterSize> getSizes() {
+        return sizes;
     }
 
-    public void setSize(EnumSet<CharacterSize> size) {
-        this.size = size;
+    public void setSizes(EnumSet<CharacterSize> sizes) {
+        this.sizes = sizes;
     }
 
     public Set<Vulnerability> getVulnerabilities() {
@@ -226,11 +227,11 @@ public class BeastBlueprint {
         this.domestication = tameAbility;
     }
 
-    public boolean isTrained() {
-        return trained;
+    public boolean isSchooled() {
+        return schooled;
     }
 
-    public void setTrained(boolean trained) {
-        this.trained = trained;
+    public void setSchooled(boolean schooled) {
+        this.schooled = schooled;
     }
 }

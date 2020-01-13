@@ -17,7 +17,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {InputComponent} from './features/input/input.component';
 import {FormControlsComponent} from './controls/form-controls/form-controls.component';
-import {DialComponent} from './lists/dial/dial.component';
 import {NavbarInputComponent} from './navbar/navbar-input/navbar-input.component';
 import {GeneratorComponent} from './features/generator/generator.component';
 import {CalculatorComponent} from './features/calculator/calculator.component';
@@ -28,6 +27,7 @@ import { AbilitiesComponent } from './forms/character-blueprints/abilities/abili
 import { CombatValuesComponent } from './forms/character-blueprints/combat-values/combat-values.component';
 import {AppRoutingModule} from './app-routing.module';
 import { InventoryComponent } from './forms/character-blueprints/inventory/inventory.component';
+import { BeastBlueprintListComponent } from './lists/beast-blueprint-list/beast-blueprint-list.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,6 @@ import { InventoryComponent } from './forms/character-blueprints/inventory/inven
     SwordPlayMoveComponent,
     InputComponent,
     FormControlsComponent,
-    DialComponent,
     NavbarInputComponent,
     GeneratorComponent,
     CalculatorComponent,
@@ -54,7 +53,8 @@ import { InventoryComponent } from './forms/character-blueprints/inventory/inven
     ItemBlueprintComponent,
     AbilitiesComponent,
     CombatValuesComponent,
-    InventoryComponent
+    InventoryComponent,
+    BeastBlueprintListComponent
   ],
   imports: [
     BrowserModule,

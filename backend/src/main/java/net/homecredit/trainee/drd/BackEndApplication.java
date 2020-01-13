@@ -2,6 +2,9 @@ package net.homecredit.trainee.drd;
 
 import net.homecredit.trainee.drd.configuration.RepositoryConfiguration;
 import net.homecredit.trainee.drd.configuration.ServiceConfiguration;
+import net.homecredit.trainee.drd.controller.CalculusController;
+import net.homecredit.trainee.drd.controller.EnumController;
+import net.homecredit.trainee.drd.controller.PersistenceController;
 import net.homecredit.trainee.drd.service.blueprint.*;
 import net.homecredit.trainee.drd.service.character.BeastService;
 import net.homecredit.trainee.drd.service.item.*;
@@ -17,7 +20,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @Configuration(proxyBeanMethods = false)
 @EnableAutoConfiguration
-@Import({RepositoryConfiguration.class, ServiceConfiguration.class})
+@Import({
+        RepositoryConfiguration.class,
+        ServiceConfiguration.class,
+        PersistenceController.class,
+        EnumController.class,
+        CalculusController.class
+})
 public class BackEndApplication {
 
     public static void main(String[] args) {
@@ -47,81 +56,7 @@ public class BackEndApplication {
         BuyService buyService = applicationContext.getBean(BuyService.class);
 
 //		demo2.createMeSomeBeasts(beastBlueprintService, beastService);
-//        demo2.tryBuyingWithBeast(buyService, beastService, shopService);
+//       demo2.tryBuyingWithBeast(buyService, beastService, shopService);
 //		demo2.deleteAllData(beastBlueprintService, beastService, armorBlueprintService, armorService,  goodsBlueprintService, goodsService, treasureBlueprintService, treasureService, weaponBlueprintService, weaponService, inventoryService, storageService, shopService);
-
-		/*boolean delete = false;
-
-		if(delete) {
-			beastBlueprintService.deleteAll();
-		} else {
-			*//**
-			 * CREATING GOBLIN IDEAL (BACKPACK INCLUDED)!!!
-			 *//*
-			Map<Ability, AbilityScore> abilityScores = new HashMap<>();
-			abilityScores.put(Ability.STRENGTH, new AbilityScore(Ability.STRENGTH, 8, -1));
-			abilityScores.put(Ability.DEXTERITY, new AbilityScore(Ability.DEXTERITY, 8, -1));
-			abilityScores.put(Ability.RESISTANCE, new AbilityScore(Ability.RESISTANCE, 8, -1));
-			abilityScores.put(Ability.CHARISMA, new AbilityScore(Ability.CHARISMA, 4, -3));
-			abilityScores.put(Ability.INTELLIGENCE, new AbilityScore(Ability.INTELLIGENCE, 3, -4));
-
-			EnumSet<CharacterSize> sizes = EnumSet.noneOf(CharacterSize.class);
-			EnumSet<Vulnerability> vulnerabilities = EnumSet.noneOf(Vulnerability.class);
-			BeastBlueprint goblinIdeal = beastBlueprintService.drawBlueprint(
-					"Drd pravidla pro zacatecniky",
-					"Skreti valecnik",
-					"Skret",
-					"No comment",
-					1,
-					0,
-					0,
-					abilityScores,
-					7,
-					0,
-					sizes,
-					vulnerabilities,
-					10,
-					8,
-					-1,
-					true
-			);
-
-			sizes.add(CharacterSize.A);
-
-			vulnerabilities.addAll(EnumSet.complementOf(EnumSet.of(Vulnerability.E, Vulnerability.F, Vulnerability.N, Vulnerability.P)));
-
-			beastBlueprintService.saveBeastBlueprint(goblinIdeal);
-
-
-			*//**
-			 * CREATING GOGO THE FIRST OF GOBLINS
-			 *//*
-			beastService.spawnBeasts(
-					2,
-					goblinIdeal,
-					"GoGo",
-					"GoGo je prosty skret, ktery rad vysiva",
-					CharacterSize.A
-			);
-		}*/
     }
-
-//	@Bean
-//	public SharedEntityManagerBean containerManagedEntityManager(EntityManagerFactory emf) {
-//		SharedEntityManagerBean entityManagerBean = new SharedEntityManagerBean();
-//		entityManagerBean.setEntityManagerFactory(emf);
-//		return entityManagerBean;
-//	}
-//
-//	@Bean
-//	public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
-//		return new JpaTransactionManager(emf);
-//	}
-//
-//	@Bean
-//	public EntityManagerFactory entityManagerFactory(DataSource ds) {
-//		Map<String, Object> props = new HashMap<>();
-//		props.put("javax.persistence.nonJtaDataSource", ds);
-//		return Persistence.createEntityManagerFactory("PersistenceUnit", props);
-//	}
 }

@@ -1,27 +1,32 @@
-<div class="form-group" [formGroup]="parentForm">
-  <label for="initiative-bonus">Initiative bonus</label>
-  <input type="text" class="form-control" formControlName="initiativeBonus" id="initiative-bonus">
+<div [formGroup]="parentForm">
+  <div formGroupName="combatValues">
+    <div class="form-group">
+      <label for="initiative-bonus">Initiative bonus</label>
+      <input type="text" class="form-control" formControlName="initiativeBase" [value]="activeCombatValues.initiativeBase" id="initiative-bonus">
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <label for="attack">Attack</label>
+        <input type="text" class="form-control" [value]="activeCombatValues.attack" id="attack" disabled>
+      </div>
+      <div class="col">
+        <label for="hurt">Hurt</label>
+        <input type="text" class="form-control" [value]="activeCombatValues.hurt" id="hurt" disabled>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <label for="active-defense">Active defense</label>
+        <input type="text" class="form-control" [value]="activeCombatValues.activeDefense" id="active-defense" disabled>
+      </div>
+      <div class="col">
+        <label for="passive-defense">Passive defense</label>
+        <input type="text" class="form-control" [value]="activeCombatValues.passiveDefense" id="passive-defense" disabled>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="form-row">
-  <div class="col">
-    <label for="attack">Attack</label>
-    <input type="text" class="form-control" id="attack" disabled>
-  </div>
-  <div class="col">
-    <label for="hurt">Hurt</label>
-    <input type="text" class="form-control" id="hurt" disabled>
-  </div>
-</div>
-
-<div class="form-row">
-  <div class="col">
-    <label for="active-defense">Active defense</label>
-    <input type="text" class="form-control" id="active-defense" disabled>
-  </div>
-  <div class="col">
-    <label for="passive-defense">Passive defense</label>
-    <input type="text" class="form-control" id="passive-defense" disabled>
-  </div>
-</div>
 

@@ -2,11 +2,13 @@ package net.homecredit.trainee.drd.configuration;
 
 import net.homecredit.trainee.drd.repository.blueprint.*;
 import net.homecredit.trainee.drd.repository.character.BeastRepository;
+import net.homecredit.trainee.drd.repository.character.RaceRepository;
 import net.homecredit.trainee.drd.repository.inventory.*;
 import net.homecredit.trainee.drd.repository.shop.ShopRepository;
 import net.homecredit.trainee.drd.service.blueprint.*;
 import net.homecredit.trainee.drd.service.character.BeastService;
 import net.homecredit.trainee.drd.service.character.CombatService;
+import net.homecredit.trainee.drd.service.character.RaceService;
 import net.homecredit.trainee.drd.service.item.*;
 import net.homecredit.trainee.drd.service.shop.BuyService;
 import net.homecredit.trainee.drd.service.shop.ShopService;
@@ -19,6 +21,11 @@ import java.util.Random;
 
 @Configuration
 public class ServiceConfiguration {
+
+    @Bean
+    public RaceService raceService(RaceRepository raceRepository) {
+        return new RaceService(raceRepository);
+    }
 
     @Bean
     public BeastBlueprintService beastBlueprintService(BeastBlueprintRepository beastBlueprintRepository, InventoryService inventoryService, CombatService combatService) {

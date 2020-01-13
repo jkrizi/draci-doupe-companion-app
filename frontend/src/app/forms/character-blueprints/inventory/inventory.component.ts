@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
+import {InventoryService} from '../../../services/inventory.service';
+import {InventoryModel} from '../../../models/inventory.model';
 
 @Component({
   selector: 'app-inventory',
@@ -9,6 +11,7 @@ import {FormGroup} from '@angular/forms';
 export class InventoryComponent implements OnInit {
 
   @Input() parentForm: FormGroup;
+  selectedInventory: InventoryModel;
 
   // Local inventory holders
   weaponry = [];
@@ -22,9 +25,12 @@ export class InventoryComponent implements OnInit {
   treasureBlueprint = [];
   goodBlueprint = [];
 
-  constructor() { }
+  constructor(private inventoryService: InventoryService) { }
 
   ngOnInit() {
+    this.inventoryService.selectedInventory.subscribe( inventory => {
+      this.selectedInventory = inventory;
+    });
   }
 
 }
