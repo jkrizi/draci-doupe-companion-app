@@ -14,8 +14,9 @@ import {PersonBlueprintComponent} from './forms/character-blueprints/person-blue
 import {BeastBlueprintComponent} from './forms/character-blueprints/beast-blueprint/beast-blueprint.component';
 import {RaceComponent} from './forms/race/race.component';
 import {SkillComponent} from './forms/skill/skill.component';
-import {SpellComponent} from './forms/spell/spell.component';
+import {SpellFormComponent} from './forms/spell-form/spell-form.component';
 import {SwordPlayMoveComponent} from './forms/sword-play-move/sword-play-move.component';
+import {SpellInputComponent} from './features/input/spell-input/spell-input.component';
 
 const appRoutes: Routes = [
   {path: 'generator', component: GeneratorComponent},
@@ -38,7 +39,7 @@ const appRoutes: Routes = [
       },
       {path: 'race', component: RaceComponent},
       {path: 'skill', component: SkillComponent},
-      {path: 'spell', component: SpellComponent},
+      {path: 'spell', component: SpellInputComponent},
       {path: 'swordplay', component: SwordPlayMoveComponent}
     ]
   }

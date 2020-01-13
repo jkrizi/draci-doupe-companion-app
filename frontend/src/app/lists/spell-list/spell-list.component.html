@@ -1,0 +1,26 @@
+<table class="table table-sm table-hover" style>
+  <thead>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Manna</th>
+    <th>Range</th>
+    <th>Conjuring</th>
+    <th>Duration</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let spell of spellList; let i = index" (click)="selectSpell(i)" style="cursor: pointer">
+    <td></td>
+    <td>{{spell.name}}</td>
+    <td>{{spell.description}}</td>
+    <td>{{spell.manna}}</td>
+    <td>{{spell.range}}</td>
+    <td>{{spell.conjuring}}</td>
+    <td>{{spell.duration}}</td>
+  </tr>
+  </tbody>
+</table>
+
+

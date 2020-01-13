@@ -1,10 +1,7 @@
 package net.homecredit.trainee.drd.entity.character.profession;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.Collection;
 import java.util.UUID;
 
 @Entity
@@ -15,28 +12,27 @@ public class Spell {
     private String name;
     private String description;
 
-    private int mannaCost;
+    private int manna;
 
-    @Column(name = "RANGE_OR_DIAMETER")
-    private int rangeOrDiameter;
+    private int range;
     private int conjuring;
     private int duration;
-
-    @OneToMany(mappedBy = "spell")
-    private Collection<SpellBook> spellBook;
 
     public Spell() {
     }
 
-    public Spell(UUID id, String name, String description, int mannaCost, int rangeOrDiameter, int conjuring, int duration, Collection<SpellBook> spellBook) {
+    public Spell(Spell spell) {
+        this(spell.name, spell.description, spell.manna, spell.range, spell.conjuring, spell.duration);
+    }
+
+    public Spell(String name, String description, int manna, int range, int conjuring, int duration) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.description = description;
-        this.mannaCost = mannaCost;
-        this.rangeOrDiameter = rangeOrDiameter;
+        this.manna = manna;
+        this.range = range;
         this.conjuring = conjuring;
         this.duration = duration;
-        this.spellBook = spellBook;
     }
 
     public UUID getId() {
@@ -63,20 +59,20 @@ public class Spell {
         this.description = description;
     }
 
-    public int getMannaCost() {
-        return mannaCost;
+    public int getManna() {
+        return manna;
     }
 
-    public void setMannaCost(int mannaCost) {
-        this.mannaCost = mannaCost;
+    public void setManna(int mannaCost) {
+        this.manna = mannaCost;
     }
 
-    public int getRangeOrDiameter() {
-        return rangeOrDiameter;
+    public int getRange() {
+        return range;
     }
 
-    public void setRangeOrDiameter(int rangeOrDiameter) {
-        this.rangeOrDiameter = rangeOrDiameter;
+    public void setRange(int rangeOrDiameter) {
+        this.range = rangeOrDiameter;
     }
 
     public int getConjuring() {
@@ -95,11 +91,16 @@ public class Spell {
         this.duration = duration;
     }
 
-    public Collection<SpellBook> getSpellBook() {
-        return spellBook;
-    }
-
-    public void setSpellBook(Collection<SpellBook> spellBook) {
-        this.spellBook = spellBook;
+    @Override
+    public String toString() {
+        return "Spell{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", mannaCost=" + manna +
+                ", rangeOrDiameter=" + range +
+                ", conjuring=" + conjuring +
+                ", duration=" + duration +
+                '}';
     }
 }

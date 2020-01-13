@@ -25,5 +25,12 @@
       <input type="text" class="form-control" formControlName="duration" id="duration">
     </div>
   </div>
-  <app-form-controls></app-form-controls>
+  <app-form-controls
+    [parentForm]="spellForm"
+    [editMode]="editMode"
+    (restore)="restore()"
+    (update)="update()"
+    (delete)="delete()"
+
+  ></app-form-controls>
 </form>

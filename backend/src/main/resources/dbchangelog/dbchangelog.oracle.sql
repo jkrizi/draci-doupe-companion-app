@@ -250,3 +250,9 @@ alter table BEAST_BLUEPRINT rename column TRAINED to SCHOOLED;
 
 --changeset Jiri.Kriz1:1576766708146-79
 alter table BEAST_BLUEPRINT rename column BEAST_ORIGIN to ORIGIN;
+
+--changeset Jiri.Kriz1:1576766708146-80
+alter table SPELL rename column MANNA_COST to MANNA;
+
+--changeset Jiri.Kriz1:1576766708146-81
+alter table SPELL rename column RANGE_OR_DIAMETER to RANGE;
