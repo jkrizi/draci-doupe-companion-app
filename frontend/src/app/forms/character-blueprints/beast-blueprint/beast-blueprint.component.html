@@ -104,23 +104,21 @@
 
   </div>
 
-  <div class="d-flex mb-3">
-    <label for="sizes" class="align-self-end mr-2">Sizes</label>
-    <div id="sizes" class="btn-group-toggle mx-1" data-toggle="buttons" *ngFor ="let size of getSizes(); let i = index" formArrayName="sizes">
-      <label class="btn btn-outline-success" [ngClass]="size.value.status ? 'active' : ''">
-        <input type="checkbox" [formControlName]="i" autocomplete="off" (click)="size.value.status = !size.value.status"> {{size.value.name}}
-      </label>
+  <div>
+    <label for="sizes">Sizes</label>
+    <div class="d-flex mb-3 flex-wrap">
+      <div id="sizes" *ngFor ="let size of characterSizes">
+        <button type="button" class="btn btn-outline-success mr-1 mb-1" (click)="size.status = !size.status" [ngClass]="size.status ? 'active' : ''"> {{size.name}}</button>
+      </div>
     </div>
   </div>
 
-  <div class="d-flex mb-3">
-    <label for="vulnerabilities" class="align-self-end mr-2">Vulnerabilities</label>
-    <div id="vulnerabilities" class="btn-group-toggle mx-1" data-toggle="buttons" *ngFor ="let vulnerability of getVulnerabilities(); let i = index" formArrayName="vulnerabilities">
-      <label class="btn btn-outline-success" [ngClass]="vulnerability.value.status ? 'active' : ''">
-        <input type="checkbox" [formControlName]="i" autocomplete="off"
-               (click)="vulnerability.setValue('status',!vulnerability.value.status)"
-        >{{vulnerability.value.name}}
-      </label>
+  <div>
+    <label for="vulnerabilities">Vulnerabilities</label>
+    <div class="d-flex mb-3 flex-wrap">
+      <div id="vulnerabilities" *ngFor ="let vulnerability of characterVulnerabilities">
+        <button type="button" (click)="vulnerability.status = !vulnerability.status" class="btn btn-outline-success mr-1 mb-1" [ngClass]="vulnerability.status ? 'active' : ''">{{vulnerability.name}}</button>
+      </div>
     </div>
   </div>
 

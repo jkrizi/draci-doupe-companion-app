@@ -3,6 +3,7 @@ package net.homecredit.trainee.drd.configuration;
 import net.homecredit.trainee.drd.repository.blueprint.*;
 import net.homecredit.trainee.drd.repository.character.BeastRepository;
 import net.homecredit.trainee.drd.repository.character.KnowHowRepository;
+import net.homecredit.trainee.drd.repository.character.RaceRepository;
 import net.homecredit.trainee.drd.repository.inventory.*;
 import net.homecredit.trainee.drd.repository.shop.ShopRepository;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +13,11 @@ import javax.persistence.EntityManager;
 
 @Configuration
 public class RepositoryConfiguration {
+
+    @Bean
+    public RaceRepository raceRepository(EntityManager em) {
+        return new RaceRepository(em);
+    }
 
     @Bean
     public KnowHowRepository knowHowRepository(EntityManager em) {

@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
+import {CombatValuesService} from '../../../services/combat-values.service';
+import {CombatValuesModel} from '../../../models/combat-values.model';
 
 @Component({
   selector: 'app-combat-values',
@@ -10,9 +12,16 @@ export class CombatValuesComponent implements OnInit {
 
   @Input() parentForm: FormGroup;
 
-  constructor() { }
+  activeCombatValues: CombatValuesModel;
+
+  constructor(private combatValuesService: CombatValuesService) {
+    this.activeCombatValues = {initiativeBase: '', attack: 0, hurt: 0, activeDefense: 0, passiveDefense: 0};
+  }
 
   ngOnInit() {
+    this.combatValuesService.selectedCombatValues.subscribe( combatValues => {
+      this.activeCombatValues = combatValues;
+    });
   }
 
 }

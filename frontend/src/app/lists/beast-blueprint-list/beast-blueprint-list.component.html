@@ -1,0 +1,28 @@
+<table class="table table-sm table-hover" style>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Species</th>
+      <th>Viability</th>
+      <th>Manna</th>
+      <th>Initiative</th>
+      <th>Attack</th>
+      <th>Defense</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let beast of beastBlueprints; let i = index" (click)="passBlueprint(i)" style="cursor: pointer">
+      <td></td>
+      <td>{{beast.name}}</td>
+      <td>{{beast.species}}</td>
+      <td>{{beast.viability}}</td>
+      <td>{{beast.manna}}</td>
+      <td>{{beast.combatValues.initiativeBase}}</td>
+      <td>{{beast.combatValues.attack}}/{{beast.combatValues.hurt}}</td>
+      <td>{{beast.combatValues.activeDefense}}/{{beast.combatValues.passiveDefense}}</td>
+    </tr>
+  </tbody>
+</table>
+
+

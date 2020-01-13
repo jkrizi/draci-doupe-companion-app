@@ -1,9 +1,6 @@
 package net.homecredit.trainee.drd.entity.inventory;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
 
@@ -85,7 +82,7 @@ public class Inventory {
     }
 
     //JZ-getter without attribute
-    public int getFreeSpace(){
+    public int getFreeSpace() {
         return getLimitWeight() - getContentWeight();
     }
 }

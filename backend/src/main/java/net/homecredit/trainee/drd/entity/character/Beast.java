@@ -1,5 +1,6 @@
 package net.homecredit.trainee.drd.entity.character;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import net.homecredit.trainee.drd.entity.blueprint.BeastBlueprint;
 import net.homecredit.trainee.drd.entity.character.combat.CombatValues;
 import net.homecredit.trainee.drd.entity.inventory.Inventory;
@@ -12,6 +13,7 @@ public class Beast implements Character {
 
     @Id
     private UUID id;
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private BeastBlueprint beastBlueprint;
     private String name;

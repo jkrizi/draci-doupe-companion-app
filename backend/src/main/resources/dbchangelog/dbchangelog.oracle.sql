@@ -244,3 +244,9 @@ create table GEM_STONE
     constraint GEM_STONE_GEM_STONE_BLUEPRINT_ID_fk
       references GEM_STONE_BLUEPRINT
 );
+
+--changeset Jiri.Kriz1:1576766708146-78
+alter table BEAST_BLUEPRINT rename column TRAINED to SCHOOLED;
+
+--changeset Jiri.Kriz1:1576766708146-79
+alter table BEAST_BLUEPRINT rename column BEAST_ORIGIN to ORIGIN;

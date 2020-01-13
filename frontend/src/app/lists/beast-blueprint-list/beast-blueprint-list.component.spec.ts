@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DialComponent } from './dial.component';
+import { BeastBlueprintListComponent } from './beast-blueprint-list.component';
 
-describe('DialComponent', () => {
-  let component: DialComponent;
-  let fixture: ComponentFixture<DialComponent>;
+describe('BeastBlueprintListComponent', () => {
+  let component: BeastBlueprintListComponent;
+  let fixture: ComponentFixture<BeastBlueprintListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DialComponent ]
+      declarations: [ BeastBlueprintListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DialComponent);
+    fixture = TestBed.createComponent(BeastBlueprintListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
