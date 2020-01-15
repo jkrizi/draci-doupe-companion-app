@@ -5,6 +5,7 @@ import net.homecredit.trainee.drd.entity.blueprint.BeastBlueprint;
 import net.homecredit.trainee.drd.entity.character.Person;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -87,5 +88,18 @@ public class AbilityScore {
     @Override
     public String toString() {
         return ability.toString() + " " + getAbilityValue() + "/" + getAbilityBonusValue();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AbilityScore)) return false;
+        AbilityScore that = (AbilityScore) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

@@ -7,6 +7,7 @@ import net.homecredit.trainee.drd.entity.inventory.weapon.Weapon;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -206,5 +207,18 @@ public class Race {
         return "Race{" +
                 "name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Race)) return false;
+        Race race = (Race) o;
+        return id.equals(race.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

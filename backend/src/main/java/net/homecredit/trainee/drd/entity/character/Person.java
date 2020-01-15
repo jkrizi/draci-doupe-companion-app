@@ -12,6 +12,7 @@ import net.homecredit.trainee.drd.entity.inventory.Inventory;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -165,5 +166,43 @@ public class Person implements Character {
 
     public PersonBlueprint getPersonBlueprint() {
         return personBlueprint;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Person)) return false;
+        Person person = (Person) o;
+        return id.equals(person.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", level=" + level +
+                ", exp=" + exp +
+                ", currLife=" + currLife +
+                ", maxLife=" + maxLife +
+                ", currManna=" + currManna +
+                ", maxManna=" + maxManna +
+                ", weight=" + weight +
+                ", height=" + height +
+                ", race=" + race +
+                ", professionKnowHow=" + professionKnowHow +
+                ", combatValues=" + combatValues +
+                ", abilityMap=" + abilityMap +
+                ", inventory=" + inventory +
+                ", companion=" + companion +
+                ", skillKnowHow=" + skillKnowHow +
+                ", personBlueprint=" + personBlueprint +
+                '}';
     }
 }

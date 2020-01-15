@@ -3,6 +3,7 @@ package net.homecredit.trainee.drd.entity.blueprint.item;
 import net.homecredit.trainee.drd.entity.shop.ItemType;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -81,5 +82,30 @@ public class GoodsBlueprint implements ItemBlueprint {
 
     public void setItemType(ItemType itemType) {
         this.itemType = itemType;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof GoodsBlueprint)) return false;
+        GoodsBlueprint that = (GoodsBlueprint) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "GoodsBlueprint{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", publicDescription='" + publicDescription + '\'' +
+                ", privateDescription='" + privateDescription + '\'' +
+                ", weight=" + weight +
+                ", itemType=" + itemType +
+                '}';
     }
 }

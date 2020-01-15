@@ -8,6 +8,7 @@ import net.homecredit.trainee.drd.entity.character.Vulnerability;
 import net.homecredit.trainee.drd.entity.character.ability.Ability;
 import net.homecredit.trainee.drd.entity.character.ability.AbilityScore;
 import net.homecredit.trainee.drd.entity.character.skill.SkillKnowledge;
+import net.homecredit.trainee.drd.entity.inventory.GemStone;
 import net.homecredit.trainee.drd.entity.inventory.armor.BodySection;
 import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponType;
 import net.homecredit.trainee.drd.entity.shop.ItemType;
@@ -24,26 +25,47 @@ import java.util.*;
 public class Demo2 {
 
     public void setBroadSwordBlueprint(WeaponBlueprintService weaponBlueprintService) {
-        Set<WeaponType> weaponType = EnumSet.of(WeaponType.CUTTING, WeaponType.STABBING);
-        WeaponBlueprint wb = weaponBlueprintService.drawAndFileBlueprint("Siroky mec", "Mec, ktery se na dne truhly najde v kazde lidske domacnosti", "private description", 60, 4, 0, -1, 0, -1, -1, -1, 1, 1, weaponType);
+        Set<WeaponType> weaponType = EnumSet.of(WeaponType.CUTTING, WeaponType.LIGHT);
+        WeaponBlueprint wb = weaponBlueprintService.drawAndFileBlueprint("Siroky mec", "Mec, ktery se na dne truhly najde v kazde lidske domacnosti", "private description", 60, 4, 0, -1, 0, -1, -1, -2, 1, 1, weaponType);
         System.out.println(weaponBlueprintService.findBlueprint(wb.getId()).getPublicDescription());
     }
 
-//    public void setTestTreasureBlueprint(TreasureBlueprintService treasureBlueprintService) {
-//        GemStoneBlueprint gemStone = new GemStoneBlueprint("gemstoneName", Color.BLACK, 1.5);
-//        Metal material = Metal.BRONZE;
-//        SkillKnowledge skill = SkillKnowledge.AVERAGE;
-//
-//        TreasureBlueprint tb = treasureBlueprintService.drawAndFileBlueprint("Treasure", "Pekny treasure", "private description", gemStone, 1, true, material, 10, skill, 1.5);
-//        System.out.println(treasureBlueprintService.findBlueprint(tb.getId()).getPublicDescription());
-//
-//    }
+    private void createGemStoneBlueprints(TreasureBlueprintService treasureBlueprintService){
+        /*GemStoneBlueprint gemStoneBlueprint = treasureBlueprintService.saveGemStoneBlueprint("Ruby", Color.RED, 1.6);
+        GemStoneBlueprint gemStoneBlueprint1 = treasureBlueprintService.saveGemStoneBlueprint("Small ruby", Color.RED, 0.8);
+        GemStoneBlueprint gemStoneBlueprint2 = treasureBlueprintService.saveGemStoneBlueprint("Saphir", Color.BLACK, 1.5);
+        GemStoneBlueprint gemStoneBlueprint3 = treasureBlueprintService.saveGemStoneBlueprint("Brick", Color.ORANGE, 0.1);
+        GemStoneBlueprint gemStoneBlueprint4 = treasureBlueprintService.saveGemStoneBlueprint("Diamant", Color.WHITE, 5.2);*/
+    }
+
+    public void setTestTreasureBlueprint(TreasureBlueprintService treasureBlueprintService) {
+//        createGemStoneBlueprints(treasureBlueprintService);
+
+        Metal material = Metal.BRONZE;
+        SkillKnowledge skill = SkillKnowledge.AVERAGE;
+
+        //create gemstones and put them in the collection
+        List<GemStoneBlueprint> gemStoneBlueprints = treasureBlueprintService.findGemStonesBlueprints();
+
+        GemStone gemStone1 = new GemStone(2, false, 2,  gemStoneBlueprints.get(0));
+        GemStone gemStone2 = new GemStone(2, true, 2.1,  gemStoneBlueprints.get(0));
+        GemStone gemStone3 = new GemStone(2, false, 2.1,  gemStoneBlueprints.get(0));
+
+        Collection<GemStone> gemStones = new HashSet<>();
+        gemStones.add(gemStone1);
+        gemStones.add(gemStone2);
+        gemStones.add(gemStone3);
+
+        TreasureBlueprint tb = treasureBlueprintService.drawAndFileBlueprint("Treasure", "Pekny treasure", "private description", gemStones, material, 1, skill, 10);
+        for(GemStone ge : gemStones){
+            treasureBlueprintService.addTreasureBlueprintToGemstone(tb, ge);
+        }
+    }
 
     public void setTestArmorBlueprint(ArmorBlueprintService armorBlueprintService) {
-        Set<BodySection> coverage = EnumSet.of(BodySection.HEAD);
-        ArmorBlueprint ab = armorBlueprintService.drawAndFileBlueprint("armor name", "awesome armor babe", "private description", 20, 1, coverage);
+        Set<BodySection> coverage = EnumSet.of(BodySection.LEGS, BodySection.HEAD);
+        ArmorBlueprint ab = armorBlueprintService.drawAndFileBlueprint("armor name", "awesome armor babe", "private description", 21, 1, coverage);
         System.out.println(armorBlueprintService.findBlueprint(ab.getId()).getPublicDescription());
-
     }
 
     public void setTestGoodsBlueprint(GoodsBlueprintService goodsBlueprintService) {

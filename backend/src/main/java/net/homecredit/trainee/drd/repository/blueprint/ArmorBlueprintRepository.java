@@ -1,12 +1,12 @@
 package net.homecredit.trainee.drd.repository.blueprint;
 
 import net.homecredit.trainee.drd.entity.blueprint.item.ArmorBlueprint;
+import net.homecredit.trainee.drd.util.comparator.ArmorBlueprintComparatorByAttributes;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Repository
 public class ArmorBlueprintRepository {
@@ -37,5 +37,15 @@ public class ArmorBlueprintRepository {
     public List<ArmorBlueprint> findAll() {
         TypedQuery<ArmorBlueprint> query = entityManager.createQuery("select x from ArmorBlueprint x", ArmorBlueprint.class);
         return query.getResultList();
+    }
+
+    public boolean containsBlueprint(ArmorBlueprint armorBlueprint) {
+        ArmorBlueprintComparatorByAttributes comparator = new ArmorBlueprintComparatorByAttributes();
+        for (ArmorBlueprint armorBlueprint1 : findAll()) {
+            if (comparator.compare(armorBlueprint, armorBlueprint1) == 0) {
+                return true;
+            }
+        }
+        return false;
     }
 }

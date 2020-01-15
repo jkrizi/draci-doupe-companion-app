@@ -65,4 +65,13 @@ public class Armor extends Equipment {
     public void setCoverage(Set<BodySection> coverage) {
         this.coverage = coverage;
     }
+
+    @Override
+    public String toString() {
+        return "Armor{" +
+                "defense=" + defense +
+                ", equipped=" + equipped +
+                ", coverage=" + coverage +
+                '}';
+    }
 }

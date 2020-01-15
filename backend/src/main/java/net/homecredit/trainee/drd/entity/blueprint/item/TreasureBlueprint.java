@@ -4,8 +4,7 @@ import net.homecredit.trainee.drd.entity.character.skill.SkillKnowledge;
 import net.homecredit.trainee.drd.entity.inventory.GemStone;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "TREASURE_BLUEPRINT")
@@ -128,5 +127,33 @@ public class TreasureBlueprint implements ItemBlueprint {
 
     public void setTreasureValue(double treasureValue) {
         this.treasureValue = treasureValue;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TreasureBlueprint)) return false;
+        TreasureBlueprint that = (TreasureBlueprint) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "TreasureBlueprint{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", publicDescription='" + publicDescription + '\'' +
+                ", privateDescription='" + privateDescription + '\'' +
+                ", gemStones=" + gemStones +
+                ", material=" + material +
+                ", materialWeight=" + materialWeight +
+                ", productQuality=" + productQuality +
+                ", treasureValue=" + treasureValue +
+                '}';
     }
 }

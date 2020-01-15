@@ -25,6 +25,9 @@ public class ArmorBlueprintService {
 
     public ArmorBlueprint drawAndFileBlueprint(String name, String publicDescription, String privateDescription, int weight, int defense, Set<BodySection> coverage) {
         ArmorBlueprint armorBlueprint = new ArmorBlueprint(name, publicDescription, privateDescription, weight, defense, coverage);
+        if(armorBlueprintRepository.containsBlueprint(armorBlueprint)){
+            throw new RuntimeException("Armor blueprint already exists");
+        }
         armorBlueprintRepository.save(armorBlueprint);
         shopService.createPriceTag(armorBlueprint, ItemType.ARMOR);
         return armorBlueprint;
