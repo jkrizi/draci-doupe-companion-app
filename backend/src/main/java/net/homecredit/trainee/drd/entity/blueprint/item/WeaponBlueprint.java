@@ -4,6 +4,7 @@ package net.homecredit.trainee.drd.entity.blueprint.item;
 import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponType;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -183,5 +184,39 @@ public class WeaponBlueprint implements ItemBlueprint {
 
     public void setType(Set<WeaponType> type) {
         this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof WeaponBlueprint)) return false;
+        WeaponBlueprint that = (WeaponBlueprint) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "WeaponBlueprint{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", privateDescription='" + privateDescription + '\'' +
+                ", publicDescription='" + publicDescription + '\'' +
+                ", weight=" + weight +
+                ", attack=" + attack +
+                ", hurt=" + hurt +
+                ", defense=" + defense +
+                ", initiativeModifier=" + initiativeModifier +
+                ", shortRangeLimit=" + shortRangeLimit +
+                ", midRangeLimit=" + midRangeLimit +
+                ", longRangeLimit=" + longRangeLimit +
+                ", minReach=" + minReach +
+                ", maxReach=" + maxReach +
+                ", type=" + type +
+                '}';
     }
 }

@@ -82,4 +82,14 @@ public class StorageUnit extends Equipment {
     public int getFreeSpace(){
         return getCapacity() - getContentWeight();
     }
+
+    @Override
+    public String toString() {
+        return "StorageUnit{" +
+                "capacity=" + capacity +
+                ", contentWeight=" + contentWeight +
+                ", defaultStorage=" + defaultStorage +
+                ", equipment=" + equipment +
+                '}';
+    }
 }

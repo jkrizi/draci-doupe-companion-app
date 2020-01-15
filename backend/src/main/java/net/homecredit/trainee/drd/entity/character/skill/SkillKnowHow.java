@@ -1,6 +1,7 @@
 package net.homecredit.trainee.drd.entity.character.skill;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -69,5 +70,29 @@ public class SkillKnowHow {
 
     public void setSkillKnowledge(SkillKnowledge skillKnowledge) {
         this.skillKnowledge = skillKnowledge;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SkillKnowHow)) return false;
+        SkillKnowHow that = (SkillKnowHow) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "SkillKnowHow{" +
+                "id=" + id +
+                ", skill=" + skill +
+                ", pointsTotal=" + pointsTotal +
+                ", pointForNextLevel=" + pointForNextLevel +
+                ", skillKnowledge=" + skillKnowledge +
+                '}';
     }
 }

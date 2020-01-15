@@ -2,6 +2,7 @@ package net.homecredit.trainee.drd.entity.shop;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -81,5 +82,30 @@ public class ShopItem {
 
     public void setBlueprintId(UUID blueprintId) {
         this.blueprintId = blueprintId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ShopItem)) return false;
+        ShopItem shopItem = (ShopItem) o;
+        return id.equals(shopItem.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "ShopItem{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", itemType=" + itemType +
+                ", priceList=" + priceList +
+                ", blueprintId=" + blueprintId +
+                '}';
     }
 }

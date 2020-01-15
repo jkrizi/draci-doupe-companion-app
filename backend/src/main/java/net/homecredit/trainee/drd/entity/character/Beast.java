@@ -6,6 +6,7 @@ import net.homecredit.trainee.drd.entity.character.combat.CombatValues;
 import net.homecredit.trainee.drd.entity.inventory.Inventory;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -102,5 +103,31 @@ public class Beast implements Character {
 
     public void setCombatValues(CombatValues combatValues) {
         this.combatValues = combatValues;
+    }
+
+    @Override
+    public String toString() {
+        return "Beast{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", life=" + life +
+                ", size=" + size +
+                ", inventory=" + inventory +
+                ", combatValues=" + combatValues +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Beast)) return false;
+        Beast beast = (Beast) o;
+        return id.equals(beast.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

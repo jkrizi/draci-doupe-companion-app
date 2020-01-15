@@ -1,6 +1,8 @@
 package net.homecredit.trainee.drd.entity.inventory;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -84,5 +86,30 @@ public class Inventory {
     //JZ-getter without attribute
     public int getFreeSpace() {
         return getLimitWeight() - getContentWeight();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Inventory)) return false;
+        Inventory inventory = (Inventory) o;
+        return id.equals(inventory.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Inventory{" +
+                "id=" + id +
+                ", limitWeight=" + limitWeight +
+                ", contentWeight=" + contentWeight +
+                ", coinPouch=" + coinPouch +
+                ", bankVault=" + bankVault +
+                ", storageUnits=" + storageUnits +
+                '}';
     }
 }

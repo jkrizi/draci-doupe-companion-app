@@ -1,6 +1,7 @@
 package net.homecredit.trainee.drd.entity.shop;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -57,5 +58,27 @@ public class LocalPrice {
 
     public void setShopItem(ShopItem shopItem) {
         this.shopItem = shopItem;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LocalPrice)) return false;
+        LocalPrice that = (LocalPrice) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "LocalPrice{" +
+                "id=" + id +
+                ", price=" + price +
+                ", dealLocation='" + dealLocation + '\'' +
+                '}';
     }
 }

@@ -161,4 +161,21 @@ public class Weapon extends Equipment {
     public void setMaxReach(int maxReach) {
         this.maxReach = maxReach;
     }
+
+    @Override
+    public String toString() {
+        return "Weapon{" +
+                "equipped=" + equipped +
+                ", attack=" + attack +
+                ", hurt=" + hurt +
+                ", defense=" + defense +
+                ", initiativeModifier=" + initiativeModifier +
+                ", type=" + type +
+                ", shortRangeLimit=" + shortRangeLimit +
+                ", midRangeLimit=" + midRangeLimit +
+                ", longRangeLimit=" + longRangeLimit +
+                ", minReach=" + minReach +
+                ", maxReach=" + maxReach +
+                '}';
+    }
 }

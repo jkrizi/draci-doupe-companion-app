@@ -2,6 +2,8 @@ package net.homecredit.trainee.drd;
 
 import net.homecredit.trainee.drd.configuration.RepositoryConfiguration;
 import net.homecredit.trainee.drd.configuration.ServiceConfiguration;
+import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponType;
+import net.homecredit.trainee.drd.entity.shop.ItemType;
 import net.homecredit.trainee.drd.controller.CalculusController;
 import net.homecredit.trainee.drd.controller.EnumController;
 import net.homecredit.trainee.drd.controller.PersistenceController;
@@ -16,6 +18,9 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import java.util.EnumSet;
+import java.util.Set;
 
 @EnableTransactionManagement
 @Configuration(proxyBeanMethods = false)
@@ -45,18 +50,26 @@ public class BackEndApplication {
         TreasureBlueprintService treasureBlueprintService = applicationContext.getBean(TreasureBlueprintService.class);
         ArmorBlueprintService armorBlueprintService = applicationContext.getBean(ArmorBlueprintService.class);
         GoodsBlueprintService goodsBlueprintService = applicationContext.getBean(GoodsBlueprintService.class);
-
-        //creates items blueprints and shopitems in the database
-//		demo2.setBroadSwordBlueprint(weaponBlueprintService);
-//		demo2.setTestTreasureBlueprint(treasureBlueprintService);
-//		demo2.setTestArmorBlueprint(armorBlueprintService);
-//		demo2.setTestGoodsBlueprint(goodsBlueprintService);
-
         ShopService shopService = applicationContext.getBean(ShopService.class);
         BuyService buyService = applicationContext.getBean(BuyService.class);
 
+        //creates items blueprints and shopitems in the database
+        //trying to create blueprints with small changes and see if it will put it in the database or not
+//        demo2.setBroadSwordBlueprint(weaponBlueprintService);
+//        demo2.setTestTreasureBlueprint(treasureBlueprintService);
+//        demo2.setTestArmorBlueprint(armorBlueprintService);
+//        demo2.setTestGoodsBlueprint(goodsBlueprintService);
+
+
 //		demo2.createMeSomeBeasts(beastBlueprintService, beastService);
+<<<<<<< backend/src/main/java/net/homecredit/trainee/drd/BackEndApplication.java
+//      demo2.tryBuyingWithBeast(buyService, beastService, shopService);
+//		demo2.deleteAllData(beastBlueprintService, beastService, armorBlueprintService, armorService,  goodsBlueprintService, goodsService, treasureBlueprintService, treasureService, weaponBlueprintService, weaponService, inventoryService, storageService, shopService);
+
+
+=======
 //       demo2.tryBuyingWithBeast(buyService, beastService, shopService);
 //		demo2.deleteAllData(beastBlueprintService, beastService, armorBlueprintService, armorService,  goodsBlueprintService, goodsService, treasureBlueprintService, treasureService, weaponBlueprintService, weaponService, inventoryService, storageService, shopService);
+>>>>>>> backend/src/main/java/net/homecredit/trainee/drd/BackEndApplication.java
     }
 }

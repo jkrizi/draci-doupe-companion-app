@@ -63,8 +63,8 @@ public class ServiceConfiguration {
     }
 
     @Bean
-    public TreasureBlueprintService treasureBlueprintService(TreasureBlueprintRepository treasureBlueprintRepository, ShopService shopService) {
-        return new TreasureBlueprintService(treasureBlueprintRepository, shopService);
+    public TreasureBlueprintService treasureBlueprintService(TreasureBlueprintRepository treasureBlueprintRepository, GemStoneBlueprintRepository gemStoneBlueprintRepository, ShopService shopService) {
+        return new TreasureBlueprintService(treasureBlueprintRepository, gemStoneBlueprintRepository, shopService);
     }
 
     @Bean

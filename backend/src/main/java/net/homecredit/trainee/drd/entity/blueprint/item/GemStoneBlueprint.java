@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -58,5 +59,28 @@ public class GemStoneBlueprint {
 
     public void setUnitPrice(double unitPrice) {
         this.unitPrice = unitPrice;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof GemStoneBlueprint)) return false;
+        GemStoneBlueprint that = (GemStoneBlueprint) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "GemStoneBlueprint{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", color=" + color +
+                ", unitPrice=" + unitPrice +
+                '}';
     }
 }

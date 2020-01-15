@@ -59,6 +59,9 @@ public class BeastBlueprintService {
         for (AbilityScore a : blueprint.getAbilityMap().values()) {
             a.setBeastBlueprint(blueprint);
         }
+        if(beastBlueprintRepository.containsBlueprint(blueprint)){
+            throw new RuntimeException("Beast blueprint already exists");
+        }
         beastBlueprintRepository.saveBlueprint(blueprint);
     }
 

@@ -3,6 +3,7 @@ package net.homecredit.trainee.drd.entity.blueprint.item;
 import net.homecredit.trainee.drd.entity.inventory.armor.BodySection;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -96,5 +97,31 @@ public class ArmorBlueprint implements ItemBlueprint {
 
     public void setCoverage(Set<BodySection> coverage) {
         this.coverage = coverage;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ArmorBlueprint)) return false;
+        ArmorBlueprint that = (ArmorBlueprint) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "ArmorBlueprint{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", publicDescription='" + publicDescription + '\'' +
+                ", privateDescription='" + privateDescription + '\'' +
+                ", weight=" + weight +
+                ", defense=" + defense +
+                ", coverage=" + coverage +
+                '}';
     }
 }

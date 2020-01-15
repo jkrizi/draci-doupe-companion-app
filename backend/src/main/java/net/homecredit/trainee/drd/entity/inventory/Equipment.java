@@ -4,6 +4,7 @@ import net.homecredit.trainee.drd.entity.blueprint.item.ItemBlueprint;
 import net.homecredit.trainee.drd.entity.shop.ItemType;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -21,6 +22,11 @@ public class Equipment {
     @Enumerated(value = EnumType.STRING)
     private ItemType itemType;
     private UUID blueprintId;
+
+    /*@Column(name = "ITEM_TYPE")
+    private ItemType itemType;*/
+    /*@Column(name = "BLUEPRINT_ID")
+    private UUID blueprintId;*/
 
     public Equipment() {
     }
@@ -48,7 +54,6 @@ public class Equipment {
 
     public Equipment(ItemBlueprint itemBlueprint, StorageUnit storage, ItemType itemType) {
         this.id = UUID.randomUUID();
-        this.itemType = itemType;
         this.blueprintId = itemBlueprint.getId();
         this.name = itemBlueprint.getName();
         this.description = itemBlueprint.getPublicDescription();
@@ -111,5 +116,31 @@ public class Equipment {
 
     public void setBlueprintId(UUID blueprintId) {
         this.blueprintId = blueprintId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Equipment)) return false;
+        Equipment equipment = (Equipment) o;
+        return id.equals(equipment.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Equipment{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", weight=" + weight +
+                ", storage=" + storage +
+                ", itemType=" + itemType +
+                ", blueprintId=" + blueprintId +
+                '}';
     }
 }

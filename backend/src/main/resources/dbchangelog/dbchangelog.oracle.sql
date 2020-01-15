@@ -256,3 +256,9 @@ alter table SPELL rename column MANNA_COST to MANNA;
 
 --changeset Jiri.Kriz1:1576766708146-81
 alter table SPELL rename column RANGE_OR_DIAMETER to RANGE;
+
+--changeset Jan.Zatloukal:1576766708146-82
+alter table TREASURE_BLUEPRINT drop column STONE_WEIGHT;
+
+--changeset Jan.Zatloukal:1576766708146-83
+alter table TREASURE_BLUEPRINT drop column POLISHED;

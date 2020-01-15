@@ -87,4 +87,9 @@ public class RepositoryConfiguration {
     public ShopRepository shopRepository(EntityManager em) {
         return new ShopRepository(em);
     }
+
+    @Bean
+    public GemStoneBlueprintRepository gemStoneBlueprintRepository(EntityManager em){
+        return new GemStoneBlueprintRepository(em);
+    }
 }

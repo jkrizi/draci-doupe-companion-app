@@ -234,4 +234,59 @@ public class BeastBlueprint {
     public void setSchooled(boolean schooled) {
         this.schooled = schooled;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BeastBlueprint)) return false;
+        BeastBlueprint that = (BeastBlueprint) o;
+        return viability == that.viability &&
+                viabilityBonus == that.viabilityBonus &&
+                manna == that.manna &&
+                mobility == that.mobility &&
+                pugnacity == that.pugnacity &&
+                persistence == that.persistence &&
+                domestication == that.domestication &&
+                trained == that.trained &&
+                beastOrigin.equals(that.beastOrigin) &&
+                name.equals(that.name) &&
+                species.equals(that.species) &&
+                description.equals(that.description) &&
+                abilityMap.equals(that.abilityMap) &&
+                size.equals(that.size) &&
+                vulnerabilities.equals(that.vulnerabilities) &&
+                beasts.equals(that.beasts) &&
+                inventory.equals(that.inventory) &&
+                combatValues.equals(that.combatValues);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(beastOrigin, name, species, description, viability, viabilityBonus, manna, mobility, abilityMap, size, vulnerabilities, beasts, inventory, combatValues, pugnacity, persistence, domestication, trained);
+    }
+
+    @Override
+    public String toString() {
+        return "BeastBlueprint{" +
+                "id=" + id +
+                ", beastOrigin='" + beastOrigin + '\'' +
+                ", name='" + name + '\'' +
+                ", species='" + species + '\'' +
+                ", description='" + description + '\'' +
+                ", viability=" + viability +
+                ", viabilityBonus=" + viabilityBonus +
+                ", manna=" + manna +
+                ", mobility=" + mobility +
+                ", abilityMap=" + abilityMap +
+                ", size=" + size +
+                ", vulnerabilities=" + vulnerabilities +
+                ", beasts=" + beasts +
+                ", inventory=" + inventory +
+                ", combatValues=" + combatValues +
+                ", pugnacity=" + pugnacity +
+                ", persistence=" + persistence +
+                ", domestication=" + domestication +
+                ", trained=" + trained +
+                '}';
+    }
 }

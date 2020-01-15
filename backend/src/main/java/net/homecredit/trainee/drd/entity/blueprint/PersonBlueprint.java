@@ -7,6 +7,7 @@ import net.homecredit.trainee.drd.entity.inventory.Inventory;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -107,5 +108,19 @@ public class PersonBlueprint {
 
     public void setPeople(Collection<Person> people) {
         this.people = people;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonBlueprint{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", level=" + level +
+                ", race=" + race +
+                ", profession=" + profession +
+                ", inventory=" + inventory +
+                ", people=" + people +
+                '}';
     }
 }
