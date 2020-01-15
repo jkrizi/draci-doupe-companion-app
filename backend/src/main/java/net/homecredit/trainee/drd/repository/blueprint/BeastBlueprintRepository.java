@@ -33,7 +33,7 @@ public class BeastBlueprintRepository {
                         "join fetch bb.sizes " +
                         "join fetch bb.vulnerabilities " +
                         "left join fetch bb.beasts b " +
-                        "join fetch b.inventory ib " +
+                        "join fetch bb.inventory ib " +
                         "join fetch ib.storageUnits ub " +
                         "left join fetch ub.equipment " +
                         "join fetch bb.inventory ibb " +

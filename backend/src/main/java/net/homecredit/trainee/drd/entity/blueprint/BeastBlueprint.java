@@ -240,36 +240,19 @@ public class BeastBlueprint {
         if (this == o) return true;
         if (!(o instanceof BeastBlueprint)) return false;
         BeastBlueprint that = (BeastBlueprint) o;
-        return viability == that.viability &&
-                viabilityBonus == that.viabilityBonus &&
-                manna == that.manna &&
-                mobility == that.mobility &&
-                pugnacity == that.pugnacity &&
-                persistence == that.persistence &&
-                domestication == that.domestication &&
-                trained == that.trained &&
-                beastOrigin.equals(that.beastOrigin) &&
-                name.equals(that.name) &&
-                species.equals(that.species) &&
-                description.equals(that.description) &&
-                abilityMap.equals(that.abilityMap) &&
-                size.equals(that.size) &&
-                vulnerabilities.equals(that.vulnerabilities) &&
-                beasts.equals(that.beasts) &&
-                inventory.equals(that.inventory) &&
-                combatValues.equals(that.combatValues);
+        return id.equals(that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(beastOrigin, name, species, description, viability, viabilityBonus, manna, mobility, abilityMap, size, vulnerabilities, beasts, inventory, combatValues, pugnacity, persistence, domestication, trained);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "BeastBlueprint{" +
                 "id=" + id +
-                ", beastOrigin='" + beastOrigin + '\'' +
+                ", origin='" + origin + '\'' +
                 ", name='" + name + '\'' +
                 ", species='" + species + '\'' +
                 ", description='" + description + '\'' +
@@ -278,7 +261,7 @@ public class BeastBlueprint {
                 ", manna=" + manna +
                 ", mobility=" + mobility +
                 ", abilityMap=" + abilityMap +
-                ", size=" + size +
+                ", sizes=" + sizes +
                 ", vulnerabilities=" + vulnerabilities +
                 ", beasts=" + beasts +
                 ", inventory=" + inventory +
@@ -286,7 +269,7 @@ public class BeastBlueprint {
                 ", pugnacity=" + pugnacity +
                 ", persistence=" + persistence +
                 ", domestication=" + domestication +
-                ", trained=" + trained +
+                ", schooled=" + schooled +
                 '}';
     }
 }

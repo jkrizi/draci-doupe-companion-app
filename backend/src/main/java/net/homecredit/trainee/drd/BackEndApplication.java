@@ -60,16 +60,11 @@ public class BackEndApplication {
 //        demo2.setTestArmorBlueprint(armorBlueprintService);
 //        demo2.setTestGoodsBlueprint(goodsBlueprintService);
 
-
 //		demo2.createMeSomeBeasts(beastBlueprintService, beastService);
-<<<<<<< backend/src/main/java/net/homecredit/trainee/drd/BackEndApplication.java
 //      demo2.tryBuyingWithBeast(buyService, beastService, shopService);
 //		demo2.deleteAllData(beastBlueprintService, beastService, armorBlueprintService, armorService,  goodsBlueprintService, goodsService, treasureBlueprintService, treasureService, weaponBlueprintService, weaponService, inventoryService, storageService, shopService);
 
-
-=======
 //       demo2.tryBuyingWithBeast(buyService, beastService, shopService);
 //		demo2.deleteAllData(beastBlueprintService, beastService, armorBlueprintService, armorService,  goodsBlueprintService, goodsService, treasureBlueprintService, treasureService, weaponBlueprintService, weaponService, inventoryService, storageService, shopService);
->>>>>>> backend/src/main/java/net/homecredit/trainee/drd/BackEndApplication.java
     }
 }

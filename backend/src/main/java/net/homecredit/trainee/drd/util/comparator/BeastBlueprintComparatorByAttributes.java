@@ -25,13 +25,13 @@ public class BeastBlueprintComparatorByAttributes implements Comparator<BeastBlu
                 newBlueprint.getPugnacity() == databaseBlueprint.getPugnacity() &&
                 newBlueprint.getPersistence() == databaseBlueprint.getPersistence() &&
                 newBlueprint.getDomestication() == databaseBlueprint.getDomestication() &&
-                newBlueprint.isTrained() == databaseBlueprint.isTrained() &&
+                newBlueprint.isSchooled() == databaseBlueprint.isSchooled() &&
                 newBlueprint.getPugnacity() == databaseBlueprint.getPugnacity() &&
-                newBlueprint.getBeastOrigin().equals(databaseBlueprint.getBeastOrigin())  &&
+                newBlueprint.getOrigin().equals(databaseBlueprint.getOrigin())  &&
                 newBlueprint.getName().equals(databaseBlueprint.getName()) &&
                 newBlueprint.getSpecies().equals(databaseBlueprint.getSpecies())  &&
                 newBlueprint.getDescription().equals(databaseBlueprint.getDescription())  &&
-                newBlueprint.getSize().equals(databaseBlueprint.getSize()) &&
+                newBlueprint.getSizes().equals(databaseBlueprint.getSizes()) &&
                 newBlueprint.getVulnerabilities().equals(databaseBlueprint.getVulnerabilities())
 //                newBlueprint.getAbilityMap().equals(abilities) &&
 //                newBlueprint.getInventory().equals(databaseBlueprint.getInventory())  &&
