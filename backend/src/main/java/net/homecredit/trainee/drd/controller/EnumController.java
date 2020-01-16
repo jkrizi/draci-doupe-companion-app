@@ -47,7 +47,7 @@ public class EnumController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/skillDifficulties.json")
+    @GetMapping("/difficulties.json")
     public @ResponseBody
     SkillDifficulty[] sendSkillDifficulties() {
         return SkillDifficulty.values();

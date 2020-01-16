@@ -10,13 +10,15 @@
   <label for="name">Name</label>
   <input type="text" class="form-control" formControlName="name" id="name">
 </div>
-<div class="form-group" [formGroup]="parentForm">
-  <label for="public-description">Public description</label>
-  <textarea class="form-control" formControlName="publicDescription" id="public-description"></textarea>
-</div>
-<div class="form-group" [formGroup]="parentForm">
-  <label for="private-description">Private description</label>
-  <textarea class="form-control" formControlName="privateDescription" id="private-description"></textarea>
+<div class="form-row">
+  <div class="form-group col" [formGroup]="parentForm">
+    <label for="public-description">Public description</label>
+    <textarea class="form-control" formControlName="publicDescription" id="public-description"></textarea>
+  </div>
+  <div class="form-group col" [formGroup]="parentForm">
+    <label for="private-description">Private description</label>
+    <textarea class="form-control" formControlName="privateDescription" id="private-description"></textarea>
+  </div>
 </div>
 <div class="form-group" [formGroup]="parentForm">
   <label for="weight">Weight</label>

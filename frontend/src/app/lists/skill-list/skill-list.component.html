@@ -1,0 +1,20 @@
+<table class="table table-sm table-hover" style>
+  <thead>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Difficulty</th>
+    <th>Ability</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let skill of skillList; let i = index" (click)="selectSkill(i)" style="cursor: pointer">
+    <td></td>
+    <td>{{skill.name}}</td>
+    <td>{{skill.difficulty}}</td>
+    <td>{{skill.ability}}</td>
+  </tr>
+  </tbody>
+</table>
+
+

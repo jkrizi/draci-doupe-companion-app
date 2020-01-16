@@ -42,12 +42,12 @@ public class WeaponBlueprint implements ItemBlueprint {
     @CollectionTable(name = "WEAPON_TYPE_BLUEPRINT", joinColumns = @JoinColumn(name = "WEAPON_BLUEPRINT_ID"))
     @Enumerated(EnumType.STRING)
     @Column(name = "WEAPON_TYPE")
-    private Set<WeaponType> type;
+    private Set<WeaponType> weaponTypes;
 
     public WeaponBlueprint() {
     }
 
-    public WeaponBlueprint(String name, String publicDescription, String privateDescription, int weight, int attack, int hurt, int defense, int initiativeModifier, int shortRangeLimit, int midRangeLimit, int longRangeLimit, int minReach, int maxReach, Set<WeaponType> type) {
+    public WeaponBlueprint(String name, String publicDescription, String privateDescription, int weight, int attack, int hurt, int defense, int initiativeModifier, int shortRangeLimit, int midRangeLimit, int longRangeLimit, int minReach, int maxReach, Set<WeaponType> weaponTypes) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.privateDescription = privateDescription;
@@ -62,7 +62,7 @@ public class WeaponBlueprint implements ItemBlueprint {
         this.longRangeLimit = longRangeLimit;
         this.minReach = minReach;
         this.maxReach = maxReach;
-        this.type = type;
+        this.weaponTypes = weaponTypes;
     }
 
     public UUID getId() {
@@ -178,12 +178,12 @@ public class WeaponBlueprint implements ItemBlueprint {
         this.maxReach = maxReach;
     }
 
-    public Set<WeaponType> getType() {
-        return type;
+    public Set<WeaponType> getWeaponTypes() {
+        return weaponTypes;
     }
 
-    public void setType(Set<WeaponType> type) {
-        this.type = type;
+    public void setWeaponTypes(Set<WeaponType> weaponTypes) {
+        this.weaponTypes = weaponTypes;
     }
 
     @Override

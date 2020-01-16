@@ -13,15 +13,15 @@ public class SwordPlay {
     private WarriorKnowHow warriorKnowHow;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SWORDPLAY_MOVE")
-    private SwordPlayMove swordPlayMove;
+    private SwordMove swordMove;
 
     public SwordPlay() {
     }
 
-    public SwordPlay(UUID id, WarriorKnowHow warriorKnowHow, SwordPlayMove swordPlayMove) {
+    public SwordPlay(UUID id, WarriorKnowHow warriorKnowHow, SwordMove swordMove) {
         this.id = UUID.randomUUID();
         this.warriorKnowHow = warriorKnowHow;
-        this.swordPlayMove = swordPlayMove;
+        this.swordMove = swordMove;
     }
 
     public UUID getId() {
@@ -40,11 +40,11 @@ public class SwordPlay {
         this.warriorKnowHow = warriorKnowHow;
     }
 
-    public SwordPlayMove getSwordPlayMove() {
-        return swordPlayMove;
+    public SwordMove getSwordMove() {
+        return swordMove;
     }
 
-    public void setSwordPlayMove(SwordPlayMove swordPlayMove) {
-        this.swordPlayMove = swordPlayMove;
+    public void setSwordMove(SwordMove swordMove) {
+        this.swordMove = swordMove;
     }
 }

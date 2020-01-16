@@ -7,10 +7,10 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class FormControlsComponent implements OnInit {
   @Input() editMode;
-  @Input() parentForm;
   @Output() restore = new EventEmitter();
   @Output() update = new EventEmitter();
   @Output() delete = new EventEmitter();
+  @Output() cancel = new EventEmitter();
 
   constructor() { }
 
@@ -30,7 +30,6 @@ export class FormControlsComponent implements OnInit {
   }
 
   onCancel() {
-    this.editMode = false;
-    this.parentForm.reset();
+    this.cancel.emit();
   }
 }

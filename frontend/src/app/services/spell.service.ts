@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {SpellModel} from '../models/spell.model';
 import {Subject} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {switchMap} from 'rxjs/operators';
 
 @Injectable({
@@ -32,6 +32,6 @@ export class SpellService {
   }
 
   delete(id: string) {
-    this.http.delete('http://localhost:8080/deleteSpell.json?id=' + id).subscribe(() => this.getAll());
+    this.http.delete('http://localhost:8080/deleteSpell.json', {params: new HttpParams().set('id', id)}).subscribe(() => this.getAll());
   }
 }

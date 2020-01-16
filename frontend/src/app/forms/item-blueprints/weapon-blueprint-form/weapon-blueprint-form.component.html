@@ -1,0 +1,70 @@
+<form class="mx-3 my-4" [formGroup]="weaponBlueprintForm" (ngSubmit)="onSubmit()">
+
+  <app-item-blueprint [parentForm]="weaponBlueprintForm"></app-item-blueprint>
+
+  <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
+    <label class="btn btn-outline-success"
+           [ngClass]="melee ? 'active' : ''"
+    >
+      <input type="radio" class="text-uppercase" formControlName="melee" autocomplete="off" (click)="melee = true">Melee
+    </label>
+    <label class="btn btn-outline-success"
+           [ngClass]="!melee ? 'active' : ''"
+    >
+      <input type="radio" class="text-uppercase" autocomplete="off" (click)="melee = false">Ranged
+    </label>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col">
+      <label for="attack">Attack</label>
+      <input type="text" class="form-control" formControlName="attack" id="attack">
+    </div>
+    <div class="form-group col">
+      <label for="hurt">Hurt</label>
+      <input type="text" class="form-control" formControlName="hurt" id="hurt">
+    </div>
+    <div class="form-group col">
+      <label for="defense">Defense</label>
+      <input type="text" class="form-control" formControlName="defense" id="defense">
+    </div>
+    <div class="form-group col">
+      <label for="initiative">Initiative</label>
+      <input type="text" class="form-control" formControlName="initiative" id="initiative">
+    </div>
+    <div *ngIf="!melee" class="form-group col">
+      <label for="short-range">Short range</label>
+      <input type="text" class="form-control" formControlName="shortRange" id="short-range">
+    </div>
+    <div *ngIf="!melee" class="form-group col">
+      <label for="mid-range">Mid range</label>
+      <input type="text" class="form-control" formControlName="midRange" id="mid-range">
+    </div>
+    <div *ngIf="!melee" class="form-group col">
+      <label for="long-range">Long range</label>
+      <input type="text" class="form-control" formControlName="longRange" id="long-range">
+    </div>
+    <div *ngIf="melee" class="form-group col">
+      <label for="min-reach">Min reach</label>
+      <input type="text" class="form-control" formControlName="minReach" id="min-reach">
+    </div>
+    <div *ngIf="melee" class="form-group col">
+      <label for="max-reach">Max reach</label>
+      <input type="text" class="form-control" formControlName="maxReach" id="max-reach">
+    </div>
+  </div>
+
+  <div *ngIf="melee" class="row mb-3">
+    <label for="weapon-type" class="col-2">Weapon type</label>
+    <div id="weapon-type" class="col-10 d-flex flex-wrap">
+      <div class="btn-group-toggle m-1" data-toggle="buttons" *ngFor ="let weaponType of weaponTypes" formGroupName="weaponTypes">
+        <label class="btn btn-outline-success" [ngClass]="weaponTypesForm.get(weaponType).value ? 'active' : ''">
+          <input type="checkbox" [formControlName]="weaponType" autocomplete="off" [value]="weaponTypesForm.get(weaponType).value"> {{weaponType}}
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <app-form-controls [editMode]="editMode" (update)="update()" (restore)="restore()" (delete)="delete()" (cancel)="clearForm()"></app-form-controls>
+
+</form>

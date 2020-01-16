@@ -38,7 +38,8 @@ public class WeaponBlueprintRepository {
     }
 
     public List<WeaponBlueprint> findAll() {
-        TypedQuery<WeaponBlueprint> query = entityManager.createQuery("select x from WeaponBlueprint x", WeaponBlueprint.class);
+        TypedQuery<WeaponBlueprint> query = entityManager.createQuery(
+                "select distinct x from WeaponBlueprint x join fetch x.weaponTypes", WeaponBlueprint.class);
         return query.getResultList();
     }
 
@@ -54,5 +55,13 @@ public class WeaponBlueprintRepository {
             }
         }
         return false;
+    }
+
+    public void update(WeaponBlueprint existingWeaponBlueprint) {
+        entityManager.merge(existingWeaponBlueprint);
+    }
+
+    public void delete(UUID id) {
+        entityManager.remove(entityManager.find(WeaponBlueprint.class, id));
     }
 }

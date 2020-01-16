@@ -1,0 +1,22 @@
+<table class="table table-sm table-hover" style>
+  <thead>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Attack</th>
+    <th>Hurt</th>
+    <th>Defense</th>
+    <th>Initiative</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let weaponBlueprint of weaponBlueprints; let i = index" (click)="selectWeaponBlueprint(i)" style="cursor: pointer">
+    <td></td>
+    <td>{{weaponBlueprint.name}}</td>
+    <td>{{weaponBlueprint.attack}}</td>
+    <td>{{weaponBlueprint.hurt}}</td>
+    <td>{{weaponBlueprint.defense}}</td>
+    <td>{{weaponBlueprint.initiativeModifier}}</td>
+  </tr>
+  </tbody>
+</table>

@@ -1,10 +1,7 @@
 package net.homecredit.trainee.drd.configuration;
 
 import net.homecredit.trainee.drd.repository.blueprint.*;
-import net.homecredit.trainee.drd.repository.character.BeastRepository;
-import net.homecredit.trainee.drd.repository.character.KnowHowRepository;
-import net.homecredit.trainee.drd.repository.character.RaceRepository;
-import net.homecredit.trainee.drd.repository.character.SpellRepository;
+import net.homecredit.trainee.drd.repository.character.*;
 import net.homecredit.trainee.drd.repository.inventory.*;
 import net.homecredit.trainee.drd.repository.shop.ShopRepository;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +11,9 @@ import javax.persistence.EntityManager;
 
 @Configuration
 public class RepositoryConfiguration {
+
+    @Bean
+    public SwordMoveRepository swordMoveRepository(EntityManager em) {return  new SwordMoveRepository(em);}
 
     @Bean
     public SpellRepository spellRepository(EntityManager em) {return  new SpellRepository(em);}
