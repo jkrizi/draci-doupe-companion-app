@@ -1,0 +1,20 @@
+<table class="table table-sm table-hover" style>
+  <thead>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Initiative</th>
+    <th>Actions</th>
+    <th>Human Opp.</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let swordMove of swordMoveList; let i = index" (click)="selectSpell(i)" style="cursor: pointer">
+    <td></td>
+    <td>{{swordMove.name}}</td>
+    <td>{{swordMove.initiative}}</td>
+    <td>{{swordMove.actions}}</td>
+    <td>{{swordMove.humanoidOpponent}}</td>
+  </tr>
+  </tbody>
+</table>

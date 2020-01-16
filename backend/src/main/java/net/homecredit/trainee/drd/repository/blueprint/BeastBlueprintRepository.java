@@ -39,8 +39,7 @@ public class BeastBlueprintRepository {
                         "join fetch bb.inventory ibb " +
                         "join fetch ibb.storageUnits ubb " +
                         "left join fetch ubb.equipment", BeastBlueprint.class);
-        List<BeastBlueprint> beastBlueprints = query.getResultList();
-        return beastBlueprints;
+        return query.getResultList();
     }
 
     public void deleteAll() {

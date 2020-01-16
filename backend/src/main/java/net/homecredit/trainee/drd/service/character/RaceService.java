@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class RaceService {
@@ -80,5 +81,20 @@ public class RaceService {
     @Transactional
     public List<Race> findAll() {
         return raceRepository.findAll();
+    }
+
+    @Transactional
+    public void save(Race newRace) {
+        raceRepository.save(newRace);
+    }
+
+    @Transactional
+    public void update(Race existingRace) {
+        raceRepository.update(existingRace);
+    }
+
+    @Transactional
+    public void delete(UUID id) {
+        raceRepository.delete(id);
     }
 }

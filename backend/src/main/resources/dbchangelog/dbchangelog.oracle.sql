@@ -257,8 +257,44 @@ alter table SPELL rename column MANNA_COST to MANNA;
 --changeset Jiri.Kriz1:1576766708146-81
 alter table SPELL rename column RANGE_OR_DIAMETER to RANGE;
 
+
 --changeset Jan.Zatloukal:1576766708146-82
 alter table TREASURE_BLUEPRINT drop column STONE_WEIGHT;
 
 --changeset Jan.Zatloukal:1576766708146-83
 alter table TREASURE_BLUEPRINT drop column POLISHED;
+
+--changeset Jiri.Kriz1:1576766708146-84
+create table SWORD_MOVE
+(
+  ID RAW(16) not null
+    constraint SWORD_MOVE_pk
+      primary key,
+  NAME VARCHAR2(25) not null,
+  DESCRIPTION VARCHAR2(250) not null,
+  INITIATIVE NUMBER(3) not null,
+  ACTIONS NUMBER(2) not null,
+  HUMANOID_OPPONENT NUMBER(1) not null
+);
+
+--changeset Jiri.Kriz1:1576766708146-85
+create table SWORD_MOVE_USER_WEAPON
+(
+  WEAPON_TYPE VARCHAR2(25) not null,
+  SWORD_MOVE_ID RAW(16) not null
+    constraint SWORD_MOVE_USER_WEAPON_SWORD_MOVE_ID_fk
+      references SWORD_MOVE,
+  constraint SWORD_MOVE_USER_WEAPON_pk
+    primary key (WEAPON_TYPE, SWORD_MOVE_ID)
+);
+
+--changeset Jiri.Kriz1:1576766708146-86
+create table SWORD_MOVE_OPPONENT_WEAPON
+(
+  WEAPON_TYPE VARCHAR2(25) not null,
+  SWORD_MOVE_ID RAW(16) not null
+    constraint SWORD_MOVE_OPPONENT_WEAPON_SWORD_MOVE_ID_fk
+      references SWORD_MOVE,
+  constraint SWORD_MOVE_OPPONENT_WEAPON_pk
+    primary key (WEAPON_TYPE, SWORD_MOVE_ID)
+);

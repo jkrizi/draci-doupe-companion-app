@@ -19,4 +19,12 @@ export class EnumsService {
   getAbilities() {
     return this.http.get<string[]>('http://localhost:8080/abilities.json');
   }
+
+  getDifficulties() {
+    return this.http.get<string[]>('http://localhost:8080/difficulties.json');
+  }
+
+  getWeaponTypes() {
+    return this.http.get<string[]>('http://localhost:8080/weaponTypes.json');
+  }
 }

@@ -1,6 +1,7 @@
 package net.homecredit.trainee.drd.service.blueprint;
 
 import net.homecredit.trainee.drd.entity.blueprint.item.WeaponBlueprint;
+import net.homecredit.trainee.drd.entity.character.profession.SwordMove;
 import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponType;
 import net.homecredit.trainee.drd.entity.shop.ItemType;
 import net.homecredit.trainee.drd.repository.blueprint.WeaponBlueprintRepository;
@@ -8,6 +9,7 @@ import net.homecredit.trainee.drd.service.shop.ShopService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -39,5 +41,21 @@ public class WeaponBlueprintService {
 
     public void deleteAll() {
         weaponBlueprintRepository.deleteAll();
+    }
+
+    public List<WeaponBlueprint> findAll() {
+        return weaponBlueprintRepository.findAll();
+    }
+
+    public void save(WeaponBlueprint newWeaponBlueprint) {
+        weaponBlueprintRepository.save(newWeaponBlueprint);
+    }
+
+    public void update(WeaponBlueprint existingWeaponBlueprint) {
+        weaponBlueprintRepository.update(existingWeaponBlueprint);
+    }
+
+    public void delete(UUID id) {
+        weaponBlueprintRepository.delete(id);
     }
 }

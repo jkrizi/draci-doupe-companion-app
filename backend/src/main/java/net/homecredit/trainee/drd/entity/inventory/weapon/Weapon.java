@@ -1,6 +1,5 @@
 package net.homecredit.trainee.drd.entity.inventory.weapon;
 
-import net.homecredit.trainee.drd.entity.blueprint.item.ItemBlueprint;
 import net.homecredit.trainee.drd.entity.blueprint.item.WeaponBlueprint;
 import net.homecredit.trainee.drd.entity.inventory.Equipment;
 import net.homecredit.trainee.drd.entity.inventory.StorageUnit;
@@ -51,7 +50,7 @@ public class Weapon extends Equipment {
         this.hurt = weaponBlueprint.getHurt();
         this.defense = weaponBlueprint.getDefense();
         this.initiativeModifier = weaponBlueprint.getInitiativeModifier();
-        this.type = EnumSet.copyOf(weaponBlueprint.getType());
+        this.type = EnumSet.copyOf(weaponBlueprint.getWeaponTypes());
         this.shortRangeLimit = weaponBlueprint.getShortRangeLimit();
         this.midRangeLimit = weaponBlueprint.getMidRangeLimit();
         this.longRangeLimit = weaponBlueprint.getLongRangeLimit();
@@ -66,7 +65,7 @@ public class Weapon extends Equipment {
         this.hurt = weaponBlueprint.getHurt();
         this.defense = weaponBlueprint.getDefense();
         this.initiativeModifier = weaponBlueprint.getInitiativeModifier();
-        this.type = EnumSet.copyOf(weaponBlueprint.getType());
+        this.type = EnumSet.copyOf(weaponBlueprint.getWeaponTypes());
         this.shortRangeLimit = weaponBlueprint.getShortRangeLimit();
         this.midRangeLimit = weaponBlueprint.getMidRangeLimit();
         this.longRangeLimit = weaponBlueprint.getLongRangeLimit();

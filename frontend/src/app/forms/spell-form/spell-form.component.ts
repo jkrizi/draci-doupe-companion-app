@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {SpellModel} from '../../models/spell.model';
 import {SpellService} from '../../services/spell.service';
+import {v4 as uuid} from 'uuid';
+
 
 @Component({
   selector: 'app-spell-form',
@@ -41,6 +43,7 @@ export class SpellFormComponent implements OnInit {
   }
 
   save() {
+    this.spellForm.patchValue({id: uuid()});
     this.spellService.save(this.spellForm.value);
     this.clearForm();
   }
@@ -56,6 +59,7 @@ export class SpellFormComponent implements OnInit {
 
   delete() {
     this.spellService.delete(this.selectedSpell.id);
+    this.clearForm();
   }
 
   fillForm(spell: SpellModel) {

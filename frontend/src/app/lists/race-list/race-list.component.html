@@ -1,0 +1,26 @@
+<table class="table table-sm table-hover" style>
+  <thead>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Strength</th>
+    <th>Dexterity</th>
+    <th>Resistance</th>
+    <th>Intelligence</th>
+    <th>Charisma</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let race of raceList; let i = index" (click)="selectRace(i)" style="cursor: pointer">
+    <td></td>
+    <td>{{race.name}}</td>
+    <td>{{race.strengthAbilityBase}}</td>
+    <td>{{race.dexterityAbilityBase}}</td>
+    <td>{{race.resistanceAbilityBase}}</td>
+    <td>{{race.intelligenceAbilityBase}}</td>
+    <td>{{race.charismaAbilityBase}}</td>
+  </tr>
+  </tbody>
+</table>
+
+
