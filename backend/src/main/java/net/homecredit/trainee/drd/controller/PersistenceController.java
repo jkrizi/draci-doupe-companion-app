@@ -2,8 +2,8 @@ package net.homecredit.trainee.drd.controller;
 
 import net.homecredit.trainee.drd.entity.blueprint.BeastBlueprint;
 import net.homecredit.trainee.drd.entity.blueprint.item.WeaponBlueprint;
-import net.homecredit.trainee.drd.entity.character.profession.Spell;
-import net.homecredit.trainee.drd.entity.character.profession.SwordMove;
+import net.homecredit.trainee.drd.entity.character.profession.wizard.Spell;
+import net.homecredit.trainee.drd.entity.character.profession.warrior.SwordMove;
 import net.homecredit.trainee.drd.entity.character.race.Race;
 import net.homecredit.trainee.drd.service.blueprint.BeastBlueprintService;
 import net.homecredit.trainee.drd.service.blueprint.WeaponBlueprintService;

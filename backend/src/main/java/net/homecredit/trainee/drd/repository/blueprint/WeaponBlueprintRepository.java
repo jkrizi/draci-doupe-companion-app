@@ -39,7 +39,7 @@ public class WeaponBlueprintRepository {
 
     public List<WeaponBlueprint> findAll() {
         TypedQuery<WeaponBlueprint> query = entityManager.createQuery(
-                "select distinct x from WeaponBlueprint x join fetch x.weaponTypes", WeaponBlueprint.class);
+                "select distinct x from WeaponBlueprint x join fetch x.weaponFamily", WeaponBlueprint.class);
         return query.getResultList();
     }
 

@@ -24,7 +24,7 @@ public class WeaponBlueprintComparatorByAttributes implements Comparator<WeaponB
             newBlueprint.getLongRangeLimit() == databaseBlueprint.getLongRangeLimit() &&
             newBlueprint.getMinReach() == databaseBlueprint.getMinReach() &&
             newBlueprint.getMaxReach() == databaseBlueprint.getMaxReach() &&
-            newBlueprint.getType().equals(databaseBlueprint.getType())) {
+            newBlueprint.getWeaponFamily().equals(databaseBlueprint.getWeaponFamily())) {
 
             //if blueprints are same then return 0
             return 0;

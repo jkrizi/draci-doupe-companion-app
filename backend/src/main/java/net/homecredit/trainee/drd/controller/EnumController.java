@@ -1,6 +1,6 @@
 package net.homecredit.trainee.drd.controller;
 
-import net.homecredit.trainee.drd.entity.blueprint.item.Metal;
+import net.homecredit.trainee.drd.util.Metal;
 import net.homecredit.trainee.drd.entity.character.CharacterSize;
 import net.homecredit.trainee.drd.entity.character.Vulnerability;
 import net.homecredit.trainee.drd.entity.character.ability.Ability;
@@ -8,7 +8,6 @@ import net.homecredit.trainee.drd.entity.character.profession.Profession;
 import net.homecredit.trainee.drd.entity.character.skill.SkillDifficulty;
 import net.homecredit.trainee.drd.entity.character.skill.SkillKnowledge;
 import net.homecredit.trainee.drd.entity.inventory.armor.BodySection;
-import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponType;
 import net.homecredit.trainee.drd.entity.shop.ItemType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -65,13 +64,6 @@ public class EnumController {
     public @ResponseBody
     Ability[] sendAbilities() {
         return Ability.values();
-    }
-
-    @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/weaponTypes.json")
-    public @ResponseBody
-    WeaponType[] sendWeaponTypes() {
-        return WeaponType.values();
     }
 
     @CrossOrigin(origins = "http://localhost:4200")

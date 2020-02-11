@@ -1,9 +1,9 @@
 package net.homecredit.trainee.drd.entity.character.race;
 
 import net.homecredit.trainee.drd.entity.blueprint.PersonBlueprint;
+import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponFamily;
 import net.homecredit.trainee.drd.entity.character.CharacterSize;
 import net.homecredit.trainee.drd.entity.character.Person;
-import net.homecredit.trainee.drd.entity.inventory.weapon.Weapon;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -29,8 +29,8 @@ public class Race {
     @Column(name = "race_size")
     private CharacterSize size;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private Weapon weapon;
+    @ManyToOne
+    private WeaponFamily weapon;
 
     @OneToMany(mappedBy = "race", orphanRemoval = true, fetch = FetchType.LAZY)
     private Collection<Person> person;
@@ -74,7 +74,7 @@ public class Race {
     public Race() {
     }
 
-    public Race(String name, String description, int minWeight, int maxWeight, int minHeight, int maxHeight, CharacterSize size, Weapon weapon, Collection<PersonBlueprint> personBlueprint, int strengthNrOfThrows, int dexterityNrOfThrows, int resistanceNrOfThrows, int intelligenceNrOfThrows, int charismaNrOfThrows, int strengthAbilityBase, int dexterityAbilityBase, int resistanceAbilityBase, int intelligenceAbilityBase, int charismaAbilityBase, int strengthAbilityCorrection, int dexterityAbilityCorrection, int resistanceAbilityCorrection, int intelligenceAbilityCorrection, int charismaAbilityCorrection) {
+    public Race(String name, String description, int minWeight, int maxWeight, int minHeight, int maxHeight, CharacterSize size, WeaponFamily weapon, Collection<PersonBlueprint> personBlueprint, int strengthNrOfThrows, int dexterityNrOfThrows, int resistanceNrOfThrows, int intelligenceNrOfThrows, int charismaNrOfThrows, int strengthAbilityBase, int dexterityAbilityBase, int resistanceAbilityBase, int intelligenceAbilityBase, int charismaAbilityBase, int strengthAbilityCorrection, int dexterityAbilityCorrection, int resistanceAbilityCorrection, int intelligenceAbilityCorrection, int charismaAbilityCorrection) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.description = description;
@@ -134,7 +134,7 @@ public class Race {
         return size;
     }
 
-    public Weapon getWeapon() {
+    public WeaponFamily getWeapon() {
         return weapon;
     }
 

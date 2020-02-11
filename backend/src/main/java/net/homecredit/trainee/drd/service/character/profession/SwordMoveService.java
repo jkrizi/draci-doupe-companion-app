@@ -1,6 +1,6 @@
 package net.homecredit.trainee.drd.service.character.profession;
 
-import net.homecredit.trainee.drd.entity.character.profession.SwordMove;
+import net.homecredit.trainee.drd.entity.character.profession.warrior.SwordMove;
 import net.homecredit.trainee.drd.repository.character.SwordMoveRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

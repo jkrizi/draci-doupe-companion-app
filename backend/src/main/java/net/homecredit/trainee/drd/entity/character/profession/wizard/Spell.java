@@ -1,4 +1,4 @@
-package net.homecredit.trainee.drd.entity.character.profession;
+package net.homecredit.trainee.drd.entity.character.profession.wizard;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

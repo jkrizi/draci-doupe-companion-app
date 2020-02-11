@@ -1,7 +1,7 @@
 package net.homecredit.trainee.drd.service.blueprint;
 
 import net.homecredit.trainee.drd.entity.blueprint.item.GemStoneBlueprint;
-import net.homecredit.trainee.drd.entity.blueprint.item.Metal;
+import net.homecredit.trainee.drd.util.Metal;
 import net.homecredit.trainee.drd.entity.blueprint.item.TreasureBlueprint;
 import net.homecredit.trainee.drd.entity.character.skill.SkillKnowledge;
 import net.homecredit.trainee.drd.entity.inventory.GemStone;

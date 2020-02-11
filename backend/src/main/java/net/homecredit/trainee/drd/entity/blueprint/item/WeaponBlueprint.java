@@ -1,11 +1,10 @@
 package net.homecredit.trainee.drd.entity.blueprint.item;
 
 
-import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponType;
+import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponFamily;
 
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -38,16 +37,13 @@ public class WeaponBlueprint implements ItemBlueprint {
     @Column(name = "MAX_MELEE_REACH")
     private int maxReach;
 
-    @ElementCollection
-    @CollectionTable(name = "WEAPON_TYPE_BLUEPRINT", joinColumns = @JoinColumn(name = "WEAPON_BLUEPRINT_ID"))
-    @Enumerated(EnumType.STRING)
-    @Column(name = "WEAPON_TYPE")
-    private Set<WeaponType> weaponTypes;
+    @ManyToOne
+    private WeaponFamily weaponFamily;
 
     public WeaponBlueprint() {
     }
 
-    public WeaponBlueprint(String name, String publicDescription, String privateDescription, int weight, int attack, int hurt, int defense, int initiativeModifier, int shortRangeLimit, int midRangeLimit, int longRangeLimit, int minReach, int maxReach, Set<WeaponType> weaponTypes) {
+    public WeaponBlueprint(String name, String publicDescription, String privateDescription, int weight, int attack, int hurt, int defense, int initiativeModifier, int shortRangeLimit, int midRangeLimit, int longRangeLimit, int minReach, int maxReach, WeaponFamily weaponFamily) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.privateDescription = privateDescription;
@@ -62,7 +58,7 @@ public class WeaponBlueprint implements ItemBlueprint {
         this.longRangeLimit = longRangeLimit;
         this.minReach = minReach;
         this.maxReach = maxReach;
-        this.weaponTypes = weaponTypes;
+        this.weaponFamily = weaponFamily;
     }
 
     public UUID getId() {
@@ -178,12 +174,12 @@ public class WeaponBlueprint implements ItemBlueprint {
         this.maxReach = maxReach;
     }
 
-    public Set<WeaponType> getWeaponTypes() {
-        return weaponTypes;
+    public WeaponFamily getWeaponFamily() {
+        return weaponFamily;
     }
 
-    public void setWeaponTypes(Set<WeaponType> weaponTypes) {
-        this.weaponTypes = weaponTypes;
+    public void setWeaponFamily(WeaponFamily weaponTypes) {
+        this.weaponFamily = weaponTypes;
     }
 
     @Override
@@ -216,7 +212,7 @@ public class WeaponBlueprint implements ItemBlueprint {
                 ", longRangeLimit=" + longRangeLimit +
                 ", minReach=" + minReach +
                 ", maxReach=" + maxReach +
-                ", type=" + type +
+                ", type=" + weaponFamily +
                 '}';
     }
 }

@@ -1,8 +1,7 @@
 package net.homecredit.trainee.drd.service.blueprint;
 
 import net.homecredit.trainee.drd.entity.blueprint.item.WeaponBlueprint;
-import net.homecredit.trainee.drd.entity.character.profession.SwordMove;
-import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponType;
+import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponFamily;
 import net.homecredit.trainee.drd.entity.shop.ItemType;
 import net.homecredit.trainee.drd.repository.blueprint.WeaponBlueprintRepository;
 import net.homecredit.trainee.drd.service.shop.ShopService;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -25,8 +23,8 @@ public class WeaponBlueprintService {
         this.shopService = shopService;
     }
 
-    public WeaponBlueprint drawAndFileBlueprint(String name, String publicDescription, String privateDescription, int weight, int attack, int hurt, int defense, int initiativeModifier, int shortRangeLimit, int midRangeLimit, int longRangeLimit, int minReach, int maxReach, Set<WeaponType> type) {
-        WeaponBlueprint weaponBlueprint = new WeaponBlueprint(name, publicDescription, privateDescription, weight, attack, hurt, defense, initiativeModifier, shortRangeLimit, midRangeLimit, longRangeLimit, minReach, maxReach, type);
+    public WeaponBlueprint drawAndFileBlueprint(String name, String publicDescription, String privateDescription, int weight, int attack, int hurt, int defense, int initiativeModifier, int shortRangeLimit, int midRangeLimit, int longRangeLimit, int minReach, int maxReach, WeaponFamily weaponFamily) {
+        WeaponBlueprint weaponBlueprint = new WeaponBlueprint(name, publicDescription, privateDescription, weight, attack, hurt, defense, initiativeModifier, shortRangeLimit, midRangeLimit, longRangeLimit, minReach, maxReach, weaponFamily);
         if(weaponBlueprintRepository.containsBlueprint(weaponBlueprint)){
             throw new RuntimeException("Weapon blueprint already exists");
         }

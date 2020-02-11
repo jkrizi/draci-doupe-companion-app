@@ -2,6 +2,7 @@ package net.homecredit.trainee.drd.entity.blueprint.item;
 
 import net.homecredit.trainee.drd.entity.character.skill.SkillKnowledge;
 import net.homecredit.trainee.drd.entity.inventory.GemStone;
+import net.homecredit.trainee.drd.util.Metal;
 
 import javax.persistence.*;
 import java.util.*;

@@ -1,10 +1,10 @@
-package net.homecredit.trainee.drd.entity.character.profession;
+package net.homecredit.trainee.drd.entity.character.profession.warrior;
 
 import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-public class SwordPlay {
+public class SwordMoveBook {
 
     @Id
     private UUID id;
@@ -15,10 +15,10 @@ public class SwordPlay {
     @JoinColumn(name = "SWORDPLAY_MOVE")
     private SwordMove swordMove;
 
-    public SwordPlay() {
+    public SwordMoveBook() {
     }
 
-    public SwordPlay(UUID id, WarriorKnowHow warriorKnowHow, SwordMove swordMove) {
+    public SwordMoveBook(UUID id, WarriorKnowHow warriorKnowHow, SwordMove swordMove) {
         this.id = UUID.randomUUID();
         this.warriorKnowHow = warriorKnowHow;
         this.swordMove = swordMove;
