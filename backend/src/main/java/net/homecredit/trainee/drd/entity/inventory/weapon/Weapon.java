@@ -5,9 +5,10 @@ import net.homecredit.trainee.drd.entity.inventory.Equipment;
 import net.homecredit.trainee.drd.entity.inventory.StorageUnit;
 import net.homecredit.trainee.drd.entity.shop.ItemType;
 
-import javax.persistence.*;
-import java.util.EnumSet;
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "WEAPON")
@@ -22,11 +23,8 @@ public class Weapon extends Equipment {
     @Column(name = "INITIATIVE_MODIFIER")
     private int initiativeModifier;
 
-    @ElementCollection
-    @CollectionTable(name = "WEAPON_TYPE_BLUEPRINT", joinColumns = @JoinColumn(name = "WEAPON_BLUEPRINT_ID"))
-    @Enumerated(EnumType.STRING)
-    @Column(name = "WEAPON_TYPE")
-    private Set<WeaponType> type;
+    @ManyToOne
+    private WeaponFamily type;
 
     @Column(name = "SHORT_RANGE_LIMIT")
     private int shortRangeLimit;
@@ -50,7 +48,7 @@ public class Weapon extends Equipment {
         this.hurt = weaponBlueprint.getHurt();
         this.defense = weaponBlueprint.getDefense();
         this.initiativeModifier = weaponBlueprint.getInitiativeModifier();
-        this.type = EnumSet.copyOf(weaponBlueprint.getWeaponTypes());
+        this.type = weaponBlueprint.getWeaponFamily();
         this.shortRangeLimit = weaponBlueprint.getShortRangeLimit();
         this.midRangeLimit = weaponBlueprint.getMidRangeLimit();
         this.longRangeLimit = weaponBlueprint.getLongRangeLimit();
@@ -65,7 +63,7 @@ public class Weapon extends Equipment {
         this.hurt = weaponBlueprint.getHurt();
         this.defense = weaponBlueprint.getDefense();
         this.initiativeModifier = weaponBlueprint.getInitiativeModifier();
-        this.type = EnumSet.copyOf(weaponBlueprint.getWeaponTypes());
+        this.type = weaponBlueprint.getWeaponFamily();
         this.shortRangeLimit = weaponBlueprint.getShortRangeLimit();
         this.midRangeLimit = weaponBlueprint.getMidRangeLimit();
         this.longRangeLimit = weaponBlueprint.getLongRangeLimit();
@@ -113,11 +111,11 @@ public class Weapon extends Equipment {
         this.initiativeModifier = initiativeModifier;
     }
 
-    public Set<WeaponType> getType() {
+    public WeaponFamily getType() {
         return type;
     }
 
-    public void setType(EnumSet<WeaponType> type) {
+    public void setType(WeaponFamily type) {
         this.type = type;
     }
 

@@ -1,8 +1,9 @@
-package net.homecredit.trainee.drd.entity.character.profession;
+package net.homecredit.trainee.drd.entity.character.profession.warrior;
 
 import net.homecredit.trainee.drd.entity.blueprint.BeastBlueprint;
 import net.homecredit.trainee.drd.entity.blueprint.item.WeaponBlueprint;
 import net.homecredit.trainee.drd.entity.character.Person;
+import net.homecredit.trainee.drd.entity.character.profession.ProfessionKnowHow;
 import net.homecredit.trainee.drd.entity.inventory.weapon.Weapon;
 
 import javax.persistence.*;
@@ -28,7 +29,7 @@ public class WarriorKnowHow extends ProfessionKnowHow {
     private Map<Weapon, Integer> experienceEarned;
 
     @OneToMany(mappedBy = "warriorKnowHow")
-    private Collection<SwordPlay> swordPlayMoves;
+    private Collection<SwordMoveBook> swordPlayMoves;
 
     @ElementCollection
     @CollectionTable(name = "WEAPONTYPE_PROFICIENCY", joinColumns = @JoinColumn(name = "WARRIOR_KNOWHOW_ID"))

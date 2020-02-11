@@ -1,4 +1,7 @@
-package net.homecredit.trainee.drd.entity.character.profession;
+package net.homecredit.trainee.drd.entity.character.profession.wizard;
+
+import net.homecredit.trainee.drd.entity.character.profession.Profession;
+import net.homecredit.trainee.drd.entity.character.profession.ProfessionKnowHow;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;

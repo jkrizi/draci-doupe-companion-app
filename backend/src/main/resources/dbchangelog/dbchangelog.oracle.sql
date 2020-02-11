@@ -298,3 +298,65 @@ create table SWORD_MOVE_OPPONENT_WEAPON
   constraint SWORD_MOVE_OPPONENT_WEAPON_pk
     primary key (WEAPON_TYPE, SWORD_MOVE_ID)
 );
+
+--changeset Jiri.Kriz1:1576766708146-87
+create table WEAPON_FAMILY
+(
+  ID RAW(16) not null
+    constraint WEAPON_FAMILY_pk
+      primary key,
+  WEAPON_FAMILY_NAME VARCHAR2(25) not null,
+  IS_MELEE NUMBER(1) not null,
+  IS_SINGLE_HANDED NUMBER(1) not null,
+  WEIGHT_CATEGORY VARCHAR2(25) not null,
+  WEAPON_DAMAGE_TYPE VARCHAR2(25) not null
+);
+
+--changeset Jiri.Kriz1:1576766708146-88
+alter table WEAPON_BLUEPRINT
+  add WEAPON_FAMILY_ID RAW(16) not null;
+
+--changeset Jiri.Kriz1:1576766708146-89
+alter table WEAPON_BLUEPRINT
+  add constraint WEAPON_BLUEPRINT_WEAPON_FAMILY_ID_fk
+    foreign key (WEAPON_FAMILY_ID) references WEAPON_FAMILY;
+
+--changeset Jiri.Kriz1:1576766708146-90
+drop table WEAPON_TYPE;
+
+--changeset Jiri.Kriz1:1576766708146-91
+drop table WEAPON_TYPE_BLUEPRINT;
+
+--changeset Jiri.Kriz1:1576766708146-92
+drop table SWORD_MOVE_OPPONENT_WEAPON;
+
+--changeset Jiri.Kriz1:1576766708146-93
+drop table SWORD_MOVE_USER_WEAPON;
+
+--changeset Jiri.Kriz1:1576766708146-94
+create table SWORD_MOVE_USER_WEAPON
+(
+  ID RAW(16) not null
+    constraint SWORD_MOVE_USER_WEAPON_pk
+      primary key,
+  SWORD_MOVE_ID RAW(16) not null
+    constraint SWORD_MOVE_USER_WEAPON_SWORD_MOVE_ID_fk
+      references SWORD_MOVE,
+  WEAPON_FAMILY_ID RAW(16) not null
+    constraint SWORD_MOVE_USER_WEAPON_WEAPON_FAMILY_ID_fk
+      references WEAPON_FAMILY
+);
+
+--changeset Jiri.Kriz1:1576766708146-95
+create table SWORD_MOVE_OPPONENT_WEAPON
+(
+  ID RAW(16) not null
+    constraint SWORD_MOVE_OPPONENT_WEAPON_pk
+      primary key,
+  SWORD_MOVE_ID RAW(16) not null
+    constraint SWORD_MOVE_OPPONENT_WEAPON_SWORD_MOVE_ID_fk
+      references SWORD_MOVE,
+  WEAPON_FAMILY_ID RAW(16) not null
+    constraint SWORD_MOVE_OPPONENT_WEAPON_WEAPON_FAMILY_ID_fk
+      references WEAPON_FAMILY
+)

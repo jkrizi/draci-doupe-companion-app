@@ -1,9 +1,8 @@
-package net.homecredit.trainee.drd.entity.character.profession;
+package net.homecredit.trainee.drd.entity.character.profession.warrior;
 
-import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponType;
-
-import javax.persistence.*;
-import java.util.EnumSet;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.Set;
 import java.util.UUID;
 
@@ -18,17 +17,10 @@ public class SwordMove {
     private int actions;
     private boolean humanoidOpponent;
 
-    @ElementCollection
-    @CollectionTable(name = "SWORD_MOVE_USER_WEAPON", joinColumns = @JoinColumn(name = "SWORD_MOVE_ID"))
-    @Enumerated(EnumType.STRING)
-    @Column(name = "WEAPON_TYPE")
-    private Set<WeaponType> userWeaponTypes;
-
-    @ElementCollection
-    @CollectionTable(name = "SWORD_MOVE_OPPONENT_WEAPON", joinColumns = @JoinColumn(name = "SWORD_MOVE_ID"))
-    @Enumerated(EnumType.STRING)
-    @Column(name = "WEAPON_TYPE")
-    private Set<WeaponType> opponentWeaponTypes;
+    @OneToMany(mappedBy = "swordMove")
+    private Set<SwordMoveUserWeapon> allowedUserWeapons;
+    @OneToMany(mappedBy = "swordMove")
+    private Set<SwordMoveOpponentWeapon> allowedOpponentWeapons;
 
     public UUID getId() {
         return id;
@@ -78,20 +70,20 @@ public class SwordMove {
         this.humanoidOpponent = humanoidOpponent;
     }
 
-    public Set<WeaponType> getUserWeaponTypes() {
-        return userWeaponTypes;
+    public Set<SwordMoveUserWeapon> getAllowedUserWeapons() {
+        return allowedUserWeapons;
     }
 
-    public void setUserWeaponTypes(Set<WeaponType> userWeaponTypes) {
-        this.userWeaponTypes = userWeaponTypes;
+    public void setAllowedUserWeapons(Set<SwordMoveUserWeapon> allowedUserWeapons) {
+        this.allowedUserWeapons = allowedUserWeapons;
     }
 
-    public Set<WeaponType> getOpponentWeaponTypes() {
-        return opponentWeaponTypes;
+    public Set<SwordMoveOpponentWeapon> getAllowedOpponentWeapons() {
+        return allowedOpponentWeapons;
     }
 
-    public void setOpponentWeaponTypes(Set<WeaponType> opponentWeaponTypes) {
-        this.opponentWeaponTypes = opponentWeaponTypes;
+    public void setAllowedOpponentWeapons(Set<SwordMoveOpponentWeapon> allowedOpponentWeapons) {
+        this.allowedOpponentWeapons = allowedOpponentWeapons;
     }
 
     @Override
@@ -103,8 +95,8 @@ public class SwordMove {
                 ", initiative=" + initiative +
                 ", actions=" + actions +
                 ", humanoidOpponent=" + humanoidOpponent +
-                ", userWeaponTypes=" + userWeaponTypes +
-                ", opponentWeaponTypes=" + opponentWeaponTypes +
+                ", userWeaponTypes=" + allowedUserWeapons +
+                ", opponentWeaponTypes=" + allowedOpponentWeapons +
                 '}';
     }
 }

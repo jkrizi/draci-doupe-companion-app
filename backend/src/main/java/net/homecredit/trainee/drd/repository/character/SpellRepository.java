@@ -1,6 +1,6 @@
 package net.homecredit.trainee.drd.repository.character;
 
-import net.homecredit.trainee.drd.entity.character.profession.Spell;
+import net.homecredit.trainee.drd.entity.character.profession.wizard.Spell;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

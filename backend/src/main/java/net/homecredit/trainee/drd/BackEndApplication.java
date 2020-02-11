@@ -2,8 +2,6 @@ package net.homecredit.trainee.drd;
 
 import net.homecredit.trainee.drd.configuration.RepositoryConfiguration;
 import net.homecredit.trainee.drd.configuration.ServiceConfiguration;
-import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponType;
-import net.homecredit.trainee.drd.entity.shop.ItemType;
 import net.homecredit.trainee.drd.controller.CalculusController;
 import net.homecredit.trainee.drd.controller.EnumController;
 import net.homecredit.trainee.drd.controller.PersistenceController;
@@ -18,9 +16,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import java.util.EnumSet;
-import java.util.Set;
 
 @EnableTransactionManagement
 @Configuration(proxyBeanMethods = false)

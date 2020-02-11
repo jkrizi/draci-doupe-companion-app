@@ -1,4 +1,7 @@
-package net.homecredit.trainee.drd.entity.character.profession;
+package net.homecredit.trainee.drd.entity.character.profession.ranger;
+
+import net.homecredit.trainee.drd.entity.character.profession.Profession;
+import net.homecredit.trainee.drd.entity.character.profession.ProfessionKnowHow;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

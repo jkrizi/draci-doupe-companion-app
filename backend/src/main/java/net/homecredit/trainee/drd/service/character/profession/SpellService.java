@@ -1,6 +1,6 @@
 package net.homecredit.trainee.drd.service.character.profession;
 
-import net.homecredit.trainee.drd.entity.character.profession.Spell;
+import net.homecredit.trainee.drd.entity.character.profession.wizard.Spell;
 import net.homecredit.trainee.drd.repository.character.SpellRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

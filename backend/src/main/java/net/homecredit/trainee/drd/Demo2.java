@@ -10,7 +10,6 @@ import net.homecredit.trainee.drd.entity.character.ability.AbilityScore;
 import net.homecredit.trainee.drd.entity.character.skill.SkillKnowledge;
 import net.homecredit.trainee.drd.entity.inventory.GemStone;
 import net.homecredit.trainee.drd.entity.inventory.armor.BodySection;
-import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponType;
 import net.homecredit.trainee.drd.entity.shop.ItemType;
 import net.homecredit.trainee.drd.entity.shop.ShopItem;
 import net.homecredit.trainee.drd.service.blueprint.*;
@@ -18,17 +17,17 @@ import net.homecredit.trainee.drd.service.character.BeastService;
 import net.homecredit.trainee.drd.service.item.*;
 import net.homecredit.trainee.drd.service.shop.BuyService;
 import net.homecredit.trainee.drd.service.shop.ShopService;
-import net.homecredit.trainee.drd.util.Color;
+import net.homecredit.trainee.drd.util.Metal;
 
 import java.util.*;
 
 public class Demo2 {
 
-    public void setBroadSwordBlueprint(WeaponBlueprintService weaponBlueprintService) {
-        Set<WeaponType> weaponType = EnumSet.of(WeaponType.CUTTING, WeaponType.LIGHT);
-        WeaponBlueprint wb = weaponBlueprintService.drawAndFileBlueprint("Siroky mec", "Mec, ktery se na dne truhly najde v kazde lidske domacnosti", "private description", 60, 4, 0, -1, 0, -1, -1, -2, 1, 1, weaponType);
-        System.out.println(weaponBlueprintService.findBlueprint(wb.getId()).getPublicDescription());
-    }
+//    public void setBroadSwordBlueprint(WeaponBlueprintService weaponBlueprintService) {
+//        Set<WeaponType> weaponType = EnumSet.of(WeaponType.CUTTING, WeaponType.LIGHT);
+//        WeaponBlueprint wb = weaponBlueprintService.drawAndFileBlueprint("Siroky mec", "Mec, ktery se na dne truhly najde v kazde lidske domacnosti", "private description", 60, 4, 0, -1, 0, -1, -1, -2, 1, 1, weaponType);
+//        System.out.println(weaponBlueprintService.findBlueprint(wb.getId()).getPublicDescription());
+//    }
 
     private void createGemStoneBlueprints(TreasureBlueprintService treasureBlueprintService){
         /*GemStoneBlueprint gemStoneBlueprint = treasureBlueprintService.saveGemStoneBlueprint("Ruby", Color.RED, 1.6);
