@@ -2,7 +2,7 @@ package net.homecredit.trainee.drd.entity.blueprint.item;
 
 import net.homecredit.trainee.drd.entity.character.skill.SkillKnowledge;
 import net.homecredit.trainee.drd.entity.inventory.GemStone;
-import net.homecredit.trainee.drd.util.Metal;
+import net.homecredit.trainee.drd.util.Material;
 
 import javax.persistence.*;
 import java.util.*;
@@ -23,7 +23,7 @@ public class TreasureBlueprint implements ItemBlueprint {
     private Collection<GemStone> gemStones;
 
     @Enumerated(EnumType.STRING)
-    private Metal material;
+    private Material material;
     @Column(name = "MATERIAL_WEIGHT")
     private int materialWeight;
     @Enumerated(EnumType.STRING)
@@ -36,7 +36,7 @@ public class TreasureBlueprint implements ItemBlueprint {
     public TreasureBlueprint() {
     }
 
-    public TreasureBlueprint(String name, String publicDescription, String privateDescription, Collection<GemStone> gemStones, Metal material, int materialWeight, SkillKnowledge productQuality, double treasureValue) {
+    public TreasureBlueprint(String name, String publicDescription, String privateDescription, Collection<GemStone> gemStones, Material material, int materialWeight, SkillKnowledge productQuality, double treasureValue) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.publicDescription = publicDescription;
@@ -98,11 +98,11 @@ public class TreasureBlueprint implements ItemBlueprint {
         this.gemStones = gemStones;
     }
 
-    public Metal getMaterial() {
+    public Material getMaterial() {
         return material;
     }
 
-    public void setMaterial(Metal material) {
+    public void setMaterial(Material material) {
         this.material = material;
     }
 

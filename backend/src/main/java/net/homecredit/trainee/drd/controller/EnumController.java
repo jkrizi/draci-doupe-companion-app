@@ -1,6 +1,9 @@
 package net.homecredit.trainee.drd.controller;
 
-import net.homecredit.trainee.drd.util.Metal;
+import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponDamageType;
+import net.homecredit.trainee.drd.entity.inventory.weapon.WeightCategory;
+import net.homecredit.trainee.drd.util.Color;
+import net.homecredit.trainee.drd.util.Material;
 import net.homecredit.trainee.drd.entity.character.CharacterSize;
 import net.homecredit.trainee.drd.entity.character.Vulnerability;
 import net.homecredit.trainee.drd.entity.character.ability.Ability;
@@ -32,14 +35,14 @@ public class EnumController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/metals.json")
+    @GetMapping("/materials.json")
     public @ResponseBody
-    Metal[] sendMetals() {
-        return Metal.values();
+    Material[] sendMaterials() {
+        return Material.values();
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/skillKnowledge.json")
+    @GetMapping("/qualityLevels.json")
     public @ResponseBody
     SkillKnowledge[] sendSkillKnowledge() {
         return SkillKnowledge.values();
@@ -79,4 +82,23 @@ public class EnumController {
     ItemType[] sendItemTypes() {
         return ItemType.values();
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/colors.json")
+    public @ResponseBody
+    Color[] sendColors() {
+        return Color.values();
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/weightCategories.json")
+    public @ResponseBody
+    WeightCategory[] sendWeightCategories() {
+        return WeightCategory.values();
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/weaponDamageTypes.json")
+    public @ResponseBody
+    WeaponDamageType[] sendWeaponDamageTypes() { return WeaponDamageType.values(); }
 }

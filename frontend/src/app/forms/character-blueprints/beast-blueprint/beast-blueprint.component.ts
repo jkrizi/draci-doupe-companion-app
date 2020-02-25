@@ -33,6 +33,7 @@ export class BeastBlueprintComponent implements OnInit {
 
     this.beastBlueprintForm = new FormGroup(
       {
+        id: new FormControl(null),
         name: new FormControl(null),
         description: new FormControl(null),
         origin: new FormControl(null),

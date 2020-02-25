@@ -1,3 +1,5 @@
+import {WeaponFamilyModel} from './weapon-family.model';
+
 export interface WeaponBlueprintModel {
   id: string;
   name: string;
@@ -13,5 +15,5 @@ export interface WeaponBlueprintModel {
   longRangeLimit: number;
   minReach: number;
   maxReach: number;
-  weaponTypes: string[];
+  weaponFamily: WeaponFamilyModel;
 }

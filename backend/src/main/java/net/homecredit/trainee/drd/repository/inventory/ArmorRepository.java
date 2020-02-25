@@ -26,7 +26,7 @@ public class ArmorRepository {
     }
 
     public List<Armor> findAll() {
-        TypedQuery<Armor> query = entityManager.createQuery("select x from Armor x", Armor.class);
+        TypedQuery<Armor> query = entityManager.createQuery("select distinct x from Armor x", Armor.class);
         return query.getResultList();
     }
 

@@ -4,6 +4,10 @@ import {WeaponBlueprintModel} from '../../../models/weapon-blueprint.model';
 import {EnumsService} from '../../../services/enums.service';
 import {WeaponBlueprintService} from '../../../services/weapon-blueprint.service';
 import {v4 as uuid} from 'uuid';
+import {WeaponFamilyModel} from '../../../models/weapon-family.model';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {WeaponFamilyFormComponent} from './weapon-family-form/weapon-family-form.component';
+import {WeaponFamilyService} from '../../../services/weapon-family.service';
 
 @Component({
   selector: 'app-weapon-blueprint-form',
@@ -11,21 +15,39 @@ import {v4 as uuid} from 'uuid';
   styleUrls: ['./weapon-blueprint-form.component.css']
 })
 export class WeaponBlueprintFormComponent implements OnInit {
+  // Component controls
   editMode = false;
-  melee = true;
+  isMelee = true;
   selectedWeaponBlueprint: WeaponBlueprintModel;
 
-  weaponTypes: string[];
+  // TODO: Change string so it better describes underlying weapon (go to html page to do that)
+  // Backend enums
+  weaponFamilyDescriptions: WeaponFamilyModel[];
 
+  // Form parts
   weaponBlueprintForm: FormGroup;
-  weaponTypesForm: FormGroup;
 
-  constructor(private enumsService: EnumsService, private weaponBlueprintService: WeaponBlueprintService) {
-    this.weaponTypes = [];
-  }
+  constructor(
+    private enumsService: EnumsService,
+    private weaponBlueprintService: WeaponBlueprintService,
+    private weaponFamilyService: WeaponFamilyService,
+    private modalService: NgbModal
+  ) {}
 
   ngOnInit() {
-    this.weaponTypesForm = new FormGroup({});
+    this.initForm();
+
+    this.weaponFamilyService.getAll();
+    this.weaponFamilyService.weaponFamilyList.subscribe((weaponFamilies: WeaponFamilyModel[]) => {
+        this.weaponFamilyDescriptions = weaponFamilies;
+    });
+
+    this.weaponBlueprintService.selectedWeaponBlueprint.subscribe( weaponBlueprint => {
+      this.fillForm(weaponBlueprint);
+    });
+  }
+
+  initForm() {
     this.weaponBlueprintForm = new FormGroup(
       {
         id: new FormControl(null),
@@ -33,33 +55,21 @@ export class WeaponBlueprintFormComponent implements OnInit {
         publicDescription: new FormControl(null),
         privateDescription: new FormControl(null),
         weight: new FormControl(null),
-        melee: new FormControl(true),
+
+        weaponFamily: new FormControl(null),
+
         attack: new FormControl(null),
         hurt: new FormControl(null),
         defense: new FormControl(null),
-        initiative: new FormControl(null),
+        initiativeModifier: new FormControl(null),
+
         shortRange: new FormControl(null),
         midRange: new FormControl(null),
         longRange: new FormControl(null),
         minReach: new FormControl(null),
         maxReach: new FormControl(null),
-        weaponTypes: this.weaponTypesForm
       }
     );
-
-    this.enumsService.getWeaponTypes().subscribe( weaponTypes => {
-      weaponTypes.forEach( weaponType => {
-        this.weaponTypes.push(weaponType);
-        this.weaponTypesForm.addControl(weaponType, new FormControl(false));
-      });
-    });
-
-    this.weaponBlueprintService.selectedWeaponBlueprint.subscribe( weaponBlueprint => {
-      this.clearForm();
-      this.editMode = true;
-      this.selectedWeaponBlueprint = weaponBlueprint;
-      this.fillForm(weaponBlueprint);
-    });
   }
 
   onSubmit() {
@@ -68,7 +78,7 @@ export class WeaponBlueprintFormComponent implements OnInit {
 
   save() {
     this.weaponBlueprintService.save(this.prepareWeaponBlueprint(uuid()));
-    // this.clearForm();
+    this.clearForm();
   }
 
   update() {
@@ -86,28 +96,32 @@ export class WeaponBlueprintFormComponent implements OnInit {
   }
 
   prepareWeaponBlueprint(id: string): WeaponBlueprintModel {
-
-    const newWeaponBlueprint: WeaponBlueprintModel = this.weaponBlueprintForm.value;
-    newWeaponBlueprint.weaponTypes = [];
-    newWeaponBlueprint.id = id;
-    this.weaponTypes.forEach( weaponType => {
-      if (this.weaponTypesForm.get(weaponType).value) {
-        newWeaponBlueprint.weaponTypes.push(weaponType);
-      }
-    });
-    return newWeaponBlueprint;
+    const weaponBlueprint: WeaponBlueprintModel = this.weaponBlueprintForm.value;
+    weaponBlueprint.id = id;
+    return weaponBlueprint;
   }
 
   fillForm(weaponBlueprint: WeaponBlueprintModel) {
-    weaponBlueprint.weaponTypes.forEach( weaponType => {
-      this.weaponTypesForm.get(weaponType).setValue(true);
-    });
+    this.clearForm();
+    this.editMode = true;
+    this.selectedWeaponBlueprint = weaponBlueprint;
     this.weaponBlueprintForm.patchValue(weaponBlueprint);
   }
 
   clearForm() {
     this.editMode = false;
+    this.isMelee = true;
     this.selectedWeaponBlueprint = null;
     this.weaponBlueprintForm.reset();
+  }
+
+  addWeaponFamily() {
+    this.modalService.open(WeaponFamilyFormComponent);
+  }
+
+  adjustView() {
+    if (this.weaponBlueprintForm.get('weaponFamily').value !== null) {
+      this.isMelee = this.weaponBlueprintForm.get('weaponFamily').value.weaponType.melee;
+    }
   }
 }

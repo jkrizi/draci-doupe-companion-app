@@ -21,7 +21,6 @@ export class SwordMoveService {
   }
 
   save(newSwordMove: SwordMoveModel) {
-    console.log(newSwordMove);
     this.http.post('http://localhost:8080/saveSwordMove.json', newSwordMove).subscribe(() => this.getAll());
   }
 

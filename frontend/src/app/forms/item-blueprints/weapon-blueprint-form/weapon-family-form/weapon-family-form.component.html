@@ -1,0 +1,67 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add weapon family</h4>
+</div>
+<div class="modal-body">
+  <form [formGroup]="weaponFamilyForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" formControlName="name">
+    </div>
+
+    <div formGroupName="weaponType">
+
+      <div class="form-group">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-outline-success" [ngClass]="isMelee ? 'active' : ''">
+            <input type="radio" formControlName="melee" autocomplete="off" (change)="isMelee = true" [value]="true" >Melee
+          </label>
+          <label class="btn btn-outline-success" [ngClass]="!isMelee ? 'active' : ''">
+            <input type="radio" formControlName="melee" autocomplete="off" (change)="isMelee = false" [value]="false">Ranged
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-outline-success" [ngClass]="isSingleHanded ? 'active' : ''">
+            <input type="radio" formControlName="singleHanded" autocomplete="off" (change)="isSingleHanded = true" [value]="true">Single handed
+          </label>
+          <label class="btn btn-outline-success" [ngClass]="!isSingleHanded ? 'active' : ''">
+            <input type="radio" formControlName="singleHanded" autocomplete="off" (change)="isSingleHanded = false" [value]="false">Two handed
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="weight-category">Weight category</label>
+        <select class="form-control" id="weight-category" formControlName="weightCategory">
+          <option selected></option>
+          <option *ngFor="let weightCategory of weightCategories">{{weightCategory}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="damage-type">Damage type</label>
+        <div class="d-flex">
+          <select class="form-control col" id="damage-type" #curDamageType>
+            <option selected></option>
+            <option *ngFor="let damageType of damageTypes">{{damageType}}</option>
+          </select>
+          <button type="button" class="btn btn-success col-1 ml-1" (click)="addDamageType(curDamageType.value)">+</button>
+        </div>
+        <div formArrayName="damageType">
+          <div *ngFor="let damageType of getDamageTypes(), let i = index" class="d-flex">
+            <input class="form-control col" type="text"  [formControlName]="i">
+            <button type="button" class="btn btn-danger col-1 ml-1" (click)="removeDamageType(i)">-</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-success" (click)="save()">Add</button>
+  <button type="button" class="btn btn-outline-danger" (click)="close()">Close</button>
+</div>

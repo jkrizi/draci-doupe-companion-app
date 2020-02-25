@@ -1,38 +1,46 @@
 package net.homecredit.trainee.drd.entity.inventory.weapon;
 
-import javax.persistence.Embeddable;
+import javax.persistence.*;
+import java.util.Set;
 
 @Embeddable
 public class WeaponType {
 
-    private boolean isMelee;
-    private boolean isSingleHand;
+    @Column(name = "IS_MELEE")
+    private boolean melee;
+    @Column(name = "IS_SINGLE_HANDED")
+    private boolean singleHanded;
+    @Enumerated(EnumType.STRING)
     private WeightCategory weightCategory;
-    private WeaponDamageType weaponDamageType;
+    @ElementCollection
+    @CollectionTable(name = "DAMAGE_TYPE", joinColumns = @JoinColumn(name = "WEAPON_FAMILY_ID"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "DAMAGE_TYPE")
+    private Set<WeaponDamageType> damageType;
 
     public WeaponType() {}
 
-    public WeaponType(boolean isMelee, boolean isSingleHand, WeightCategory weightCategory, WeaponDamageType weaponDamageType) {
-        this.isMelee = isMelee;
-        this.isSingleHand = isSingleHand;
+    public WeaponType(boolean melee, boolean singleHanded, WeightCategory weightCategory, Set<WeaponDamageType> damageType) {
+        this.melee = melee;
+        this.singleHanded = singleHanded;
         this.weightCategory = weightCategory;
-        this.weaponDamageType = weaponDamageType;
+        this.damageType = damageType;
     }
 
     public boolean isMelee() {
-        return isMelee;
+        return melee;
     }
 
     public void setMelee(boolean melee) {
-        isMelee = melee;
+        this.melee = melee;
     }
 
-    public boolean isSingleHand() {
-        return isSingleHand;
+    public boolean isSingleHanded() {
+        return singleHanded;
     }
 
-    public void setSingleHand(boolean singleHand) {
-        isSingleHand = singleHand;
+    public void setSingleHanded(boolean singleHanded) {
+        this.singleHanded = singleHanded;
     }
 
     public WeightCategory getWeightCategory() {
@@ -43,11 +51,21 @@ public class WeaponType {
         this.weightCategory = weightCategory;
     }
 
-    public WeaponDamageType getWeaponDamageType() {
-        return weaponDamageType;
+    public Set<WeaponDamageType> getDamageType() {
+        return damageType;
     }
 
-    public void setWeaponDamageType(WeaponDamageType weaponDamageType) {
-        this.weaponDamageType = weaponDamageType;
+    public void setDamageType(Set<WeaponDamageType> weaponDamageType) {
+        this.damageType = weaponDamageType;
+    }
+
+    @Override
+    public String toString() {
+        return "WeaponType{" +
+                "melee=" + melee +
+                ", singleHanded=" + singleHanded +
+                ", weightCategory=" + weightCategory +
+                ", damageType=" + damageType +
+                '}';
     }
 }

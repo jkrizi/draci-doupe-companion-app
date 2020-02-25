@@ -1,0 +1,20 @@
+
+<table class="table table-sm table-hover" style>
+  <thead>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Public description</th>
+    <th>Item type</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let goodsBlueprint of goodsBlueprints; let i = index" (click)="selectGoodsBlueprint(i)" style="cursor: pointer">
+    <td></td>
+    <td>{{goodsBlueprint.name}}</td>
+    <td>{{goodsBlueprint.publicDescription}}</td>
+    <td>{{goodsBlueprint.itemType}}</td>
+  </tr>
+  </tbody>
+</table>
+

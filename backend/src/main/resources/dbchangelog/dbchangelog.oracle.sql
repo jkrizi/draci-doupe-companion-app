@@ -359,4 +359,30 @@ create table SWORD_MOVE_OPPONENT_WEAPON
   WEAPON_FAMILY_ID RAW(16) not null
     constraint SWORD_MOVE_OPPONENT_WEAPON_WEAPON_FAMILY_ID_fk
       references WEAPON_FAMILY
-)
+);
+
+--changeset Jiri.Kriz1:1576766708146-96
+alter table ARMOR_BLUEPRINT add "ARMOR_SIZE" VARCHAR2(25) not null;
+
+--changeset Jiri.Kriz1:1576766708146-97
+rename GEM_STONE_BLUEPRINT to GEMSTONE_BLUEPRINT;
+
+--changeset Jiri.Kriz1:1576766708146-98
+create table DAMAGE_TYPE
+(
+  WEAPON_FAMILY_ID RAW(16) not null
+    constraint DAMAGE_TYPE_WEAPON_FAMILY_ID_fk
+      references WEAPON_FAMILY,
+  DAMAGE_TYPE VARCHAR2(25) not null,
+  constraint DAMAGE_TYPE_pk
+    primary key (WEAPON_FAMILY_ID, DAMAGE_TYPE)
+);
+
+--changeset Jiri.Kriz1:1576766708146-99
+alter table WEAPON_FAMILY rename column WEAPON_FAMILY_NAME to NAME;
+
+--changeset Jiri.Kriz1:1576766708146-100
+alter table WEAPON_FAMILY rename column WEAPON_DAMAGE_TYPE to DAMAGE_TYPE;
+
+--changeset Jiri.Kriz1:1576766708146-101
+alter table WEAPON_FAMILY drop column DAMAGE_TYPE;

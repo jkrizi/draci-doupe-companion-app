@@ -1,5 +1,6 @@
 package net.homecredit.trainee.drd.entity.blueprint.item;
 
+import net.homecredit.trainee.drd.entity.character.CharacterSize;
 import net.homecredit.trainee.drd.entity.inventory.armor.BodySection;
 
 import javax.persistence.*;
@@ -14,11 +15,11 @@ public class ArmorBlueprint implements ItemBlueprint {
     @Id
     private UUID id;
     private String name;
-    @Column(name = "PUBLIC_DESCRIPTION")
     private String publicDescription;
-    @Column(name = "PRIVATE_DESCRIPTION")
     private String privateDescription;
 
+    @Enumerated(value = EnumType.STRING)
+    private CharacterSize armorSize;
     private int weight;
 
     private int defense;
@@ -32,11 +33,12 @@ public class ArmorBlueprint implements ItemBlueprint {
     public ArmorBlueprint() {
     }
 
-    public ArmorBlueprint(String name, String publicDescription, String privateDescription, int weight, int defense, Set<BodySection> coverage) {
+    public ArmorBlueprint(String name, String publicDescription, String privateDescription, CharacterSize armorSize, int weight, int defense, Set<BodySection> coverage) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.publicDescription = publicDescription;
         this.privateDescription = privateDescription;
+        this.armorSize = armorSize;
         this.weight = weight;
         this.defense = defense;
         this.coverage = coverage;
@@ -97,6 +99,14 @@ public class ArmorBlueprint implements ItemBlueprint {
 
     public void setCoverage(Set<BodySection> coverage) {
         this.coverage = coverage;
+    }
+
+    public CharacterSize getArmorSize() {
+        return armorSize;
+    }
+
+    public void setArmorSize(CharacterSize armorSize) {
+        this.armorSize = armorSize;
     }
 
     @Override

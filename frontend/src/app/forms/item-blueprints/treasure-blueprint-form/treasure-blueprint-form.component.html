@@ -1,0 +1,116 @@
+<form class="mx-3 my-4" [formGroup]="treasureBlueprintForm" (ngSubmit)="onSubmit()">
+
+  <app-item-blueprint [parentForm]="treasureBlueprintForm"></app-item-blueprint>
+
+  <div class="mb-2">
+    <label class="font-weight-bold">Gemstones</label>
+    <div class="form-row">
+      <label class="col">Color</label>
+      <label class="col"><button type="button" class="btn btn-success p-0" (click)="addGemstoneBlueprint()">Stone +</button></label>
+      <label class="col-1">Weight</label>
+      <label class="col-1">Count</label>
+      <label class="col-1">Price</label>
+      <label class="col-1">Polished</label>
+      <div class="col-1"></div>
+    </div>
+    <div class="form-row" formGroupName="currGem">
+      <div class="col">
+        <select class="form-control" formControlName="currGemColor" (change)="filterGemstoneBlueprints()">
+          <option selected></option>
+          <option *ngFor="let color of colors">{{color}}</option>
+        </select>
+      </div>
+      <div class="col">
+        <select class="form-control" formControlName="currGemStone">
+          <option selected></option>
+          <option *ngFor="let stoneBlueprint of filteredGemstones" [value]="stoneBlueprint.id">{{ stoneBlueprint.name }}</option>
+        </select>
+      </div>
+      <div class="col-1">
+        <input type="text" class="form-control" formControlName="currGemWeight">
+      </div>
+      <div class="col-1">
+        <input type="text" class="form-control" formControlName="currGemCount">
+      </div>
+      <div class="col-1">
+        <input type="text" class="form-control" disabled>
+      </div>
+      <div class="col-1">
+        <input type="checkbox" class="form-control-sm w-100 h-100" formControlName="currGemPolished">
+      </div>
+      <button type="button" class="btn btn-success col-1" (click)="addGemstone()">+</button>
+    </div>
+  </div>
+
+  <div class="mb-2" formArrayName="gemStones">
+    <div class="form-row" *ngFor ="let gemStone of getGemStones(); let i = index" [formGroupName]="i">
+      <div class="col">
+        <input type="text" class="form-control" formControlName="color">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" formControlName="stone">
+      </div>
+      <div class="col-1">
+        <input type="text" class="form-control" formControlName="weight">
+      </div>
+      <div class="col-1">
+        <input type="text" class="form-control" formControlName="count">
+      </div>
+      <div class="col-1">
+        <input type="text" class="form-control" disabled>
+      </div>
+      <div class="col-1">
+        <input type="checkbox" class="form-control-sm w-100 h-100" formControlName="polished">
+      </div>
+      <button class="btn btn-danger col-1" (click)="removeGemStone(i)">-</button>
+    </div>
+  </div>
+
+  <div class="mb-2" formGroupName="material">
+    <label for="material" class="font-weight-bold">Material</label>
+    <div class="form-row" id="material">
+      <div class="col">
+        <label for="quality">Quality</label>
+        <select class="form-control" formControlName="quality" id="quality">
+          <option selected></option>
+          <option *ngFor ="let quality of qualityScale"> {{ quality }} </option>
+        </select>
+      </div>
+      <div class="col">
+        <label for="material-type">Material</label>
+        <select class="form-control" formControlName="type" id="material-type">
+          <option selected></option>
+          <option *ngFor ="let material of materials"> {{ material }} </option>
+        </select>
+      </div>
+      <div class="col-1">
+        <label for="material-weight">Weight</label>
+        <input type="text" class="form-control" formControlName="weight" id="material-weight">
+      </div>
+      <div class="col-1">
+        <label for="material-price">Price</label>
+        <input type="text" class="form-control" id="material-price" disabled>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="coins" class="font-weight-bold">Coins</label>
+    <div class="form-row" id="coins">
+      <div class="col-2">
+        <label for="gold">Gold</label>
+        <input type="text" class="form-control" formControlName="goldCoins" id="gold">
+      </div>
+      <div class="col-2">
+        <label for="silver">Silver</label>
+        <input type="text" class="form-control" formControlName="silverCoins" id="silver">
+      </div>
+      <div class="col-2">
+        <label for="copper">Copper</label>
+        <input type="text" class="form-control" formControlName="copperCoins" id="copper">
+      </div>
+    </div>
+  </div>
+
+  <app-form-controls [editMode]="editMode" (update)="update()" (cancel)="clearForm()" (delete)="delete()" (restore)="restore()"></app-form-controls>
+</form>

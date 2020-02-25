@@ -24,22 +24,29 @@ public class GoodsBlueprintRepository {
         entityManager.persist(goodsBlueprint);
     }
 
+    public void update(GoodsBlueprint existingGoodsBlueprint) {
+        entityManager.merge(existingGoodsBlueprint);
+    }
+
     public GoodsBlueprint find(UUID id) {
-        GoodsBlueprint result = entityManager.createQuery(
-                "SELECT x FROM GoodsBlueprint x WHERE x.id = ?1", GoodsBlueprint.class)
+        return entityManager
+                .createQuery("SELECT x FROM GoodsBlueprint x WHERE x.id = ?1", GoodsBlueprint.class)
                 .setParameter(1, id).getSingleResult();
-        return result;
+    }
+
+    public List<GoodsBlueprint> findAll() {
+        TypedQuery<GoodsBlueprint> query = entityManager.createQuery("select x from GoodsBlueprint x", GoodsBlueprint.class);
+        return query.getResultList();
+    }
+
+    public void delete(UUID id) {
+        entityManager.remove(find(id));
     }
 
     public void deleteAll() {
         for (GoodsBlueprint goodsBlueprint : findAll()) {
             entityManager.remove(goodsBlueprint);
         }
-    }
-
-    public List<GoodsBlueprint> findAll() {
-        TypedQuery<GoodsBlueprint> query = entityManager.createQuery("select x from GoodsBlueprint x", GoodsBlueprint.class);
-        return query.getResultList();
     }
 
     public boolean containsBlueprint(GoodsBlueprint goodsBlueprint) {

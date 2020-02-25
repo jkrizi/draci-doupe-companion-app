@@ -1,15 +1,14 @@
 package net.homecredit.trainee.drd.service.blueprint;
 
-import net.homecredit.trainee.drd.entity.blueprint.item.GemStoneBlueprint;
-import net.homecredit.trainee.drd.util.Metal;
+import net.homecredit.trainee.drd.entity.blueprint.item.GemstoneBlueprint;
+import net.homecredit.trainee.drd.util.Material;
 import net.homecredit.trainee.drd.entity.blueprint.item.TreasureBlueprint;
 import net.homecredit.trainee.drd.entity.character.skill.SkillKnowledge;
 import net.homecredit.trainee.drd.entity.inventory.GemStone;
 import net.homecredit.trainee.drd.entity.shop.ItemType;
-import net.homecredit.trainee.drd.repository.blueprint.GemStoneBlueprintRepository;
+import net.homecredit.trainee.drd.repository.blueprint.GemstoneBlueprintRepository;
 import net.homecredit.trainee.drd.repository.blueprint.TreasureBlueprintRepository;
 import net.homecredit.trainee.drd.service.shop.ShopService;
-import net.homecredit.trainee.drd.util.Color;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,16 +21,16 @@ import java.util.UUID;
 public class TreasureBlueprintService {
 
     private TreasureBlueprintRepository treasureBlueprintRepository;
-    private GemStoneBlueprintRepository gemStoneBlueprintRepository;
+    private GemstoneBlueprintRepository gemStoneBlueprintRepository;
     private ShopService shopService;
 
-    public TreasureBlueprintService(TreasureBlueprintRepository treasureBlueprintRepository, GemStoneBlueprintRepository gemStoneBlueprintRepository, ShopService shopService) {
+    public TreasureBlueprintService(TreasureBlueprintRepository treasureBlueprintRepository, GemstoneBlueprintRepository gemStoneBlueprintRepository, ShopService shopService) {
         this.treasureBlueprintRepository = treasureBlueprintRepository;
         this.gemStoneBlueprintRepository = gemStoneBlueprintRepository;
         this.shopService = shopService;
     }
 
-    public TreasureBlueprint drawAndFileBlueprint(String name, String publicDescription, String privateDescription, Collection<GemStone> gemStones, Metal material, int materialWeight, SkillKnowledge productQuality, double treasureValue) {
+    public TreasureBlueprint drawAndFileBlueprint(String name, String publicDescription, String privateDescription, Collection<GemStone> gemStones, Material material, int materialWeight, SkillKnowledge productQuality, double treasureValue) {
         TreasureBlueprint treasureBlueprint = new TreasureBlueprint(name, publicDescription, privateDescription, gemStones, material, materialWeight, productQuality, treasureValue);
         if(treasureBlueprintRepository.containsBlueprint(treasureBlueprint)){
             throw new RuntimeException("Treasure blueprint already exists");
@@ -49,13 +48,11 @@ public class TreasureBlueprintService {
         treasureBlueprintRepository.deleteAll();
     }
 
-    public GemStoneBlueprint saveGemStoneBlueprint(String name, Color color, double price){
-        GemStoneBlueprint gemStoneBlueprint = new GemStoneBlueprint(name, color, price);
-        if(gemStoneBlueprintRepository.containsBlueprint(gemStoneBlueprint)){
+    public void saveGemstoneBlueprint(GemstoneBlueprint newGemstoneBlueprint){
+        if(gemStoneBlueprintRepository.containsBlueprint(newGemstoneBlueprint)){
             throw new RuntimeException("GemStone blueprint already exists");
         }
-        gemStoneBlueprintRepository.save(gemStoneBlueprint);
-        return gemStoneBlueprint;
+        gemStoneBlueprintRepository.save(newGemstoneBlueprint);
     }
 
     public void addTreasureBlueprintToGemstone(TreasureBlueprint treasureBlueprint, GemStone gemStone){
@@ -63,7 +60,7 @@ public class TreasureBlueprintService {
         treasureBlueprintRepository.updateGemStone(gemStone);
     }
 
-    public List<GemStoneBlueprint> findGemStonesBlueprints() {
+    public List<GemstoneBlueprint> findAllGemstoneBlueprints() {
         return gemStoneBlueprintRepository.findAll();
     }
 }
