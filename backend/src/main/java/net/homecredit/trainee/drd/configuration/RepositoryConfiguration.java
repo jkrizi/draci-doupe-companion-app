@@ -84,12 +84,15 @@ public class RepositoryConfiguration {
     }
 
     @Bean
+    public WeaponFamilyRepository weaponFamilyRepository(EntityManager em) {return  new WeaponFamilyRepository(em); }
+
+    @Bean
     public ShopRepository shopRepository(EntityManager em) {
         return new ShopRepository(em);
     }
 
     @Bean
-    public GemStoneBlueprintRepository gemStoneBlueprintRepository(EntityManager em){
-        return new GemStoneBlueprintRepository(em);
+    public GemstoneBlueprintRepository gemStoneBlueprintRepository(EntityManager em){
+        return new GemstoneBlueprintRepository(em);
     }
 }

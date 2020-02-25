@@ -8,6 +8,7 @@ import net.homecredit.trainee.drd.service.shop.ShopService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -23,15 +24,15 @@ public class ArmorBlueprintService {
         this.shopService = shopService;
     }
 
-    public ArmorBlueprint drawAndFileBlueprint(String name, String publicDescription, String privateDescription, int weight, int defense, Set<BodySection> coverage) {
-        ArmorBlueprint armorBlueprint = new ArmorBlueprint(name, publicDescription, privateDescription, weight, defense, coverage);
-        if(armorBlueprintRepository.containsBlueprint(armorBlueprint)){
-            throw new RuntimeException("Armor blueprint already exists");
-        }
-        armorBlueprintRepository.save(armorBlueprint);
-        shopService.createPriceTag(armorBlueprint, ItemType.ARMOR);
-        return armorBlueprint;
-    }
+//    public ArmorBlueprint drawAndFileBlueprint(String name, String publicDescription, String privateDescription, char int weight, int defense, Set<BodySection> coverage) {
+//        ArmorBlueprint armorBlueprint = new ArmorBlueprint(name, publicDescription, privateDescription, weight, defense, coverage);
+//        if(armorBlueprintRepository.containsBlueprint(armorBlueprint)){
+//            throw new RuntimeException("Armor blueprint already exists");
+//        }
+//        armorBlueprintRepository.save(armorBlueprint);
+//        shopService.createPriceTag(armorBlueprint, ItemType.ARMOR);
+//        return armorBlueprint;
+//    }
 
     public ArmorBlueprint findBlueprint(UUID id) {
         return armorBlueprintRepository.find(id);
@@ -39,5 +40,21 @@ public class ArmorBlueprintService {
 
     public void deleteAll() {
         armorBlueprintRepository.deleteAll();
+    }
+
+    public List<ArmorBlueprint> findAll() {
+        return armorBlueprintRepository.findAll();
+    }
+
+    public void save(ArmorBlueprint newArmorBlueprint) {
+        armorBlueprintRepository.save(newArmorBlueprint);
+    }
+
+    public void update(ArmorBlueprint existingArmorBlueprint) {
+        armorBlueprintRepository.update(existingArmorBlueprint);
+    }
+
+    public void delete(UUID id) {
+        armorBlueprintRepository.delete(id);
     }
 }

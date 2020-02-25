@@ -7,6 +7,7 @@ import net.homecredit.trainee.drd.service.shop.ShopService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -37,5 +38,21 @@ public class GoodsBlueprintService {
 
     public void deleteAll() {
         goodsBlueprintRepository.deleteAll();
+    }
+
+    public List<GoodsBlueprint> findAll() {
+        return goodsBlueprintRepository.findAll();
+    }
+
+    public void save(GoodsBlueprint newGoodsBlueprint) {
+        goodsBlueprintRepository.save(newGoodsBlueprint);
+    }
+
+    public void update(GoodsBlueprint existingGoodsBlueprint) {
+        goodsBlueprintRepository.update(existingGoodsBlueprint);
+    }
+
+    public void delete(UUID id) {
+        goodsBlueprintRepository.delete(id);
     }
 }

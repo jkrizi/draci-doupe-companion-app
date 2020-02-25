@@ -9,7 +9,6 @@ import net.homecredit.trainee.drd.entity.character.ability.Ability;
 import net.homecredit.trainee.drd.entity.character.ability.AbilityScore;
 import net.homecredit.trainee.drd.entity.character.skill.SkillKnowledge;
 import net.homecredit.trainee.drd.entity.inventory.GemStone;
-import net.homecredit.trainee.drd.entity.inventory.armor.BodySection;
 import net.homecredit.trainee.drd.entity.shop.ItemType;
 import net.homecredit.trainee.drd.entity.shop.ShopItem;
 import net.homecredit.trainee.drd.service.blueprint.*;
@@ -17,7 +16,7 @@ import net.homecredit.trainee.drd.service.character.BeastService;
 import net.homecredit.trainee.drd.service.item.*;
 import net.homecredit.trainee.drd.service.shop.BuyService;
 import net.homecredit.trainee.drd.service.shop.ShopService;
-import net.homecredit.trainee.drd.util.Metal;
+import net.homecredit.trainee.drd.util.Material;
 
 import java.util.*;
 
@@ -30,25 +29,25 @@ public class Demo2 {
 //    }
 
     private void createGemStoneBlueprints(TreasureBlueprintService treasureBlueprintService){
-        /*GemStoneBlueprint gemStoneBlueprint = treasureBlueprintService.saveGemStoneBlueprint("Ruby", Color.RED, 1.6);
-        GemStoneBlueprint gemStoneBlueprint1 = treasureBlueprintService.saveGemStoneBlueprint("Small ruby", Color.RED, 0.8);
-        GemStoneBlueprint gemStoneBlueprint2 = treasureBlueprintService.saveGemStoneBlueprint("Saphir", Color.BLACK, 1.5);
-        GemStoneBlueprint gemStoneBlueprint3 = treasureBlueprintService.saveGemStoneBlueprint("Brick", Color.ORANGE, 0.1);
-        GemStoneBlueprint gemStoneBlueprint4 = treasureBlueprintService.saveGemStoneBlueprint("Diamant", Color.WHITE, 5.2);*/
+        /*GemstoneBlueprint gemStoneBlueprint = treasureBlueprintService.saveGemstoneBlueprint("Ruby", Color.RED, 1.6);
+        GemstoneBlueprint gemStoneBlueprint1 = treasureBlueprintService.saveGemstoneBlueprint("Small ruby", Color.RED, 0.8);
+        GemstoneBlueprint gemStoneBlueprint2 = treasureBlueprintService.saveGemstoneBlueprint("Saphir", Color.BLACK, 1.5);
+        GemstoneBlueprint gemStoneBlueprint3 = treasureBlueprintService.saveGemstoneBlueprint("Brick", Color.ORANGE, 0.1);
+        GemstoneBlueprint gemStoneBlueprint4 = treasureBlueprintService.saveGemstoneBlueprint("Diamant", Color.WHITE, 5.2);*/
     }
 
     public void setTestTreasureBlueprint(TreasureBlueprintService treasureBlueprintService) {
 //        createGemStoneBlueprints(treasureBlueprintService);
 
-        Metal material = Metal.BRONZE;
+        Material material = Material.BRONZE;
         SkillKnowledge skill = SkillKnowledge.AVERAGE;
 
         //create gemstones and put them in the collection
-        List<GemStoneBlueprint> gemStoneBlueprints = treasureBlueprintService.findGemStonesBlueprints();
+        List<GemstoneBlueprint> gemstoneBlueprints = treasureBlueprintService.findAllGemstoneBlueprints();
 
-        GemStone gemStone1 = new GemStone(2, false, 2,  gemStoneBlueprints.get(0));
-        GemStone gemStone2 = new GemStone(2, true, 2.1,  gemStoneBlueprints.get(0));
-        GemStone gemStone3 = new GemStone(2, false, 2.1,  gemStoneBlueprints.get(0));
+        GemStone gemStone1 = new GemStone(2, false, 2,  gemstoneBlueprints.get(0));
+        GemStone gemStone2 = new GemStone(2, true, 2.1,  gemstoneBlueprints.get(0));
+        GemStone gemStone3 = new GemStone(2, false, 2.1,  gemstoneBlueprints.get(0));
 
         Collection<GemStone> gemStones = new HashSet<>();
         gemStones.add(gemStone1);
@@ -61,11 +60,11 @@ public class Demo2 {
         }
     }
 
-    public void setTestArmorBlueprint(ArmorBlueprintService armorBlueprintService) {
-        Set<BodySection> coverage = EnumSet.of(BodySection.LEGS, BodySection.HEAD);
-        ArmorBlueprint ab = armorBlueprintService.drawAndFileBlueprint("armor name", "awesome armor babe", "private description", 21, 1, coverage);
-        System.out.println(armorBlueprintService.findBlueprint(ab.getId()).getPublicDescription());
-    }
+//    public void setTestArmorBlueprint(ArmorBlueprintService armorBlueprintService) {
+//        Set<BodySection> coverage = EnumSet.of(BodySection.LEGS, BodySection.HEAD);
+//        ArmorBlueprint ab = armorBlueprintService.drawAndFileBlueprint("armor name", "awesome armor babe", "private description", 21, 1, coverage);
+//        System.out.println(armorBlueprintService.findBlueprint(ab.getId()).getPublicDescription());
+//    }
 
     public void setTestGoodsBlueprint(GoodsBlueprintService goodsBlueprintService) {
         GoodsBlueprint gb = goodsBlueprintService.drawAndFileBlueprint("Kofola", "Sweet Goods", "private description", 1000, ItemType.BEVERAGES);

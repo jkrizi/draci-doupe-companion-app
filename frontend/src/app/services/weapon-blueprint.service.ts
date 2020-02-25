@@ -21,12 +21,10 @@ export class WeaponBlueprintService {
   }
 
   save(newWeaponBlueprint: WeaponBlueprintModel) {
-    console.log(newWeaponBlueprint);
     this.http.post('http://localhost:8080/saveWeaponBlueprint.json', newWeaponBlueprint).subscribe(() => this.getAll());
   }
 
   update(existingWeaponBlueprint: WeaponBlueprintModel) {
-    console.log(existingWeaponBlueprint);
     this.http.post('http://localhost:8080/updateWeaponBlueprint.json', existingWeaponBlueprint).subscribe(() => this.getAll());
   }
 

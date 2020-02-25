@@ -1,13 +1,13 @@
 package net.homecredit.trainee.drd.util.comparator;
 
-import net.homecredit.trainee.drd.entity.blueprint.item.GemStoneBlueprint;
+import net.homecredit.trainee.drd.entity.blueprint.item.GemstoneBlueprint;
 
 import java.util.Comparator;
 
-public class GemStoneBlueprintComparatorByAttributes implements Comparator<GemStoneBlueprint> {
+public class GemStoneBlueprintComparatorByAttributes implements Comparator<GemstoneBlueprint> {
 
     @Override
-    public int compare(GemStoneBlueprint newBlueprint, GemStoneBlueprint databaseBlueprint) {
+    public int compare(GemstoneBlueprint newBlueprint, GemstoneBlueprint databaseBlueprint) {
         if (newBlueprint == databaseBlueprint) return 0;
 
         //compare every attribute first and if they are same compare gemstones

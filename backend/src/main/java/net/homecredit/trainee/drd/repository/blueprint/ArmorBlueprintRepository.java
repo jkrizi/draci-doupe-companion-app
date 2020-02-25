@@ -35,7 +35,7 @@ public class ArmorBlueprintRepository {
     }
 
     public List<ArmorBlueprint> findAll() {
-        TypedQuery<ArmorBlueprint> query = entityManager.createQuery("select x from ArmorBlueprint x", ArmorBlueprint.class);
+        TypedQuery<ArmorBlueprint> query = entityManager.createQuery("select distinct x from ArmorBlueprint x join fetch x.coverage", ArmorBlueprint.class);
         return query.getResultList();
     }
 
@@ -47,5 +47,13 @@ public class ArmorBlueprintRepository {
             }
         }
         return false;
+    }
+
+    public void update(ArmorBlueprint existingArmorBlueprint) {
+        entityManager.merge(existingArmorBlueprint);
+    }
+
+    public void delete(UUID id) {
+        entityManager.remove(find(id));
     }
 }

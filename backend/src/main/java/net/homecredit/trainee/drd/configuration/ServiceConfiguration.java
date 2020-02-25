@@ -68,7 +68,7 @@ public class ServiceConfiguration {
     }
 
     @Bean
-    public TreasureBlueprintService treasureBlueprintService(TreasureBlueprintRepository treasureBlueprintRepository, GemStoneBlueprintRepository gemStoneBlueprintRepository, ShopService shopService) {
+    public TreasureBlueprintService treasureBlueprintService(TreasureBlueprintRepository treasureBlueprintRepository, GemstoneBlueprintRepository gemStoneBlueprintRepository, ShopService shopService) {
         return new TreasureBlueprintService(treasureBlueprintRepository, gemStoneBlueprintRepository, shopService);
     }
 
@@ -90,6 +90,11 @@ public class ServiceConfiguration {
     @Bean
     public WeaponService weaponService(WeaponRepository weaponRepository) {
         return new WeaponService(weaponRepository);
+    }
+
+    @Bean
+    public WeaponFamilyService weaponFamilyService (WeaponFamilyRepository weaponFamilyRepository) {
+        return new WeaponFamilyService(weaponFamilyRepository);
     }
 
     @Bean

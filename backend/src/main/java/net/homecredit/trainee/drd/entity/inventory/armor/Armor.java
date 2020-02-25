@@ -29,8 +29,7 @@ public class Armor extends Equipment {
     public Armor(ArmorBlueprint armorBlueprint) {
         super(armorBlueprint, ItemType.ARMOR);
         this.defense = armorBlueprint.getDefense();
-        Set<BodySection> copiedCoverage = EnumSet.copyOf(armorBlueprint.getCoverage());
-        this.coverage = copiedCoverage;
+        this.coverage = EnumSet.copyOf(armorBlueprint.getCoverage());
         //for practice
         this.equipped = false;
     }

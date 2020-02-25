@@ -32,7 +32,7 @@ export class SwordMoveFormComponent implements OnInit {
       {
         id: new FormControl(null),
         name: new FormControl(null),
-        initiative: new FormControl(null),
+        initiativeModifier: new FormControl(null),
         actions: new FormControl(null),
         description: new FormControl(null),
         humanoidOpponent: new FormControl(false),

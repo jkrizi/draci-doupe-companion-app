@@ -1,19 +1,14 @@
 package net.homecredit.trainee.drd.entity.inventory;
 
-import net.homecredit.trainee.drd.entity.blueprint.item.GemStoneBlueprint;
+import net.homecredit.trainee.drd.entity.blueprint.item.GemstoneBlueprint;
 import net.homecredit.trainee.drd.entity.blueprint.item.TreasureBlueprint;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import java.util.Comparator;
 import java.util.Objects;
 import java.util.UUID;
-import java.util.function.Function;
-import java.util.function.ToDoubleFunction;
-import java.util.function.ToIntFunction;
-import java.util.function.ToLongFunction;
 
 @Entity
 public class GemStone {
@@ -26,14 +21,14 @@ public class GemStone {
     private double stonePrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private GemStoneBlueprint gemStoneBlueprint;
+    private GemstoneBlueprint gemStoneBlueprint;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private TreasureBlueprint treasureBlueprint;
 
     public GemStone() {}
 
-    public GemStone(int stoneWeight, boolean polished, double stonePrice, GemStoneBlueprint gemStoneBlueprint) {
+    public GemStone(int stoneWeight, boolean polished, double stonePrice, GemstoneBlueprint gemStoneBlueprint) {
         this.id = UUID.randomUUID();
         this.stoneWeight = stoneWeight;
         this.polished = polished;
@@ -41,7 +36,7 @@ public class GemStone {
         this.gemStoneBlueprint = gemStoneBlueprint;
     }
 
-    public GemStone(int stoneWeight, boolean polished, double stonePrice, GemStoneBlueprint gemStoneBlueprint, TreasureBlueprint treasureBlueprint) {
+    public GemStone(int stoneWeight, boolean polished, double stonePrice, GemstoneBlueprint gemStoneBlueprint, TreasureBlueprint treasureBlueprint) {
         this.id = UUID.randomUUID();
         this.stoneWeight = stoneWeight;
         this.polished = polished;
@@ -83,11 +78,11 @@ public class GemStone {
         this.stonePrice = stonePrice;
     }
 
-    public GemStoneBlueprint getGemStoneBlueprint() {
+    public GemstoneBlueprint getGemStoneBlueprint() {
         return gemStoneBlueprint;
     }
 
-    public void setGemStoneBlueprint(GemStoneBlueprint gemStoneBlueprint) {
+    public void setGemStoneBlueprint(GemstoneBlueprint gemStoneBlueprint) {
         this.gemStoneBlueprint = gemStoneBlueprint;
     }
 

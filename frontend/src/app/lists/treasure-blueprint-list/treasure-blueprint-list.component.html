@@ -1,0 +1,24 @@
+<table class="table table-sm table-hover" style>
+  <thead>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Gemstones</th>
+    <th>Material</th>
+    <th>Golds</th>
+    <th>Silvers</th>
+    <th>Coppers</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let treasureBlueprint of treasureBlueprints; let i = index" (click)="selectTreasureBlueprint(i)" style="cursor: pointer">
+    <td></td>
+    <td>{{treasureBlueprint.name}}</td>
+    <td>{{treasureBlueprint.gemstones}}</td>
+    <td>{{treasureBlueprint.type}}</td>
+    <td>{{treasureBlueprint.goldValue}}</td>
+    <td>{{treasureBlueprint.silverValue}}</td>
+    <td>{{treasureBlueprint.copperValue}}</td>
+  </tr>
+  </tbody>
+</table>

@@ -9,14 +9,14 @@ public class WeaponFamily {
 
     @Id
     private UUID id;
-    private String weaponFamilyName;
+    private String name;
     private WeaponType weaponType;
 
     public WeaponFamily() {}
 
-    public WeaponFamily(UUID id, String weaponFamilyName, WeaponType weaponType) {
+    public WeaponFamily(UUID id, String name, WeaponType weaponType) {
         this.id = id;
-        this.weaponFamilyName = weaponFamilyName;
+        this.name = name;
         this.weaponType = weaponType;
     }
 
@@ -28,12 +28,12 @@ public class WeaponFamily {
         this.id = id;
     }
 
-    public String getWeaponFamilyName() {
-        return weaponFamilyName;
+    public String getName() {
+        return name;
     }
 
-    public void setWeaponFamilyName(String weaponFamilyName) {
-        this.weaponFamilyName = weaponFamilyName;
+    public void setName(String weaponFamilyName) {
+        this.name = weaponFamilyName;
     }
 
     public WeaponType getWeaponType() {
@@ -42,5 +42,14 @@ public class WeaponFamily {
 
     public void setWeaponType(WeaponType weaponType) {
         this.weaponType = weaponType;
+    }
+
+    @Override
+    public String toString() {
+        return "WeaponFamily{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", weaponType=" + weaponType +
+                '}';
     }
 }
