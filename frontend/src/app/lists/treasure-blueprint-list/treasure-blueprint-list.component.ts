@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TreasureBlueprintModel} from '../../models/treasure-blueprint.model';
+import {TreasureBlueprintService} from '../../services/treasure-blueprint.service';
 
 @Component({
   selector: 'app-treasure-blueprint-list',
@@ -9,12 +10,18 @@ import {TreasureBlueprintModel} from '../../models/treasure-blueprint.model';
 export class TreasureBlueprintListComponent implements OnInit {
   treasureBlueprints: TreasureBlueprintModel[];
 
-  constructor() { }
+  // TODO: expand html with some narrowed down version of gemstones
+
+  constructor(private treasureBlueprintService: TreasureBlueprintService) { }
 
   ngOnInit() {
+    this.treasureBlueprintService.getAll();
+    this.treasureBlueprintService.treasureBlueprintsList.subscribe((treasureBlueprints: TreasureBlueprintModel[]) => {
+      this.treasureBlueprints = treasureBlueprints;
+    });
   }
 
-  selectTreasureBlueprint(i: number) {
-
+  selectTreasureBlueprint(index: number) {
+    this.treasureBlueprintService.select(this.treasureBlueprints[index]);
   }
 }

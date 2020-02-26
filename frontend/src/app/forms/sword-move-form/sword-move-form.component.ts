@@ -41,13 +41,13 @@ export class SwordMoveFormComponent implements OnInit {
       }
     );
 
-    this.enumsService.getWeaponTypes().subscribe( weaponTypes => {
-      weaponTypes.forEach(weaponType => {
-        this.weaponTypes.push(weaponType);
-        this.userWeaponTypes.addControl(weaponType, new FormControl(false));
-        this.opponentWeaponTypes.addControl(weaponType, new FormControl(false));
-      });
-    });
+    // this.enumsService.getWeaponTypes().subscribe( weaponTypes => {
+    //   weaponTypes.forEach(weaponType => {
+    //     this.weaponTypes.push(weaponType);
+    //     this.userWeaponTypes.addControl(weaponType, new FormControl(false));
+    //     this.opponentWeaponTypes.addControl(weaponType, new FormControl(false));
+    //   });
+    // });
 
     this.swordMoveService.selectedSwordMove.subscribe( swordMove => {
       this.clearForm();
