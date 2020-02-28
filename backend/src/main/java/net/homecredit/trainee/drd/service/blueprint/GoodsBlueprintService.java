@@ -24,11 +24,6 @@ public class GoodsBlueprintService {
 
     public GoodsBlueprint drawAndFileBlueprint(String name, String publicDescription, String privateDescription, int weight, ItemType itemType) {
         GoodsBlueprint goodsBlueprint = new GoodsBlueprint(name, publicDescription, privateDescription, weight, itemType);
-        if(goodsBlueprintRepository.containsBlueprint(goodsBlueprint)){
-            throw new RuntimeException("Goods blueprint already exists");
-        }
-        goodsBlueprintRepository.save(goodsBlueprint);
-        shopService.createPriceTag(goodsBlueprint, itemType);
         return goodsBlueprint;
     }
 
@@ -45,6 +40,11 @@ public class GoodsBlueprintService {
     }
 
     public void save(GoodsBlueprint newGoodsBlueprint) {
+        if(goodsBlueprintRepository.containsBlueprint(newGoodsBlueprint)){
+            throw new RuntimeException("Goods blueprint already exists");
+        }
+        goodsBlueprintRepository.save(newGoodsBlueprint);
+        shopService.createPriceTag(newGoodsBlueprint, newGoodsBlueprint.getItemType());
         goodsBlueprintRepository.save(newGoodsBlueprint);
     }
 

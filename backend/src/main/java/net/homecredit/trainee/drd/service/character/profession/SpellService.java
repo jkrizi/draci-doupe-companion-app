@@ -23,6 +23,9 @@ public class SpellService {
     }
 
     public void save(Spell newSpell) {
+        if(spellRepository.containsSpell(newSpell)){
+            throw new RuntimeException("Spell with the same name already exists");
+        }
         spellRepository.save(newSpell);
     }
 

@@ -1,42 +1,80 @@
 package net.homecredit.trainee.drd.controller;
 
+import java.util.List;
+import java.util.UUID;
+
+import net.homecredit.trainee.drd.controller.dto.ArmorBlueprintDtoConverter;
+import net.homecredit.trainee.drd.controller.dto.BeastBlueprintDtoConverter;
+import net.homecredit.trainee.drd.controller.dto.BeastBlueprintsDto;
+import net.homecredit.trainee.drd.controller.dto.GoodsBlueprintDtoConverter;
+import net.homecredit.trainee.drd.controller.dto.RaceConverter;
+import net.homecredit.trainee.drd.controller.dto.RaceDto;
+import net.homecredit.trainee.drd.controller.dto.SpellDto;
+import net.homecredit.trainee.drd.controller.dto.SpellDtoConverter;
+import net.homecredit.trainee.drd.controller.dto.TreasureBlueprintDto;
+import net.homecredit.trainee.drd.controller.dto.TreasureBlueprintDtoConverter;
+import net.homecredit.trainee.drd.controller.dto.WeaponBlueprintDto;
+import net.homecredit.trainee.drd.controller.dto.WeaponBlueprintDtoConverter;
 import net.homecredit.trainee.drd.entity.blueprint.BeastBlueprint;
 import net.homecredit.trainee.drd.entity.blueprint.item.ArmorBlueprint;
 import net.homecredit.trainee.drd.entity.blueprint.item.GemstoneBlueprint;
 import net.homecredit.trainee.drd.entity.blueprint.item.GoodsBlueprint;
+import net.homecredit.trainee.drd.entity.blueprint.item.TreasureBlueprint;
 import net.homecredit.trainee.drd.entity.blueprint.item.WeaponBlueprint;
-import net.homecredit.trainee.drd.entity.character.profession.wizard.Spell;
 import net.homecredit.trainee.drd.entity.character.profession.warrior.SwordMove;
 import net.homecredit.trainee.drd.entity.character.race.Race;
 import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponFamily;
-import net.homecredit.trainee.drd.service.blueprint.*;
+import net.homecredit.trainee.drd.service.blueprint.ArmorBlueprintService;
+import net.homecredit.trainee.drd.service.blueprint.BeastBlueprintService;
+import net.homecredit.trainee.drd.service.blueprint.GoodsBlueprintService;
+import net.homecredit.trainee.drd.service.blueprint.TreasureBlueprintService;
+import net.homecredit.trainee.drd.service.blueprint.WeaponBlueprintService;
 import net.homecredit.trainee.drd.service.character.RaceService;
 import net.homecredit.trainee.drd.service.character.profession.SpellService;
 import net.homecredit.trainee.drd.service.character.profession.SwordMoveService;
 import net.homecredit.trainee.drd.service.item.WeaponFamilyService;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.UUID;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class PersistenceController {
 
     private RaceService raceService;
+    private RaceConverter raceConverter;
     private BeastBlueprintService beastBlueprintService;
+    private BeastBlueprintDtoConverter beastBlueprintDtoConverter;
     private SpellService spellService;
+    private SpellDtoConverter spellDtoConverter;
     private SwordMoveService swordMoveService;
     private WeaponBlueprintService weaponBlueprintService;
+    private WeaponBlueprintDtoConverter weaponBlueprintDtoConverter;
     private ArmorBlueprintService armorBlueprintService;
+    private ArmorBlueprintDtoConverter armorBlueprintDtoConverter;
     private GoodsBlueprintService goodsBlueprintService;
+    private GoodsBlueprintDtoConverter goodsBlueprintDtoConverter;
     private TreasureBlueprintService treasureBlueprintService;
+    private TreasureBlueprintDtoConverter treasureBlueprintDtoConverter;
     private WeaponFamilyService weaponFamilyService;
 
-    public PersistenceController(RaceService raceService, BeastBlueprintService beastBlueprintService, SpellService spellService, SwordMoveService swordMoveService, WeaponBlueprintService weaponBlueprintService, ArmorBlueprintService armorBlueprintService, GoodsBlueprintService goodsBlueprintService, TreasureBlueprintService treasureBlueprintService, WeaponFamilyService weaponFamilyService) {
+    public PersistenceController(RaceService raceService, RaceConverter raceConverter, BeastBlueprintService beastBlueprintService, BeastBlueprintDtoConverter beastBlueprintDtoConverter, SpellService spellService, SwordMoveService swordMoveService, WeaponBlueprintService weaponBlueprintService, WeaponBlueprintDtoConverter weaponBlueprintDtoConverter, ArmorBlueprintService armorBlueprintService, ArmorBlueprintDtoConverter armorBlueprintDtoConverter, GoodsBlueprintService goodsBlueprintService, GoodsBlueprintDtoConverter goodsBlueprintDtoConverter, TreasureBlueprintService treasureBlueprintService, TreasureBlueprintDtoConverter treasureBlueprintDtoConverter, WeaponFamilyService weaponFamilyService, SpellDtoConverter spellDtoConverter) {
         this.raceService = raceService;
+        this.raceConverter = raceConverter;
         this.beastBlueprintService = beastBlueprintService;
+        this.beastBlueprintDtoConverter = beastBlueprintDtoConverter;
         this.spellService = spellService;
+        this.weaponBlueprintDtoConverter = weaponBlueprintDtoConverter;
+        this.armorBlueprintDtoConverter = armorBlueprintDtoConverter;
+        this.goodsBlueprintDtoConverter = goodsBlueprintDtoConverter;
+        this.treasureBlueprintDtoConverter = treasureBlueprintDtoConverter;
+        this.spellDtoConverter = spellDtoConverter;
         this.swordMoveService = swordMoveService;
         this.weaponBlueprintService = weaponBlueprintService;
         this.armorBlueprintService = armorBlueprintService;
@@ -52,26 +90,43 @@ public class PersistenceController {
         return beastBlueprintService.findAll();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/saveBeastBlueprint.json")
+    public void saveBeastBlueprint(@RequestBody BeastBlueprintsDto beastBlueprintsDto) {
+        BeastBlueprint blueprint = beastBlueprintDtoConverter.convert(beastBlueprintsDto);
+        beastBlueprintService.save(blueprint);
+    }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/updateBeastBlueprint.json")
+    public void updateBeastBlueprint(@RequestBody BeastBlueprintsDto existingBeastBlueprintDto) {
+        BeastBlueprint beastBlueprint = beastBlueprintDtoConverter.convert(existingBeastBlueprintDto);
+        beastBlueprintService.update(beastBlueprint);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @DeleteMapping("/deleteBeastBlueprint.json")
+    public void deleteBeastBlueprint(@RequestParam UUID id) {
+        beastBlueprintService.delete(id);
+    }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/getAllSpells.json", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    List<Spell> listSpells() {
-        return spellService.findAll();
+    List<SpellDto> listSpells() {
+        return spellDtoConverter.convert(spellService.findAll());
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/saveSpell.json")
-    public void saveSpell(@RequestBody Spell newSpell) {
-        System.out.println(newSpell);
-        spellService.save(newSpell);
+    public void saveSpell(@RequestBody SpellDto newSpellDto) {
+        spellService.save(spellDtoConverter.convert(newSpellDto));
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/updateSpell.json")
-    public void updateSpell(@RequestBody Spell spell) {
-        spellService.update(spell);
+    public void updateSpell(@RequestBody SpellDto spellDto) {
+        spellService.update(spellDtoConverter.convert(spellDto));
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
@@ -80,10 +135,8 @@ public class PersistenceController {
         spellService.delete(id);
     }
 
-
-
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/getAllSwordMoves.json")
+    @GetMapping(value = "/getAllSwordMoves.json", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     List<SwordMove> listSwordMoves() {
         return swordMoveService.findAll();
@@ -110,23 +163,24 @@ public class PersistenceController {
 
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/getAllWeaponBlueprints.json")
+    @GetMapping(value = "/getAllWeaponBlueprints.json", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    List<WeaponBlueprint> listWeaponBlueprints() {
-        return weaponBlueprintService.findAll();
+    List<WeaponBlueprintDto> listWeaponBlueprints() {
+        return weaponBlueprintDtoConverter.convert(weaponBlueprintService.findAll());
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/saveWeaponBlueprint.json")
-    public void saveWeaponBlueprint(@RequestBody WeaponBlueprint newWeaponBlueprint) {
-        System.out.println(newWeaponBlueprint);
-        weaponBlueprintService.save(newWeaponBlueprint);
+    public void saveWeaponBlueprint(@RequestBody WeaponBlueprintDto newWeaponBlueprintDto) {
+        WeaponBlueprint weaponBlueprint = weaponBlueprintDtoConverter.convert(newWeaponBlueprintDto);
+        weaponBlueprintService.save(weaponBlueprint);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/updateWeaponBlueprint.json")
-    public void updateWeaponBlueprint(@RequestBody WeaponBlueprint existingWeaponBlueprint) {
-        weaponBlueprintService.update(existingWeaponBlueprint);
+    public void updateWeaponBlueprint(@RequestBody WeaponBlueprintDto existingWeaponBlueprintDto) {
+        WeaponBlueprint weaponBlueprint = weaponBlueprintDtoConverter.convert(existingWeaponBlueprintDto);
+        weaponBlueprintService.update(weaponBlueprint);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
@@ -138,22 +192,23 @@ public class PersistenceController {
 
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/getAllRaces.json")
+    @GetMapping(value = "/getAllRaces.json", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    List<Race> listRaces() {
-        return raceService.findAll();
+    List<RaceDto> listRaces() {
+        return raceConverter.convert(raceService.findAll());
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/saveRace.json")
-    public void saveRace(@RequestBody Race newRace) {
-        raceService.save(newRace);
+    public void saveRace(@RequestBody RaceDto newRaceDto) {
+        raceService.save(raceConverter.convert(newRaceDto));
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/updateRace.json")
-    public void updateRace(@RequestBody Race existingRace) {
-        raceService.update(existingRace);
+    public void updateRace(@RequestBody RaceDto existingRaceDto) {
+        Race race = raceConverter.convert(existingRaceDto);
+        raceService.update(race);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
@@ -242,5 +297,33 @@ public class PersistenceController {
     public @ResponseBody
     List<WeaponFamily> listWeaponFamilies() {
         return weaponFamilyService.findAllWeaponFamilies();
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/getAllTreasureBlueprints.json")
+    public @ResponseBody
+    List<TreasureBlueprintDto> listTreasureBlueprints() {
+        return treasureBlueprintDtoConverter.convert(treasureBlueprintService.findAll());
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/saveTreasureBlueprint.json")
+    public void saveTreasureBlueprint(@RequestBody TreasureBlueprintDto newTreasureBlueprintDto) {
+        System.out.println(newTreasureBlueprintDto);
+        TreasureBlueprint blueprint = treasureBlueprintDtoConverter.convert(newTreasureBlueprintDto);
+        treasureBlueprintService.save(blueprint);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @DeleteMapping("/deleteTreasureBlueprint.json")
+    public void deleteTreasureBlueprint(@RequestParam UUID id) {
+        treasureBlueprintService.delete(id);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/updateTreasureBlueprint.json")
+    public void updateTreasureBlueprint(@RequestBody TreasureBlueprintDto existingTreasureBlueprintDto) {
+        TreasureBlueprint treasureBlueprint = treasureBlueprintDtoConverter.convert(existingTreasureBlueprintDto);
+        treasureBlueprintService.update(treasureBlueprint);
     }
 }

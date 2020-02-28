@@ -1,6 +1,7 @@
 package net.homecredit.trainee.drd.repository.character;
 
 import net.homecredit.trainee.drd.entity.character.profession.wizard.Spell;
+import net.homecredit.trainee.drd.util.comparator.SpellComparatorByAttributes;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -32,5 +33,15 @@ public class SpellRepository {
 
     public void update(Spell existingSpell) {
         entityManager.merge(existingSpell);
+    }
+
+    public boolean containsSpell(Spell newSpell){
+        SpellComparatorByAttributes spellComparator = new SpellComparatorByAttributes();
+        for (Spell databaseSpell : findAll()){
+            if (spellComparator.compare(newSpell, databaseSpell) == 0){
+                return true;
+            }
+        }
+        return false;
     }
 }

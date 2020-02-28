@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SwordMoveFormComponent } from './sword-play-move.component';
+import { SwordMoveFormComponent } from './sword-move-form.component';
 
 describe('SwordPlayMoveComponent', () => {
   let component: SwordMoveFormComponent;

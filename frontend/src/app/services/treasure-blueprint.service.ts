@@ -21,6 +21,7 @@ export class TreasureBlueprintService {
   }
 
   save(newTreasureBlueprint: TreasureBlueprintModel) {
+    console.log(newTreasureBlueprint);
     this.http.post('http://localhost:8080/saveTreasureBlueprint.json', newTreasureBlueprint).subscribe(() => this.getAll());
   }
 
@@ -29,6 +30,6 @@ export class TreasureBlueprintService {
   }
 
   delete(id: string) {
-    this.http.delete('http://localhost:8080/deleteTreasure.json', {params: new HttpParams().set('id', id)}).subscribe(() => this.getAll());
+    this.http.delete('http://localhost:8080/deleteTreasureBlueprint.json', {params: new HttpParams().set('id', id)}).subscribe(() => this.getAll());
   }
 }

@@ -7,6 +7,7 @@ import net.homecredit.trainee.drd.entity.character.Person;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -100,6 +101,12 @@ public class Race {
         this.resistanceAbilityCorrection = resistanceAbilityCorrection;
         this.intelligenceAbilityCorrection = intelligenceAbilityCorrection;
         this.charismaAbilityCorrection = charismaAbilityCorrection;
+    }
+
+    public Race(String name, CharacterSize characterSize) {
+        this.id = UUID.randomUUID();
+        this.name = name;
+        this.size = characterSize;
     }
 
     public UUID getId() {
@@ -200,6 +207,10 @@ public class Race {
 
     public int getCharismaAbilityCorrection() {
         return charismaAbilityCorrection;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     @Override

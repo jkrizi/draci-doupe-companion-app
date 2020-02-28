@@ -386,3 +386,25 @@ alter table WEAPON_FAMILY rename column WEAPON_DAMAGE_TYPE to DAMAGE_TYPE;
 
 --changeset Jiri.Kriz1:1576766708146-101
 alter table WEAPON_FAMILY drop column DAMAGE_TYPE;
+
+--changeset Jan.Zatloukal:1576766708146-102
+alter table WEAPON
+  add Type_ID RAW(16) not null;
+
+--changeset Jan.Zatloukal:1576766708146-103
+alter table TREASURE_BLUEPRINT
+  add GOLD_VALUE FLOAT(22) not null;
+
+--changeset Jan.Zatloukal:1576766708146-104
+alter table TREASURE_BLUEPRINT
+  add SILVER_VALUE FLOAT(22) not null;
+
+--changeset Jan.Zatloukal:1576766708146-105
+alter table TREASURE_BLUEPRINT
+  add COPPER_VALUE FLOAT(22) not null;
+
+--changeset Jan.Zatloukal:1576766708146-106
+alter table TREASURE_BLUEPRINT drop column TREASURE_VALUE;
+
+--changeset Jan.Zatloukal:1576766708146-107
+alter table TREASURE_BLUEPRINT drop constraint TREASURE_BLUEPRINT_GEMSTONE_ID_FK;

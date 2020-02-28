@@ -2,6 +2,7 @@ package net.homecredit.trainee.drd.entity.character.profession.wizard;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -102,5 +103,18 @@ public class Spell {
                 ", conjuring=" + conjuring +
                 ", duration=" + duration +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Spell)) return false;
+        Spell spell = (Spell) o;
+        return id.equals(spell.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

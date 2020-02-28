@@ -25,11 +25,7 @@ public class WeaponBlueprintService {
 
     public WeaponBlueprint drawAndFileBlueprint(String name, String publicDescription, String privateDescription, int weight, int attack, int hurt, int defense, int initiativeModifier, int shortRangeLimit, int midRangeLimit, int longRangeLimit, int minReach, int maxReach, WeaponFamily weaponFamily) {
         WeaponBlueprint weaponBlueprint = new WeaponBlueprint(name, publicDescription, privateDescription, weight, attack, hurt, defense, initiativeModifier, shortRangeLimit, midRangeLimit, longRangeLimit, minReach, maxReach, weaponFamily);
-        if(weaponBlueprintRepository.containsBlueprint(weaponBlueprint)){
-            throw new RuntimeException("Weapon blueprint already exists");
-        }
-        weaponBlueprintRepository.save(weaponBlueprint);
-        shopService.createPriceTag(weaponBlueprint, ItemType.WEAPONS);
+        save(weaponBlueprint);
         return weaponBlueprint;
     }
 
@@ -45,8 +41,13 @@ public class WeaponBlueprintService {
         return weaponBlueprintRepository.findAll();
     }
 
-    public void save(WeaponBlueprint newWeaponBlueprint) {
-        weaponBlueprintRepository.save(newWeaponBlueprint);
+    public WeaponBlueprint save(WeaponBlueprint weaponBlueprint) {
+        if(weaponBlueprintRepository.containsBlueprint(weaponBlueprint)){
+            throw new RuntimeException("Weapon blueprint already exists");
+        }
+        weaponBlueprintRepository.save(weaponBlueprint);
+        shopService.createPriceTag(weaponBlueprint, ItemType.WEAPONS);
+        return weaponBlueprint;
     }
 
     public void update(WeaponBlueprint existingWeaponBlueprint) {

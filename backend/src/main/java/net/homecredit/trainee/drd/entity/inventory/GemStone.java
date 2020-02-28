@@ -1,14 +1,17 @@
 package net.homecredit.trainee.drd.entity.inventory;
 
-import net.homecredit.trainee.drd.entity.blueprint.item.GemstoneBlueprint;
-import net.homecredit.trainee.drd.entity.blueprint.item.TreasureBlueprint;
+import java.util.Objects;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import java.util.Objects;
-import java.util.UUID;
+
+import net.homecredit.trainee.drd.entity.blueprint.item.GemstoneBlueprint;
+import net.homecredit.trainee.drd.entity.blueprint.item.TreasureBlueprint;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class GemStone {
@@ -23,6 +26,7 @@ public class GemStone {
     @ManyToOne(fetch = FetchType.LAZY)
     private GemstoneBlueprint gemStoneBlueprint;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private TreasureBlueprint treasureBlueprint;
 
