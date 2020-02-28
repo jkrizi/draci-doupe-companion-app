@@ -13,7 +13,9 @@ public class TreasureBlueprintComparatorByAttributes implements Comparator<Treas
 
         //compare every attribute first and if they are same compare gemstones
         if (newBlueprint.getMaterialWeight() == databaseBlueprint.getMaterialWeight() &&
-                Double.compare(databaseBlueprint.getTreasureValue(), newBlueprint.getTreasureValue()) == 0 &&
+                Double.compare(databaseBlueprint.getGoldValue(), newBlueprint.getGoldValue()) == 0 &&
+                Double.compare(databaseBlueprint.getSilverValue(), newBlueprint.getSilverValue()) == 0 &&
+                Double.compare(databaseBlueprint.getCopperValue(), newBlueprint.getCopperValue()) == 0 &&
                 newBlueprint.getName().equals(databaseBlueprint.getName()) &&
                 newBlueprint.getPublicDescription().equals(databaseBlueprint.getPublicDescription()) &&
                 newBlueprint.getPrivateDescription().equals(databaseBlueprint.getPrivateDescription()) &&

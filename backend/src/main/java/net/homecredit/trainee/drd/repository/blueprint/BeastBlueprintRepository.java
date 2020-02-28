@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Repository
 public class BeastBlueprintRepository {
@@ -56,5 +57,13 @@ public class BeastBlueprintRepository {
             }
         }
         return false;
+    }
+
+    public void update(BeastBlueprint beastBlueprint) {
+        entityManager.merge(beastBlueprint);
+    }
+
+    public void delete(UUID id) {
+        entityManager.remove(entityManager.find(BeastBlueprint.class, id));
     }
 }

@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -55,7 +56,15 @@ public class BeastBlueprintService {
         return new BeastBlueprint(source, name, species, description, viability, viabilityBonus, manna, abilityScoreMap, mobility, size, vulnerability, inventory, combatValues, pugnacity, persistence, tameAbility, trained);
     }
 
-    public void saveBeastBlueprint(BeastBlueprint blueprint) {
+    public void deleteAll() {
+        beastBlueprintRepository.deleteAll();
+    }
+
+    public List<BeastBlueprint> findAll() {
+        return beastBlueprintRepository.findAll();
+    }
+
+    public void save(BeastBlueprint blueprint) {
         for (AbilityScore a : blueprint.getAbilityMap().values()) {
             a.setBeastBlueprint(blueprint);
         }
@@ -65,11 +74,11 @@ public class BeastBlueprintService {
         beastBlueprintRepository.saveBlueprint(blueprint);
     }
 
-    public void deleteAll() {
-        beastBlueprintRepository.deleteAll();
+    public void update(BeastBlueprint beastBlueprint) {
+        beastBlueprintRepository.update(beastBlueprint);
     }
 
-    public List<BeastBlueprint> findAll() {
-        return beastBlueprintRepository.findAll();
+    public void delete(UUID id) {
+        beastBlueprintRepository.delete(id);
     }
 }

@@ -54,10 +54,10 @@ public class Demo2 {
         gemStones.add(gemStone2);
         gemStones.add(gemStone3);
 
-        TreasureBlueprint tb = treasureBlueprintService.drawAndFileBlueprint("Treasure", "Pekny treasure", "private description", gemStones, material, 1, skill, 10);
-        for(GemStone ge : gemStones){
+//        TreasureBlueprint tb = treasureBlueprintService.drawAndFileBlueprint("Treasure", "Pekny treasure", "private description", gemStones, material, 1, skill, 10, 0, 0);
+        /*for(GemStone ge : gemStones){
             treasureBlueprintService.addTreasureBlueprintToGemstone(tb, ge);
-        }
+        }*/
     }
 
 //    public void setTestArmorBlueprint(ArmorBlueprintService armorBlueprintService) {
@@ -142,7 +142,7 @@ public class Demo2 {
 
             vulnerabilities.addAll(EnumSet.complementOf(EnumSet.of(Vulnerability.E, Vulnerability.F, Vulnerability.N, Vulnerability.P)));
 
-            beastBlueprintService.saveBeastBlueprint(goblinIdeal);
+            beastBlueprintService.save(goblinIdeal);
 
 
             /**

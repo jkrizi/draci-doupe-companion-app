@@ -30,13 +30,19 @@ public class TreasureBlueprint implements ItemBlueprint {
     @Column(name = "PRODUCT_QUALITY")
     private SkillKnowledge productQuality;
 
-    @Column(name = "TREASURE_VALUE")
-    private double treasureValue;
+    @Column(name = "GOLD_VALUE")
+    private double goldValue;
+
+    @Column(name = "SILVER_VALUE")
+    private double silverValue;
+
+    @Column(name = "COPPER_VALUE")
+    private double copperValue;
 
     public TreasureBlueprint() {
     }
 
-    public TreasureBlueprint(String name, String publicDescription, String privateDescription, Collection<GemStone> gemStones, Material material, int materialWeight, SkillKnowledge productQuality, double treasureValue) {
+    public TreasureBlueprint(String name, String publicDescription, String privateDescription, Collection<GemStone> gemStones, Material material, int materialWeight, SkillKnowledge productQuality, double goldValue, double silverValue, double copperValue) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.publicDescription = publicDescription;
@@ -45,7 +51,9 @@ public class TreasureBlueprint implements ItemBlueprint {
         this.material = material;
         this.materialWeight = materialWeight;
         this.productQuality = productQuality;
-        this.treasureValue = treasureValue;
+        this.goldValue = goldValue;
+        this.silverValue = silverValue;
+        this.copperValue = copperValue;
     }
 
     public UUID getId() {
@@ -122,12 +130,28 @@ public class TreasureBlueprint implements ItemBlueprint {
         this.productQuality = productQuality;
     }
 
-    public double getTreasureValue() {
-        return treasureValue;
+    public double getGoldValue() {
+        return goldValue;
     }
 
-    public void setTreasureValue(double treasureValue) {
-        this.treasureValue = treasureValue;
+    public void setGoldValue(double goldValue) {
+        this.goldValue = goldValue;
+    }
+
+    public double getSilverValue() {
+        return silverValue;
+    }
+
+    public void setSilverValue(double silverValue) {
+        this.silverValue = silverValue;
+    }
+
+    public double getCopperValue() {
+        return copperValue;
+    }
+
+    public void setCopperValue(double copperValue) {
+        this.copperValue = copperValue;
     }
 
     @Override
@@ -154,7 +178,9 @@ public class TreasureBlueprint implements ItemBlueprint {
                 ", material=" + material +
                 ", materialWeight=" + materialWeight +
                 ", productQuality=" + productQuality +
-                ", treasureValue=" + treasureValue +
+                ", goldValue=" + goldValue +
+                ", silverValue=" + silverValue +
+                ", copperValue=" + copperValue +
                 '}';
     }
 }

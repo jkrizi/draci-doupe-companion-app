@@ -1,13 +1,16 @@
 package net.homecredit.trainee.drd.repository.blueprint;
 
-import net.homecredit.trainee.drd.entity.blueprint.item.TreasureBlueprint;
-import net.homecredit.trainee.drd.util.comparator.TreasureBlueprintComparatorByAttributes;
-import net.homecredit.trainee.drd.entity.inventory.GemStone;
-import org.springframework.stereotype.Repository;
+import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import java.util.*;
+
+import net.homecredit.trainee.drd.entity.blueprint.item.TreasureBlueprint;
+import net.homecredit.trainee.drd.entity.inventory.GemStone;
+import net.homecredit.trainee.drd.util.comparator.TreasureBlueprintComparatorByAttributes;
+
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class TreasureBlueprintRepository {
@@ -36,7 +39,11 @@ public class TreasureBlueprintRepository {
     }
 
     public List<TreasureBlueprint> findAll() {
-        TypedQuery<TreasureBlueprint> query = entityManager.createQuery("select x from TreasureBlueprint x", TreasureBlueprint.class);
+        TypedQuery<TreasureBlueprint> query = entityManager.createQuery(
+                "select distinct tb from TreasureBlueprint tb " +
+                        "left join fetch tb.gemStones gs " +
+                        "left join fetch gs.gemStoneBlueprint"
+                , TreasureBlueprint.class);
         return query.getResultList();
     }
 
@@ -60,4 +67,11 @@ public class TreasureBlueprintRepository {
     }
 
 
+    public void update(TreasureBlueprint treasureBlueprint) {
+        entityManager.merge(treasureBlueprint);
+    }
+
+    public void delete(UUID id) {
+        entityManager.remove(entityManager.find(TreasureBlueprint.class, id));
+    }
 }

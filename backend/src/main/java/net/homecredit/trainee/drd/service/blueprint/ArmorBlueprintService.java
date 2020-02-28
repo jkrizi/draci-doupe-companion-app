@@ -24,15 +24,11 @@ public class ArmorBlueprintService {
         this.shopService = shopService;
     }
 
-//    public ArmorBlueprint drawAndFileBlueprint(String name, String publicDescription, String privateDescription, char int weight, int defense, Set<BodySection> coverage) {
-//        ArmorBlueprint armorBlueprint = new ArmorBlueprint(name, publicDescription, privateDescription, weight, defense, coverage);
-//        if(armorBlueprintRepository.containsBlueprint(armorBlueprint)){
-//            throw new RuntimeException("Armor blueprint already exists");
-//        }
-//        armorBlueprintRepository.save(armorBlueprint);
-//        shopService.createPriceTag(armorBlueprint, ItemType.ARMOR);
-//        return armorBlueprint;
-//    }
+    /*public ArmorBlueprint drawAndFileBlueprint(String name, String publicDescription, String privateDescription, int weight, int defense, Set<BodySection> coverage) {
+        ArmorBlueprint armorBlueprint = new ArmorBlueprint(name, publicDescription, privateDescription, weight, defense, coverage);
+        save(armorBlueprint);
+        return armorBlueprint;
+    }*/
 
     public ArmorBlueprint findBlueprint(UUID id) {
         return armorBlueprintRepository.find(id);
@@ -47,6 +43,11 @@ public class ArmorBlueprintService {
     }
 
     public void save(ArmorBlueprint newArmorBlueprint) {
+        if(armorBlueprintRepository.containsBlueprint(newArmorBlueprint)){
+            throw new RuntimeException("Armor blueprint already exists");
+        }
+        armorBlueprintRepository.save(newArmorBlueprint);
+        shopService.createPriceTag(newArmorBlueprint, ItemType.ARMOR);
         armorBlueprintRepository.save(newArmorBlueprint);
     }
 

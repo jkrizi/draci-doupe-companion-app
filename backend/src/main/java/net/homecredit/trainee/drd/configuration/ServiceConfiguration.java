@@ -1,5 +1,6 @@
 package net.homecredit.trainee.drd.configuration;
 
+import net.homecredit.trainee.drd.controller.dto.*;
 import net.homecredit.trainee.drd.repository.blueprint.*;
 import net.homecredit.trainee.drd.repository.character.BeastRepository;
 import net.homecredit.trainee.drd.repository.character.RaceRepository;
@@ -130,5 +131,40 @@ public class ServiceConfiguration {
     @Bean
     public Random random() {
         return new Random();
+    }
+
+    @Bean
+    public RaceConverter raceConverter(){
+        return new RaceConverter();
+    }
+
+    @Bean
+    public TreasureBlueprintDtoConverter treasureBlueprintDtoConverter(TreasureBlueprintService treasureBlueprintService){
+        return new TreasureBlueprintDtoConverter(treasureBlueprintService);
+    }
+
+    @Bean
+    public WeaponBlueprintDtoConverter weaponBlueprintDtoConverter(){
+        return new WeaponBlueprintDtoConverter();
+    }
+
+    @Bean
+    public BeastBlueprintDtoConverter beastBlueprintDtoConverter(){
+        return new BeastBlueprintDtoConverter();
+    }
+
+    @Bean
+    public ArmorBlueprintDtoConverter armorBlueprintDtoConverter(){
+        return new ArmorBlueprintDtoConverter();
+    }
+
+    @Bean
+    public GoodsBlueprintDtoConverter goodsBlueprintDtoConverter(){
+        return new GoodsBlueprintDtoConverter();
+    }
+
+    @Bean
+    public SpellDtoConverter spellDtoConverter(){
+        return new SpellDtoConverter();
     }
 }
