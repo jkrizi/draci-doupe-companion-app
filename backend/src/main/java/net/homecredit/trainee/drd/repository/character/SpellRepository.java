@@ -19,8 +19,9 @@ public class SpellRepository {
     }
 
     public List<Spell> findAll() {
-        TypedQuery<Spell> query = entityManager.createQuery("select s from Spell s",Spell.class);
-        return query.getResultList();
+        return entityManager
+                .createQuery("select s from Spell s",Spell.class)
+                .getResultList();
     }
 
     public void save(Spell newSpell) {
@@ -28,7 +29,7 @@ public class SpellRepository {
     }
 
     public void delete(UUID id) {
-        entityManager.remove(entityManager.find(Spell.class,id));
+        entityManager.remove(entityManager.find(Spell.class, id));
     }
 
     public void update(Spell existingSpell) {

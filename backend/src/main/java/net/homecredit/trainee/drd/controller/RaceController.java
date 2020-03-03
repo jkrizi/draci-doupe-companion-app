@@ -27,22 +27,19 @@ public class RaceController {
 
     @GetMapping("/getAllRaces.json")
     public List<RaceDto> listRaces() {
-        List<Race> races = raceService.findAll();
-        List<RaceDto> raceDtoList = new ArrayList<>();
-        for(Race r: races) {
-            raceDtoList.add(convertToDto(r));
-        }
-        return raceDtoList;
+        List<RaceDto> races = new ArrayList<>();
+        raceService.findAll().forEach( race -> races.add(convert(race)));
+        return races;
     }
 
     @PostMapping("/saveRace.json")
     public void saveRace(@RequestBody RaceDto newRace) {
-        raceService.save(convertToEntity(newRace));
+        raceService.save(convert(newRace));
     }
 
     @PostMapping("/updateRace.json")
     public void updateRace(@RequestBody RaceDto existingRace) {
-        Race entity = convertToEntity(existingRace);
+        Race entity = convert(existingRace);
         raceService.update(entity);
     }
 
@@ -51,17 +48,15 @@ public class RaceController {
         raceService.delete(id);
     }
 
-    private Race convertToEntity(RaceDto dto) {
-        System.out.println(dto);
-        Race entity = modelMapper.map(dto, Race.class);
-        entity.setWeapon(weaponFamilyService.findById(dto.getWeaponFamilyId()));
-        System.out.println(entity);
-        return entity;
+    private Race convert(RaceDto raceDto) {
+        Race race = modelMapper.map(raceDto, Race.class);
+        race.setWeapon(weaponFamilyService.findById(raceDto.getWeaponFamilyId()));
+        return race;
     }
 
-    private RaceDto convertToDto(Race entity) {
-        RaceDto dto = modelMapper.map(entity, RaceDto.class);
-        dto.setWeaponFamilyId(entity.getWeapon().getId());
-        return dto;
+    private RaceDto convert(Race race) {
+        RaceDto raceDto = modelMapper.map(race, RaceDto.class);
+        raceDto.setWeaponFamilyId(race.getWeapon().getId());
+        return raceDto;
     }
 }

@@ -5,7 +5,6 @@ import net.homecredit.trainee.drd.entity.blueprint.BeastBlueprint;
 import net.homecredit.trainee.drd.entity.blueprint.item.*;
 import net.homecredit.trainee.drd.entity.character.profession.warrior.SwordMove;
 import net.homecredit.trainee.drd.service.blueprint.*;
-import net.homecredit.trainee.drd.service.character.profession.SpellService;
 import net.homecredit.trainee.drd.service.character.profession.SwordMoveService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +17,6 @@ public class PersistenceController {
 
     private BeastBlueprintService beastBlueprintService;
     private BeastBlueprintDtoConverter beastBlueprintDtoConverter;
-    private SpellService spellService;
-    private SpellDtoConverter spellDtoConverter;
     private SwordMoveService swordMoveService;
     private WeaponBlueprintService weaponBlueprintService;
     private WeaponBlueprintDtoConverter weaponBlueprintDtoConverter;
@@ -30,15 +27,13 @@ public class PersistenceController {
     private TreasureBlueprintService treasureBlueprintService;
     private TreasureBlueprintDtoConverter treasureBlueprintDtoConverter;
 
-    public PersistenceController(BeastBlueprintService beastBlueprintService, BeastBlueprintDtoConverter beastBlueprintDtoConverter, SpellService spellService, SwordMoveService swordMoveService, WeaponBlueprintService weaponBlueprintService, WeaponBlueprintDtoConverter weaponBlueprintDtoConverter, ArmorBlueprintService armorBlueprintService, ArmorBlueprintDtoConverter armorBlueprintDtoConverter, GoodsBlueprintService goodsBlueprintService, GoodsBlueprintDtoConverter goodsBlueprintDtoConverter, TreasureBlueprintService treasureBlueprintService, TreasureBlueprintDtoConverter treasureBlueprintDtoConverter, SpellDtoConverter spellDtoConverter) {
+    public PersistenceController(BeastBlueprintService beastBlueprintService, BeastBlueprintDtoConverter beastBlueprintDtoConverter, SwordMoveService swordMoveService, WeaponBlueprintService weaponBlueprintService, WeaponBlueprintDtoConverter weaponBlueprintDtoConverter, ArmorBlueprintService armorBlueprintService, ArmorBlueprintDtoConverter armorBlueprintDtoConverter, GoodsBlueprintService goodsBlueprintService, GoodsBlueprintDtoConverter goodsBlueprintDtoConverter, TreasureBlueprintService treasureBlueprintService, TreasureBlueprintDtoConverter treasureBlueprintDtoConverter) {
         this.beastBlueprintService = beastBlueprintService;
         this.beastBlueprintDtoConverter = beastBlueprintDtoConverter;
-        this.spellService = spellService;
         this.weaponBlueprintDtoConverter = weaponBlueprintDtoConverter;
         this.armorBlueprintDtoConverter = armorBlueprintDtoConverter;
         this.goodsBlueprintDtoConverter = goodsBlueprintDtoConverter;
         this.treasureBlueprintDtoConverter = treasureBlueprintDtoConverter;
-        this.spellDtoConverter = spellDtoConverter;
         this.swordMoveService = swordMoveService;
         this.weaponBlueprintService = weaponBlueprintService;
         this.armorBlueprintService = armorBlueprintService;
@@ -74,31 +69,6 @@ public class PersistenceController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping(value = "/getAllSpells.json", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody
-    List<SpellDto> listSpells() {
-        return spellDtoConverter.convert(spellService.findAll());
-    }
-
-    @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/saveSpell.json")
-    public void saveSpell(@RequestBody SpellDto newSpellDto) {
-        spellService.save(spellDtoConverter.convert(newSpellDto));
-    }
-
-    @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/updateSpell.json")
-    public void updateSpell(@RequestBody SpellDto spellDto) {
-        spellService.update(spellDtoConverter.convert(spellDto));
-    }
-
-    @CrossOrigin(origins = "http://localhost:4200")
-    @DeleteMapping("/deleteSpell.json")
-    public void deleteSpell(@RequestParam UUID id) {
-        spellService.delete(id);
-    }
-
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/getAllSwordMoves.json", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     List<SwordMove> listSwordMoves() {
@@ -122,7 +92,6 @@ public class PersistenceController {
     public void deleteSwordMove(@RequestParam UUID id) {
         swordMoveService.delete(id);
     }
-
 
 
     @CrossOrigin(origins = "http://localhost:4200")

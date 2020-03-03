@@ -12,16 +12,6 @@ public class SpellDto {
     private int conjuring;
     private int duration;
 
-    public SpellDto(UUID id, String name, String description, int manna, int range, int conjuring, int duration) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.manna = manna;
-        this.range = range;
-        this.conjuring = conjuring;
-        this.duration = duration;
-    }
-
     public UUID getId() {
         return id;
     }

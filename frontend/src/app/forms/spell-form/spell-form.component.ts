@@ -11,14 +11,21 @@ import {v4 as uuid} from 'uuid';
   styleUrls: ['./spell-form.component.css']
 })
 export class SpellFormComponent implements OnInit {
+  // Component controls
   editMode = false;
   selectedSpell: SpellModel;
 
+  // Component forms
   spellForm: FormGroup;
 
   constructor(private spellService: SpellService) { }
 
   ngOnInit() {
+    this.initForm();
+    this.spellService.selectedSpell.subscribe( spell => this.fillForm(spell));
+  }
+
+  initForm() {
     this.spellForm = new FormGroup(
       {
         id: new FormControl(null),
@@ -30,12 +37,6 @@ export class SpellFormComponent implements OnInit {
         duration: new FormControl(null)
       }
     );
-
-    this.spellService.selectedSpell.subscribe( spell => {
-      this.editMode = true;
-      this.selectedSpell = spell;
-      this.fillForm(spell);
-    });
   }
 
   onSubmit() {
@@ -63,6 +64,8 @@ export class SpellFormComponent implements OnInit {
   }
 
   fillForm(spell: SpellModel) {
+    this.editMode = true;
+    this.selectedSpell = spell;
     this.spellForm.patchValue(spell);
   }
 
