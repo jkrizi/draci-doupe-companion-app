@@ -1,13 +1,9 @@
 package net.homecredit.trainee.drd.entity.character.race;
 
-import net.homecredit.trainee.drd.entity.blueprint.PersonBlueprint;
-import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponFamily;
 import net.homecredit.trainee.drd.entity.character.CharacterSize;
-import net.homecredit.trainee.drd.entity.character.Person;
+import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponFamily;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -18,14 +14,11 @@ public class Race {
     private UUID id;
     private String name;
     private String description;
-    @Column(name = "min_weight")
-    private int minWeight;
-    @Column(name = "max_weight")
-    private int maxWeight;
-    @Column(name = "min_height")
-    private int minHeight;
-    @Column(name = "max_height")
-    private int maxHeight;
+    private Integer minWeight;
+    private Integer maxWeight;
+    private Integer minHeight;
+    private Integer maxHeight;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "race_size")
     private CharacterSize size;
@@ -33,191 +26,214 @@ public class Race {
     @ManyToOne
     private WeaponFamily weapon;
 
-    @OneToMany(mappedBy = "race", orphanRemoval = true, fetch = FetchType.LAZY)
-    private Collection<Person> person;
+    private Integer strengthThrows;
+    private Integer dexterityThrows;
+    private Integer resistanceThrows;
+    private Integer intelligenceThrows;
+    private Integer charismaThrows;
 
-    @OneToMany(mappedBy = "race", orphanRemoval = true, fetch = FetchType.LAZY)
-    private Collection<PersonBlueprint> personBlueprint;
+    private Integer strengthBase;
+    private Integer dexterityBase;
+    private Integer resistanceBase;
+    private Integer intelligenceBase;
+    private Integer charismaBase;
 
-    @Column(name = "strength_nr_of_throws")
-    private int strengthNrOfThrows;
-    @Column(name = "dexterity_nr_of_throws")
-    private int dexterityNrOfThrows;
-    @Column(name = "resistance_nr_of_throws")
-    private int resistanceNrOfThrows;
-    @Column(name = "intelligence_nr_of_throws")
-    private int intelligenceNrOfThrows;
-    @Column(name = "charisma_nr_of_throws")
-    private int charismaNrOfThrows;
-
-    @Column(name = "strength_ability_base")
-    private int strengthAbilityBase;
-    @Column(name = "dexterity_ability_base")
-    private int dexterityAbilityBase;
-    @Column(name = "resistance_ability_base")
-    private int resistanceAbilityBase;
-    @Column(name = "intelligence_ability_base")
-    private int intelligenceAbilityBase;
-    @Column(name = "charisma_ability_base")
-    private int charismaAbilityBase;
-
-    @Column(name = "strength_ability_correction")
-    private int strengthAbilityCorrection;
-    @Column(name = "dexterity_ability_correction")
-    private int dexterityAbilityCorrection;
-    @Column(name = "resistance_ability_correction")
-    private int resistanceAbilityCorrection;
-    @Column(name = "intelligence_ability_correction")
-    private int intelligenceAbilityCorrection;
-    @Column(name = "charisma_ability_correction")
-    private int charismaAbilityCorrection;
-
-    public Race() {
-    }
-
-    public Race(String name, String description, int minWeight, int maxWeight, int minHeight, int maxHeight, CharacterSize size, WeaponFamily weapon, Collection<PersonBlueprint> personBlueprint, int strengthNrOfThrows, int dexterityNrOfThrows, int resistanceNrOfThrows, int intelligenceNrOfThrows, int charismaNrOfThrows, int strengthAbilityBase, int dexterityAbilityBase, int resistanceAbilityBase, int intelligenceAbilityBase, int charismaAbilityBase, int strengthAbilityCorrection, int dexterityAbilityCorrection, int resistanceAbilityCorrection, int intelligenceAbilityCorrection, int charismaAbilityCorrection) {
-        this.id = UUID.randomUUID();
-        this.name = name;
-        this.description = description;
-        this.minWeight = minWeight;
-        this.maxWeight = maxWeight;
-        this.minHeight = minHeight;
-        this.maxHeight = maxHeight;
-        this.size = size;
-        this.weapon = weapon;
-        this.personBlueprint = personBlueprint;
-        this.strengthNrOfThrows = strengthNrOfThrows;
-        this.dexterityNrOfThrows = dexterityNrOfThrows;
-        this.resistanceNrOfThrows = resistanceNrOfThrows;
-        this.intelligenceNrOfThrows = intelligenceNrOfThrows;
-        this.charismaNrOfThrows = charismaNrOfThrows;
-        this.strengthAbilityBase = strengthAbilityBase;
-        this.dexterityAbilityBase = dexterityAbilityBase;
-        this.resistanceAbilityBase = resistanceAbilityBase;
-        this.intelligenceAbilityBase = intelligenceAbilityBase;
-        this.charismaAbilityBase = charismaAbilityBase;
-        this.strengthAbilityCorrection = strengthAbilityCorrection;
-        this.dexterityAbilityCorrection = dexterityAbilityCorrection;
-        this.resistanceAbilityCorrection = resistanceAbilityCorrection;
-        this.intelligenceAbilityCorrection = intelligenceAbilityCorrection;
-        this.charismaAbilityCorrection = charismaAbilityCorrection;
-    }
-
-    public Race(String name, CharacterSize characterSize) {
-        this.id = UUID.randomUUID();
-        this.name = name;
-        this.size = characterSize;
-    }
+    private Integer strengthCorrection;
+    private Integer dexterityCorrection;
+    private Integer resistanceCorrection;
+    private Integer intelligenceCorrection;
+    private Integer charismaCorrection;
 
     public UUID getId() {
         return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public int getMinWeight() {
-        return minWeight;
-    }
-
-    public int getMaxWeight() {
-        return maxWeight;
-    }
-
-    public int getMinHeight() {
-        return minHeight;
-    }
-
-    public int getMaxHeight() {
-        return maxHeight;
-    }
-
-    public CharacterSize getSize() {
-        return size;
-    }
-
-    public WeaponFamily getWeapon() {
-        return weapon;
-    }
-
-    public Collection<PersonBlueprint> getPersonBlueprint() {
-        return personBlueprint;
-    }
-
-    public int getStrengthNrOfThrows() {
-        return strengthNrOfThrows;
-    }
-
-    public int getDexterityNrOfThrows() {
-        return dexterityNrOfThrows;
-    }
-
-    public int getResistanceNrOfThrows() {
-        return resistanceNrOfThrows;
-    }
-
-    public int getIntelligenceNrOfThrows() {
-        return intelligenceNrOfThrows;
-    }
-
-    public int getCharismaNrOfThrows() {
-        return charismaNrOfThrows;
-    }
-
-    public int getStrengthAbilityBase() {
-        return strengthAbilityBase;
-    }
-
-    public int getDexterityAbilityBase() {
-        return dexterityAbilityBase;
-    }
-
-    public int getResistanceAbilityBase() {
-        return resistanceAbilityBase;
-    }
-
-    public int getIntelligenceAbilityBase() {
-        return intelligenceAbilityBase;
-    }
-
-    public int getCharismaAbilityBase() {
-        return charismaAbilityBase;
-    }
-
-    public int getStrengthAbilityCorrection() {
-        return strengthAbilityCorrection;
-    }
-
-    public int getDexterityAbilityCorrection() {
-        return dexterityAbilityCorrection;
-    }
-
-    public int getResistanceAbilityCorrection() {
-        return resistanceAbilityCorrection;
-    }
-
-    public int getIntelligenceAbilityCorrection() {
-        return intelligenceAbilityCorrection;
-    }
-
-    public int getCharismaAbilityCorrection() {
-        return charismaAbilityCorrection;
     }
 
     public void setId(UUID id) {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Race{" +
-                "name='" + name + '\'' +
-                '}';
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getMinWeight() {
+        return minWeight;
+    }
+
+    public void setMinWeight(Integer minWeight) {
+        this.minWeight = minWeight;
+    }
+
+    public Integer getMaxWeight() {
+        return maxWeight;
+    }
+
+    public void setMaxWeight(Integer maxWeight) {
+        this.maxWeight = maxWeight;
+    }
+
+    public Integer getMinHeight() {
+        return minHeight;
+    }
+
+    public void setMinHeight(Integer minHeight) {
+        this.minHeight = minHeight;
+    }
+
+    public Integer getMaxHeight() {
+        return maxHeight;
+    }
+
+    public void setMaxHeight(Integer maxHeight) {
+        this.maxHeight = maxHeight;
+    }
+
+    public CharacterSize getSize() {
+        return size;
+    }
+
+    public void setSize(CharacterSize size) {
+        this.size = size;
+    }
+
+    public WeaponFamily getWeapon() {
+        return weapon;
+    }
+
+    public void setWeapon(WeaponFamily weapon) {
+        this.weapon = weapon;
+    }
+
+    public Integer getStrengthThrows() {
+        return strengthThrows;
+    }
+
+    public void setStrengthThrows(Integer strengthThrows) {
+        this.strengthThrows = strengthThrows;
+    }
+
+    public Integer getDexterityThrows() {
+        return dexterityThrows;
+    }
+
+    public void setDexterityThrows(Integer dexterityThrows) {
+        this.dexterityThrows = dexterityThrows;
+    }
+
+    public Integer getResistanceThrows() {
+        return resistanceThrows;
+    }
+
+    public void setResistanceThrows(Integer resistanceThrows) {
+        this.resistanceThrows = resistanceThrows;
+    }
+
+    public Integer getIntelligenceThrows() {
+        return intelligenceThrows;
+    }
+
+    public void setIntelligenceThrows(Integer intelligenceThrows) {
+        this.intelligenceThrows = intelligenceThrows;
+    }
+
+    public Integer getCharismaThrows() {
+        return charismaThrows;
+    }
+
+    public void setCharismaThrows(Integer charismaThrows) {
+        this.charismaThrows = charismaThrows;
+    }
+
+    public Integer getStrengthBase() {
+        return strengthBase;
+    }
+
+    public void setStrengthBase(Integer strengthBase) {
+        this.strengthBase = strengthBase;
+    }
+
+    public Integer getDexterityBase() {
+        return dexterityBase;
+    }
+
+    public void setDexterityBase(Integer dexterityBase) {
+        this.dexterityBase = dexterityBase;
+    }
+
+    public Integer getResistanceBase() {
+        return resistanceBase;
+    }
+
+    public void setResistanceBase(Integer resistanceBase) {
+        this.resistanceBase = resistanceBase;
+    }
+
+    public Integer getIntelligenceBase() {
+        return intelligenceBase;
+    }
+
+    public void setIntelligenceBase(Integer intelligenceBase) {
+        this.intelligenceBase = intelligenceBase;
+    }
+
+    public Integer getCharismaBase() {
+        return charismaBase;
+    }
+
+    public void setCharismaBase(Integer charismaBase) {
+        this.charismaBase = charismaBase;
+    }
+
+    public Integer getStrengthCorrection() {
+        return strengthCorrection;
+    }
+
+    public void setStrengthCorrection(Integer strengthCorrection) {
+        this.strengthCorrection = strengthCorrection;
+    }
+
+    public Integer getDexterityCorrection() {
+        return dexterityCorrection;
+    }
+
+    public void setDexterityCorrection(Integer dexterityCorrection) {
+        this.dexterityCorrection = dexterityCorrection;
+    }
+
+    public Integer getResistanceCorrection() {
+        return resistanceCorrection;
+    }
+
+    public void setResistanceCorrection(Integer resistanceCorrection) {
+        this.resistanceCorrection = resistanceCorrection;
+    }
+
+    public Integer getIntelligenceCorrection() {
+        return intelligenceCorrection;
+    }
+
+    public void setIntelligenceCorrection(Integer intelligenceCorrection) {
+        this.intelligenceCorrection = intelligenceCorrection;
+    }
+
+    public Integer getCharismaCorrection() {
+        return charismaCorrection;
+    }
+
+    public void setCharismaCorrection(Integer charismaCorrection) {
+        this.charismaCorrection = charismaCorrection;
     }
 
     @Override

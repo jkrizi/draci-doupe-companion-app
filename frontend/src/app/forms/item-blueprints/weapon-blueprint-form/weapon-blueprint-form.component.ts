@@ -20,7 +20,7 @@ export class WeaponBlueprintFormComponent implements OnInit {
   isMelee = true;
   selectedWeaponBlueprint: WeaponBlueprintModel;
 
-  // TODO: Change string so it better describes underlying weapon (go to html page to do that)
+  // TODO: Change string so it better describes underlying weaponFamilyId (go to html page to do that)
   // Backend enums
   weaponFamilyDescriptions: WeaponFamilyModel[];
 

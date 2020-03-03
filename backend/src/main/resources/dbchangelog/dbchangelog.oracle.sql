@@ -408,3 +408,51 @@ alter table TREASURE_BLUEPRINT drop column TREASURE_VALUE;
 
 --changeset Jan.Zatloukal:1576766708146-107
 alter table TREASURE_BLUEPRINT drop constraint TREASURE_BLUEPRINT_GEMSTONE_ID_FK;
+
+--changeset Jiri.Kriz:1576766708146-108
+alter table RACE drop constraint RACE_WEAPONRY_ID_FK;
+
+--changeset Jiri.Kriz:1576766708146-109
+alter table RACE rename column STRENGTH_NR_OF_THROWS to STRENGTH_THROWS;
+
+--changeset Jiri.Kriz:1576766708146-110
+alter table RACE rename column DEXTERITY_NR_OF_THROWS to DEXTERITY_THROWS;
+
+--changeset Jiri.Kriz:1576766708146-111
+alter table RACE rename column RESISTANCE_NR_OF_THROWS to RESISTANCE_THROWS;
+
+--changeset Jiri.Kriz:1576766708146-112
+alter table RACE rename column INTELLIGENCE_NR_OF_THROWS to INTELLIGENCE_THROWS;
+
+--changeset Jiri.Kriz:1576766708146-113
+alter table RACE rename column CHARISMA_NR_OF_THROWS to CHARISMA_THROWS;
+
+--changeset Jiri.Kriz:1576766708146-114
+alter table RACE rename column STRENGTH_ABILITY_BASE to STRENGTH_BASE;
+
+--changeset Jiri.Kriz:1576766708146-115
+alter table RACE rename column DEXTERITY_ABILITY_BASE to DEXTERITY_BASE;
+
+--changeset Jiri.Kriz:1576766708146-116
+alter table RACE rename column RESISTANCE_ABILITY_BASE to RESISTANCE_BASE;
+
+--changeset Jiri.Kriz:1576766708146-117
+alter table RACE rename column INTELLIGENCE_ABILITY_BASE to INTELLIGENCE_BASE;
+
+--changeset Jiri.Kriz:1576766708146-118
+alter table RACE rename column CHARISMA_ABILITY_BASE to CHARISMA_BASE;
+
+--changeset Jiri.Kriz:1576766708146-119
+alter table RACE rename column STRENGTH_ABILITY_CORRECTION to STRENGTH_CORRECTION;
+
+--changeset Jiri.Kriz:1576766708146-120
+alter table RACE rename column DEXTERITY_ABILITY_CORRECTION to DEXTERITY_CORRECTION;
+
+--changeset Jiri.Kriz:1576766708146-121
+alter table RACE rename column RESISTANCE_ABILITY_CORRECTION to RESISTANCE_CORRECTION;
+
+--changeset Jiri.Kriz:1576766708146-122
+alter table RACE rename column INTELLIGENCE_ABILITY_CORRECTION to INTELLIGENCE_CORRECTION;
+
+--changeset Jiri.Kriz:1576766708146-123
+alter table RACE rename column CHARISMA_ABILITY_CORRECTION to CHARISMA_CORRECTION;

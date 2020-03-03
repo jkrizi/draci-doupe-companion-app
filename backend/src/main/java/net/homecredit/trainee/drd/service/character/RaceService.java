@@ -12,7 +12,7 @@ import java.util.UUID;
 @Service
 public class RaceService {
 
-    private RaceRepository raceRepository;
+    private final RaceRepository raceRepository;
 
     public RaceService(RaceRepository raceRepository) {
         this.raceRepository = raceRepository;
@@ -29,15 +29,15 @@ public class RaceService {
     public int getNrOfThrows(Race race, Ability ability) {
         switch (ability) {
             case STRENGTH:
-                return race.getStrengthNrOfThrows();
+                return race.getStrengthThrows();
             case DEXTERITY:
-                return race.getDexterityNrOfThrows();
+                return race.getDexterityThrows();
             case RESISTANCE:
-                return race.getResistanceNrOfThrows();
+                return race.getResistanceThrows();
             case INTELLIGENCE:
-                return race.getIntelligenceNrOfThrows();
+                return race.getIntelligenceThrows();
             case CHARISMA:
-                return race.getCharismaNrOfThrows();
+                return race.getCharismaThrows();
         }
         throw new IllegalArgumentException("Required invalid ability!");
     }
@@ -45,15 +45,15 @@ public class RaceService {
     public int getAbilityBase(Race race, Ability ability) {
         switch (ability) {
             case STRENGTH:
-                return race.getStrengthAbilityBase();
+                return race.getStrengthBase();
             case DEXTERITY:
-                return race.getDexterityAbilityBase();
+                return race.getDexterityBase();
             case RESISTANCE:
-                return race.getResistanceAbilityBase();
+                return race.getResistanceBase();
             case INTELLIGENCE:
-                return race.getIntelligenceAbilityBase();
+                return race.getIntelligenceBase();
             case CHARISMA:
-                return race.getCharismaAbilityBase();
+                return race.getCharismaBase();
         }
         throw new IllegalArgumentException("Required invalid ability!");
     }
@@ -61,15 +61,15 @@ public class RaceService {
     public int getAbilityCorrection(Race race, Ability ability) {
         switch (ability) {
             case STRENGTH:
-                return race.getStrengthAbilityCorrection();
+                return race.getStrengthCorrection();
             case DEXTERITY:
-                return race.getDexterityAbilityCorrection();
+                return race.getDexterityCorrection();
             case RESISTANCE:
-                return race.getResistanceAbilityCorrection();
+                return race.getResistanceCorrection();
             case INTELLIGENCE:
-                return race.getIntelligenceAbilityCorrection();
+                return race.getIntelligenceCorrection();
             case CHARISMA:
-                return race.getCharismaAbilityCorrection();
+                return race.getCharismaCorrection();
         }
         throw new IllegalArgumentException("Required invalid ability!");
     }

@@ -12,7 +12,7 @@
     <div class="form-group col-2">
       <label for="size">Size</label>
       <select class="form-control" formControlName="size" id="size">
-        <option *ngFor ="let size of sizes"> {{size}} </option>
+        <option *ngFor ="let size of sizes" [value]="size"> {{size}} </option>
       </select>
     </div>
     <div class="col">
@@ -35,8 +35,8 @@
 
   <div class="form-group">
     <label for="racial-weapon">Racial weapon</label>
-    <select class="form-control" formControlName="weapon" id="racial-weapon">
-      <option *ngFor ="let weapon of racialWeapons" [value]="weapon.id">{{weapon.name}}</option>
+    <select class="form-control" formControlName="weaponFamilyId" id="racial-weapon">
+      <option *ngFor ="let weapon of weaponFamilies" [value]="weapon.id">{{weapon.name}}</option>
     </select>
   </div>
 

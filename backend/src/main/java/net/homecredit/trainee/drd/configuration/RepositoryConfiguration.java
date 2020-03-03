@@ -4,6 +4,7 @@ import net.homecredit.trainee.drd.repository.blueprint.*;
 import net.homecredit.trainee.drd.repository.character.*;
 import net.homecredit.trainee.drd.repository.inventory.*;
 import net.homecredit.trainee.drd.repository.shop.ShopRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,15 +14,15 @@ import javax.persistence.EntityManager;
 public class RepositoryConfiguration {
 
     @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
+
+    @Bean
     public SwordMoveRepository swordMoveRepository(EntityManager em) {return  new SwordMoveRepository(em);}
 
     @Bean
     public SpellRepository spellRepository(EntityManager em) {return  new SpellRepository(em);}
-
-    @Bean
-    public RaceRepository raceRepository(EntityManager em) {
-        return new RaceRepository(em);
-    }
 
     @Bean
     public KnowHowRepository knowHowRepository(EntityManager em) {
@@ -82,9 +83,6 @@ public class RepositoryConfiguration {
     public WeaponRepository weaponRepository(EntityManager em) {
         return new WeaponRepository(em);
     }
-
-    @Bean
-    public WeaponFamilyRepository weaponFamilyRepository(EntityManager em) {return  new WeaponFamilyRepository(em); }
 
     @Bean
     public ShopRepository shopRepository(EntityManager em) {

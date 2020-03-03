@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -17,12 +18,15 @@ public class WeaponFamilyService {
         this.weaponFamilyRepository = weaponFamilyRepository;
     }
 
-
-    public void saveWeaponFamily(WeaponFamily newWeaponFamily) {
+    public void save(WeaponFamily newWeaponFamily) {
         weaponFamilyRepository.save(newWeaponFamily);
     }
 
-    public List<WeaponFamily> findAllWeaponFamilies() {
+    public List<WeaponFamily> findAll() {
         return weaponFamilyRepository.findAll();
+    }
+
+    public WeaponFamily findById(UUID id) {
+        return weaponFamilyRepository.findById(id);
     }
 }

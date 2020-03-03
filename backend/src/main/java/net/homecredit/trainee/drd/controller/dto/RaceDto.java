@@ -1,8 +1,9 @@
 package net.homecredit.trainee.drd.controller.dto;
 
-import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponFamily;
+import net.homecredit.trainee.drd.entity.character.CharacterSize;
 
-import java.util.List;
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import java.util.UUID;
 
 public class RaceDto {
@@ -14,27 +15,23 @@ public class RaceDto {
     private int maxWeight;
     private int minHeight;
     private int maxHeight;
-    //Character Size udela jako array
-    //A0, false, A, true, B, false, C, false, D, false, E, false
-    private List<String> characterSize;
-    private WeaponFamily weapon;
-    //    private Collection<Person> person;
-//    private Collection<PersonBlueprint> personBlueprint;
-    private int strengthNrOfThrows;
-    private int dexterityNrOfThrows;
-    private int resistanceNrOfThrows;
-    private int intelligenceNrOfThrows;
-    private int charismaNrOfThrows;
-    private int strengthAbilityBase;
-    private int dexterityAbilityBase;
-    private int resistanceAbilityBase;
-    private int intelligenceAbilityBase;
-    private int charismaAbilityBase;
-    private int strengthAbilityCorrection;
-    private int dexterityAbilityCorrection;
-    private int resistanceAbilityCorrection;
-    private int intelligenceAbilityCorrection;
-    private int charismaAbilityCorrection;
+    private CharacterSize size;
+    private UUID weaponFamilyId;
+    private int strengthThrows;
+    private int dexterityThrows;
+    private int resistanceThrows;
+    private int intelligenceThrows;
+    private int charismaThrows;
+    private int strengthBase;
+    private int dexterityBase;
+    private int resistanceBase;
+    private int intelligenceBase;
+    private int charismaBase;
+    private int strengthCorrection;
+    private int dexterityCorrection;
+    private int resistanceCorrection;
+    private int intelligenceCorrection;
+    private int charismaCorrection;
 
     public UUID getId() {
         return id;
@@ -92,139 +89,139 @@ public class RaceDto {
         this.maxHeight = maxHeight;
     }
 
-    public List<String> getCharacterSize() {
-        return characterSize;
+    public CharacterSize getSize() {
+        return size;
     }
 
-    public void setCharacterSize(List<String> size) {
-        this.characterSize = size;
+    public void setSize(CharacterSize size) {
+        this.size = size;
     }
 
-    public int getStrengthNrOfThrows() {
-        return strengthNrOfThrows;
+    public UUID getWeaponFamilyId() {
+        return weaponFamilyId;
     }
 
-    public void setStrengthNrOfThrows(int strengthNrOfThrows) {
-        this.strengthNrOfThrows = strengthNrOfThrows;
+    public void setWeaponFamilyId(UUID weaponFamilyId) {
+        this.weaponFamilyId = weaponFamilyId;
     }
 
-    public int getDexterityNrOfThrows() {
-        return dexterityNrOfThrows;
+    public int getStrengthThrows() {
+        return strengthThrows;
     }
 
-    public void setDexterityNrOfThrows(int dexterityNrOfThrows) {
-        this.dexterityNrOfThrows = dexterityNrOfThrows;
+    public void setStrengthThrows(int strengthThrows) {
+        this.strengthThrows = strengthThrows;
     }
 
-    public int getResistanceNrOfThrows() {
-        return resistanceNrOfThrows;
+    public int getDexterityThrows() {
+        return dexterityThrows;
     }
 
-    public void setResistanceNrOfThrows(int resistanceNrOfThrows) {
-        this.resistanceNrOfThrows = resistanceNrOfThrows;
+    public void setDexterityThrows(int dexterityThrows) {
+        this.dexterityThrows = dexterityThrows;
     }
 
-    public int getIntelligenceNrOfThrows() {
-        return intelligenceNrOfThrows;
+    public int getResistanceThrows() {
+        return resistanceThrows;
     }
 
-    public void setIntelligenceNrOfThrows(int intelligenceNrOfThrows) {
-        this.intelligenceNrOfThrows = intelligenceNrOfThrows;
+    public void setResistanceThrows(int resistanceThrows) {
+        this.resistanceThrows = resistanceThrows;
     }
 
-    public int getCharismaNrOfThrows() {
-        return charismaNrOfThrows;
+    public int getIntelligenceThrows() {
+        return intelligenceThrows;
     }
 
-    public void setCharismaNrOfThrows(int charismaNrOfThrows) {
-        this.charismaNrOfThrows = charismaNrOfThrows;
+    public void setIntelligenceThrows(int intelligenceThrows) {
+        this.intelligenceThrows = intelligenceThrows;
     }
 
-    public int getStrengthAbilityBase() {
-        return strengthAbilityBase;
+    public int getCharismaThrows() {
+        return charismaThrows;
     }
 
-    public void setStrengthAbilityBase(int strengthAbilityBase) {
-        this.strengthAbilityBase = strengthAbilityBase;
+    public void setCharismaThrows(int charismaThrows) {
+        this.charismaThrows = charismaThrows;
     }
 
-    public int getDexterityAbilityBase() {
-        return dexterityAbilityBase;
+    public int getStrengthBase() {
+        return strengthBase;
     }
 
-    public void setDexterityAbilityBase(int dexterityAbilityBase) {
-        this.dexterityAbilityBase = dexterityAbilityBase;
+    public void setStrengthBase(int strengthBase) {
+        this.strengthBase = strengthBase;
     }
 
-    public int getResistanceAbilityBase() {
-        return resistanceAbilityBase;
+    public int getDexterityBase() {
+        return dexterityBase;
     }
 
-    public void setResistanceAbilityBase(int resistanceAbilityBase) {
-        this.resistanceAbilityBase = resistanceAbilityBase;
+    public void setDexterityBase(int dexterityBase) {
+        this.dexterityBase = dexterityBase;
     }
 
-    public int getIntelligenceAbilityBase() {
-        return intelligenceAbilityBase;
+    public int getResistanceBase() {
+        return resistanceBase;
     }
 
-    public void setIntelligenceAbilityBase(int intelligenceAbilityBase) {
-        this.intelligenceAbilityBase = intelligenceAbilityBase;
+    public void setResistanceBase(int resistanceBase) {
+        this.resistanceBase = resistanceBase;
     }
 
-    public int getCharismaAbilityBase() {
-        return charismaAbilityBase;
+    public int getIntelligenceBase() {
+        return intelligenceBase;
     }
 
-    public void setCharismaAbilityBase(int charismaAbilityBase) {
-        this.charismaAbilityBase = charismaAbilityBase;
+    public void setIntelligenceBase(int intelligenceBase) {
+        this.intelligenceBase = intelligenceBase;
     }
 
-    public int getStrengthAbilityCorrection() {
-        return strengthAbilityCorrection;
+    public int getCharismaBase() {
+        return charismaBase;
     }
 
-    public void setStrengthAbilityCorrection(int strengthAbilityCorrection) {
-        this.strengthAbilityCorrection = strengthAbilityCorrection;
+    public void setCharismaBase(int charismaBase) {
+        this.charismaBase = charismaBase;
     }
 
-    public int getDexterityAbilityCorrection() {
-        return dexterityAbilityCorrection;
+    public int getStrengthCorrection() {
+        return strengthCorrection;
     }
 
-    public void setDexterityAbilityCorrection(int dexterityAbilityCorrection) {
-        this.dexterityAbilityCorrection = dexterityAbilityCorrection;
+    public void setStrengthCorrection(int strengthCorrection) {
+        this.strengthCorrection = strengthCorrection;
     }
 
-    public int getResistanceAbilityCorrection() {
-        return resistanceAbilityCorrection;
+    public int getDexterityCorrection() {
+        return dexterityCorrection;
     }
 
-    public void setResistanceAbilityCorrection(int resistanceAbilityCorrection) {
-        this.resistanceAbilityCorrection = resistanceAbilityCorrection;
+    public void setDexterityCorrection(int dexterityCorrection) {
+        this.dexterityCorrection = dexterityCorrection;
     }
 
-    public int getIntelligenceAbilityCorrection() {
-        return intelligenceAbilityCorrection;
+    public int getResistanceCorrection() {
+        return resistanceCorrection;
     }
 
-    public void setIntelligenceAbilityCorrection(int intelligenceAbilityCorrection) {
-        this.intelligenceAbilityCorrection = intelligenceAbilityCorrection;
+    public void setResistanceCorrection(int resistanceCorrection) {
+        this.resistanceCorrection = resistanceCorrection;
     }
 
-    public int getCharismaAbilityCorrection() {
-        return charismaAbilityCorrection;
+    public int getIntelligenceCorrection() {
+        return intelligenceCorrection;
     }
 
-    public void setCharismaAbilityCorrection(int charismaAbilityCorrection) {
-        this.charismaAbilityCorrection = charismaAbilityCorrection;
+    public void setIntelligenceCorrection(int intelligenceCorrection) {
+        this.intelligenceCorrection = intelligenceCorrection;
     }
 
-    public WeaponFamily getWeapon() {
-        return weapon;
+    public int getCharismaCorrection() {
+        return charismaCorrection;
     }
 
-    public void setWeapon(WeaponFamily weapon) {
-        this.weapon = weapon;
+    public void setCharismaCorrection(int charismaCorrection) {
+        this.charismaCorrection = charismaCorrection;
     }
 }

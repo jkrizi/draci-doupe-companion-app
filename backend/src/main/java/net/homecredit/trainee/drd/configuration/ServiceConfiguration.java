@@ -34,11 +34,6 @@ public class ServiceConfiguration {
     public SpellService spellService(SpellRepository spellRepository) {return new SpellService(spellRepository); }
 
     @Bean
-    public RaceService raceService(RaceRepository raceRepository) {
-        return new RaceService(raceRepository);
-    }
-
-    @Bean
     public BeastBlueprintService beastBlueprintService(BeastBlueprintRepository beastBlueprintRepository, InventoryService inventoryService, CombatService combatService) {
         return new BeastBlueprintService(beastBlueprintRepository, inventoryService, combatService);
     }
@@ -94,11 +89,6 @@ public class ServiceConfiguration {
     }
 
     @Bean
-    public WeaponFamilyService weaponFamilyService (WeaponFamilyRepository weaponFamilyRepository) {
-        return new WeaponFamilyService(weaponFamilyRepository);
-    }
-
-    @Bean
     public ArmorService armorService(ArmorRepository armorRepository) {
         return new ArmorService(armorRepository);
     }
@@ -131,11 +121,6 @@ public class ServiceConfiguration {
     @Bean
     public Random random() {
         return new Random();
-    }
-
-    @Bean
-    public RaceConverter raceConverter(){
-        return new RaceConverter();
     }
 
     @Bean

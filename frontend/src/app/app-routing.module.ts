@@ -24,7 +24,7 @@ const appRoutes: Routes = [
   {path: 'shop', component: ShopComponent},
   {
     path: 'inputs', component: InputComponent, children: [
-      {path: 'weapon', component: WeaponBlueprintInputComponent},
+      {path: 'weaponFamilyId', component: WeaponBlueprintInputComponent},
       {path: 'armor', component: ArmorBlueprintInputComponent},
       {path: 'treasure', component: TreasureBlueprintInputComponent},
       {path: 'goods', component: GoodsBlueprintInputComponent},

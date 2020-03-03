@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WeaponBlueprintFormComponent } from './weapon-blueprint.component';
+import { WeaponBlueprintFormComponent } from './weaponFamilyId-blueprint.component';
 
 describe('WeaponBlueprintComponent', () => {
   let component: WeaponBlueprintFormComponent;
