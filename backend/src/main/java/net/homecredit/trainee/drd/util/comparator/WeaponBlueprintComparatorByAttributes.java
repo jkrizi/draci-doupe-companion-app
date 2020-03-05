@@ -1,6 +1,6 @@
 package net.homecredit.trainee.drd.util.comparator;
 
-import net.homecredit.trainee.drd.entity.blueprint.item.WeaponBlueprint;
+import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponBlueprint;
 
 import java.util.Comparator;
 

@@ -1,6 +1,6 @@
 package net.homecredit.trainee.drd.repository.character;
 
-import net.homecredit.trainee.drd.entity.character.race.Race;
+import net.homecredit.trainee.drd.entity.character.person.race.Race;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

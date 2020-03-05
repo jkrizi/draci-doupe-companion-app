@@ -1,19 +1,19 @@
 package net.homecredit.trainee.drd.service.character;
 
-import net.homecredit.trainee.drd.entity.blueprint.PersonBlueprint;
-import net.homecredit.trainee.drd.entity.character.Beast;
-import net.homecredit.trainee.drd.entity.character.Person;
+import net.homecredit.trainee.drd.entity.character.person.PersonBlueprint;
+import net.homecredit.trainee.drd.entity.character.beast.Beast;
+import net.homecredit.trainee.drd.entity.character.person.Person;
 import net.homecredit.trainee.drd.entity.character.ability.Ability;
 import net.homecredit.trainee.drd.entity.character.ability.AbilityScore;
 import net.homecredit.trainee.drd.entity.character.combat.CombatValues;
-import net.homecredit.trainee.drd.entity.character.profession.Profession;
-import net.homecredit.trainee.drd.entity.character.profession.ProfessionKnowHow;
-import net.homecredit.trainee.drd.entity.character.race.Race;
-import net.homecredit.trainee.drd.entity.character.skill.SkillKnowHow;
+import net.homecredit.trainee.drd.entity.character.person.profession.Profession;
+import net.homecredit.trainee.drd.entity.character.person.profession.ProfessionKnowHow;
+import net.homecredit.trainee.drd.entity.character.person.race.Race;
+import net.homecredit.trainee.drd.entity.character.person.skill.SkillKnowHow;
 import net.homecredit.trainee.drd.entity.inventory.Inventory;
 import net.homecredit.trainee.drd.service.character.profession.ProfessionService;
 import net.homecredit.trainee.drd.service.character.profession.ProfessionServiceFactory;
-import net.homecredit.trainee.drd.service.item.InventoryService;
+import net.homecredit.trainee.drd.service.inventory.InventoryService;
 import net.homecredit.trainee.drd.util.Dice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

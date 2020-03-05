@@ -1,11 +1,10 @@
 package net.homecredit.trainee.drd.repository.character;
 
-import net.homecredit.trainee.drd.entity.character.profession.wizard.Spell;
+import net.homecredit.trainee.drd.entity.character.person.profession.wizard.Spell;
 import net.homecredit.trainee.drd.util.comparator.SpellComparatorByAttributes;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.UUID;
 

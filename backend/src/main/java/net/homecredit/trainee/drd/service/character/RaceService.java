@@ -1,7 +1,7 @@
 package net.homecredit.trainee.drd.service.character;
 
 import net.homecredit.trainee.drd.entity.character.ability.Ability;
-import net.homecredit.trainee.drd.entity.character.race.Race;
+import net.homecredit.trainee.drd.entity.character.person.race.Race;
 import net.homecredit.trainee.drd.repository.character.RaceRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

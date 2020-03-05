@@ -1,7 +1,6 @@
 package net.homecredit.trainee.drd.entity.inventory.armor;
 
-import net.homecredit.trainee.drd.entity.blueprint.item.ArmorBlueprint;
-import net.homecredit.trainee.drd.entity.blueprint.item.ItemBlueprint;
+import net.homecredit.trainee.drd.entity.inventory.ItemBlueprint;
 import net.homecredit.trainee.drd.entity.inventory.Equipment;
 import net.homecredit.trainee.drd.entity.inventory.StorageUnit;
 import net.homecredit.trainee.drd.entity.shop.ItemType;

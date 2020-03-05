@@ -1,6 +1,6 @@
 package net.homecredit.trainee.drd.repository.character;
 
-import net.homecredit.trainee.drd.entity.character.profession.warrior.SwordMove;
+import net.homecredit.trainee.drd.entity.character.person.profession.warrior.SwordMove;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

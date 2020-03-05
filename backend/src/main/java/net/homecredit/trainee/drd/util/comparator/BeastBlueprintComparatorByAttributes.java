@@ -1,6 +1,6 @@
 package net.homecredit.trainee.drd.util.comparator;
 
-import net.homecredit.trainee.drd.entity.blueprint.BeastBlueprint;
+import net.homecredit.trainee.drd.entity.character.beast.BeastBlueprint;
 
 import java.util.*;
 

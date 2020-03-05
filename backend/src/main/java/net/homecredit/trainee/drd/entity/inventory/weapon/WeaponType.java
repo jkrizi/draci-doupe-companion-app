@@ -1,5 +1,7 @@
 package net.homecredit.trainee.drd.entity.inventory.weapon;
 
+import net.homecredit.trainee.drd.util.WeightCategory;
+
 import javax.persistence.*;
 import java.util.Set;
 

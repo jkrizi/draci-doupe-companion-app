@@ -1,6 +1,6 @@
 package net.homecredit.trainee.drd.service.character.profession;
 
-import net.homecredit.trainee.drd.entity.character.profession.Profession;
+import net.homecredit.trainee.drd.entity.character.person.profession.Profession;
 import org.springframework.stereotype.Service;
 
 import java.security.InvalidParameterException;

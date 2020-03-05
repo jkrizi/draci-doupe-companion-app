@@ -1,6 +1,6 @@
 package net.homecredit.trainee.drd.repository.character;
 
-import net.homecredit.trainee.drd.entity.character.Beast;
+import net.homecredit.trainee.drd.entity.character.beast.Beast;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

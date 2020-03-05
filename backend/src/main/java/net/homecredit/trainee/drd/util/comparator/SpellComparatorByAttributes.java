@@ -1,6 +1,6 @@
 package net.homecredit.trainee.drd.util.comparator;
 
-import net.homecredit.trainee.drd.entity.character.profession.wizard.Spell;
+import net.homecredit.trainee.drd.entity.character.person.profession.wizard.Spell;
 
 import java.util.Comparator;
 

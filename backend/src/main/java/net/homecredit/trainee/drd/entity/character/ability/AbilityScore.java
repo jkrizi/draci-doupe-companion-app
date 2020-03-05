@@ -1,8 +1,8 @@
 package net.homecredit.trainee.drd.entity.character.ability;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import net.homecredit.trainee.drd.entity.blueprint.BeastBlueprint;
-import net.homecredit.trainee.drd.entity.character.Person;
+import net.homecredit.trainee.drd.entity.character.beast.BeastBlueprint;
+import net.homecredit.trainee.drd.entity.character.person.Person;
 
 import javax.persistence.*;
 import java.util.Objects;
