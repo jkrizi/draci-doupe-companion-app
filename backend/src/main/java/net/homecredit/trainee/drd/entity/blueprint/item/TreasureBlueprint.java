@@ -1,7 +1,7 @@
 package net.homecredit.trainee.drd.entity.blueprint.item;
 
 import net.homecredit.trainee.drd.entity.character.skill.SkillKnowledge;
-import net.homecredit.trainee.drd.entity.inventory.GemStone;
+import net.homecredit.trainee.drd.entity.inventory.Gemstone;
 import net.homecredit.trainee.drd.util.Material;
 
 import javax.persistence.*;
@@ -20,7 +20,7 @@ public class TreasureBlueprint implements ItemBlueprint {
     private String privateDescription;
 
     @OneToMany(mappedBy = "treasureBlueprint", cascade = CascadeType.ALL)
-    private Collection<GemStone> gemStones;
+    private Collection<Gemstone> gemstones;
 
     @Enumerated(EnumType.STRING)
     private Material material;
@@ -42,12 +42,12 @@ public class TreasureBlueprint implements ItemBlueprint {
     public TreasureBlueprint() {
     }
 
-    public TreasureBlueprint(String name, String publicDescription, String privateDescription, Collection<GemStone> gemStones, Material material, int materialWeight, SkillKnowledge productQuality, double goldValue, double silverValue, double copperValue) {
+    public TreasureBlueprint(String name, String publicDescription, String privateDescription, Collection<Gemstone> gemstones, Material material, int materialWeight, SkillKnowledge productQuality, double goldValue, double silverValue, double copperValue) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.publicDescription = publicDescription;
         this.privateDescription = privateDescription;
-        this.gemStones = gemStones;
+        this.gemstones = gemstones;
         this.material = material;
         this.materialWeight = materialWeight;
         this.productQuality = productQuality;
@@ -63,8 +63,8 @@ public class TreasureBlueprint implements ItemBlueprint {
     @Override
     public int getWeight() {
         int weight = getMaterialWeight();
-        for(GemStone gs: getGemStones()) {
-            weight += gs.getStoneWeight();
+        for(Gemstone gs: getGemstones()) {
+            weight += gs.getWeight();
         }
         return weight;
     }
@@ -98,12 +98,12 @@ public class TreasureBlueprint implements ItemBlueprint {
         this.privateDescription = privateDescription;
     }
 
-    public Collection<GemStone> getGemStones() {
-        return gemStones;
+    public Collection<Gemstone> getGemstones() {
+        return gemstones;
     }
 
-    public void setGemStones(Collection<GemStone> gemStones) {
-        this.gemStones = gemStones;
+    public void setGemstones(Collection<Gemstone> gemstones) {
+        this.gemstones = gemstones;
     }
 
     public Material getMaterial() {
@@ -174,7 +174,7 @@ public class TreasureBlueprint implements ItemBlueprint {
                 ", name='" + name + '\'' +
                 ", publicDescription='" + publicDescription + '\'' +
                 ", privateDescription='" + privateDescription + '\'' +
-                ", gemStones=" + gemStones +
+                ", gemstones=" + gemstones +
                 ", material=" + material +
                 ", materialWeight=" + materialWeight +
                 ", productQuality=" + productQuality +

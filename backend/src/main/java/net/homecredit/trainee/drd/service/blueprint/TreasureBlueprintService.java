@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import net.homecredit.trainee.drd.entity.blueprint.item.GemstoneBlueprint;
 import net.homecredit.trainee.drd.entity.blueprint.item.TreasureBlueprint;
-import net.homecredit.trainee.drd.entity.inventory.GemStone;
+import net.homecredit.trainee.drd.entity.inventory.Gemstone;
 import net.homecredit.trainee.drd.entity.shop.ItemType;
 import net.homecredit.trainee.drd.repository.blueprint.GemstoneBlueprintRepository;
 import net.homecredit.trainee.drd.repository.blueprint.TreasureBlueprintRepository;
@@ -29,7 +29,7 @@ public class TreasureBlueprintService {
     }
 
     //I dont think we will need this method for anything in the future
-   /* public TreasureBlueprint drawAndFileBlueprint(String name, String publicDescription, String privateDescription, Collection<GemStone> gemStones, Material material, int materialWeight, SkillKnowledge productQuality, double goldValue, double silverValue, double copperValue) {
+   /* public TreasureBlueprint drawAndFileBlueprint(String name, String publicDescription, String privateDescription, Collection<Gemstone> gemStones, Material material, int materialWeight, SkillKnowledge productQuality, double goldValue, double silverValue, double copperValue) {
         TreasureBlueprint treasureBlueprint = new TreasureBlueprint(name, publicDescription, privateDescription, gemStones, material, materialWeight, productQuality, goldValue, silverValue, copperValue);
 
         save(treasureBlueprint);
@@ -46,7 +46,7 @@ public class TreasureBlueprintService {
 
     public void saveGemstoneBlueprint(GemstoneBlueprint newGemstoneBlueprint){
         if(gemStoneBlueprintRepository.containsBlueprint(newGemstoneBlueprint)){
-            throw new RuntimeException("GemStone blueprint already exists");
+            throw new RuntimeException("Gemstone blueprint already exists");
         }
         gemStoneBlueprintRepository.save(newGemstoneBlueprint);
     }
@@ -58,7 +58,7 @@ public class TreasureBlueprintService {
     }
 
     public TreasureBlueprint save(TreasureBlueprint treasureBlueprint){
-        for(GemStone ge : treasureBlueprint.getGemStones()){
+        for(Gemstone ge : treasureBlueprint.getGemstones()){
             ge.setTreasureBlueprint(treasureBlueprint);
         }
         if(treasureBlueprintRepository.containsBlueprint(treasureBlueprint)){
@@ -83,5 +83,9 @@ public class TreasureBlueprintService {
 
     public GemstoneBlueprint findGemstoneBlueprint(UUID id) {
         return gemStoneBlueprintRepository.find(id);
+    }
+
+    public double calculateGemstonePrice(int weight, boolean polished, double unitPrice) {
+        return 0;
     }
 }

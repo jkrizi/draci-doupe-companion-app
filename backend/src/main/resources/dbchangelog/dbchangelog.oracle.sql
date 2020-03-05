@@ -456,3 +456,40 @@ alter table RACE rename column INTELLIGENCE_ABILITY_CORRECTION to INTELLIGENCE_C
 
 --changeset Jiri.Kriz:1576766708146-123
 alter table RACE rename column CHARISMA_ABILITY_CORRECTION to CHARISMA_CORRECTION;
+
+--changeset Jiri.Kriz:1576766708146-124
+alter table GEM_STONE drop constraint GEM_STONE_GEM_STONE_BLUEPRINT_ID_FK;
+
+--changeset Jiri.Kriz:1576766708146-125
+alter table GEM_STONE drop constraint GEM_STONE_TREASURE_BLUEPRINT_ID_FK;
+
+--changeset Jiri.Kriz:1576766708146-126
+rename GEM_STONE to GEMSTONE;
+
+--changeset Jiri.Kriz:1576766708146-127
+alter table GEMSTONE
+  add constraint GEM_STONE_GEM_STONE_BLUEPRINT_ID_FK
+    foreign key (GEM_STONE_BLUEPRINT_ID) references GEMSTONE_BLUEPRINT;
+
+--changeset Jiri.Kriz:1576766708146-128
+alter table GEMSTONE
+  add constraint GEM_STONE_TREASURE_BLUEPRINT_ID_FK
+    foreign key (TREASURE_BLUEPRINT_ID) references TREASURE_BLUEPRINT;
+
+--changeset Jiri.Kriz:1576766708146-129
+alter table GEMSTONE rename column STONE_WEIGHT to WEIGHT;
+
+--changeset Jiri.Kriz:1576766708146-130
+alter table GEMSTONE rename column STONE_PRICE to PRICE;
+
+--changeset Jiri.Kriz:1576766708146-131
+alter table GEMSTONE rename column GEM_STONE_BLUEPRINT_ID to GEMSTONE_BLUEPRINT_ID;
+
+--changeset Jiri.Kriz:1576766708146-132
+alter table TREASURE_BLUEPRINT rename column GEM_STONE_ID to GEMSTONE_ID;
+
+--changeset Jiri.Kriz:1576766708146-133
+alter table TREASURE_BLUEPRINT drop column GEMSTONE_ID;
+
+--changeset Jiri.Kriz:1576766708146-134
+alter table GEMSTONE add COUNT NUMBER(6) not null;

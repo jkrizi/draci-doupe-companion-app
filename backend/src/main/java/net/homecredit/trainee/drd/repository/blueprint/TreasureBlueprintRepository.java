@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import net.homecredit.trainee.drd.entity.blueprint.item.TreasureBlueprint;
-import net.homecredit.trainee.drd.entity.inventory.GemStone;
+import net.homecredit.trainee.drd.entity.inventory.Gemstone;
 import net.homecredit.trainee.drd.util.comparator.TreasureBlueprintComparatorByAttributes;
 
 import org.springframework.stereotype.Repository;
@@ -41,8 +41,8 @@ public class TreasureBlueprintRepository {
     public List<TreasureBlueprint> findAll() {
         TypedQuery<TreasureBlueprint> query = entityManager.createQuery(
                 "select distinct tb from TreasureBlueprint tb " +
-                        "left join fetch tb.gemStones gs " +
-                        "left join fetch gs.gemStoneBlueprint"
+                        "left join fetch tb.gemstones gs " +
+                        "left join fetch gs.gemstoneBlueprint"
                 , TreasureBlueprint.class);
         return query.getResultList();
     }
@@ -62,7 +62,7 @@ public class TreasureBlueprintRepository {
         return false;
     }
 
-    public void updateGemStone(GemStone gemStone) {
+    public void updateGemStone(Gemstone gemStone) {
         entityManager.merge(gemStone);
     }
 

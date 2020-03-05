@@ -124,11 +124,6 @@ public class ServiceConfiguration {
     }
 
     @Bean
-    public TreasureBlueprintDtoConverter treasureBlueprintDtoConverter(TreasureBlueprintService treasureBlueprintService){
-        return new TreasureBlueprintDtoConverter(treasureBlueprintService);
-    }
-
-    @Bean
     public WeaponBlueprintDtoConverter weaponBlueprintDtoConverter(){
         return new WeaponBlueprintDtoConverter();
     }
@@ -146,10 +141,5 @@ public class ServiceConfiguration {
     @Bean
     public GoodsBlueprintDtoConverter goodsBlueprintDtoConverter(){
         return new GoodsBlueprintDtoConverter();
-    }
-
-    @Bean
-    public SpellDtoConverter spellDtoConverter(){
-        return new SpellDtoConverter();
     }
 }

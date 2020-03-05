@@ -15,77 +15,73 @@
     </div>
     <div class="form-row" formGroupName="currGem">
       <div class="col">
-        <select class="form-control" formControlName="currGemColor" (change)="filterGemstoneBlueprints()">
-          <option selected></option>
-          <option *ngFor="let color of colors">{{color}}</option>
+        <select class="form-control" formControlName="stoneColor" (change)="filterGemstoneBlueprints()">
+          <option *ngFor="let color of colors" [value]="color">{{color}}</option>
         </select>
       </div>
       <div class="col">
-        <select class="form-control" formControlName="currGemStone">
-          <option selected></option>
+        <select class="form-control" formControlName="blueprintId">
           <option *ngFor="let stoneBlueprint of filteredGemstones" [value]="stoneBlueprint.id">{{ stoneBlueprint.name }}</option>
         </select>
       </div>
       <div class="col-1">
-        <input type="text" class="form-control" formControlName="currGemWeight">
+        <input type="text" class="form-control" formControlName="stoneWeight">
       </div>
       <div class="col-1">
-        <input type="text" class="form-control" formControlName="currGemCount">
+        <input type="text" class="form-control" formControlName="stoneCount">
       </div>
       <div class="col-1">
         <input type="text" class="form-control" disabled>
       </div>
       <div class="col-1">
-        <input type="checkbox" class="form-control-sm w-100 h-100" formControlName="currGemPolished">
+        <input type="checkbox" class="form-control-sm w-100 h-100" formControlName="stonePolished" checked>
       </div>
       <button type="button" class="btn btn-success col-1" (click)="addGemstone()">+</button>
     </div>
   </div>
 
-  <div class="mb-2" formArrayName="gemStones">
+  <div class="mb-2" formArrayName="gemstones">
     <div class="form-row" *ngFor ="let gemStone of getGemStones(); let i = index" [formGroupName]="i">
       <div class="col">
-        <input type="text" class="form-control" formControlName="color">
+        <input type="text" class="form-control" formControlName="stoneColor">
       </div>
       <div class="col">
         <input type="text" class="form-control" formControlName="stone">
       </div>
       <div class="col-1">
-        <input type="text" class="form-control" formControlName="weight">
+        <input type="text" class="form-control" formControlName="stoneWeight">
       </div>
       <div class="col-1">
-        <input type="text" class="form-control" formControlName="count">
+        <input type="text" class="form-control" formControlName="stoneCount">
       </div>
       <div class="col-1">
         <input type="text" class="form-control" disabled>
       </div>
       <div class="col-1">
-        <input type="checkbox" class="form-control-sm w-100 h-100" formControlName="polished">
+        <input type="checkbox" class="form-control-sm w-100 h-100" formControlName="stonePolished">
       </div>
       <button class="btn btn-danger col-1" (click)="removeGemStone(i)">-</button>
     </div>
   </div>
 
-  <div class="mb-2" formGroupName="material">
+  <div class="mb-2">
     <label for="material" class="font-weight-bold">Material</label>
     <div class="form-row" id="material">
       <div class="col">
-        <label for="quality">Quality</label>
-        <select class="form-control" formControlName="quality" id="quality">
-          <option selected></option>
-          <option *ngFor ="let quality of qualityScale"> {{ quality }} </option>
+        <label for="productQuality">Quality</label>
+        <select class="form-control" formControlName="productQuality" id="productQuality">
+          <option *ngFor ="let productQuality of qualityScale" [value]="productQuality"> {{ productQuality }} </option>
         </select>
       </div>
       <div class="col">
         <label for="material-type">Material</label>
-        <select class="form-control" formControlName="type" id="material-type">
-          <option selected></option>
-          <option *ngFor ="let material of materials"> {{ material }} </option>
+        <select class="form-control" formControlName="material" id="material-type">
+          <option *ngFor ="let material of materials" [value]="material"> {{ material }} </option>
         </select>
       </div>
       <div class="col-1">
         <label for="material-weight">Weight</label>
-        <input type="text" class="form-control" formControlName="weight" id="material-weight">
+        <input type="text" class="form-control" formControlName="materialWeight" id="material-weight">
       </div>
       <div class="col-1">
         <label for="material-price">Price</label>

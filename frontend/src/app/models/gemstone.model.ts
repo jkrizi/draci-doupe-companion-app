@@ -1,8 +1,10 @@
 export interface GemstoneModel {
   id: string;
-  color: string;
   stone: string;
+  stoneColor: string;
   stoneWeight: number;
-  polished: boolean;
+  stoneCount: number;
   stonePrice: number;
+  stonePolished: boolean;
+  blueprintId: string;
 }

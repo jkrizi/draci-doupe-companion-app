@@ -1,11 +1,6 @@
 package net.homecredit.trainee.drd.util.comparator;
 
-import jdk.internal.org.objectweb.asm.tree.analysis.Value;
 import net.homecredit.trainee.drd.entity.blueprint.BeastBlueprint;
-import net.homecredit.trainee.drd.entity.blueprint.item.TreasureBlueprint;
-import net.homecredit.trainee.drd.entity.character.ability.Ability;
-import net.homecredit.trainee.drd.entity.character.ability.AbilityScore;
-import net.homecredit.trainee.drd.entity.inventory.GemStone;
 
 import java.util.*;
 

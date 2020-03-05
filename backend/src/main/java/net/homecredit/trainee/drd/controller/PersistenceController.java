@@ -25,15 +25,13 @@ public class PersistenceController {
     private GoodsBlueprintService goodsBlueprintService;
     private GoodsBlueprintDtoConverter goodsBlueprintDtoConverter;
     private TreasureBlueprintService treasureBlueprintService;
-    private TreasureBlueprintDtoConverter treasureBlueprintDtoConverter;
 
-    public PersistenceController(BeastBlueprintService beastBlueprintService, BeastBlueprintDtoConverter beastBlueprintDtoConverter, SwordMoveService swordMoveService, WeaponBlueprintService weaponBlueprintService, WeaponBlueprintDtoConverter weaponBlueprintDtoConverter, ArmorBlueprintService armorBlueprintService, ArmorBlueprintDtoConverter armorBlueprintDtoConverter, GoodsBlueprintService goodsBlueprintService, GoodsBlueprintDtoConverter goodsBlueprintDtoConverter, TreasureBlueprintService treasureBlueprintService, TreasureBlueprintDtoConverter treasureBlueprintDtoConverter) {
+    public PersistenceController(BeastBlueprintService beastBlueprintService, BeastBlueprintDtoConverter beastBlueprintDtoConverter, SwordMoveService swordMoveService, WeaponBlueprintService weaponBlueprintService, WeaponBlueprintDtoConverter weaponBlueprintDtoConverter, ArmorBlueprintService armorBlueprintService, ArmorBlueprintDtoConverter armorBlueprintDtoConverter, GoodsBlueprintService goodsBlueprintService, GoodsBlueprintDtoConverter goodsBlueprintDtoConverter, TreasureBlueprintService treasureBlueprintService) {
         this.beastBlueprintService = beastBlueprintService;
         this.beastBlueprintDtoConverter = beastBlueprintDtoConverter;
         this.weaponBlueprintDtoConverter = weaponBlueprintDtoConverter;
         this.armorBlueprintDtoConverter = armorBlueprintDtoConverter;
         this.goodsBlueprintDtoConverter = goodsBlueprintDtoConverter;
-        this.treasureBlueprintDtoConverter = treasureBlueprintDtoConverter;
         this.swordMoveService = swordMoveService;
         this.weaponBlueprintService = weaponBlueprintService;
         this.armorBlueprintService = armorBlueprintService;
@@ -185,33 +183,5 @@ public class PersistenceController {
     public @ResponseBody
     List<GemstoneBlueprint> listGemstoneBlueprints() {
         return treasureBlueprintService.findAllGemstoneBlueprints();
-    }
-
-    @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/getAllTreasureBlueprints.json")
-    public @ResponseBody
-    List<TreasureBlueprintDto> listTreasureBlueprints() {
-        return treasureBlueprintDtoConverter.convert(treasureBlueprintService.findAll());
-    }
-
-    @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/saveTreasureBlueprint.json")
-    public void saveTreasureBlueprint(@RequestBody TreasureBlueprintDto newTreasureBlueprintDto) {
-        System.out.println(newTreasureBlueprintDto);
-        TreasureBlueprint blueprint = treasureBlueprintDtoConverter.convert(newTreasureBlueprintDto);
-        treasureBlueprintService.save(blueprint);
-    }
-
-    @CrossOrigin(origins = "http://localhost:4200")
-    @DeleteMapping("/deleteTreasureBlueprint.json")
-    public void deleteTreasureBlueprint(@RequestParam UUID id) {
-        treasureBlueprintService.delete(id);
-    }
-
-    @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/updateTreasureBlueprint.json")
-    public void updateTreasureBlueprint(@RequestBody TreasureBlueprintDto existingTreasureBlueprintDto) {
-        TreasureBlueprint treasureBlueprint = treasureBlueprintDtoConverter.convert(existingTreasureBlueprintDto);
-        treasureBlueprintService.update(treasureBlueprint);
     }
 }

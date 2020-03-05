@@ -5,6 +5,7 @@ import net.homecredit.trainee.drd.repository.character.*;
 import net.homecredit.trainee.drd.repository.inventory.*;
 import net.homecredit.trainee.drd.repository.shop.ShopRepository;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,7 +16,9 @@ public class RepositoryConfiguration {
 
     @Bean
     public ModelMapper modelMapper() {
-        return new ModelMapper();
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        return modelMapper;
     }
 
     @Bean
