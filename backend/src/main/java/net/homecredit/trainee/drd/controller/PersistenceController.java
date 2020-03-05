@@ -19,17 +19,15 @@ public class PersistenceController {
     private BeastBlueprintDtoConverter beastBlueprintDtoConverter;
     private SwordMoveService swordMoveService;
     private WeaponBlueprintService weaponBlueprintService;
-    private WeaponBlueprintDtoConverter weaponBlueprintDtoConverter;
     private ArmorBlueprintService armorBlueprintService;
     private ArmorBlueprintDtoConverter armorBlueprintDtoConverter;
     private GoodsBlueprintService goodsBlueprintService;
     private GoodsBlueprintDtoConverter goodsBlueprintDtoConverter;
     private TreasureBlueprintService treasureBlueprintService;
 
-    public PersistenceController(BeastBlueprintService beastBlueprintService, BeastBlueprintDtoConverter beastBlueprintDtoConverter, SwordMoveService swordMoveService, WeaponBlueprintService weaponBlueprintService, WeaponBlueprintDtoConverter weaponBlueprintDtoConverter, ArmorBlueprintService armorBlueprintService, ArmorBlueprintDtoConverter armorBlueprintDtoConverter, GoodsBlueprintService goodsBlueprintService, GoodsBlueprintDtoConverter goodsBlueprintDtoConverter, TreasureBlueprintService treasureBlueprintService) {
+    public PersistenceController(BeastBlueprintService beastBlueprintService, BeastBlueprintDtoConverter beastBlueprintDtoConverter, SwordMoveService swordMoveService, WeaponBlueprintService weaponBlueprintService, ArmorBlueprintService armorBlueprintService, ArmorBlueprintDtoConverter armorBlueprintDtoConverter, GoodsBlueprintService goodsBlueprintService, GoodsBlueprintDtoConverter goodsBlueprintDtoConverter, TreasureBlueprintService treasureBlueprintService) {
         this.beastBlueprintService = beastBlueprintService;
         this.beastBlueprintDtoConverter = beastBlueprintDtoConverter;
-        this.weaponBlueprintDtoConverter = weaponBlueprintDtoConverter;
         this.armorBlueprintDtoConverter = armorBlueprintDtoConverter;
         this.goodsBlueprintDtoConverter = goodsBlueprintDtoConverter;
         this.swordMoveService = swordMoveService;
@@ -91,33 +89,6 @@ public class PersistenceController {
         swordMoveService.delete(id);
     }
 
-
-    @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping(value = "/getAllWeaponBlueprints.json", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody
-    List<WeaponBlueprintDto> listWeaponBlueprints() {
-        return weaponBlueprintDtoConverter.convert(weaponBlueprintService.findAll());
-    }
-
-    @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/saveWeaponBlueprint.json")
-    public void saveWeaponBlueprint(@RequestBody WeaponBlueprintDto newWeaponBlueprintDto) {
-        WeaponBlueprint weaponBlueprint = weaponBlueprintDtoConverter.convert(newWeaponBlueprintDto);
-        weaponBlueprintService.save(weaponBlueprint);
-    }
-
-    @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/updateWeaponBlueprint.json")
-    public void updateWeaponBlueprint(@RequestBody WeaponBlueprintDto existingWeaponBlueprintDto) {
-        WeaponBlueprint weaponBlueprint = weaponBlueprintDtoConverter.convert(existingWeaponBlueprintDto);
-        weaponBlueprintService.update(weaponBlueprint);
-    }
-
-    @CrossOrigin(origins = "http://localhost:4200")
-    @DeleteMapping("/deleteWeaponBlueprint.json")
-    public void deleteWeaponBlueprint(@RequestParam UUID id) {
-        weaponBlueprintService.delete(id);
-    }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/getAllArmorBlueprints.json")

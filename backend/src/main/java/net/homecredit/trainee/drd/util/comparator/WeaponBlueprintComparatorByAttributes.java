@@ -22,8 +22,8 @@ public class WeaponBlueprintComparatorByAttributes implements Comparator<WeaponB
             newBlueprint.getShortRangeLimit() == databaseBlueprint.getShortRangeLimit() &&
             newBlueprint.getMidRangeLimit() == databaseBlueprint.getMidRangeLimit() &&
             newBlueprint.getLongRangeLimit() == databaseBlueprint.getLongRangeLimit() &&
-            newBlueprint.getMinReach() == databaseBlueprint.getMinReach() &&
-            newBlueprint.getMaxReach() == databaseBlueprint.getMaxReach() &&
+            newBlueprint.getMinMeleeReach() == databaseBlueprint.getMinMeleeReach() &&
+            newBlueprint.getMaxMeleeReach() == databaseBlueprint.getMaxMeleeReach() &&
             newBlueprint.getWeaponFamily().equals(databaseBlueprint.getWeaponFamily())) {
 
             //if blueprints are same then return 0

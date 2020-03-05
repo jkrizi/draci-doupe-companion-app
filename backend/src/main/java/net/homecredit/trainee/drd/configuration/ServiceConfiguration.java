@@ -49,11 +49,6 @@ public class ServiceConfiguration {
     }
 
     @Bean
-    public WeaponBlueprintService weaponBlueprintService(WeaponBlueprintRepository weaponBlueprintRepository, ShopService shopService) {
-        return new WeaponBlueprintService(weaponBlueprintRepository, shopService);
-    }
-
-    @Bean
     public ArmorBlueprintService armorBlueprintService(ArmorBlueprintRepository armorBlueprintRepository, ShopService shopService) {
         return new ArmorBlueprintService(armorBlueprintRepository, shopService);
     }
@@ -61,11 +56,6 @@ public class ServiceConfiguration {
     @Bean
     public GoodsBlueprintService goodsBlueprintService(GoodsBlueprintRepository goodsBlueprintRepository, ShopService shopService) {
         return new GoodsBlueprintService(goodsBlueprintRepository, shopService);
-    }
-
-    @Bean
-    public TreasureBlueprintService treasureBlueprintService(TreasureBlueprintRepository treasureBlueprintRepository, GemstoneBlueprintRepository gemStoneBlueprintRepository, ShopService shopService) {
-        return new TreasureBlueprintService(treasureBlueprintRepository, gemStoneBlueprintRepository, shopService);
     }
 
     @Bean
@@ -121,11 +111,6 @@ public class ServiceConfiguration {
     @Bean
     public Random random() {
         return new Random();
-    }
-
-    @Bean
-    public WeaponBlueprintDtoConverter weaponBlueprintDtoConverter(){
-        return new WeaponBlueprintDtoConverter();
     }
 
     @Bean

@@ -18,27 +18,9 @@ public class WeaponBlueprintDto {
     private int shortRangeLimit;
     private int midRangeLimit;
     private int longRangeLimit;
-    private int minReach;
-    private int maxReach;
+    private int minMeleeReach;
+    private int maxMeleeReach;
     private WeaponFamily weaponFamily;
-
-    public WeaponBlueprintDto(UUID id, String name, String privateDescription, String publicDescription, int weight, int attack, int hurt, int defense, int initiativeModifier, int shortRangeLimit, int midRangeLimit, int longRangeLimit, int minReach, int maxReach, WeaponFamily weaponFamily) {
-        this.id = id;
-        this.name = name;
-        this.privateDescription = privateDescription;
-        this.publicDescription = publicDescription;
-        this.weight = weight;
-        this.attack = attack;
-        this.hurt = hurt;
-        this.defense = defense;
-        this.initiativeModifier = initiativeModifier;
-        this.shortRangeLimit = shortRangeLimit;
-        this.midRangeLimit = midRangeLimit;
-        this.longRangeLimit = longRangeLimit;
-        this.minReach = minReach;
-        this.maxReach = maxReach;
-        this.weaponFamily = weaponFamily;
-    }
 
     public UUID getId() {
         return id;
@@ -136,20 +118,20 @@ public class WeaponBlueprintDto {
         this.longRangeLimit = longRangeLimit;
     }
 
-    public int getMinReach() {
-        return minReach;
+    public int getMinMeleeReach() {
+        return minMeleeReach;
     }
 
-    public void setMinReach(int minReach) {
-        this.minReach = minReach;
+    public void setMinMeleeReach(int minMeleeReach) {
+        this.minMeleeReach = minMeleeReach;
     }
 
-    public int getMaxReach() {
-        return maxReach;
+    public int getMaxMeleeReach() {
+        return maxMeleeReach;
     }
 
-    public void setMaxReach(int maxReach) {
-        this.maxReach = maxReach;
+    public void setMaxMeleeReach(int maxMeleeReach) {
+        this.maxMeleeReach = maxMeleeReach;
     }
 
     public WeaponFamily getWeaponFamily() {

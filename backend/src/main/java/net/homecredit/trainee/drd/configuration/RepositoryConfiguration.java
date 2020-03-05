@@ -53,11 +53,6 @@ public class RepositoryConfiguration {
     }
 
     @Bean
-    public WeaponBlueprintRepository weaponBlueprintRepository(EntityManager em) {
-        return new WeaponBlueprintRepository(em);
-    }
-
-    @Bean
     public ArmorBlueprintRepository armorBlueprintRepository(EntityManager em) {
         return new ArmorBlueprintRepository(em);
     }
@@ -65,11 +60,6 @@ public class RepositoryConfiguration {
     @Bean
     public GoodsBlueprintRepository goodsBlueprintRepository(EntityManager em) {
         return new GoodsBlueprintRepository(em);
-    }
-
-    @Bean
-    public TreasureBlueprintRepository treasureBlueprintRepository(EntityManager em) {
-        return new TreasureBlueprintRepository(em);
     }
 
     @Bean

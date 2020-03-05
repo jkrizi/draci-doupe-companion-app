@@ -63,11 +63,11 @@ export class WeaponBlueprintFormComponent implements OnInit {
         defense: new FormControl(null),
         initiativeModifier: new FormControl(null),
 
-        shortRange: new FormControl(null),
-        midRange: new FormControl(null),
-        longRange: new FormControl(null),
-        minReach: new FormControl(null),
-        maxReach: new FormControl(null),
+        shortRangeLimit: new FormControl(null),
+        midRangeLimit: new FormControl(null),
+        longRangeLimit: new FormControl(null),
+        minMeleeReach: new FormControl(null),
+        maxMeleeReach: new FormControl(null),
       }
     );
   }
@@ -106,6 +106,7 @@ export class WeaponBlueprintFormComponent implements OnInit {
     this.editMode = true;
     this.selectedWeaponBlueprint = weaponBlueprint;
     this.weaponBlueprintForm.patchValue(weaponBlueprint);
+    console.log(this.weaponBlueprintForm.get('weaponFamily').value.name);
   }
 
   clearForm() {

@@ -14,28 +14,20 @@ public class WeaponBlueprint implements ItemBlueprint {
     @Id
     private UUID id;
     private String name;
-    @Column(name = "PRIVATE_DESCRIPTION")
     private String privateDescription;
-    @Column(name = "PUBLIC_DESCRIPTION")
     private String publicDescription;
     private int weight;
 
     private int attack;
     private int hurt;
     private int defense;
-    @Column(name = "INITIATIVE_MODIFIER")
     private int initiativeModifier;
 
-    @Column(name = "SHORT_RANGE_LIMIT")
     private int shortRangeLimit;
-    @Column(name = "MID_RANGE_LIMIT")
     private int midRangeLimit;
-    @Column(name = "LONG_RANGE_LIMIT")
     private int longRangeLimit;
-    @Column(name = "MIN_MELEE_REACH")
-    private int minReach;
-    @Column(name = "MAX_MELEE_REACH")
-    private int maxReach;
+    private int minMeleeReach;
+    private int maxMeleeReach;
 
     @ManyToOne
     private WeaponFamily weaponFamily;
@@ -43,7 +35,7 @@ public class WeaponBlueprint implements ItemBlueprint {
     public WeaponBlueprint() {
     }
 
-    public WeaponBlueprint(String name, String publicDescription, String privateDescription, int weight, int attack, int hurt, int defense, int initiativeModifier, int shortRangeLimit, int midRangeLimit, int longRangeLimit, int minReach, int maxReach, WeaponFamily weaponFamily) {
+    public WeaponBlueprint(String name, String publicDescription, String privateDescription, int weight, int attack, int hurt, int defense, int initiativeModifier, int shortRangeLimit, int midRangeLimit, int longRangeLimit, int minMeleeReach, int maxMeleeReach, WeaponFamily weaponFamily) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.privateDescription = privateDescription;
@@ -56,8 +48,8 @@ public class WeaponBlueprint implements ItemBlueprint {
         this.shortRangeLimit = shortRangeLimit;
         this.midRangeLimit = midRangeLimit;
         this.longRangeLimit = longRangeLimit;
-        this.minReach = minReach;
-        this.maxReach = maxReach;
+        this.minMeleeReach = minMeleeReach;
+        this.maxMeleeReach = maxMeleeReach;
         this.weaponFamily = weaponFamily;
     }
 
@@ -158,20 +150,20 @@ public class WeaponBlueprint implements ItemBlueprint {
         this.longRangeLimit = longRangeLimit;
     }
 
-    public int getMinReach() {
-        return minReach;
+    public int getMinMeleeReach() {
+        return minMeleeReach;
     }
 
-    public void setMinReach(int minReach) {
-        this.minReach = minReach;
+    public void setMinMeleeReach(int minMeleeReach) {
+        this.minMeleeReach = minMeleeReach;
     }
 
-    public int getMaxReach() {
-        return maxReach;
+    public int getMaxMeleeReach() {
+        return maxMeleeReach;
     }
 
-    public void setMaxReach(int maxReach) {
-        this.maxReach = maxReach;
+    public void setMaxMeleeReach(int maxMeleeReach) {
+        this.maxMeleeReach = maxMeleeReach;
     }
 
     public WeaponFamily getWeaponFamily() {
@@ -210,8 +202,8 @@ public class WeaponBlueprint implements ItemBlueprint {
                 ", shortRangeLimit=" + shortRangeLimit +
                 ", midRangeLimit=" + midRangeLimit +
                 ", longRangeLimit=" + longRangeLimit +
-                ", minReach=" + minReach +
-                ", maxReach=" + maxReach +
+                ", minReach=" + minMeleeReach +
+                ", maxReach=" + maxMeleeReach +
                 ", type=" + weaponFamily +
                 '}';
     }

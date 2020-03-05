@@ -27,9 +27,9 @@ public class TreasureController {
 
     @GetMapping("/getAllTreasureBlueprints.json")
     public List<TreasureBlueprintDto> listTreasureBlueprints() {
-        List<TreasureBlueprintDto> treasureBlueprints = new ArrayList<>();
-        treasureBlueprintService.findAll().forEach(treasureBlueprint -> treasureBlueprints.add(convertTreasureBlueprint(treasureBlueprint)));
-        return treasureBlueprints;
+        List<TreasureBlueprintDto> treasureBlueprintsDto = new ArrayList<>();
+        treasureBlueprintService.findAll().forEach(treasureBlueprint -> treasureBlueprintsDto.add(convertTreasureBlueprint(treasureBlueprint)));
+        return treasureBlueprintsDto;
     }
 
     @PostMapping("/saveTreasureBlueprint.json")
