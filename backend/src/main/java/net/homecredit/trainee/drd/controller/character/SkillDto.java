@@ -1,17 +1,12 @@
-package net.homecredit.trainee.drd.entity.character.person.skill;
+package net.homecredit.trainee.drd.controller.character;
 
 import net.homecredit.trainee.drd.entity.character.ability.Ability;
+import net.homecredit.trainee.drd.entity.character.person.skill.SkillDifficulty;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.util.Objects;
 import java.util.UUID;
 
-@Entity
-public class Skill {
+public class SkillDto {
 
-    @Id
     private UUID id;
     private String name;
 
@@ -85,32 +80,5 @@ public class Skill {
 
     public void setFatalFailure(String fatalFailure) {
         this.fatalFailure = fatalFailure;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Skill)) return false;
-        Skill skill = (Skill) o;
-        return id.equals(skill.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "Skill{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", difficulty=" + difficulty +
-                ", ability=" + ability +
-                ", fullSuccess='" + fullSuccess + '\'' +
-                ", success='" + success + '\'' +
-                ", failure='" + failure + '\'' +
-                ", fatalFailure='" + fatalFailure + '\'' +
-                '}';
     }
 }
