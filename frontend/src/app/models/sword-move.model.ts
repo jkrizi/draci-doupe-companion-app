@@ -1,3 +1,5 @@
+import {WeaponFamilyModel} from './weapon-family.model';
+
 export interface SwordMoveModel {
   id: string;
   name: string;
@@ -5,6 +7,6 @@ export interface SwordMoveModel {
   initiative: number;
   actions: number;
   humanoidOpponent: boolean;
-  userWeaponTypes: string[];
-  opponentWeaponTypes: string[];
+  allowedUserWeapons: WeaponFamilyModel[];
+  allowedOpponentWeapons: WeaponFamilyModel[];
 }

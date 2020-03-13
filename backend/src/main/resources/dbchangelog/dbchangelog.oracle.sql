@@ -493,3 +493,35 @@ alter table TREASURE_BLUEPRINT drop column GEMSTONE_ID;
 
 --changeset Jiri.Kriz:1576766708146-134
 alter table GEMSTONE add COUNT NUMBER(6) not null;
+
+--changeset Jiri.Kriz:1576766708146-135
+drop table SWORD_MOVE_OPPONENT_WEAPON;
+
+--changeset Jiri.Kriz:1576766708146-136
+drop table SWORD_MOVE_USER_WEAPON;
+
+--changeset Jiri.Kriz:1576766708146-137
+create table SWORD_MOVE_WEAPON_USER
+(
+  SWORD_MOVE_ID RAW(16) not null
+    constraint SWORD_MOVE_WEAPON_USER_SWORD_MOVE_ID_fk
+      references SWORD_MOVE,
+  WEAPON_FAMILY_ID RAW(16) not null
+    constraint SWORD_MOVE_WEAPON_USER_WEAPON_FAMILY_ID_fk
+      references WEAPON_FAMILY,
+  constraint SWORD_MOVE_WEAPON_USER_pk
+    primary key (SWORD_MOVE_ID, WEAPON_FAMILY_ID)
+);
+
+--changeset Jiri.Kriz:1576766708146-138
+create table SWORD_MOVE_WEAPON_OPPONENT
+(
+  SWORD_MOVE_ID RAW(16) not null
+    constraint SWORD_MOVE_WEAPON_OPPONENT_SWORD_MOVE_ID_fk
+      references SWORD_MOVE,
+  WEAPON_FAMILY_ID RAW(16) not null
+    constraint SWORD_MOVE_WEAPON_OPPONENT_WEAPON_FAMILY_ID_fk
+      references WEAPON_FAMILY,
+  constraint SWORD_MOVE_WEAPON_OPPONENT_pk
+    primary key (SWORD_MOVE_ID, WEAPON_FAMILY_ID)
+);

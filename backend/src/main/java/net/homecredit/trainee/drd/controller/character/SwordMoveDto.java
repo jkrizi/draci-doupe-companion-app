@@ -1,35 +1,20 @@
-package net.homecredit.trainee.drd.entity.character.person.profession.warrior;
+package net.homecredit.trainee.drd.controller.character;
 
 import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponFamily;
 
-import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
 
-@Entity
-public class SwordMove {
+public class SwordMoveDto {
 
-    @Id
     private UUID id;
     private String name;
     private String description;
-    private Integer initiative;
-    private Integer actions;
-    private Boolean humanoidOpponent;
+    private int initiative;
+    private int actions;
+    private boolean humanoidOpponent;
 
-    @ManyToMany
-    @JoinTable(
-            name = "SWORD_MOVE_WEAPON_USER",
-            joinColumns = @JoinColumn(name = "SWORD_MOVE_ID"),
-            inverseJoinColumns = @JoinColumn(name = "WEAPON_FAMILY_ID")
-    )
     private Set<WeaponFamily> allowedUserWeapons;
-    @ManyToMany
-    @JoinTable(
-            name = "SWORD_MOVE_WEAPON_OPPONENT",
-            joinColumns = @JoinColumn(name = "SWORD_MOVE_ID"),
-            inverseJoinColumns = @JoinColumn(name = "WEAPON_FAMILY_ID")
-    )
     private Set<WeaponFamily> allowedOpponentWeapons;
 
     public UUID getId() {
@@ -56,27 +41,27 @@ public class SwordMove {
         this.description = description;
     }
 
-    public Integer getInitiative() {
+    public int getInitiative() {
         return initiative;
     }
 
-    public void setInitiative(Integer initiative) {
+    public void setInitiative(int initiative) {
         this.initiative = initiative;
     }
 
-    public Integer getActions() {
+    public int getActions() {
         return actions;
     }
 
-    public void setActions(Integer actions) {
+    public void setActions(int actions) {
         this.actions = actions;
     }
 
-    public Boolean isHumanoidOpponent() {
+    public boolean isHumanoidOpponent() {
         return humanoidOpponent;
     }
 
-    public void setHumanoidOpponent(Boolean humanoidOpponent) {
+    public void setHumanoidOpponent(boolean humanoidOpponent) {
         this.humanoidOpponent = humanoidOpponent;
     }
 
@@ -98,15 +83,15 @@ public class SwordMove {
 
     @Override
     public String toString() {
-        return "SwordMove{" +
+        return "SwordMoveDto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", initiative=" + initiative +
                 ", actions=" + actions +
                 ", humanoidOpponent=" + humanoidOpponent +
-                ", userWeaponTypes=" + allowedUserWeapons +
-                ", opponentWeaponTypes=" + allowedOpponentWeapons +
+                ", allowedUserWeapons=" + allowedUserWeapons +
+                ", allowedOpponentWeapons=" + allowedOpponentWeapons +
                 '}';
     }
 }
