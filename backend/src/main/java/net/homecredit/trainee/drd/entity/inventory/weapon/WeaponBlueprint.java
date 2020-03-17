@@ -2,9 +2,12 @@ package net.homecredit.trainee.drd.entity.inventory.weapon;
 
 
 import net.homecredit.trainee.drd.entity.inventory.ItemBlueprint;
+import net.homecredit.trainee.drd.entity.util.PersonBlueprintWeaponBlueprint;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -31,27 +34,6 @@ public class WeaponBlueprint implements ItemBlueprint {
 
     @ManyToOne
     private WeaponFamily weaponFamily;
-
-    public WeaponBlueprint() {
-    }
-
-    public WeaponBlueprint(String name, String publicDescription, String privateDescription, int weight, int attack, int hurt, int defense, int initiativeModifier, int shortRangeLimit, int midRangeLimit, int longRangeLimit, int minMeleeReach, int maxMeleeReach, WeaponFamily weaponFamily) {
-        this.id = UUID.randomUUID();
-        this.name = name;
-        this.privateDescription = privateDescription;
-        this.publicDescription = publicDescription;
-        this.weight = weight;
-        this.attack = attack;
-        this.hurt = hurt;
-        this.defense = defense;
-        this.initiativeModifier = initiativeModifier;
-        this.shortRangeLimit = shortRangeLimit;
-        this.midRangeLimit = midRangeLimit;
-        this.longRangeLimit = longRangeLimit;
-        this.minMeleeReach = minMeleeReach;
-        this.maxMeleeReach = maxMeleeReach;
-        this.weaponFamily = weaponFamily;
-    }
 
     public UUID getId() {
         return id;

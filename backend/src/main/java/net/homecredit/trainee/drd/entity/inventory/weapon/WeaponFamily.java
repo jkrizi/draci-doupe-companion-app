@@ -12,14 +12,6 @@ public class WeaponFamily {
     private String name;
     private WeaponType weaponType;
 
-    public WeaponFamily() {}
-
-    public WeaponFamily(UUID id, String name, WeaponType weaponType) {
-        this.id = id;
-        this.name = name;
-        this.weaponType = weaponType;
-    }
-
     public UUID getId() {
         return id;
     }

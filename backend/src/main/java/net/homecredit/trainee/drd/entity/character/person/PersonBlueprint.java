@@ -2,14 +2,22 @@ package net.homecredit.trainee.drd.entity.character.person;
 
 import net.homecredit.trainee.drd.entity.character.person.profession.Profession;
 import net.homecredit.trainee.drd.entity.character.person.race.Race;
-import net.homecredit.trainee.drd.entity.inventory.Inventory;
+import net.homecredit.trainee.drd.entity.inventory.armor.ArmorBlueprint;
+import net.homecredit.trainee.drd.entity.inventory.goods.GoodsBlueprint;
+import net.homecredit.trainee.drd.entity.inventory.treasure.TreasureBlueprint;
+import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponBlueprint;
+import net.homecredit.trainee.drd.entity.util.PersonBlueprintArmorBlueprint;
+import net.homecredit.trainee.drd.entity.util.PersonBlueprintGoodsBlueprint;
+import net.homecredit.trainee.drd.entity.util.PersonBlueprintTreasureBlueprint;
+import net.homecredit.trainee.drd.entity.util.PersonBlueprintWeaponBlueprint;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "person_blueprint")
+@Table(name = "PERSON_BLUEPRINT")
 public class PersonBlueprint {
 
     @Id
@@ -17,32 +25,43 @@ public class PersonBlueprint {
     private String name;
     private String description;
 
-    @Column(name = "person_level")
-    private int level;
+    @Column(name = "PERSON_LEVEL")
+    private Integer level;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Race race;
     @Enumerated(EnumType.STRING)
     private Profession profession;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private Inventory inventory;
-    @OneToMany(mappedBy = "personBlueprint")
-    private Collection<Person> people;
+    @OneToMany(
+            mappedBy = "personBlueprint",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<PersonBlueprintWeaponBlueprint> weaponBlueprints = new HashSet<>();
 
-    public PersonBlueprint() {
-    }
+    @OneToMany(
+            mappedBy = "personBlueprint",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<PersonBlueprintArmorBlueprint> armorBlueprints = new HashSet<>();
 
-    public PersonBlueprint(String name, String description, int level, Race race, Profession profession, Inventory inventory, Collection<Person> people) {
-        this.id = UUID.randomUUID();
-        this.name = name;
-        this.description = description;
-        this.level = level;
-        this.race = race;
-        this.profession = profession;
-        this.inventory = inventory;
-        this.people = people;
-    }
+    @OneToMany(
+            mappedBy = "personBlueprint",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<PersonBlueprintTreasureBlueprint> treasureBlueprints = new HashSet<>();
+
+    @OneToMany(
+            mappedBy = "personBlueprint",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<PersonBlueprintGoodsBlueprint> goodsBlueprints = new HashSet<>();
+
+    private Double coinPouch;
 
     public UUID getId() {
         return id;
@@ -68,11 +87,11 @@ public class PersonBlueprint {
         this.description = description;
     }
 
-    public int getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(Integer level) {
         this.level = level;
     }
 
@@ -92,20 +111,59 @@ public class PersonBlueprint {
         this.profession = profession;
     }
 
-    public Inventory getInventory() {
-        return inventory;
+    public Set<PersonBlueprintWeaponBlueprint> getWeaponBlueprints() {
+        return weaponBlueprints;
     }
 
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
+    public void setWeaponBlueprints(Set<PersonBlueprintWeaponBlueprint> weaponBlueprints) {
+        this.weaponBlueprints = weaponBlueprints;
     }
 
-    public Collection<Person> getPeople() {
-        return people;
+    public Set<PersonBlueprintArmorBlueprint> getArmorBlueprints() {
+        return armorBlueprints;
     }
 
-    public void setPeople(Collection<Person> people) {
-        this.people = people;
+    public void setArmorBlueprints(Set<PersonBlueprintArmorBlueprint> armorBlueprints) {
+        this.armorBlueprints = armorBlueprints;
+    }
+
+    public Set<PersonBlueprintTreasureBlueprint> getTreasureBlueprints() {
+        return treasureBlueprints;
+    }
+
+    public void setTreasureBlueprints(Set<PersonBlueprintTreasureBlueprint> treasureBlueprints) {
+        this.treasureBlueprints = treasureBlueprints;
+    }
+
+    public Set<PersonBlueprintGoodsBlueprint> getGoodsBlueprints() {
+        return goodsBlueprints;
+    }
+
+    public void setGoodsBlueprints(Set<PersonBlueprintGoodsBlueprint> goodsBlueprints) {
+        this.goodsBlueprints = goodsBlueprints;
+    }
+
+    public Double getCoinPouch() {
+        return coinPouch;
+    }
+
+    public void setCoinPouch(Double coinPouch) {
+        this.coinPouch = coinPouch;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PersonBlueprint that = (PersonBlueprint) o;
+
+        return name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 
     @Override
@@ -117,8 +175,11 @@ public class PersonBlueprint {
                 ", level=" + level +
                 ", race=" + race +
                 ", profession=" + profession +
-                ", inventory=" + inventory +
-                ", people=" + people +
+                ", weaponBlueprints=" + weaponBlueprints +
+                ", armorBlueprints=" + armorBlueprints +
+                ", treasureBlueprints=" + treasureBlueprints +
+                ", goodsBlueprints=" + goodsBlueprints +
+                ", coinPouch=" + coinPouch +
                 '}';
     }
 }

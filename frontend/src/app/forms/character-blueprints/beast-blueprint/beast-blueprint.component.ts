@@ -102,7 +102,6 @@ export class BeastBlueprintComponent implements OnInit {
 
   fillForm(beastBlueprint: BeastBlueprintModel) {
     this.cleanForm();
-    this.inventoryService.fillInventoryForm(beastBlueprint.inventory);
     this.abilityService.fillAbilityForm(beastBlueprint.abilityMap);
     this.combatValuesService.fillCombatValues(beastBlueprint.combatValues);
 

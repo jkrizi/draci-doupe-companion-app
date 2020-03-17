@@ -18,7 +18,11 @@ public class RaceRepository {
     }
 
     public List<Race> findAll() {
-        TypedQuery<Race> query = entityManager.createQuery("select r from Race r", Race.class);
+        TypedQuery<Race> query = entityManager.createQuery(
+                "select distinct r " +
+                        "from Race r " +
+                        "join fetch r.weapon w " +
+                        "join fetch w.weaponType.damageType", Race.class);
         return query.getResultList();
     }
 

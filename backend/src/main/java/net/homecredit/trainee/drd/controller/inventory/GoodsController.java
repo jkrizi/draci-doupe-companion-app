@@ -1,6 +1,5 @@
 package net.homecredit.trainee.drd.controller.inventory;
 
-import net.homecredit.trainee.drd.entity.inventory.goods.GoodsBlueprint;
 import net.homecredit.trainee.drd.service.inventory.GoodsBlueprintService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,17 +17,17 @@ public class GoodsController {
     }
 
     @GetMapping("/getAllGoodsBlueprints.json")
-    public List<GoodsBlueprint> listGoodsBlueprints() {
+    public List<GoodsBlueprintDto> listGoodsBlueprints() {
         return goodsBlueprintService.findAll();
     }
 
     @PostMapping("/saveGoodsBlueprint.json")
-    public void saveGoodsBlueprint(@RequestBody GoodsBlueprint newGoodsBlueprint) {
+    public void saveGoodsBlueprint(@RequestBody GoodsBlueprintDto newGoodsBlueprint) {
         goodsBlueprintService.save(newGoodsBlueprint);
     }
 
     @PostMapping("/updateGoodsBlueprint.json")
-    public void updateGoodsBlueprint(@RequestBody GoodsBlueprint existingGoodsBlueprint) {
+    public void updateGoodsBlueprint(@RequestBody GoodsBlueprintDto existingGoodsBlueprint) {
         goodsBlueprintService.update(existingGoodsBlueprint);
     }
 

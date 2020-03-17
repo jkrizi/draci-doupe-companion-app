@@ -26,7 +26,7 @@ public class GoodsBlueprintRepository {
         entityManager.merge(existingGoodsBlueprint);
     }
 
-    public GoodsBlueprint find(UUID id) {
+    public GoodsBlueprint findById(UUID id) {
         return entityManager
                 .createQuery("SELECT x FROM GoodsBlueprint x WHERE x.id = ?1", GoodsBlueprint.class)
                 .setParameter(1, id).getSingleResult();
@@ -38,7 +38,7 @@ public class GoodsBlueprintRepository {
     }
 
     public void delete(UUID id) {
-        entityManager.remove(find(id));
+        entityManager.remove(findById(id));
     }
 
     public void deleteAll() {

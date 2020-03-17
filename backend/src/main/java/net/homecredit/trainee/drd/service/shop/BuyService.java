@@ -55,7 +55,7 @@ public class BuyService {
     }
 
     private boolean buyGoods(Inventory inventory, StorageUnit storageUnit, UUID blueprintId, double price, boolean coinPouch){
-        GoodsBlueprint goodsBlueprint = goodsBlueprintService.findBlueprint(blueprintId);
+        GoodsBlueprint goodsBlueprint = goodsBlueprintService.findById(blueprintId);
         Equipment goods = goodsService.forgeGoods(goodsBlueprint);
         if(inventoryService.addEquipment(inventory, storageUnit, goods)){
             inventoryService.payMoney(inventory, price, coinPouch);
@@ -64,7 +64,7 @@ public class BuyService {
     }
 
     private boolean buyTreasure(Inventory inventory, StorageUnit storageUnit, UUID blueprintId, double price, boolean coinPouch) {
-        TreasureBlueprint treasureBlueprint = treasureBlueprintService.findBlueprint(blueprintId);
+        TreasureBlueprint treasureBlueprint = treasureBlueprintService.findById(blueprintId);
         Equipment treasure = treasureService.forgeTreasure(treasureBlueprint);
         if(inventoryService.addEquipment(inventory, storageUnit, treasure)){
             return inventoryService.payMoney(inventory, price, coinPouch);
@@ -74,7 +74,7 @@ public class BuyService {
     }
 
     private boolean buyWeapon(Inventory inventory, StorageUnit storageUnit, UUID blueprintId, double price, boolean coinPouch) {
-        WeaponBlueprint weaponBlueprint = weaponBlueprintService.findBlueprint(blueprintId);
+        WeaponBlueprint weaponBlueprint = weaponBlueprintService.findById(blueprintId);
         Weapon weapon = weaponService.forgeWeapon(weaponBlueprint);
         if(inventoryService.addEquipment(inventory, storageUnit, weapon)){
             return inventoryService.payMoney(inventory, price, coinPouch);
@@ -83,11 +83,33 @@ public class BuyService {
     }
 
     private boolean buyArmor(Inventory inventory, StorageUnit storageUnit, UUID blueprintId, double price, boolean coinPouch) {
-        ArmorBlueprint armorBlueprint = armorBlueprintService.findBlueprint(blueprintId);
+        ArmorBlueprint armorBlueprint = armorBlueprintService.findById(blueprintId);
         Armor armor = armorService.forgeArmor(armorBlueprint);
         if(inventoryService.addEquipment(inventory, storageUnit, armor)){
             return inventoryService.payMoney(inventory, price, coinPouch);
         }
         return false;
+    }
+
+    public double convertCoins(int golds, int silver, int copper) {
+        double pouch = golds;
+        pouch += silver * 0.1;
+        pouch += copper * 0.01;
+        return pouch;
+    }
+
+    public int goldCoins(double money) {
+        return (int)Math.floor(money);
+    }
+
+    public int silverCoins(double money) {
+        int golds =  goldCoins(money);
+        return (int)Math.floor((money - golds) * 10);
+    }
+
+    public int copperCoins(double money) {
+        int golds = goldCoins(money);
+        int silvers = silverCoins(money);
+        return (int)Math.floor(((money - golds) * 10 - silvers) * 10);
     }
 }

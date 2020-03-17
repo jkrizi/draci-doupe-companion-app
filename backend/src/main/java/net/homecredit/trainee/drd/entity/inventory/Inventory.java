@@ -11,13 +11,9 @@ public class Inventory {
 
     @Id
     private UUID id;
-    @Column(name = "limit_weight")
     private int limitWeight;
-    @Column(name = "content_weight")
     private int contentWeight;
-    @Column(name = "COIN_POUCH")
     private double coinPouch;
-    @Column(name = "BANK_VAULT")
     private double bankVault;
 
     @OneToMany(mappedBy = "inventory", cascade = CascadeType.ALL)

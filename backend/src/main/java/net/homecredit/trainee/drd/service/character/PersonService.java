@@ -1,17 +1,9 @@
 package net.homecredit.trainee.drd.service.character;
 
-import net.homecredit.trainee.drd.entity.character.person.PersonBlueprint;
-import net.homecredit.trainee.drd.entity.character.beast.Beast;
-import net.homecredit.trainee.drd.entity.character.person.Person;
 import net.homecredit.trainee.drd.entity.character.ability.Ability;
 import net.homecredit.trainee.drd.entity.character.ability.AbilityScore;
-import net.homecredit.trainee.drd.entity.character.combat.CombatValues;
 import net.homecredit.trainee.drd.entity.character.person.profession.Profession;
-import net.homecredit.trainee.drd.entity.character.person.profession.ProfessionKnowHow;
 import net.homecredit.trainee.drd.entity.character.person.race.Race;
-import net.homecredit.trainee.drd.entity.character.person.skill.SkillKnowHow;
-import net.homecredit.trainee.drd.entity.inventory.Inventory;
-import net.homecredit.trainee.drd.service.character.profession.ProfessionService;
 import net.homecredit.trainee.drd.service.character.profession.ProfessionServiceFactory;
 import net.homecredit.trainee.drd.service.inventory.InventoryService;
 import net.homecredit.trainee.drd.util.Dice;
@@ -36,36 +28,36 @@ public class PersonService {
         this.professionServiceFactory = professionServiceFactory;
     }
 
-    public Collection<Person> spawnFromBlueprint(int nrOfPeople, PersonBlueprint personBlueprint) {
-        List<Person> people = new ArrayList<>();
-        Profession profession = personBlueprint.getProfession();
-        ProfessionService professionService = professionServiceFactory.selectProfessionService(profession);
-
-        for (int i = 0; i < nrOfPeople; i++) {
-            String name = personBlueprint.getName() + " " + i;
-
-            ProfessionKnowHow profKnowHow = professionService.startCareer(profession);
-
-            Map<Ability, AbilityScore> abilityMap = randomiseAbilities(personBlueprint.getRace(), profession);
-
-            int manna = 0;
-            int life = calculateLife(profession, personBlueprint.getLevel(), abilityMap.get(Ability.RESISTANCE));
-
-            //@TODO - Both inventory and combat values are not properly initialized
-            Inventory inventory = inventoryService.copyBlueprintInventory(personBlueprint.getInventory());
-            CombatValues combatValues = new CombatValues();
-
-            Collection<Beast> companion = new ArrayList<>();
-            Collection<SkillKnowHow> skillKnowHow = new ArrayList<>();
-
-            int height = raceService.averageHeight(personBlueprint.getRace());
-            int weight = raceService.averageWeight(personBlueprint.getRace());
-            Person singlePerson = new Person(personBlueprint, name, personBlueprint.getDescription(), personBlueprint.getLevel(), 0, life, manna, weight, height, personBlueprint.getRace(), profKnowHow, abilityMap, combatValues, inventory, companion, skillKnowHow);
-            people.add(singlePerson);
-        }
-
-        return people;
-    }
+//    public Collection<Person> spawnFromBlueprint(int nrOfPeople, PersonBlueprint personBlueprint) {
+//        List<Person> people = new ArrayList<>();
+//        Profession profession = personBlueprint.getProfession();
+//        ProfessionService professionService = professionServiceFactory.selectProfessionService(profession);
+//
+//        for (int i = 0; i < nrOfPeople; i++) {
+//            String name = personBlueprint.getName() + " " + i;
+//
+//            ProfessionKnowHow profKnowHow = professionService.startCareer(profession);
+//
+//            Map<Ability, AbilityScore> abilityMap = randomiseAbilities(personBlueprint.getRace(), profession);
+//
+//            int manna = 0;
+//            int life = calculateLife(profession, personBlueprint.getLevel(), abilityMap.get(Ability.RESISTANCE));
+//
+//            //@TODO - Both inventory and combat values are not properly initialized
+//            Inventory inventory = inventoryService.copyBlueprintInventory(personBlueprint.getInventory());
+//            CombatValues combatValues = new CombatValues();
+//
+//            Collection<Beast> companion = new ArrayList<>();
+//            Collection<SkillKnowHow> skillKnowHow = new ArrayList<>();
+//
+//            int height = raceService.averageHeight(personBlueprint.getRace());
+//            int weight = raceService.averageWeight(personBlueprint.getRace());
+//            Person singlePerson = new Person(personBlueprint, name, personBlueprint.getDescription(), personBlueprint.getLevel(), 0, life, manna, weight, height, personBlueprint.getRace(), profKnowHow, abilityMap, combatValues, inventory, companion, skillKnowHow);
+//            people.add(singlePerson);
+//        }
+//
+//        return people;
+//    }
 
     private Map<Ability, AbilityScore> randomiseAbilities(Race race, Profession profession) {
         Map<Ability, AbilityScore> abilityMap = new HashMap<>();

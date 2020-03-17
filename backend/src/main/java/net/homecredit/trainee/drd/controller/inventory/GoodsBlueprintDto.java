@@ -12,15 +12,7 @@ public class GoodsBlueprintDto {
     private String privateDescription;
     private int weight;
     private ItemType itemType;
-
-    public GoodsBlueprintDto(UUID id, String name, String publicDescription, String privateDescription, int weight, ItemType itemType) {
-        this.id = id;
-        this.name = name;
-        this.publicDescription = publicDescription;
-        this.privateDescription = privateDescription;
-        this.weight = weight;
-        this.itemType = itemType;
-    }
+    private int ownedPieces;
 
     public UUID getId() {
         return id;
@@ -68,5 +60,13 @@ public class GoodsBlueprintDto {
 
     public void setItemType(ItemType itemType) {
         this.itemType = itemType;
+    }
+
+    public int getOwnedPieces() {
+        return ownedPieces;
+    }
+
+    public void setOwnedPieces(int ownedPieces) {
+        this.ownedPieces = ownedPieces;
     }
 }

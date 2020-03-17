@@ -52,4 +52,8 @@ export class EnumsService {
   getWeightCategories() {
     return this.http.get<string[]>('http://localhost:8080/weightCategories.json');
   }
+
+  getProfessions() {
+    return this.http.get<string[]>('http://localhost:8080/professions.json');
+  }
 }

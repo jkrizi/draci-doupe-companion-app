@@ -23,7 +23,7 @@ public class Race {
     @Column(name = "race_size")
     private CharacterSize size;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private WeaponFamily weapon;
 
     private Integer strengthThrows;

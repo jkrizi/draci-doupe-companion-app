@@ -1,0 +1,20 @@
+<table class="table table-sm table-hover" style>
+  <thead>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Level</th>
+    <th>Profession</th>
+    <th>Race</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let person of personBlueprints; let i = index" (click)="selectPersonBlueprint(i)" style="cursor: pointer">
+    <td></td>
+    <td>{{person.name}}</td>
+    <td>{{person.level}}</td>
+    <td>{{person.profession}}</td>
+    <td>{{person.race.name}}</td>
+  </tr>
+  </tbody>
+</table>

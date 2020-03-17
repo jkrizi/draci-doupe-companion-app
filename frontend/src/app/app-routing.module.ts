@@ -6,7 +6,6 @@ import {CalculatorComponent} from './features/calculator/calculator.component';
 import {BattlegroundComponent} from './features/battleground/battleground.component';
 import {ShopComponent} from './features/shop/shop.component';
 import {InputComponent} from './features/input/input.component';
-import {PersonBlueprintComponent} from './forms/character-blueprints/person-blueprint/person-blueprint.component';
 import {SpellInputComponent} from './features/input/spell-input/spell-input.component';
 import {SkillInputComponent} from './features/input/skill-input/skill-input.component';
 import {SwordMoveInputComponent} from './features/input/sword-move-input/sword-move-input.component';
@@ -16,6 +15,7 @@ import {WeaponBlueprintInputComponent} from './features/input/weapon-blueprint-i
 import {ArmorBlueprintInputComponent} from './features/input/armor-blueprint-input/armor-blueprint-input.component';
 import {TreasureBlueprintInputComponent} from './features/input/treasure-blueprint-input/treasure-blueprint-input.component';
 import {GoodsBlueprintInputComponent} from './features/input/goods-blueprint-input/goods-blueprint-input.component';
+import {PersonBlueprintInputComponent} from './features/input/person-blueprint-input/person-blueprint-input.component';
 
 const appRoutes: Routes = [
   {path: 'generator', component: GeneratorComponent},
@@ -28,7 +28,7 @@ const appRoutes: Routes = [
       {path: 'armor', component: ArmorBlueprintInputComponent},
       {path: 'treasure', component: TreasureBlueprintInputComponent},
       {path: 'goods', component: GoodsBlueprintInputComponent},
-      {path: 'person', component: PersonBlueprintComponent},
+      {path: 'person', component: PersonBlueprintInputComponent},
       {path: 'beast', component: BeastBlueprintInputComponent},
       {path: 'race', component: RaceInputComponent},
       {path: 'skill', component: SkillInputComponent},

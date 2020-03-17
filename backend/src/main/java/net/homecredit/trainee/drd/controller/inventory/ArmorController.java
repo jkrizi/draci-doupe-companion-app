@@ -1,6 +1,5 @@
 package net.homecredit.trainee.drd.controller.inventory;
 
-import net.homecredit.trainee.drd.entity.inventory.armor.ArmorBlueprint;
 import net.homecredit.trainee.drd.service.inventory.ArmorBlueprintService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,18 +17,17 @@ public class ArmorController {
     }
 
     @GetMapping("/getAllArmorBlueprints.json")
-    public List<ArmorBlueprint> listArmorBlueprints() {
+    public List<ArmorBlueprintDto> listArmorBlueprints() {
         return armorBlueprintService.findAll();
     }
 
     @PostMapping("/saveArmorBlueprint.json")
-    public void saveArmorBlueprint(@RequestBody ArmorBlueprint newArmorBlueprint) {
-        System.out.println(newArmorBlueprint);
+    public void saveArmorBlueprint(@RequestBody ArmorBlueprintDto newArmorBlueprint) {
         armorBlueprintService.save(newArmorBlueprint);
     }
 
     @PostMapping("/updateArmorBlueprint.json")
-    public void updateArmorBlueprint(@RequestBody ArmorBlueprint existingArmorBlueprint) {
+    public void updateArmorBlueprint(@RequestBody ArmorBlueprintDto existingArmorBlueprint) {
         armorBlueprintService.update(existingArmorBlueprint);
     }
 

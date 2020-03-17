@@ -2,6 +2,7 @@ package net.homecredit.trainee.drd.entity.inventory.treasure;
 
 import net.homecredit.trainee.drd.entity.character.person.skill.SkillKnowledge;
 import net.homecredit.trainee.drd.entity.inventory.ItemBlueprint;
+import net.homecredit.trainee.drd.entity.util.PersonBlueprintTreasureBlueprint;
 import net.homecredit.trainee.drd.util.Material;
 
 import javax.persistence.*;
@@ -14,9 +15,7 @@ public class TreasureBlueprint implements ItemBlueprint {
     @Id
     private UUID id;
     private String name;
-    @Column(name = "PUBLIC_DESCRIPTION")
     private String publicDescription;
-    @Column(name = "PRIVATE_DESCRIPTION")
     private String privateDescription;
 
     @OneToMany(mappedBy = "treasureBlueprint", cascade = CascadeType.ALL)
@@ -24,37 +23,15 @@ public class TreasureBlueprint implements ItemBlueprint {
 
     @Enumerated(EnumType.STRING)
     private Material material;
-    @Column(name = "MATERIAL_WEIGHT")
+
     private int materialWeight;
+
     @Enumerated(EnumType.STRING)
-    @Column(name = "PRODUCT_QUALITY")
     private SkillKnowledge productQuality;
 
-    @Column(name = "GOLD_VALUE")
     private double goldValue;
-
-    @Column(name = "SILVER_VALUE")
     private double silverValue;
-
-    @Column(name = "COPPER_VALUE")
     private double copperValue;
-
-    public TreasureBlueprint() {
-    }
-
-    public TreasureBlueprint(String name, String publicDescription, String privateDescription, Collection<Gemstone> gemstones, Material material, int materialWeight, SkillKnowledge productQuality, double goldValue, double silverValue, double copperValue) {
-        this.id = UUID.randomUUID();
-        this.name = name;
-        this.publicDescription = publicDescription;
-        this.privateDescription = privateDescription;
-        this.gemstones = gemstones;
-        this.material = material;
-        this.materialWeight = materialWeight;
-        this.productQuality = productQuality;
-        this.goldValue = goldValue;
-        this.silverValue = silverValue;
-        this.copperValue = copperValue;
-    }
 
     public UUID getId() {
         return id;

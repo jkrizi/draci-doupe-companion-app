@@ -1,0 +1,90 @@
+<div [formGroup]="parentForm">
+
+    <div class="form-row">
+      <div class="col form-group">
+        <label for="weapon">Weapons</label>
+        <div class="d-flex" formGroupName="selectItem">
+          <select class="form-control" id="weapon"  formControlName="weapon">
+            <option *ngFor ="let weapon of weaponBlueprints" [ngValue]="weapon">{{weapon.name}}</option>
+          </select>
+          <button type="button" class="btn btn-success ml-1" (click)="addItemToForm(getWeaponry(), parentForm.get('selectItem').get('weapon').value)">+</button>
+        </div>
+      </div>
+      <div class="col form-group">
+        <label for="armor">Armor</label>
+        <div class="d-flex" formGroupName="selectItem">
+          <select class="form-control" id="armor" formControlName="armor">
+            <option *ngFor ="let armor of armorBlueprints" [ngValue]="armor">{{armor.name}}</option>
+          </select>
+          <button type="button" class="btn btn-success ml-1" (click)="addItemToForm(getArmory(), parentForm.get('selectItem').get('armor').value)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-4 form-row">
+      <div class="col">
+        <div class="d-flex justify-content-between px-2 mb-1" *ngFor ="let weapon of getWeaponry().controls" formArrayName="weaponry">
+          <div class="text-truncate">{{weapon.value.name}}</div>
+          <button type="button" class="btn btn-danger ml-1" (click)="removeItemFromForm(getWeaponry(), weapon)">-</button>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-flex justify-content-between px-2 mb-1" *ngFor ="let armor of getArmory().controls" formArrayName="armory">
+          <div class="text-truncate">{{armor.value.name}}</div>
+          <button type="button" class="btn btn-danger ml-1" (click)="removeItemFromForm(getArmory(), armor)">-</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col form-group">
+        <label for="treasure">Treasures</label>
+        <div class="d-flex" formGroupName="selectItem">
+          <select class="form-control" id="treasure" formControlName="treasure">
+            <option *ngFor ="let treasure of treasureBlueprints" [ngValue]="treasure">{{treasure.name}}</option>
+          </select>
+          <button type="button" class="btn btn-success ml-1" (click)="addItemToForm(getTreasury(), parentForm.get('selectItem').get('treasure').value)">+</button>
+        </div>
+      </div>
+      <div class="col form-group">
+        <label for="good">Goods</label>
+        <div class="d-flex" formGroupName="selectItem">
+          <select class="form-control" id="good" formControlName="good">
+            <option *ngFor ="let good of goodBlueprints" [ngValue]="good">{{good.name}}</option>
+          </select>
+          <button type="button" class="btn btn-success ml-1" (click)="addItemToForm(getGoods(), parentForm.get('selectItem').get('good').value)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-4 form-row">
+      <div class="col">
+        <div class="d-flex justify-content-between px-2 mb-1" *ngFor ="let treasure of getTreasury().controls" formArrayName="treasury">
+          <div class="text-truncate">{{treasure.value.name}}</div>
+          <button type="button" class="btn btn-danger ml-1" (click)="removeItemFromForm(getTreasury(), treasure)">-</button>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-flex justify-content-between px-2 mb-1" *ngFor ="let good of getGoods().controls" formArrayName="goods">
+          <div class="text-truncate">{{good.value.name}}</div>
+          <button type="button" class="btn btn-danger ml-1" (click)="removeItemFromForm(getGoods(), good)">-</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row mb-4" id="money">
+      <div class="col">
+        <label for="gold">Gold</label>
+        <input type="tel" class="form-control" formControlName="gold" id="gold">
+      </div>
+      <div class="col">
+        <label for="silver">Silver</label>
+        <input type="tel" class="form-control" formControlName="silver" id="silver">
+      </div>
+      <div class="col">
+        <label for="copper">Copper</label>
+        <input type="tel" class="form-control" formControlName="copper" id="copper">
+      </div>
+    </div>
+
+</div>
