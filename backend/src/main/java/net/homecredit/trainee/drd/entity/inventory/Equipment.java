@@ -1,6 +1,5 @@
 package net.homecredit.trainee.drd.entity.inventory;
 
-import net.homecredit.trainee.drd.entity.blueprint.item.ItemBlueprint;
 import net.homecredit.trainee.drd.entity.shop.ItemType;
 
 import javax.persistence.*;

@@ -1,17 +1,17 @@
 package net.homecredit.trainee.drd.util.comparator;
 
-import net.homecredit.trainee.drd.entity.inventory.GemStone;
+import net.homecredit.trainee.drd.entity.inventory.treasure.Gemstone;
 
 import java.util.Comparator;
 
-public class GemStoneComparator implements Comparator<GemStone> {
+public class GemStoneComparator implements Comparator<Gemstone> {
 
     @Override
-    public int compare(GemStone o1, GemStone o2) {
-        boolean stoneWeightCompare = o1.getStoneWeight() == o2.getStoneWeight();
-        boolean stonePriceCompare = o1.getStonePrice() == o2.getStonePrice();
-        boolean gemStoneBlueprintCompare = o1.getGemStoneBlueprint().getId().equals(o2.getGemStoneBlueprint().getId());
-        boolean stonesAreSamePolished = (o1.isPolished() == o2.isPolished());
+    public int compare(Gemstone o1, Gemstone o2) {
+        boolean stoneWeightCompare = o1.getWeight() == o2.getWeight();
+        boolean stonePriceCompare = o1.getPrice() == o2.getPrice();
+        boolean gemStoneBlueprintCompare = o1.getGemstoneBlueprint().getId().equals(o2.getGemstoneBlueprint().getId());
+        boolean stonesAreSamePolished = (o1.getPolished() == o2.getPolished());
 
         if(stoneWeightCompare &&
                 stonePriceCompare &&
@@ -19,17 +19,17 @@ public class GemStoneComparator implements Comparator<GemStone> {
                 stonesAreSamePolished
         ){
             return 0;
-        }else if(o1.getStoneWeight() > o2.getStoneWeight()){
+        }else if(o1.getWeight() > o2.getWeight()){
             return 1;
-        }else if(o1.getStoneWeight() < o2.getStoneWeight()){
+        }else if(o1.getWeight() < o2.getWeight()){
             return -1;
-        }else if(o1.getStonePrice() > o2.getStonePrice()){
+        }else if(o1.getPrice() > o2.getPrice()){
             return 1;
-        }else if(o1.getStonePrice() < o2.getStonePrice()){
+        }else if(o1.getPrice() < o2.getPrice()){
             return -1;
-        }else if(o1.isPolished() != o2.isPolished() && o1.isPolished()){
+        }else if(o1.getPolished() != o2.getPolished() && o1.getPolished()){
             return -1;
-        }else if(o1.isPolished() != o2.isPolished() && o2.isPolished()){
+        }else if(o1.getPolished() != o2.getPolished() && o2.getPolished()){
             return 1;
         }
         return -1;

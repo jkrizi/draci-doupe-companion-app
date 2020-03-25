@@ -1,5 +1,3 @@
-import {WeaponBlueprintModel} from './weapon-blueprint.model';
-
 export interface RaceModel {
   id: string;
   name: string;
@@ -9,20 +7,20 @@ export interface RaceModel {
   minHeight: number;
   maxHeight: number;
   size: string;
-  weapon: WeaponBlueprintModel;
-  strengthNrOfThrows: number;
-  dexterityNrOfThrows: number;
-  resistanceNrOfThrows: number;
-  intelligenceNrOfThrows: number;
-  charismaNrOfThrows: number;
-  strengthAbilityBase: number;
-  dexterityAbilityBase: number;
-  resistanceAbilityBase: number;
-  intelligenceAbilityBase: number;
-  charismaAbilityBase: number;
-  strengthAbilityCorrection: number;
-  dexterityAbilityCorrection: number;
-  resistanceAbilityCorrection: number;
-  intelligenceAbilityCorrection: number;
-  charismaAbilityCorrection: number
+  weaponFamilyId: string;
+  strengthThrows: number;
+  dexterityThrows: number;
+  resistanceThrows: number;
+  intelligenceThrows: number;
+  charismaThrows: number;
+  strengthBase: number;
+  dexterityBase: number;
+  resistanceBase: number;
+  intelligenceBase: number;
+  charismaBase: number;
+  strengthCorrection: number;
+  dexterityCorrection: number;
+  resistanceCorrection: number;
+  intelligenceCorrection: number;
+  charismaCorrection: number;
 }

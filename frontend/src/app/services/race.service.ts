@@ -21,10 +21,12 @@ export class RaceService {
   }
 
   save(newRace: RaceModel) {
+    console.log(newRace);
     this.http.post('http://localhost:8080/saveRace.json', newRace).subscribe(() => this.getAll());
   }
 
   update(existingRace: RaceModel) {
+    console.log(existingRace);
     this.http.post('http://localhost:8080/updateRace.json', existingRace).subscribe(() => this.getAll());
   }
 

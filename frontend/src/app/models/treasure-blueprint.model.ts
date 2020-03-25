@@ -5,11 +5,12 @@ export interface TreasureBlueprintModel {
   name: string;
   publicDescription: string;
   privateDescription: string;
+  weight: number;
   gemstones: GemstoneModel[];
   material: string;
   materialWeight: string;
   productQuality: string;
-  goldValue: number;
-  silverValue: number;
-  copperValue: number;
+  goldCoins: number;
+  silverCoins: number;
+  copperCoins: number;
 }
