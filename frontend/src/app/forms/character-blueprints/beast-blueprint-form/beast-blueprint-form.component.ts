@@ -18,7 +18,6 @@ import {TreasureBlueprintModel} from '../../../models/treasure-blueprint.model';
 export class BeastBlueprintFormComponent implements OnInit {
   // Component controls
   editMode = false;
-  selectedBeastBlueprint: BeastBlueprintModel;
 
   // Component forms
   beastBlueprintForm: FormGroup;
@@ -126,13 +125,12 @@ export class BeastBlueprintFormComponent implements OnInit {
   }
 
   delete() {
-    this.beastBlueprintService.delete(this.selectedBeastBlueprint.id);
+    this.beastBlueprintService.delete(this.beastBlueprintForm.get('id').value);
     this.clearForm();
   }
 
   clearForm() {
     this.editMode = false;
-    this.selectedBeastBlueprint = null;
     this.beastBlueprintForm.reset();
     this.sizesForm.clear();
     this.vulnerabilitiesForm.clear();
@@ -145,7 +143,6 @@ export class BeastBlueprintFormComponent implements OnInit {
   fillForm(beastBlueprint: BeastBlueprintModel) {
     this.clearForm();
     this.editMode = true;
-    this.selectedBeastBlueprint = beastBlueprint;
 
     this.beastBlueprintForm.patchValue(beastBlueprint);
     beastBlueprint.sizes.forEach((size: string) => this.updateFormArray(size, this.sizesForm));

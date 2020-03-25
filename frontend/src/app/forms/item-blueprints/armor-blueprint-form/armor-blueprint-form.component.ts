@@ -12,7 +12,6 @@ import {v4 as uuid} from 'uuid';
 })
 export class ArmorBlueprintFormComponent implements OnInit {
   editMode = false;
-  selectedArmorBlueprint: ArmorBlueprintModel;
 
   // Backend enums
   bodyCoverage: string[];
@@ -65,23 +64,18 @@ export class ArmorBlueprintFormComponent implements OnInit {
   }
 
   update() {
-    this.armorBlueprintService.update(this.prepareArmorBlueprint(this.selectedArmorBlueprint.id));
+    this.armorBlueprintService.update(this.prepareArmorBlueprint(this.armorBlueprintForm.get('id').value));
     this.clearForm();
   }
 
-  restore() {
-    this.fillForm(this.selectedArmorBlueprint);
-  }
-
   delete() {
-    this.armorBlueprintService.delete(this.selectedArmorBlueprint.id);
+    this.armorBlueprintService.delete(this.armorBlueprintForm.get('id').value);
     this.clearForm();
   }
 
   fillForm(selectedArmorBlueprint: ArmorBlueprintModel) {
     this.clearForm();
     this.editMode = true;
-    this.selectedArmorBlueprint = selectedArmorBlueprint;
     this.armorBlueprintForm.patchValue(selectedArmorBlueprint);
     selectedArmorBlueprint.coverage.forEach( coverage => {
       this.bodyCoverageForm.get(coverage).setValue(true);
@@ -90,7 +84,6 @@ export class ArmorBlueprintFormComponent implements OnInit {
 
   clearForm() {
     this.editMode = false;
-    this.selectedArmorBlueprint = null;
     this.armorBlueprintForm.reset();
   }
 

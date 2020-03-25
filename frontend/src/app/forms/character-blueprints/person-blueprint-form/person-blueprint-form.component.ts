@@ -18,7 +18,6 @@ import {GoodsBlueprintModel} from '../../../models/goods-blueprint.model';
 })
 export class PersonBlueprintFormComponent implements OnInit {
   // Component controls
-  selectedPersonBlueprint: PersonBlueprintModel;
   editMode = false;
 
   // Backend blueprint list
@@ -81,23 +80,17 @@ export class PersonBlueprintFormComponent implements OnInit {
   }
 
   update() {
-    console.log(this.personBlueprintForm.value);
     this.personBlueprintService.update(this.personBlueprintForm.value);
     this.clearForm();
   }
 
-  restore() {
-    this.fillForm(this.selectedPersonBlueprint);
-  }
-
   delete() {
-    this.personBlueprintService.delete(this.selectedPersonBlueprint.id);
+    this.personBlueprintService.delete(this.personBlueprintForm.get('id').value);
     this.clearForm();
   }
 
   clearForm(): void {
     this.editMode = false;
-    this.selectedPersonBlueprint = null;
     this.personBlueprintForm.reset();
     (this.personBlueprintForm.get('weaponry') as FormArray).clear();
     (this.personBlueprintForm.get('armory') as FormArray).clear();
@@ -108,7 +101,6 @@ export class PersonBlueprintFormComponent implements OnInit {
   private fillForm(personBlueprint: PersonBlueprintModel): void {
     this.clearForm();
     this.editMode = true;
-    this.selectedPersonBlueprint = personBlueprint;
     this.personBlueprintForm.patchValue(personBlueprint);
     personBlueprint.weaponry.forEach((weapon: WeaponBlueprintModel) => (this.personBlueprintForm.get('weaponry') as FormArray).push(new FormControl(weapon)));
     personBlueprint.armory.forEach((armor: ArmorBlueprintModel) => (this.personBlueprintForm.get('armory') as FormArray).push(new FormControl(armor)));

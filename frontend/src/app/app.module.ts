@@ -24,7 +24,7 @@ import {BattlegroundComponent} from './features/battleground/battleground.compon
 import {ShopComponent} from './features/shop/shop.component';
 import {ItemBlueprintComponent} from './forms/item-blueprints/item-blueprint.component';
 import {AbilitiesComponent} from './forms/character-blueprints/abilities-form/abilities-form.component';
-import {CombatValuesComponent} from './forms/character-blueprints/combat-values/combat-values.component';
+import {CombatValuesComponent} from './features/combat-values/combat-values.component';
 import {AppRoutingModule} from './app-routing.module';
 import {InventoryComponent} from './forms/character-blueprints/blueprint-inventory-form/blueprint-inventory-form.component';
 import {BeastBlueprintListComponent} from './lists/beast-blueprint-list/beast-blueprint-list.component';

@@ -7,7 +7,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class FormControlsComponent implements OnInit {
   @Input() editMode;
-  @Output() restore = new EventEmitter();
   @Output() update = new EventEmitter();
   @Output() delete = new EventEmitter();
   @Output() cancel = new EventEmitter();
@@ -23,10 +22,6 @@ export class FormControlsComponent implements OnInit {
 
   onDelete() {
     this.delete.emit();
-  }
-
-  onRestore() {
-    this.restore.emit();
   }
 
   onCancel() {

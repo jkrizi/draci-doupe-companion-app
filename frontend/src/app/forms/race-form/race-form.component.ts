@@ -15,7 +15,6 @@ import {WeaponFamilyModel} from '../../models/weapon-family.model';
 export class RaceFormComponent implements OnInit {
   // Component controls
   editMode = false;
-  selectedRace: RaceModel;
 
   raceForm: FormGroup;
 
@@ -87,25 +86,18 @@ export class RaceFormComponent implements OnInit {
     this.clearForm();
   }
 
-  restore() {
-    this.fillForm(this.selectedRace);
-  }
-
   delete() {
-    this.raceService.delete(this.selectedRace.id);
+    this.raceService.delete(this.raceForm.get('id').value);
     this.clearForm();
   }
 
-  // TODO - verify, that the form is filled correctly (restore button is linked to this as well)
   fillForm(race: RaceModel) {
     this.editMode = true;
-    this.selectedRace = race;
     this.raceForm.patchValue(race);
   }
 
   clearForm() {
     this.raceForm.reset();
     this.editMode = false;
-    this.selectedRace = null;
   }
 }

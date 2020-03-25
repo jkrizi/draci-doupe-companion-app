@@ -13,7 +13,6 @@ import {WeaponFamilyModel} from '../../models/weapon-family.model';
 })
 export class SwordMoveFormComponent implements OnInit {
   editMode = false;
-  selectedSwordMove: SwordMoveModel;
 
   weaponFamilies: WeaponFamilyModel[];
 
@@ -70,19 +69,14 @@ export class SwordMoveFormComponent implements OnInit {
     this.clearForm();
   }
 
-  restore(): void {
-    this.fillForm(this.selectedSwordMove);
-  }
-
   delete(): void {
-    this.swordMoveService.delete(this.selectedSwordMove.id);
+    this.swordMoveService.delete(this.swordMoveForm.get('id').value);
     this.clearForm();
   }
 
   fillForm(swordMove: SwordMoveModel): void {
     this.clearForm();
     this.editMode = true;
-    this.selectedSwordMove = swordMove;
     this.swordMoveForm.patchValue(swordMove);
     swordMove.allowedUserWeapons.forEach( userWeaponFamily => this.userWeaponsForm.push(new FormControl(userWeaponFamily)));
     swordMove.allowedOpponentWeapons.forEach( opponentWeaponFamily => this.opponentWeaponsForm.push(new FormControl(opponentWeaponFamily)));
@@ -93,7 +87,6 @@ export class SwordMoveFormComponent implements OnInit {
     this.userWeaponsForm.clear();
     this.opponentWeaponsForm.clear();
     this.editMode = false;
-    this.selectedSwordMove = null;
   }
 
   updateWeapons(weaponsFormArray: FormArray, weaponFamily: WeaponFamilyModel): void {

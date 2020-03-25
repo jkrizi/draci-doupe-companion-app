@@ -18,7 +18,6 @@ import {GemstoneModel} from '../../../models/gemstone.model';
 export class TreasureBlueprintFormComponent implements OnInit, OnDestroy {
   // Component controls
   editMode = false;
-  selectedTreasureBlueprint: TreasureBlueprintModel;
 
   // Backend enums
   materials: string[];
@@ -120,7 +119,7 @@ export class TreasureBlueprintFormComponent implements OnInit, OnDestroy {
   }
 
   update(): void {
-    this.treasureBlueprintService.update(this.prepareTreasureBlueprint(this.selectedTreasureBlueprint.id));
+    this.treasureBlueprintService.update(this.prepareTreasureBlueprint(this.treasureBlueprintForm.get('id').value));
     this.clearForm();
   }
 
@@ -130,19 +129,14 @@ export class TreasureBlueprintFormComponent implements OnInit, OnDestroy {
     return this.treasureBlueprintForm.value;
   }
 
-  restore(): void {
-    this.fillForm(this.selectedTreasureBlueprint);
-  }
-
   delete(): void {
-    this.treasureBlueprintService.delete(this.selectedTreasureBlueprint.id);
+    this.treasureBlueprintService.delete(this.treasureBlueprintForm.get('id').value);
     this.clearForm();
   }
 
   fillForm(treasureBlueprint: TreasureBlueprintModel) {
     this.clearForm();
     this.editMode = true;
-    this.selectedTreasureBlueprint = treasureBlueprint;
     this.treasureBlueprintForm.patchValue(treasureBlueprint);
     treasureBlueprint.gemstones.forEach((gemstone: GemstoneModel) => {
       this.currGemstoneForm.patchValue(gemstone);
@@ -152,7 +146,6 @@ export class TreasureBlueprintFormComponent implements OnInit, OnDestroy {
 
   clearForm() {
     this.editMode = false;
-    this.selectedTreasureBlueprint = null;
     this.initTreasureBlueprintForm();
   }
 

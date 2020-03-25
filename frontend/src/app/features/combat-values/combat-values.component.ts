@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
-import {CombatValuesService} from '../../../services/combat-values.service';
-import {CombatValuesModel} from '../../../models/combat-values.model';
+import {CombatValuesService} from '../../services/combat-values.service';
+import {CombatValuesModel} from '../../models/combat-values.model';
 
 @Component({
   selector: 'app-combat-values',

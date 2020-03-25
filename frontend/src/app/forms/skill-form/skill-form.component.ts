@@ -13,7 +13,6 @@ import {v4 as uuid} from 'uuid';
 export class SkillFormComponent implements OnInit {
   // Component controls
   editMode = false;
-  selectedSkill: SkillModel;
 
   // Component forms
   skillForm: FormGroup;
@@ -40,7 +39,6 @@ export class SkillFormComponent implements OnInit {
 
     this.skillService.selectedSkill.subscribe( skill => {
       this.editMode = true;
-      this.selectedSkill = skill;
       this.fillForm(skill);
     });
 
@@ -64,12 +62,8 @@ export class SkillFormComponent implements OnInit {
     this.clearForm();
   }
 
-  restore() {
-    this.fillForm(this.selectedSkill);
-  }
-
   delete() {
-    this.skillService.delete(this.selectedSkill.id);
+    this.skillService.delete(this.skillForm.get('id').value);
     this.clearForm();
   }
 
@@ -80,6 +74,5 @@ export class SkillFormComponent implements OnInit {
   clearForm() {
     this.skillForm.reset();
     this.editMode = false;
-    this.selectedSkill = null;
   }
 }

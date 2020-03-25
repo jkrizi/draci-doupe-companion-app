@@ -18,7 +18,6 @@ export class WeaponBlueprintFormComponent implements OnInit {
   // Component controls
   editMode = false;
   isMelee = true;
-  selectedWeaponBlueprint: WeaponBlueprintModel;
 
   // TODO: Change string so it better describes underlying weaponFamilyId (go to html page to do that)
   // Backend enums
@@ -82,16 +81,12 @@ export class WeaponBlueprintFormComponent implements OnInit {
   }
 
   update() {
-    this.weaponBlueprintService.update(this.prepareWeaponBlueprint(this.selectedWeaponBlueprint.id));
+    this.weaponBlueprintService.update(this.prepareWeaponBlueprint(this.weaponBlueprintForm.get('id').value));
     this.clearForm();
   }
 
-  restore() {
-    this.fillForm(this.selectedWeaponBlueprint);
-  }
-
   delete() {
-    this.weaponBlueprintService.delete(this.selectedWeaponBlueprint.id);
+    this.weaponBlueprintService.delete(this.weaponBlueprintForm.get('id').value);
     this.clearForm();
   }
 
@@ -104,7 +99,6 @@ export class WeaponBlueprintFormComponent implements OnInit {
   fillForm(weaponBlueprint: WeaponBlueprintModel) {
     this.clearForm();
     this.editMode = true;
-    this.selectedWeaponBlueprint = weaponBlueprint;
     this.weaponBlueprintForm.patchValue(weaponBlueprint);
     console.log(this.weaponBlueprintForm.get('weaponFamily').value.name);
   }
@@ -112,7 +106,6 @@ export class WeaponBlueprintFormComponent implements OnInit {
   clearForm() {
     this.editMode = false;
     this.isMelee = true;
-    this.selectedWeaponBlueprint = null;
     this.weaponBlueprintForm.reset();
   }
 

@@ -1,7 +1,6 @@
 <div class="container btn-group">
   <button type="submit" class="btn btn-success border">Save as new</button>
-  <button type="button" class="btn btn-success border" (click)="onSave()" *ngIf="editMode">Save</button>
+  <button type="button" class="btn btn-success border" (click)="onSave()" *ngIf="editMode">Update</button>
   <button type="button" class="btn btn-danger border" (click)="onDelete()" *ngIf="editMode">Delete</button>
-  <button type="button" class="btn btn-success border" (click)="onRestore()" *ngIf="editMode">Restore</button>
   <button type="button" class="btn btn-secondary border" (click)="onCancel()">Cancel</button>
 </div>

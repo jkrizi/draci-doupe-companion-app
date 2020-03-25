@@ -13,7 +13,6 @@ import {v4 as uuid} from 'uuid';
 export class SpellFormComponent implements OnInit {
   // Component controls
   editMode = false;
-  selectedSpell: SpellModel;
 
   // Component forms
   spellForm: FormGroup;
@@ -54,24 +53,18 @@ export class SpellFormComponent implements OnInit {
     this.clearForm();
   }
 
-  restore() {
-    this.fillForm(this.selectedSpell);
-  }
-
   delete() {
-    this.spellService.delete(this.selectedSpell.id);
+    this.spellService.delete(this.spellForm.get('id').value);
     this.clearForm();
   }
 
   fillForm(spell: SpellModel) {
     this.editMode = true;
-    this.selectedSpell = spell;
     this.spellForm.patchValue(spell);
   }
 
   clearForm() {
     this.spellForm.reset();
-    this.selectedSpell = null;
     this.editMode = false;
   }
 }

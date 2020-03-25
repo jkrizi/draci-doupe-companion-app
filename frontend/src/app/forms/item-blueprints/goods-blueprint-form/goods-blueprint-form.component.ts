@@ -12,7 +12,6 @@ import {v4 as uuid} from 'uuid';
 })
 export class GoodsBlueprintFormComponent implements OnInit {
   editMode = false;
-  selectedGoodsBlueprint: GoodsBlueprintModel;
 
   // Backend enum
   itemTypes;
@@ -56,25 +55,19 @@ export class GoodsBlueprintFormComponent implements OnInit {
     this.clearForm();
   }
 
-  restore() {
-    this.fillForm(this.selectedGoodsBlueprint);
-  }
-
   delete() {
-    this.goodsBlueprintService.delete(this.selectedGoodsBlueprint.id);
+    this.goodsBlueprintService.delete(this.goodsBlueprintForm.get('id').value);
     this.clearForm();
   }
 
   fillForm(selectedGoodsBlueprint: GoodsBlueprintModel) {
     this.clearForm();
     this.editMode = true;
-    this.selectedGoodsBlueprint = selectedGoodsBlueprint;
     this.goodsBlueprintForm.patchValue(selectedGoodsBlueprint);
   }
 
   clearForm() {
     this.editMode = false;
-    this.selectedGoodsBlueprint = null;
     this.goodsBlueprintForm.reset();
   }
 }
