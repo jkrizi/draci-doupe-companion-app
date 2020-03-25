@@ -21,6 +21,7 @@ public class WeaponBlueprintDto {
     private int minMeleeReach;
     private int maxMeleeReach;
     private WeaponFamily weaponFamily;
+    private int ownedPieces;
 
     public UUID getId() {
         return id;
@@ -140,5 +141,34 @@ public class WeaponBlueprintDto {
 
     public void setWeaponFamily(WeaponFamily weaponFamily) {
         this.weaponFamily = weaponFamily;
+    }
+
+    @Override
+    public String toString() {
+        return "WeaponBlueprintDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", privateDescription='" + privateDescription + '\'' +
+                ", publicDescription='" + publicDescription + '\'' +
+                ", weight=" + weight +
+                ", attack=" + attack +
+                ", hurt=" + hurt +
+                ", defense=" + defense +
+                ", initiativeModifier=" + initiativeModifier +
+                ", shortRangeLimit=" + shortRangeLimit +
+                ", midRangeLimit=" + midRangeLimit +
+                ", longRangeLimit=" + longRangeLimit +
+                ", minMeleeReach=" + minMeleeReach +
+                ", maxMeleeReach=" + maxMeleeReach +
+                ", weaponFamily=" + weaponFamily +
+                '}';
+    }
+
+    public int getOwnedPieces() {
+        return ownedPieces;
+    }
+
+    public void setOwnedPieces(int ownedPieces) {
+        this.ownedPieces = ownedPieces;
     }
 }

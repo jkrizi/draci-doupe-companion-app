@@ -25,11 +25,10 @@ public class TreasureBlueprintRepository {
         entityManager.persist(treasureBlueprint);
     }
 
-    public TreasureBlueprint find(UUID id) {
-        TreasureBlueprint result = entityManager.createQuery(
-                "SELECT x FROM TreasureBlueprint x WHERE x.id = ?1", TreasureBlueprint.class)
+    public TreasureBlueprint findById(UUID id) {
+        return entityManager
+                .createQuery("SELECT x FROM TreasureBlueprint x WHERE x.id = ?1", TreasureBlueprint.class)
                 .setParameter(1, id).getSingleResult();
-        return result;
     }
 
     public void deleteAll() {
@@ -61,11 +60,6 @@ public class TreasureBlueprintRepository {
         }
         return false;
     }
-
-    public void updateGemStone(Gemstone gemStone) {
-        entityManager.merge(gemStone);
-    }
-
 
     public void update(TreasureBlueprint treasureBlueprint) {
         entityManager.merge(treasureBlueprint);

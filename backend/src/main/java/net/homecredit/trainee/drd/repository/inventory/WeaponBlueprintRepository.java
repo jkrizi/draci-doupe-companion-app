@@ -37,7 +37,11 @@ public class WeaponBlueprintRepository {
 
     public List<WeaponBlueprint> findAll() {
         TypedQuery<WeaponBlueprint> query = entityManager.createQuery(
-                "select distinct x from WeaponBlueprint x join fetch x.weaponFamily y join fetch y.weaponType z join fetch z.damageType", WeaponBlueprint.class);
+                "select distinct x " +
+                        "from WeaponBlueprint x " +
+                        "join fetch x.weaponFamily y " +
+                        "join fetch y.weaponType z " +
+                        "join fetch z.damageType", WeaponBlueprint.class);
         return query.getResultList();
     }
 

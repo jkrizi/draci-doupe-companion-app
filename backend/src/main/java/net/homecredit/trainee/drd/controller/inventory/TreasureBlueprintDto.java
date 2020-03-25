@@ -20,6 +20,7 @@ public class TreasureBlueprintDto {
     private int goldCoins;
     private int silverCoins;
     private int copperCoins;
+    private int ownedPieces;
 
     public UUID getId() {
         return id;
@@ -107,6 +108,14 @@ public class TreasureBlueprintDto {
 
     public void setCopperCoins(int copperCoins) {
         this.copperCoins = copperCoins;
+    }
+
+    public int getOwnedPieces() {
+        return ownedPieces;
+    }
+
+    public void setOwnedPieces(int ownedPieces) {
+        this.ownedPieces = ownedPieces;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package net.homecredit.trainee.drd.entity.character.combat;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
@@ -8,16 +7,11 @@ public class CombatValues {
 
     private int attack;
     private int hurt;
-    @Column(name = "active_defense")
     private int activeDefense;
-    @Column(name = "passive_defense")
     private int passiveDefense;
-
-    @Column(name = "initiative_base")
     private int initiativeBase;
 
-    public CombatValues() {
-    }
+    public CombatValues() {}
 
     public CombatValues(int attack, int hurt, int activeDefense, int passiveDefense, int initiativeBase) {
         this.attack = attack;

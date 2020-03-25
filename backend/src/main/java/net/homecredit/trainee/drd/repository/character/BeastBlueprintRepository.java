@@ -1,4 +1,4 @@
-package net.homecredit.trainee.drd.repository.inventory;
+package net.homecredit.trainee.drd.repository.character;
 
 import net.homecredit.trainee.drd.entity.character.beast.BeastBlueprint;
 import net.homecredit.trainee.drd.util.comparator.BeastBlueprintComparatorByAttributes;
@@ -18,7 +18,7 @@ public class BeastBlueprintRepository {
         this.entityManager = entityManager;
     }
 
-    public void saveBlueprint(BeastBlueprint blueprint) {
+    public void save(BeastBlueprint blueprint) {
         entityManager.persist(blueprint);
     }
 
@@ -29,13 +29,10 @@ public class BeastBlueprintRepository {
                         "join fetch bb.abilityMap " +
                         "join fetch bb.sizes " +
                         "join fetch bb.vulnerabilities " +
-                        "left join fetch bb.beasts b " +
-                        "join fetch bb.inventory ib " +
-                        "join fetch ib.storageUnits ub " +
-                        "left join fetch ub.equipment " +
-                        "join fetch bb.inventory ibb " +
-                        "join fetch ibb.storageUnits ubb " +
-                        "left join fetch ubb.equipment", BeastBlueprint.class);
+                        "left join fetch bb.armorBlueprints bab left join fetch bab.armorBlueprint ab left join fetch  ab.coverage " +
+                        "left join fetch bb.weaponBlueprints bwb left join fetch bwb.weaponBlueprint wb left join fetch wb.weaponFamily wf left join fetch wf.weaponType.damageType " +
+                        "left join fetch bb.treasureBlueprints btb left join fetch btb.treasureBlueprint tb left join fetch tb.gemstones g left join fetch g.gemstoneBlueprint " +
+                        "left join fetch bb.goodsBlueprints bgb left join fetch bgb.goodsBlueprint", BeastBlueprint.class);
         return query.getResultList();
     }
 

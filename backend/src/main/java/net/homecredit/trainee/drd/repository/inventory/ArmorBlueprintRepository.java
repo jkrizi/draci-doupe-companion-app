@@ -21,11 +21,11 @@ public class ArmorBlueprintRepository {
         entityManager.persist(armorBlueprint);
     }
 
-    public ArmorBlueprint find(UUID id) {
-        ArmorBlueprint result = entityManager.createQuery(
-                "SELECT x FROM ArmorBlueprint x WHERE x.id = ?1", ArmorBlueprint.class)
-                .setParameter(1, id).getSingleResult();
-        return result;
+    public ArmorBlueprint findById(UUID id) {
+        return entityManager
+                .createQuery("SELECT x FROM ArmorBlueprint x WHERE x.id = ?1", ArmorBlueprint.class)
+                .setParameter(1, id)
+                .getSingleResult();
     }
 
     public void deleteAll() {
@@ -54,6 +54,6 @@ public class ArmorBlueprintRepository {
     }
 
     public void delete(UUID id) {
-        entityManager.remove(find(id));
+        entityManager.remove(findById(id));
     }
 }

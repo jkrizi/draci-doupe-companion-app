@@ -21,8 +21,7 @@ public class WeaponFamilyRepository {
                 .createQuery(
                         "select distinct x " +
                                 "from WeaponFamily x " +
-                                "join fetch x.weaponType y " +
-                                "join fetch y.damageType", WeaponFamily.class
+                                "join fetch x.weaponType.damageType ", WeaponFamily.class
                 )
                 .getResultList();
     }
@@ -32,8 +31,7 @@ public class WeaponFamilyRepository {
                 .createQuery(
                         "SELECT x " +
                                 "FROM WeaponFamily x " +
-                                "join fetch x.weaponType y " +
-                                "join fetch y.damageType " +
+                                "join fetch x.weaponType.damageType " +
                                 "WHERE x.id = ?1", WeaponFamily.class
                 )
                 .setParameter(1, id)

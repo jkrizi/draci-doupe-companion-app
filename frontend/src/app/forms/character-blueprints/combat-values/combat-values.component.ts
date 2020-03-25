@@ -15,7 +15,7 @@ export class CombatValuesComponent implements OnInit {
   activeCombatValues: CombatValuesModel;
 
   constructor(private combatValuesService: CombatValuesService) {
-    this.activeCombatValues = {initiativeBase: '', attack: 0, hurt: 0, activeDefense: 0, passiveDefense: 0};
+    this.activeCombatValues = {initiativeBase: 0, attack: 0, hurt: 0, activeDefense: 0, passiveDefense: 0};
   }
 
   ngOnInit() {

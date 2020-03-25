@@ -17,7 +17,7 @@ public class SwordMoveController {
         this.swordMoveService = swordMoveService;
     }
 
-    @GetMapping(value = "/getAllSwordMoves.json", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/getAllSwordMoves.json")
     public List<SwordMoveDto> listSwordMoves() {
         return swordMoveService.findAll();
     }

@@ -7,8 +7,8 @@ import {WeaponBlueprintFormComponent} from './forms/item-blueprints/weapon-bluep
 import {ArmorBlueprintFormComponent} from './forms/item-blueprints/armor-blueprint-form/armor-blueprint-form.component';
 import {GoodsBlueprintFormComponent} from './forms/item-blueprints/goods-blueprint-form/goods-blueprint-form.component';
 import {TreasureBlueprintFormComponent} from './forms/item-blueprints/treasure-blueprint-form/treasure-blueprint-form.component';
-import {PersonBlueprintComponent} from './forms/character-blueprints/person-blueprint/person-blueprint.component';
-import {BeastBlueprintComponent} from './forms/character-blueprints/beast-blueprint/beast-blueprint.component';
+import {PersonBlueprintFormComponent} from './forms/character-blueprints/person-blueprint-form/person-blueprint-form.component';
+import {BeastBlueprintFormComponent} from './forms/character-blueprints/beast-blueprint-form/beast-blueprint-form.component';
 import {SkillFormComponent} from './forms/skill-form/skill-form.component';
 import {RaceFormComponent} from './forms/race-form/race-form.component';
 import {SpellFormComponent} from './forms/spell-form/spell-form.component';
@@ -23,10 +23,10 @@ import {CalculatorComponent} from './features/calculator/calculator.component';
 import {BattlegroundComponent} from './features/battleground/battleground.component';
 import {ShopComponent} from './features/shop/shop.component';
 import {ItemBlueprintComponent} from './forms/item-blueprints/item-blueprint.component';
-import {AbilitiesComponent} from './forms/character-blueprints/abilities/abilities.component';
+import {AbilitiesComponent} from './forms/character-blueprints/abilities-form/abilities-form.component';
 import {CombatValuesComponent} from './forms/character-blueprints/combat-values/combat-values.component';
 import {AppRoutingModule} from './app-routing.module';
-import {InventoryComponent} from './forms/character-blueprints/inventory/inventory.component';
+import {InventoryComponent} from './forms/character-blueprints/blueprint-inventory-form/blueprint-inventory-form.component';
 import {BeastBlueprintListComponent} from './lists/beast-blueprint-list/beast-blueprint-list.component';
 import {SpellListComponent} from './lists/spell-list/spell-list.component';
 import {SpellInputComponent} from './features/input/spell-input/spell-input.component';
@@ -48,6 +48,8 @@ import {TreasureBlueprintListComponent} from './lists/treasure-blueprint-list/tr
 import {GemstoneBlueprintFormComponent} from './forms/item-blueprints/treasure-blueprint-form/gemstone-blueprint-form/gemstone-blueprint-form.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { WeaponFamilyFormComponent } from './forms/item-blueprints/weapon-blueprint-form/weapon-family-form/weapon-family-form.component';
+import {PersonBlueprintInputComponent} from './features/input/person-blueprint-input/person-blueprint-input.component';
+import {PersonBlueprintListComponent} from './lists/person-blueprint-list/person-blueprint-list.component';
 
 @NgModule({
   declarations: [
@@ -57,8 +59,7 @@ import { WeaponFamilyFormComponent } from './forms/item-blueprints/weapon-bluepr
     ArmorBlueprintFormComponent,
     GoodsBlueprintFormComponent,
     TreasureBlueprintFormComponent,
-    PersonBlueprintComponent,
-    BeastBlueprintComponent,
+    BeastBlueprintFormComponent,
     SkillFormComponent,
     RaceFormComponent,
     SpellFormComponent,
@@ -94,6 +95,9 @@ import { WeaponFamilyFormComponent } from './forms/item-blueprints/weapon-bluepr
     TreasureBlueprintListComponent,
     GemstoneBlueprintFormComponent,
     WeaponFamilyFormComponent,
+    PersonBlueprintInputComponent,
+    PersonBlueprintFormComponent,
+    PersonBlueprintListComponent
   ],
   imports: [
     BrowserModule,

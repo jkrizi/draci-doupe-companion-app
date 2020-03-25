@@ -9,19 +9,11 @@ public class ArmorBlueprintDto {
     private String name;
     private String publicDescription;
     private String privateDescription;
+    private String armorSize;
     private int weight;
     private int defense;
     private List<String> coverage;
-
-    public ArmorBlueprintDto(UUID id, String name, String publicDescription, String privateDescription, int weight, int defense, List<String> coverage) {
-        this.id = id;
-        this.name = name;
-        this.publicDescription = publicDescription;
-        this.privateDescription = privateDescription;
-        this.weight = weight;
-        this.defense = defense;
-        this.coverage = coverage;
-    }
+    private int ownedPieces;
 
     public UUID getId() {
         return id;
@@ -77,5 +69,21 @@ public class ArmorBlueprintDto {
 
     public void setCoverage(List<String> coverage) {
         this.coverage = coverage;
+    }
+
+    public int getOwnedPieces() {
+        return ownedPieces;
+    }
+
+    public void setOwnedPieces(int ownedPieces) {
+        this.ownedPieces = ownedPieces;
+    }
+
+    public String getArmorSize() {
+        return armorSize;
+    }
+
+    public void setArmorSize(String armorSize) {
+        this.armorSize = armorSize;
     }
 }

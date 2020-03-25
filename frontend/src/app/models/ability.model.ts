@@ -3,5 +3,4 @@ export interface AbilityModel {
   ability: string;
   abilityValue: number;
   abilityBonusValue: number;
-  person: null;
 }

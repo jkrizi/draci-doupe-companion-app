@@ -2,6 +2,7 @@ package net.homecredit.trainee.drd.entity.inventory.armor;
 
 import net.homecredit.trainee.drd.entity.character.CharacterSize;
 import net.homecredit.trainee.drd.entity.inventory.ItemBlueprint;
+import net.homecredit.trainee.drd.entity.util.PersonBlueprintArmorBlueprint;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -29,20 +30,6 @@ public class ArmorBlueprint implements ItemBlueprint {
     @Enumerated(EnumType.STRING)
     @Column(name = "BODY_SECTION")
     private Set<BodySection> coverage;
-
-    public ArmorBlueprint() {
-    }
-
-    public ArmorBlueprint(String name, String publicDescription, String privateDescription, CharacterSize armorSize, int weight, int defense, Set<BodySection> coverage) {
-        this.id = UUID.randomUUID();
-        this.name = name;
-        this.publicDescription = publicDescription;
-        this.privateDescription = privateDescription;
-        this.armorSize = armorSize;
-        this.weight = weight;
-        this.defense = defense;
-        this.coverage = coverage;
-    }
 
     public UUID getId() {
         return id;

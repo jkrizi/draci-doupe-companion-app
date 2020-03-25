@@ -1,18 +1,19 @@
 package net.homecredit.trainee.drd.entity.character.beast;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import net.homecredit.trainee.drd.entity.character.CharacterBlueprint;
 import net.homecredit.trainee.drd.entity.character.CharacterSize;
 import net.homecredit.trainee.drd.entity.character.ability.Ability;
 import net.homecredit.trainee.drd.entity.character.ability.AbilityScore;
 import net.homecredit.trainee.drd.entity.character.combat.CombatValues;
 import net.homecredit.trainee.drd.entity.inventory.Inventory;
+import net.homecredit.trainee.drd.entity.util.*;
 
 import javax.persistence.*;
 import java.util.*;
 
 @Entity
 @Table(name = "BEAST_BLUEPRINT")
-public class BeastBlueprint {
+public class BeastBlueprint implements CharacterBlueprint {
 
     @Id
     private UUID id;
@@ -20,15 +21,21 @@ public class BeastBlueprint {
     private String name;
     private String species;
     private String description;
-    private int viability;
-    private int viabilityBonus;
-    private int manna;
-    private int mobility;
+    private Integer viability;
+    private Integer viabilityBonus;
+    private Integer manna;
+    private Integer mobility;
+    private Integer persistence;
 
-    @OneToMany(mappedBy = "beastBlueprint", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany()
+    @JoinTable(
+            name = "BEAST_BLUEPRINT_ABILITY_SCORE",
+            joinColumns = @JoinColumn(name = "BEAST_BLUEPRINT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "ABILITY_SCORE_ID")
+    )
     @MapKey(name = "ability")
     @MapKeyEnumerated
-    private Map<Ability, AbilityScore> abilityMap;
+    private Map<Ability, AbilityScore> abilityMap = new HashMap<>();
 
     @ElementCollection
     @CollectionTable(name = "BEAST_SIZE", joinColumns = @JoinColumn(name = "BEAST_BLUEPRINT_ID"))
@@ -42,44 +49,40 @@ public class BeastBlueprint {
     @Column(name = "VULNERABILITY")
     private Set<Vulnerability> vulnerabilities;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "beastBlueprint", cascade = CascadeType.ALL)
-    private Collection<Beast> beasts;
+    private Integer initiative;
+    private Integer pugnacity;
+    private Integer domestication;
+    private Boolean schooled;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private Inventory inventory;
+    @OneToMany(
+            mappedBy = "beastBlueprint",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<BeastBlueprintWeaponBlueprint> weaponBlueprints = new HashSet<>();
 
-    private CombatValues combatValues;
+    @OneToMany(
+            mappedBy = "beastBlueprint",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<BeastBlueprintArmorBlueprint> armorBlueprints = new HashSet<>();
 
-    private int pugnacity;
-    private int persistence;
-    private int domestication;
+    @OneToMany(
+            mappedBy = "beastBlueprint",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<BeastBlueprintTreasureBlueprint> treasureBlueprints = new HashSet<>();
 
-    private boolean schooled;
+    @OneToMany(
+            mappedBy = "beastBlueprint",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<BeastBlueprintGoodsBlueprint> goodsBlueprints = new HashSet<>();
 
-    public BeastBlueprint() {
-    }
-
-    public BeastBlueprint(String origin, String name, String species, String description, int viability, int viabilityBonus, int manna, Map<Ability, AbilityScore> abilityMap, int mobility, EnumSet<CharacterSize> sizes, EnumSet<Vulnerability> vulnerabilities, Inventory inventory, CombatValues combatValues, int pugnacity, int persistence, int domestication, boolean schooled) {
-        this.id = UUID.randomUUID();
-        this.origin = origin;
-        this.name = name;
-        this.species = species;
-        this.description = description;
-        this.viability = viability;
-        this.viabilityBonus = viabilityBonus;
-        this.manna = manna;
-        this.abilityMap = abilityMap;
-        this.mobility = mobility;
-        this.sizes = sizes;
-        this.vulnerabilities = vulnerabilities;
-        this.inventory = inventory;
-        this.pugnacity = pugnacity;
-        this.persistence = persistence;
-        this.domestication = domestication;
-        this.schooled = schooled;
-        this.combatValues = combatValues;
-    }
+    private Double coinPouch;
 
     public UUID getId() {
         return id;
@@ -121,36 +124,44 @@ public class BeastBlueprint {
         this.description = description;
     }
 
-    public int getViability() {
+    public Integer getViability() {
         return viability;
     }
 
-    public void setViability(int viability) {
+    public void setViability(Integer viability) {
         this.viability = viability;
     }
 
-    public int getViabilityBonus() {
+    public Integer getViabilityBonus() {
         return viabilityBonus;
     }
 
-    public void setViabilityBonus(int viabilityBonus) {
+    public void setViabilityBonus(Integer viabilityBonus) {
         this.viabilityBonus = viabilityBonus;
     }
 
-    public int getManna() {
+    public Integer getManna() {
         return manna;
     }
 
-    public void setManna(int manna) {
+    public void setManna(Integer manna) {
         this.manna = manna;
     }
 
-    public int getMobility() {
+    public Integer getMobility() {
         return mobility;
     }
 
-    public void setMobility(int mobility) {
+    public void setMobility(Integer mobility) {
         this.mobility = mobility;
+    }
+
+    public Integer getPersistence() {
+        return persistence;
+    }
+
+    public void setPersistence(Integer persistence) {
+        this.persistence = persistence;
     }
 
     public Map<Ability, AbilityScore> getAbilityMap() {
@@ -165,7 +176,7 @@ public class BeastBlueprint {
         return sizes;
     }
 
-    public void setSizes(EnumSet<CharacterSize> sizes) {
+    public void setSizes(Set<CharacterSize> sizes) {
         this.sizes = sizes;
     }
 
@@ -173,64 +184,80 @@ public class BeastBlueprint {
         return vulnerabilities;
     }
 
-    public void setVulnerabilities(EnumSet<Vulnerability> vulnerabilities) {
+    public void setVulnerabilities(Set<Vulnerability> vulnerabilities) {
         this.vulnerabilities = vulnerabilities;
     }
 
-    public Collection<Beast> getBeasts() {
-        return beasts;
+    public Integer getInitiative() {
+        return initiative;
     }
 
-    public void setBeasts(Collection<Beast> beasts) {
-        this.beasts = beasts;
+    public void setInitiative(Integer initiative) {
+        this.initiative = initiative;
     }
 
-    public Inventory getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
-    }
-
-    public CombatValues getCombatValues() {
-        return combatValues;
-    }
-
-    public void setCombatValues(CombatValues combatValues) {
-        this.combatValues = combatValues;
-    }
-
-    public int getPugnacity() {
+    public Integer getPugnacity() {
         return pugnacity;
     }
 
-    public void setPugnacity(int pugnacity) {
+    public void setPugnacity(Integer pugnacity) {
         this.pugnacity = pugnacity;
     }
 
-    public int getPersistence() {
-        return persistence;
-    }
-
-    public void setPersistence(int persistence) {
-        this.persistence = persistence;
-    }
-
-    public int getDomestication() {
+    public Integer getDomestication() {
         return domestication;
     }
 
-    public void setDomestication(int tameAbility) {
-        this.domestication = tameAbility;
+    public void setDomestication(Integer domestication) {
+        this.domestication = domestication;
     }
 
-    public boolean isSchooled() {
+    public Boolean getSchooled() {
         return schooled;
     }
 
-    public void setSchooled(boolean schooled) {
+    public void setSchooled(Boolean schooled) {
         this.schooled = schooled;
+    }
+
+    public Set<BeastBlueprintWeaponBlueprint> getWeaponBlueprints() {
+        return weaponBlueprints;
+    }
+
+    public void setWeaponBlueprints(Set<BeastBlueprintWeaponBlueprint> weaponBlueprints) {
+        this.weaponBlueprints = weaponBlueprints;
+    }
+
+    public Set<BeastBlueprintArmorBlueprint> getArmorBlueprints() {
+        return armorBlueprints;
+    }
+
+    public void setArmorBlueprints(Set<BeastBlueprintArmorBlueprint> armorBlueprints) {
+        this.armorBlueprints = armorBlueprints;
+    }
+
+    public Set<BeastBlueprintTreasureBlueprint> getTreasureBlueprints() {
+        return treasureBlueprints;
+    }
+
+    public void setTreasureBlueprints(Set<BeastBlueprintTreasureBlueprint> treasureBlueprints) {
+        this.treasureBlueprints = treasureBlueprints;
+    }
+
+    public Set<BeastBlueprintGoodsBlueprint> getGoodsBlueprints() {
+        return goodsBlueprints;
+    }
+
+    public void setGoodsBlueprints(Set<BeastBlueprintGoodsBlueprint> goodsBlueprints) {
+        this.goodsBlueprints = goodsBlueprints;
+    }
+
+    public Double getCoinPouch() {
+        return coinPouch;
+    }
+
+    public void setCoinPouch(Double coinPouch) {
+        this.coinPouch = coinPouch;
     }
 
     @Override
@@ -258,16 +285,39 @@ public class BeastBlueprint {
                 ", viabilityBonus=" + viabilityBonus +
                 ", manna=" + manna +
                 ", mobility=" + mobility +
+                ", persistence=" + persistence +
                 ", abilityMap=" + abilityMap +
                 ", sizes=" + sizes +
                 ", vulnerabilities=" + vulnerabilities +
-                ", beasts=" + beasts +
-                ", inventory=" + inventory +
-                ", combatValues=" + combatValues +
+                ", initiative=" + initiative +
                 ", pugnacity=" + pugnacity +
-                ", persistence=" + persistence +
                 ", domestication=" + domestication +
                 ", schooled=" + schooled +
+                ", weaponBlueprints=" + weaponBlueprints +
+                ", armorBlueprints=" + armorBlueprints +
+                ", treasureBlueprints=" + treasureBlueprints +
+                ", goodsBlueprints=" + goodsBlueprints +
+                ", coinPouch=" + coinPouch +
                 '}';
+    }
+
+    @Override
+    public Set<CharacterBlueprintItemBlueprint> getArmorBlueprintsNewSet() {
+        return new HashSet<>(armorBlueprints);
+    }
+
+    @Override
+    public Set<CharacterBlueprintItemBlueprint> getGoodsBlueprintsNewSet() {
+        return new HashSet<>(goodsBlueprints);
+    }
+
+    @Override
+    public Set<CharacterBlueprintItemBlueprint> getTreasureBlueprintsNewSet() {
+        return new HashSet<>(treasureBlueprints);
+    }
+
+    @Override
+    public Set<CharacterBlueprintItemBlueprint> getWeaponBlueprintsNewSet() {
+        return new HashSet<>(weaponBlueprints);
     }
 }
