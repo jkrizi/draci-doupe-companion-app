@@ -1,6 +1,6 @@
 package net.homecredit.trainee.drd.service.shop;
 
-import net.homecredit.trainee.drd.entity.blueprint.item.ItemBlueprint;
+import net.homecredit.trainee.drd.entity.inventory.ItemBlueprint;
 import net.homecredit.trainee.drd.entity.shop.ItemType;
 import net.homecredit.trainee.drd.entity.shop.LocalPrice;
 import net.homecredit.trainee.drd.entity.shop.ShopItem;

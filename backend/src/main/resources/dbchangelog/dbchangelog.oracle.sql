@@ -408,3 +408,120 @@ alter table TREASURE_BLUEPRINT drop column TREASURE_VALUE;
 
 --changeset Jan.Zatloukal:1576766708146-107
 alter table TREASURE_BLUEPRINT drop constraint TREASURE_BLUEPRINT_GEMSTONE_ID_FK;
+
+--changeset Jiri.Kriz:1576766708146-108
+alter table RACE drop constraint RACE_WEAPONRY_ID_FK;
+
+--changeset Jiri.Kriz:1576766708146-109
+alter table RACE rename column STRENGTH_NR_OF_THROWS to STRENGTH_THROWS;
+
+--changeset Jiri.Kriz:1576766708146-110
+alter table RACE rename column DEXTERITY_NR_OF_THROWS to DEXTERITY_THROWS;
+
+--changeset Jiri.Kriz:1576766708146-111
+alter table RACE rename column RESISTANCE_NR_OF_THROWS to RESISTANCE_THROWS;
+
+--changeset Jiri.Kriz:1576766708146-112
+alter table RACE rename column INTELLIGENCE_NR_OF_THROWS to INTELLIGENCE_THROWS;
+
+--changeset Jiri.Kriz:1576766708146-113
+alter table RACE rename column CHARISMA_NR_OF_THROWS to CHARISMA_THROWS;
+
+--changeset Jiri.Kriz:1576766708146-114
+alter table RACE rename column STRENGTH_ABILITY_BASE to STRENGTH_BASE;
+
+--changeset Jiri.Kriz:1576766708146-115
+alter table RACE rename column DEXTERITY_ABILITY_BASE to DEXTERITY_BASE;
+
+--changeset Jiri.Kriz:1576766708146-116
+alter table RACE rename column RESISTANCE_ABILITY_BASE to RESISTANCE_BASE;
+
+--changeset Jiri.Kriz:1576766708146-117
+alter table RACE rename column INTELLIGENCE_ABILITY_BASE to INTELLIGENCE_BASE;
+
+--changeset Jiri.Kriz:1576766708146-118
+alter table RACE rename column CHARISMA_ABILITY_BASE to CHARISMA_BASE;
+
+--changeset Jiri.Kriz:1576766708146-119
+alter table RACE rename column STRENGTH_ABILITY_CORRECTION to STRENGTH_CORRECTION;
+
+--changeset Jiri.Kriz:1576766708146-120
+alter table RACE rename column DEXTERITY_ABILITY_CORRECTION to DEXTERITY_CORRECTION;
+
+--changeset Jiri.Kriz:1576766708146-121
+alter table RACE rename column RESISTANCE_ABILITY_CORRECTION to RESISTANCE_CORRECTION;
+
+--changeset Jiri.Kriz:1576766708146-122
+alter table RACE rename column INTELLIGENCE_ABILITY_CORRECTION to INTELLIGENCE_CORRECTION;
+
+--changeset Jiri.Kriz:1576766708146-123
+alter table RACE rename column CHARISMA_ABILITY_CORRECTION to CHARISMA_CORRECTION;
+
+--changeset Jiri.Kriz:1576766708146-124
+alter table GEM_STONE drop constraint GEM_STONE_GEM_STONE_BLUEPRINT_ID_FK;
+
+--changeset Jiri.Kriz:1576766708146-125
+alter table GEM_STONE drop constraint GEM_STONE_TREASURE_BLUEPRINT_ID_FK;
+
+--changeset Jiri.Kriz:1576766708146-126
+rename GEM_STONE to GEMSTONE;
+
+--changeset Jiri.Kriz:1576766708146-127
+alter table GEMSTONE
+  add constraint GEM_STONE_GEM_STONE_BLUEPRINT_ID_FK
+    foreign key (GEM_STONE_BLUEPRINT_ID) references GEMSTONE_BLUEPRINT;
+
+--changeset Jiri.Kriz:1576766708146-128
+alter table GEMSTONE
+  add constraint GEM_STONE_TREASURE_BLUEPRINT_ID_FK
+    foreign key (TREASURE_BLUEPRINT_ID) references TREASURE_BLUEPRINT;
+
+--changeset Jiri.Kriz:1576766708146-129
+alter table GEMSTONE rename column STONE_WEIGHT to WEIGHT;
+
+--changeset Jiri.Kriz:1576766708146-130
+alter table GEMSTONE rename column STONE_PRICE to PRICE;
+
+--changeset Jiri.Kriz:1576766708146-131
+alter table GEMSTONE rename column GEM_STONE_BLUEPRINT_ID to GEMSTONE_BLUEPRINT_ID;
+
+--changeset Jiri.Kriz:1576766708146-132
+alter table TREASURE_BLUEPRINT rename column GEM_STONE_ID to GEMSTONE_ID;
+
+--changeset Jiri.Kriz:1576766708146-133
+alter table TREASURE_BLUEPRINT drop column GEMSTONE_ID;
+
+--changeset Jiri.Kriz:1576766708146-134
+alter table GEMSTONE add COUNT NUMBER(6) not null;
+
+--changeset Jiri.Kriz:1576766708146-135
+drop table SWORD_MOVE_OPPONENT_WEAPON;
+
+--changeset Jiri.Kriz:1576766708146-136
+drop table SWORD_MOVE_USER_WEAPON;
+
+--changeset Jiri.Kriz:1576766708146-137
+create table SWORD_MOVE_WEAPON_USER
+(
+  SWORD_MOVE_ID RAW(16) not null
+    constraint SWORD_MOVE_WEAPON_USER_SWORD_MOVE_ID_fk
+      references SWORD_MOVE,
+  WEAPON_FAMILY_ID RAW(16) not null
+    constraint SWORD_MOVE_WEAPON_USER_WEAPON_FAMILY_ID_fk
+      references WEAPON_FAMILY,
+  constraint SWORD_MOVE_WEAPON_USER_pk
+    primary key (SWORD_MOVE_ID, WEAPON_FAMILY_ID)
+);
+
+--changeset Jiri.Kriz:1576766708146-138
+create table SWORD_MOVE_WEAPON_OPPONENT
+(
+  SWORD_MOVE_ID RAW(16) not null
+    constraint SWORD_MOVE_WEAPON_OPPONENT_SWORD_MOVE_ID_fk
+      references SWORD_MOVE,
+  WEAPON_FAMILY_ID RAW(16) not null
+    constraint SWORD_MOVE_WEAPON_OPPONENT_WEAPON_FAMILY_ID_fk
+      references WEAPON_FAMILY,
+  constraint SWORD_MOVE_WEAPON_OPPONENT_pk
+    primary key (SWORD_MOVE_ID, WEAPON_FAMILY_ID)
+);

@@ -1,11 +1,10 @@
 package net.homecredit.trainee.drd.repository.character;
 
-import net.homecredit.trainee.drd.entity.character.profession.wizard.Spell;
+import net.homecredit.trainee.drd.entity.character.person.profession.wizard.Spell;
 import net.homecredit.trainee.drd.util.comparator.SpellComparatorByAttributes;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,8 +18,9 @@ public class SpellRepository {
     }
 
     public List<Spell> findAll() {
-        TypedQuery<Spell> query = entityManager.createQuery("select s from Spell s",Spell.class);
-        return query.getResultList();
+        return entityManager
+                .createQuery("select s from Spell s",Spell.class)
+                .getResultList();
     }
 
     public void save(Spell newSpell) {
@@ -28,7 +28,7 @@ public class SpellRepository {
     }
 
     public void delete(UUID id) {
-        entityManager.remove(entityManager.find(Spell.class,id));
+        entityManager.remove(entityManager.find(Spell.class, id));
     }
 
     public void update(Spell existingSpell) {

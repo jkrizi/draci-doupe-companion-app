@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {SpellModel} from '../models/spell.model';
 import {Subject} from 'rxjs';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {switchMap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

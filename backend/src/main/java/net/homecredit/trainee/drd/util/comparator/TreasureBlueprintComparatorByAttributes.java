@@ -1,7 +1,7 @@
 package net.homecredit.trainee.drd.util.comparator;
 
-import net.homecredit.trainee.drd.entity.blueprint.item.TreasureBlueprint;
-import net.homecredit.trainee.drd.entity.inventory.GemStone;
+import net.homecredit.trainee.drd.entity.inventory.treasure.TreasureBlueprint;
+import net.homecredit.trainee.drd.entity.inventory.treasure.Gemstone;
 
 import java.util.*;
 
@@ -23,7 +23,7 @@ public class TreasureBlueprintComparatorByAttributes implements Comparator<Treas
                 newBlueprint.getProductQuality() == databaseBlueprint.getProductQuality()) {
 
             //if gemstones sizes are different then the sets are not same
-            if (newBlueprint.getGemStones().size() != databaseBlueprint.getGemStones().size()) {
+            if (newBlueprint.getGemstones().size() != databaseBlueprint.getGemstones().size()) {
                 return newBlueprint.getId().compareTo(databaseBlueprint.getId());
             }
 
@@ -32,13 +32,13 @@ public class TreasureBlueprintComparatorByAttributes implements Comparator<Treas
             //compare every gemstone in one list with a gemstone in other list on the same position
             //because they are sorted we can do that
             GemStoneComparator gemStoneComparator = new GemStoneComparator();
-            List<GemStone> newGemStones = new ArrayList<>(newBlueprint.getGemStones());
-            List<GemStone> databaseGemStones = new ArrayList<>(databaseBlueprint.getGemStones());
-            newGemStones.sort(gemStoneComparator);
-            databaseGemStones.sort(gemStoneComparator);
+            List<Gemstone> newGemstones = new ArrayList<>(newBlueprint.getGemstones());
+            List<Gemstone> databaseGemstones = new ArrayList<>(databaseBlueprint.getGemstones());
+            newGemstones.sort(gemStoneComparator);
+            databaseGemstones.sort(gemStoneComparator);
 
-            for (int i = 0; i < newGemStones.size(); i++) {
-                if (gemStoneComparator.compare(newGemStones.get(i), databaseGemStones.get(i)) != 0) {
+            for (int i = 0; i < newGemstones.size(); i++) {
+                if (gemStoneComparator.compare(newGemstones.get(i), databaseGemstones.get(i)) != 0) {
                     //if there is a different gemstone
                     return newBlueprint.getId().compareTo(databaseBlueprint.getId());
                 }

@@ -1,6 +1,6 @@
 package net.homecredit.trainee.drd.util.comparator;
 
-import net.homecredit.trainee.drd.entity.blueprint.item.GemstoneBlueprint;
+import net.homecredit.trainee.drd.entity.inventory.treasure.GemstoneBlueprint;
 
 import java.util.Comparator;
 

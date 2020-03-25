@@ -10,7 +10,7 @@ import {TreasureBlueprintService} from '../../services/treasure-blueprint.servic
 export class TreasureBlueprintListComponent implements OnInit {
   treasureBlueprints: TreasureBlueprintModel[];
 
-  // TODO: expand html with some narrowed down version of gemstones
+  // TODO: expand html with some narrowed down version of gemstonesForm
 
   constructor(private treasureBlueprintService: TreasureBlueprintService) { }
 

@@ -7,7 +7,7 @@ import net.homecredit.trainee.drd.entity.character.combat.CombatValues;
 import net.homecredit.trainee.drd.entity.inventory.Inventory;
 import net.homecredit.trainee.drd.entity.inventory.armor.Armor;
 import net.homecredit.trainee.drd.entity.inventory.weapon.Weapon;
-import net.homecredit.trainee.drd.service.item.InventoryService;
+import net.homecredit.trainee.drd.service.inventory.InventoryService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

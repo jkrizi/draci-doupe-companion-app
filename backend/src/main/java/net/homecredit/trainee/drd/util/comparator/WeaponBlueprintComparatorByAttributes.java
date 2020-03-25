@@ -1,6 +1,6 @@
 package net.homecredit.trainee.drd.util.comparator;
 
-import net.homecredit.trainee.drd.entity.blueprint.item.WeaponBlueprint;
+import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponBlueprint;
 
 import java.util.Comparator;
 
@@ -22,8 +22,8 @@ public class WeaponBlueprintComparatorByAttributes implements Comparator<WeaponB
             newBlueprint.getShortRangeLimit() == databaseBlueprint.getShortRangeLimit() &&
             newBlueprint.getMidRangeLimit() == databaseBlueprint.getMidRangeLimit() &&
             newBlueprint.getLongRangeLimit() == databaseBlueprint.getLongRangeLimit() &&
-            newBlueprint.getMinReach() == databaseBlueprint.getMinReach() &&
-            newBlueprint.getMaxReach() == databaseBlueprint.getMaxReach() &&
+            newBlueprint.getMinMeleeReach() == databaseBlueprint.getMinMeleeReach() &&
+            newBlueprint.getMaxMeleeReach() == databaseBlueprint.getMaxMeleeReach() &&
             newBlueprint.getWeaponFamily().equals(databaseBlueprint.getWeaponFamily())) {
 
             //if blueprints are same then return 0

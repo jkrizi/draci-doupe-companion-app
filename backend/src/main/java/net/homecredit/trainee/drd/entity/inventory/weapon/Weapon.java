@@ -1,6 +1,5 @@
 package net.homecredit.trainee.drd.entity.inventory.weapon;
 
-import net.homecredit.trainee.drd.entity.blueprint.item.WeaponBlueprint;
 import net.homecredit.trainee.drd.entity.inventory.Equipment;
 import net.homecredit.trainee.drd.entity.inventory.StorageUnit;
 import net.homecredit.trainee.drd.entity.shop.ItemType;
@@ -52,8 +51,8 @@ public class Weapon extends Equipment {
         this.shortRangeLimit = weaponBlueprint.getShortRangeLimit();
         this.midRangeLimit = weaponBlueprint.getMidRangeLimit();
         this.longRangeLimit = weaponBlueprint.getLongRangeLimit();
-        this.minReach = weaponBlueprint.getMinReach();
-        this.maxReach = weaponBlueprint.getMaxReach();
+        this.minReach = weaponBlueprint.getMinMeleeReach();
+        this.maxReach = weaponBlueprint.getMaxMeleeReach();
     }
 
     public Weapon(WeaponBlueprint weaponBlueprint, StorageUnit storage) {
@@ -67,8 +66,8 @@ public class Weapon extends Equipment {
         this.shortRangeLimit = weaponBlueprint.getShortRangeLimit();
         this.midRangeLimit = weaponBlueprint.getMidRangeLimit();
         this.longRangeLimit = weaponBlueprint.getLongRangeLimit();
-        this.minReach = weaponBlueprint.getMinReach();
-        this.maxReach = weaponBlueprint.getMaxReach();
+        this.minReach = weaponBlueprint.getMinMeleeReach();
+        this.maxReach = weaponBlueprint.getMaxMeleeReach();
     }
 
     public boolean isEquipped() {

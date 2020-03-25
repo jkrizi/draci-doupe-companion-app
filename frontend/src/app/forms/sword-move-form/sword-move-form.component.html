@@ -24,23 +24,33 @@
   </div>
 
   <div class="form-row mb-3">
-    <label for="user-weapon" class="col-2">User weapon</label>
-    <div id="user-weapon" class="col-10 d-flex flex-wrap">
-      <div class="m-1 btn-group-toggle" data-toggle="buttons" *ngFor ="let weaponType of weaponTypes" formGroupName="userWeapon">
-        <label class="btn btn-outline-success" [ngClass]="userWeaponTypes.get(weaponType).value ? 'active' : ''">
-          <input type="checkbox" [formControlName]="weaponType" autocomplete="off" [value]="userWeaponTypes.get(weaponType).value"> {{weaponType}}
-        </label>
+    <div class="col">
+      <label for="user-weapon">User weapon</label>
+      <div id="user-weapon" class="d-flex flex-wrap">
+        <div class="m-1" *ngFor ="let weaponFamily of weaponFamilies">
+          <label class="btn btn-outline-success"
+                 (change)="updateWeapons(userWeaponsForm, weaponFamily)"
+                 [ngClass]="{active: findWeaponIndex(userWeaponsForm ,weaponFamily) !== -1}"
+          >
+            <input type="checkbox" hidden> {{weaponFamily.name}}
+          </label>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="form-row mb-3">
-    <label for="opponent-weapon" class="col-2">Opponent weapon</label>
-    <div id="opponent-weapon" class="col-10 d-flex flex-wrap">
-      <div class="btn-group-toggle m-1 " data-toggle="buttons" *ngFor ="let weaponType of weaponTypes" formGroupName="opponentWeapon">
-        <label class="btn btn-outline-success" [ngClass]="opponentWeaponTypes.get(weaponType).value ? 'active' : ''">
-          <input type="checkbox" [formControlName]="weaponType" autocomplete="off" [value]="opponentWeaponTypes.get(weaponType).value"> {{weaponType}}
-        </label>
+    <div class="col">
+      <label for="opponent-weapon">Opponent weapon</label>
+      <div id="opponent-weapon" class="d-flex flex-wrap">
+        <div class="m-1" *ngFor ="let weaponFamily of weaponFamilies">
+          <label class="btn btn-outline-success"
+                 (change)="updateWeapons(opponentWeaponsForm, weaponFamily)"
+                 [ngClass]="{active: findWeaponIndex(opponentWeaponsForm, weaponFamily) !== -1}"
+          >
+            <input type="checkbox" hidden> {{weaponFamily.name}}
+          </label>
+        </div>
       </div>
     </div>
   </div>

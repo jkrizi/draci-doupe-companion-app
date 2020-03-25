@@ -13,7 +13,7 @@ export interface WeaponBlueprintModel {
   shortRangeLimit: number;
   midRangeLimit: number;
   longRangeLimit: number;
-  minReach: number;
-  maxReach: number;
+  minMeleeReach: number;
+  maxMeleeReach: number;
   weaponFamily: WeaponFamilyModel;
 }

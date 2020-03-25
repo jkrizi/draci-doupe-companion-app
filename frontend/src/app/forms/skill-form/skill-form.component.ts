@@ -11,9 +11,11 @@ import {v4 as uuid} from 'uuid';
   styleUrls: ['./skill-form.component.css']
 })
 export class SkillFormComponent implements OnInit {
+  // Component controls
   editMode = false;
   selectedSkill: SkillModel;
 
+  // Component forms
   skillForm: FormGroup;
 
   // Backend enums
@@ -52,6 +54,7 @@ export class SkillFormComponent implements OnInit {
 
   save() {
     this.skillForm.patchValue({id: uuid()});
+    console.log(this.skillForm.value);
     this.skillService.save(this.skillForm.value);
     this.clearForm();
   }

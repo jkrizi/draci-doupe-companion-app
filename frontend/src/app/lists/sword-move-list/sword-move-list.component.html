@@ -12,7 +12,7 @@
   <tr *ngFor="let swordMove of swordMoveList; let i = index" (click)="selectSpell(i)" style="cursor: pointer">
     <td></td>
     <td>{{swordMove.name}}</td>
-    <td>{{swordMove.initiativeModifier}}</td>
+    <td>{{swordMove.initiative}}</td>
     <td>{{swordMove.actions}}</td>
     <td>{{swordMove.humanoidOpponent}}</td>
   </tr>
