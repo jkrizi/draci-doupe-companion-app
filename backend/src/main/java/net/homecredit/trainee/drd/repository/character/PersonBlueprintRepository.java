@@ -21,10 +21,10 @@ public class PersonBlueprintRepository {
                 "select distinct pb " +
                         "from PersonBlueprint pb " +
                         "join fetch pb.race r join fetch r.weapon w join fetch w.weaponType.damageType " +
-                        "join fetch pb.armorBlueprints pab join fetch pab.armorBlueprint ab join fetch  ab.coverage " +
-                        "join fetch pb.weaponBlueprints pwb join fetch pwb.weaponBlueprint wb join fetch wb.weaponFamily wf join fetch wf.weaponType.damageType " +
-                        "join fetch pb.treasureBlueprints ptb join fetch ptb.treasureBlueprint tb join fetch tb.gemstones g join fetch g.gemstoneBlueprint " +
-                        "join fetch pb.goodsBlueprints pgb join fetch pgb.goodsBlueprint", PersonBlueprint.class)
+                        "left join fetch pb.armorBlueprints pab left join fetch pab.armorBlueprint ab left join fetch  ab.coverage " +
+                        "left join fetch pb.weaponBlueprints pwb left join fetch pwb.weaponBlueprint wb left join fetch wb.weaponFamily wf left join fetch wf.weaponType.damageType " +
+                        "left join fetch pb.treasureBlueprints ptb left join fetch ptb.treasureBlueprint tb left join fetch tb.gemstones g left join fetch g.gemstoneBlueprint " +
+                        "left join fetch pb.goodsBlueprints pgb left join fetch pgb.goodsBlueprint", PersonBlueprint.class)
                 .getResultList();
     }
 

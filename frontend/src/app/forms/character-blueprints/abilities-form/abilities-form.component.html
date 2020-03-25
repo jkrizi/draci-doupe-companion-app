@@ -1,0 +1,9 @@
+<div [formGroup]="parentForm">
+    <div *ngFor="let abilityControl of parentForm.controls; let i = index">
+        <div class="d-flex" [formGroupName]="i">
+          <span class="w-50 align-self-center">{{abilityControl.value.ability}}</span>
+          <input type="text" class="form-control w-25 text-sm-center" formControlName="abilityValue" [value]="abilityControl.get('abilityValue').value">
+          <input type="text" class="form-control w-25 text-sm-center" formControlName="abilityBonusValue" [value]="abilityControl.get('abilityBonusValue').value">
+        </div>
+    </div>
+</div>

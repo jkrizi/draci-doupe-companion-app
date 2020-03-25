@@ -1,6 +1,8 @@
 import {AbilityModel} from './ability.model';
-import {InventoryModel} from './inventory.model';
-import {CombatValuesModel} from './combat-values.model';
+import {WeaponBlueprintModel} from './weapon-blueprint.model';
+import {ArmorBlueprintModel} from './armor-blueprint.model';
+import {TreasureBlueprintModel} from './treasure-blueprint.model';
+import {GoodsBlueprintModel} from './goods-blueprint.model';
 
 export interface BeastBlueprintModel {
   id: string;
@@ -15,10 +17,16 @@ export interface BeastBlueprintModel {
   abilityMap: AbilityModel[];
   sizes: string[];
   vulnerabilities: string[];
-  inventory: InventoryModel;
-  combatValues: CombatValuesModel;
+  initiative: number;
   pugnacity: number;
   persistence: number;
   domestication: number;
   schooled: boolean;
+  weaponry: WeaponBlueprintModel[];
+  armory: ArmorBlueprintModel[];
+  treasury: TreasureBlueprintModel[];
+  goods: GoodsBlueprintModel[];
+  gold: number;
+  silver: number;
+  copper: number;
 }

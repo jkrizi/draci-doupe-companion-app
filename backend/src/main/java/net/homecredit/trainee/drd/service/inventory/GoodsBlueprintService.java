@@ -1,16 +1,16 @@
 package net.homecredit.trainee.drd.service.inventory;
 
 import net.homecredit.trainee.drd.controller.inventory.GoodsBlueprintDto;
+import net.homecredit.trainee.drd.entity.inventory.ItemBlueprint;
 import net.homecredit.trainee.drd.entity.inventory.goods.GoodsBlueprint;
+import net.homecredit.trainee.drd.entity.util.CharacterBlueprintItemBlueprint;
 import net.homecredit.trainee.drd.repository.inventory.GoodsBlueprintRepository;
 import net.homecredit.trainee.drd.service.shop.ShopService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Transactional
@@ -58,11 +58,23 @@ public class GoodsBlueprintService {
         goodsBlueprintRepository.delete(id);
     }
 
-    public GoodsBlueprint convert(GoodsBlueprintDto goodsBlueprintDto) {
+    private GoodsBlueprint convert(GoodsBlueprintDto goodsBlueprintDto) {
         return modelMapper.map(goodsBlueprintDto, GoodsBlueprint.class);
     }
 
-    public GoodsBlueprintDto convert(GoodsBlueprint goodsBlueprint) {
+    private GoodsBlueprintDto convert(ItemBlueprint goodsBlueprint) {
         return modelMapper.map(goodsBlueprint, GoodsBlueprintDto.class);
+    }
+
+    public Set<GoodsBlueprintDto> convertGoodsBlueprintEntities(Set<CharacterBlueprintItemBlueprint> goodsBlueprintLinks) {
+        Set<GoodsBlueprintDto> goodsBlueprintDtos = new HashSet<>();
+        goodsBlueprintLinks.forEach(goodsBlueprintLink -> goodsBlueprintDtos.add(convert(goodsBlueprintLink.getItemBlueprint())));
+        return goodsBlueprintDtos;
+    }
+
+    public Set<GoodsBlueprint> convertGoodsBlueprintsDtos(Set<GoodsBlueprintDto> goodsBlueprintDtos) {
+        Set<GoodsBlueprint> goodsBlueprints = new HashSet<>();
+        goodsBlueprintDtos.forEach(goodsBlueprintDto -> goodsBlueprints.add(convert(goodsBlueprintDto)));
+        return goodsBlueprints;
     }
 }

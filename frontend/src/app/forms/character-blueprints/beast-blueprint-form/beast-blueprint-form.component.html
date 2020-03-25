@@ -1,0 +1,110 @@
+<form class="my-4 mx-3" [formGroup]="beastBlueprintForm" (ngSubmit)="onSubmit()">
+
+  <div class="form-row">
+    <div class="col">
+      <label for="name">Name</label>
+      <input class="form-control" type="text" formControlName="name" id="name">
+    </div>
+    <div class="col">
+      <label for="species">Species</label>
+      <input type="text" class="form-control" formControlName="species" id="species">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea class="form-control" formControlName="description" id="description"></textarea>
+  </div>
+  <div class="form-row mb-4">
+    <div class="col-6">
+      <label for="origin">Origin</label>
+      <input type="text" class="form-control" formControlName="origin" id="origin">
+    </div>
+    <div class="col-1">
+      <label for="schooled">Trained</label>
+      <input type="checkbox" class="form-control w-100" formControlName="schooled" id="schooled">
+    </div>
+  </div>
+
+
+  <div class="form-row mb-3">
+
+    <div class="col mr-1">
+      <label for="abilities" class="font-weight-bold">Abilities</label>
+      <div id="abilities">
+        <app-abilities-form [parentForm] = "abilitiesForm"></app-abilities-form>
+      </div>
+      <div class="d-flex mt-2">
+        <span class="w-50 align-self-center">Mobility</span>
+        <input type="text" class="form-control w-25 text-sm-center" formControlName="mobility">
+        <input type="text" class="form-control w-25 text-sm-center" formControlName="mobilityBonus">
+      </div>
+    </div>
+
+    <div class="col ml-1">
+      <label for="other" class="font-weight-bold">Other</label>
+      <div id="other">
+        <div class="d-flex">
+          <label for="viability" class="w-50 align-self-center">Viability</label>
+          <input type="text" class="form-control w-25 text-sm-center" formControlName="viability" id="viability">
+          <input type="text" class="form-control w-25 text-sm-center" formControlName="viability" id="viability-bonus">
+
+        </div>
+        <div class="d-flex">
+          <label for="manna" class="w-50 align-self-center">Manna</label>
+          <input type="text" class="form-control w-25 text-sm-center" formControlName="manna" id="manna">
+        </div>
+        <div class="d-flex">
+          <label for="viability-bonus" class="w-50 align-self-center">Initiative</label>
+          <input type="text" class="form-control w-25 text-sm-center" formControlName="viabilityBonus" id="initiative">
+        </div>
+        <div class="d-flex">
+          <label for="pugnacity" class="w-50 align-self-center">Pugnacity</label>
+          <input type="text" class="form-control w-25 text-sm-center" formControlName="pugnacity" id="pugnacity">
+        </div>
+        <div class="d-flex">
+          <label for="domestication" class="w-50 align-self-center">Domestication</label>
+          <input type="text" class="form-control w-25 text-sm-center" formControlName="domestication" id="domestication">
+        </div>
+        <div class="d-flex mt-2">
+          <span class="w-50 align-self-center">Persistence</span>
+          <input type="text" class="form-control w-25 text-sm-center" formControlName="persistence" id="persistence">
+          <input type="text" class="form-control w-25 text-sm-center" formControlName="persistenceBonus">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div>
+    <label for="sizes" class="font-weight-bold">Sizes</label>
+    <div id="sizes" class="d-flex flex-wrap mb-3 ">
+      <div *ngFor ="let size of characterSizes">
+        <label class="btn btn-outline-success mr-1 mb-1"
+               (change)="updateFormArray(size, sizesForm)"
+               [ngClass]="{active: findIndex(size, sizesForm) !== -1}"
+        >
+          <input type="checkbox" hidden> {{size}}
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <label for="vulnerabilities" class="font-weight-bold">Vulnerabilities</label>
+    <div id="vulnerabilities" class="d-flex flex-wrap mb-3">
+      <div *ngFor ="let vulnerability of characterVulnerabilities">
+        <label class="btn btn-outline-success mr-1 mb-1"
+               (change)="updateFormArray(vulnerability, vulnerabilitiesForm)"
+               [ngClass]="{active: findIndex(vulnerability, vulnerabilitiesForm) !== -1}"
+        >
+          <input type="checkbox" hidden>{{vulnerability}}
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <app-inventory [parentForm]="beastBlueprintForm"></app-inventory>
+
+  <app-form-controls [editMode]="editMode" (update)="update()" (delete)="delete()" (cancel)="clearForm()"></app-form-controls>
+
+</form>

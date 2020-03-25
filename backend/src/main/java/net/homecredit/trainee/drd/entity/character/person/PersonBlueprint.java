@@ -1,15 +1,13 @@
 package net.homecredit.trainee.drd.entity.character.person;
 
+import net.homecredit.trainee.drd.entity.character.CharacterBlueprint;
 import net.homecredit.trainee.drd.entity.character.person.profession.Profession;
 import net.homecredit.trainee.drd.entity.character.person.race.Race;
 import net.homecredit.trainee.drd.entity.inventory.armor.ArmorBlueprint;
 import net.homecredit.trainee.drd.entity.inventory.goods.GoodsBlueprint;
 import net.homecredit.trainee.drd.entity.inventory.treasure.TreasureBlueprint;
 import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponBlueprint;
-import net.homecredit.trainee.drd.entity.util.PersonBlueprintArmorBlueprint;
-import net.homecredit.trainee.drd.entity.util.PersonBlueprintGoodsBlueprint;
-import net.homecredit.trainee.drd.entity.util.PersonBlueprintTreasureBlueprint;
-import net.homecredit.trainee.drd.entity.util.PersonBlueprintWeaponBlueprint;
+import net.homecredit.trainee.drd.entity.util.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -18,7 +16,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "PERSON_BLUEPRINT")
-public class PersonBlueprint {
+public class PersonBlueprint implements CharacterBlueprint {
 
     @Id
     private UUID id;
@@ -181,5 +179,25 @@ public class PersonBlueprint {
                 ", goodsBlueprints=" + goodsBlueprints +
                 ", coinPouch=" + coinPouch +
                 '}';
+    }
+
+    @Override
+    public Set<CharacterBlueprintItemBlueprint> getArmorBlueprintsNewSet() {
+        return new HashSet<>(armorBlueprints);
+    }
+
+    @Override
+    public Set<CharacterBlueprintItemBlueprint> getGoodsBlueprintsNewSet() {
+        return new HashSet<>(goodsBlueprints);
+    }
+
+    @Override
+    public Set<CharacterBlueprintItemBlueprint> getTreasureBlueprintsNewSet() {
+        return new HashSet<>(treasureBlueprints);
+    }
+
+    @Override
+    public Set<CharacterBlueprintItemBlueprint> getWeaponBlueprintsNewSet() {
+        return new HashSet<>(weaponBlueprints);
     }
 }

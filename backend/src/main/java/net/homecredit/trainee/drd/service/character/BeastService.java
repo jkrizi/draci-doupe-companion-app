@@ -35,16 +35,6 @@ public class BeastService {
         beastRepository.deleteAll();
     }
 
-    public void spawnBeasts(int numberOfBeasts, BeastBlueprint generals, String name, String description, CharacterSize characterSize) {
-
-        for (int i = 0; i < numberOfBeasts; i++) {
-            int life = calculateLife(generals);
-            Inventory inventory = inventoryService.createInventory(generals.getAbilityMap().get(Ability.STRENGTH));
-            CombatValues combatValues = combatService.newCombatValues(generals.getAbilityMap(), inventory, generals.getCombatValues().getInitiativeBase());
-            beastRepository.save(new Beast(generals, name, description, life, characterSize, inventory, combatValues));
-        }
-    }
-
     private int calculateLife(BeastBlueprint generals) {
         int life = generals.getViabilityBonus();
         for (int i = 0; i < generals.getViability(); i++) {

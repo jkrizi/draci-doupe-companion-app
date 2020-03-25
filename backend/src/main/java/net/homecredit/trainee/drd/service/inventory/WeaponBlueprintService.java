@@ -1,17 +1,17 @@
 package net.homecredit.trainee.drd.service.inventory;
 
 import net.homecredit.trainee.drd.controller.inventory.WeaponBlueprintDto;
+import net.homecredit.trainee.drd.entity.inventory.ItemBlueprint;
 import net.homecredit.trainee.drd.entity.inventory.weapon.WeaponBlueprint;
 import net.homecredit.trainee.drd.entity.shop.ItemType;
+import net.homecredit.trainee.drd.entity.util.CharacterBlueprintItemBlueprint;
 import net.homecredit.trainee.drd.repository.inventory.WeaponBlueprintRepository;
 import net.homecredit.trainee.drd.service.shop.ShopService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Transactional
@@ -38,13 +38,13 @@ public class WeaponBlueprintService {
     public List<WeaponBlueprintDto> findAll() {
         List<WeaponBlueprintDto> weaponBlueprintDtoList = new ArrayList<>();
         weaponBlueprintRepository.findAll().forEach(weaponBlueprint ->
-            weaponBlueprintDtoList.add(convertWeaponBlueprint(weaponBlueprint))
+            weaponBlueprintDtoList.add(convert(weaponBlueprint))
         );
         return weaponBlueprintDtoList;
     }
 
     public void save(WeaponBlueprintDto weaponBlueprintDto) {
-        WeaponBlueprint newWeaponBlueprint = convertWeaponBlueprintDto(weaponBlueprintDto);
+        WeaponBlueprint newWeaponBlueprint = convert(weaponBlueprintDto);
         if(weaponBlueprintRepository.containsBlueprint(newWeaponBlueprint)){
             throw new RuntimeException("Weapon blueprint already exists");
         }
@@ -53,7 +53,7 @@ public class WeaponBlueprintService {
     }
 
     public void update(WeaponBlueprintDto weaponBlueprintDto) {
-        WeaponBlueprint existingWeaponBlueprint = convertWeaponBlueprintDto(weaponBlueprintDto);
+        WeaponBlueprint existingWeaponBlueprint = convert(weaponBlueprintDto);
         weaponBlueprintRepository.update(existingWeaponBlueprint);
     }
 
@@ -61,13 +61,24 @@ public class WeaponBlueprintService {
         weaponBlueprintRepository.delete(id);
     }
 
-    public WeaponBlueprint convertWeaponBlueprintDto(WeaponBlueprintDto weaponBlueprintDto) {
+    private WeaponBlueprint convert(WeaponBlueprintDto weaponBlueprintDto) {
         return modelMapper.map(weaponBlueprintDto, WeaponBlueprint.class);
     }
 
-    public WeaponBlueprintDto convertWeaponBlueprint(WeaponBlueprint weaponBlueprint) {
+    private WeaponBlueprintDto convert(ItemBlueprint weaponBlueprint) {
         return modelMapper.map(weaponBlueprint, WeaponBlueprintDto.class);
     }
 
+    public Set<WeaponBlueprintDto> convertWeaponBlueprintEntities(Set<CharacterBlueprintItemBlueprint> weaponBlueprintLinks) {
+        Set<WeaponBlueprintDto> weaponBlueprintDtos = new HashSet<>();
+        weaponBlueprintLinks.forEach(weaponBlueprintLink -> weaponBlueprintDtos.add(convert(weaponBlueprintLink.getItemBlueprint())));
+        return weaponBlueprintDtos;
+    }
+
+    public Set<WeaponBlueprint> convertWeaponBlueprintDtos(Set<WeaponBlueprintDto> weaponBlueprintDtos) {
+        Set<WeaponBlueprint> weaponBlueprints = new HashSet<>();
+        weaponBlueprintDtos.forEach(weaponBlueprintDto -> weaponBlueprints.add(convert(weaponBlueprintDto)));
+        return weaponBlueprints;
+    }
 
 }

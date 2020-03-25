@@ -34,9 +34,7 @@ export class PersonBlueprintFormComponent implements OnInit {
     private enumsService: EnumsService,
     private raceService: RaceService,
     private personBlueprintService: PersonBlueprintService
-  ) {
-  }
-
+  ) {}
 
   ngOnInit(): void {
     this.initForm();

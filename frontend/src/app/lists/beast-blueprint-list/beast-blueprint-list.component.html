@@ -3,24 +3,26 @@
     <tr>
       <th></th>
       <th>Name</th>
-      <th>Species</th>
-      <th>Viability</th>
-      <th>Manna</th>
-      <th>Initiative</th>
-      <th>Attack</th>
-      <th>Defense</th>
+      <th class="text-sm-center">Species</th>
+      <th class="text-sm-center">Viability</th>
+      <th class="text-sm-center">Manna</th>
+      <th class="text-sm-center">Initiative</th>
+      <th class="text-sm-center">Strength</th>
+      <th class="text-sm-center">Dexterity</th>
+      <th class="text-sm-center">Intelligence</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let beast of beastBlueprints; let i = index" (click)="passBlueprint(i)" style="cursor: pointer">
+    <tr *ngFor="let beast of beastBlueprints; let i = index" (click)="selectBeastBlueprint(i)" style="cursor: pointer">
       <td></td>
       <td>{{beast.name}}</td>
-      <td>{{beast.species}}</td>
-      <td>{{beast.viability}}</td>
-      <td>{{beast.manna}}</td>
-      <td>{{beast.combatValues.initiativeBase}}</td>
-      <td>{{beast.combatValues.attack}}/{{beast.combatValues.hurt}}</td>
-      <td>{{beast.combatValues.activeDefense}}/{{beast.combatValues.passiveDefense}}</td>
+      <td class="text-sm-center">{{beast.species}}</td>
+      <td class="text-sm-center">{{beast.viability}}</td>
+      <td class="text-sm-center">{{beast.manna}}</td>
+      <td class="text-sm-center">{{beast.initiative}}</td>
+      <td class="text-sm-center">{{getAbility('STRENGTH', beast.abilityMap).abilityValue}}</td>
+      <td class="text-sm-center">{{getAbility('DEXTERITY', beast.abilityMap).abilityValue}}</td>
+      <td class="text-sm-center">{{getAbility('INTELLIGENCE', beast.abilityMap).abilityValue}}</td>
     </tr>
   </tbody>
 </table>

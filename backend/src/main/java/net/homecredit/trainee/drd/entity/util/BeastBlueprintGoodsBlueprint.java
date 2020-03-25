@@ -1,22 +1,22 @@
 package net.homecredit.trainee.drd.entity.util;
 
 import net.homecredit.trainee.drd.entity.character.CharacterBlueprint;
-import net.homecredit.trainee.drd.entity.character.person.PersonBlueprint;
+import net.homecredit.trainee.drd.entity.character.beast.BeastBlueprint;
 import net.homecredit.trainee.drd.entity.inventory.ItemBlueprint;
 import net.homecredit.trainee.drd.entity.inventory.goods.GoodsBlueprint;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "PERSON_BLUEPRINT_GOODS_BLUEPRINT")
-public class PersonBlueprintGoodsBlueprint implements CharacterBlueprintItemBlueprint{
+@Table(name = "BEAST_BLUEPRINT_GOODS_BLUEPRINT")
+public class BeastBlueprintGoodsBlueprint implements CharacterBlueprintItemBlueprint{
 
     @EmbeddedId
     private RelationTableId id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("ownerId")
-    private PersonBlueprint personBlueprint;
+    private BeastBlueprint beastBlueprint;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("ownedId")
@@ -24,11 +24,11 @@ public class PersonBlueprintGoodsBlueprint implements CharacterBlueprintItemBlue
 
     private Integer ownedPieces;
 
-    public PersonBlueprintGoodsBlueprint() {}
+    public BeastBlueprintGoodsBlueprint() {}
 
-    public PersonBlueprintGoodsBlueprint(PersonBlueprint personBlueprint, GoodsBlueprint goodsBlueprint, Integer ownedPieces) {
-        this.id = new RelationTableId(personBlueprint.getId(), goodsBlueprint.getId());
-        this.personBlueprint = personBlueprint;
+    public BeastBlueprintGoodsBlueprint(BeastBlueprint beastBlueprint, GoodsBlueprint goodsBlueprint, Integer ownedPieces) {
+        this.id = new RelationTableId(beastBlueprint.getId(), goodsBlueprint.getId());
+        this.beastBlueprint = beastBlueprint;
         this.goodsBlueprint = goodsBlueprint;
         this.ownedPieces = ownedPieces;
     }
@@ -41,12 +41,12 @@ public class PersonBlueprintGoodsBlueprint implements CharacterBlueprintItemBlue
         this.id = id;
     }
 
-    public PersonBlueprint getPersonBlueprint() {
-        return personBlueprint;
+    public BeastBlueprint getBeastBlueprint() {
+        return beastBlueprint;
     }
 
-    public void setPersonBlueprint(PersonBlueprint personBlueprint) {
-        this.personBlueprint = personBlueprint;
+    public void setBeastBlueprint(BeastBlueprint beastBlueprint) {
+        this.beastBlueprint = beastBlueprint;
     }
 
     public GoodsBlueprint getGoodsBlueprint() {
@@ -70,15 +70,15 @@ public class PersonBlueprintGoodsBlueprint implements CharacterBlueprintItemBlue
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PersonBlueprintGoodsBlueprint that = (PersonBlueprintGoodsBlueprint) o;
+        BeastBlueprintGoodsBlueprint that = (BeastBlueprintGoodsBlueprint) o;
 
-        if (!personBlueprint.equals(that.personBlueprint)) return false;
+        if (!beastBlueprint.equals(that.beastBlueprint)) return false;
         return goodsBlueprint.equals(that.goodsBlueprint);
     }
 
     @Override
     public int hashCode() {
-        int result = personBlueprint.hashCode();
+        int result = beastBlueprint.hashCode();
         result = 31 * result + goodsBlueprint.hashCode();
         return result;
     }
@@ -90,6 +90,6 @@ public class PersonBlueprintGoodsBlueprint implements CharacterBlueprintItemBlue
 
     @Override
     public CharacterBlueprint getCharacterBlueprint() {
-        return personBlueprint;
+        return beastBlueprint;
     }
 }

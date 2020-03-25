@@ -27,8 +27,8 @@
     <div class="col">
       <label for="user-weapon">User weapon</label>
       <div id="user-weapon" class="d-flex flex-wrap">
-        <div class="m-1" *ngFor ="let weaponFamily of weaponFamilies">
-          <label class="btn btn-outline-success"
+        <div *ngFor ="let weaponFamily of weaponFamilies">
+          <label class="btn btn-outline-success mr-1 mb-1"
                  (change)="updateWeapons(userWeaponsForm, weaponFamily)"
                  [ngClass]="{active: findWeaponIndex(userWeaponsForm ,weaponFamily) !== -1}"
           >
@@ -43,8 +43,8 @@
     <div class="col">
       <label for="opponent-weapon">Opponent weapon</label>
       <div id="opponent-weapon" class="d-flex flex-wrap">
-        <div class="m-1" *ngFor ="let weaponFamily of weaponFamilies">
-          <label class="btn btn-outline-success"
+        <div *ngFor ="let weaponFamily of weaponFamilies">
+          <label class="btn btn-outline-success mr-1 mb-1"
                  (change)="updateWeapons(opponentWeaponsForm, weaponFamily)"
                  [ngClass]="{active: findWeaponIndex(opponentWeaponsForm, weaponFamily) !== -1}"
           >

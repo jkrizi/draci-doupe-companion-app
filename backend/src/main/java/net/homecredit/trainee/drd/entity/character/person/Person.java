@@ -50,7 +50,7 @@ public class Person implements Character {
     @Embedded
     private CombatValues combatValues;
 
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @MapKey(name = "ability")
     @MapKeyEnumerated
     private Map<Ability, AbilityScore> abilityMap;

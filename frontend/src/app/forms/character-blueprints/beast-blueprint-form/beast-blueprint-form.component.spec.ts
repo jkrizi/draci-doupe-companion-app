@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BeastBlueprintComponent } from './beast-blueprint.component';
+import { BeastBlueprintFormComponent } from './beast-blueprint.component';
 
 describe('BeastBlueprintComponent', () => {
-  let component: BeastBlueprintComponent;
-  let fixture: ComponentFixture<BeastBlueprintComponent>;
+  let component: BeastBlueprintFormComponent;
+  let fixture: ComponentFixture<BeastBlueprintFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BeastBlueprintComponent ]
+      declarations: [ BeastBlueprintFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BeastBlueprintComponent);
+    fixture = TestBed.createComponent(BeastBlueprintFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

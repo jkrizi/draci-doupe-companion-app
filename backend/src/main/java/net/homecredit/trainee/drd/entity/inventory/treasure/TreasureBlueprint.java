@@ -2,11 +2,12 @@ package net.homecredit.trainee.drd.entity.inventory.treasure;
 
 import net.homecredit.trainee.drd.entity.character.person.skill.SkillKnowledge;
 import net.homecredit.trainee.drd.entity.inventory.ItemBlueprint;
-import net.homecredit.trainee.drd.entity.util.PersonBlueprintTreasureBlueprint;
 import net.homecredit.trainee.drd.util.Material;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.Collection;
+import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "TREASURE_BLUEPRINT")

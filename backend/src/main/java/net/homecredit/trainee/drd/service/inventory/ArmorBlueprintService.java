@@ -1,17 +1,21 @@
 package net.homecredit.trainee.drd.service.inventory;
 
+import net.homecredit.trainee.drd.controller.character.BeastBlueprintDto;
 import net.homecredit.trainee.drd.controller.inventory.ArmorBlueprintDto;
+import net.homecredit.trainee.drd.entity.character.CharacterBlueprint;
+import net.homecredit.trainee.drd.entity.character.beast.BeastBlueprint;
+import net.homecredit.trainee.drd.entity.inventory.ItemBlueprint;
 import net.homecredit.trainee.drd.entity.inventory.armor.ArmorBlueprint;
 import net.homecredit.trainee.drd.entity.shop.ItemType;
+import net.homecredit.trainee.drd.entity.util.BeastBlueprintArmorBlueprint;
+import net.homecredit.trainee.drd.entity.util.CharacterBlueprintItemBlueprint;
 import net.homecredit.trainee.drd.repository.inventory.ArmorBlueprintRepository;
 import net.homecredit.trainee.drd.service.shop.ShopService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Transactional
@@ -59,11 +63,23 @@ public class ArmorBlueprintService {
         armorBlueprintRepository.delete(id);
     }
 
-    public ArmorBlueprint convert(ArmorBlueprintDto armorBlueprintDto) {
+    private ArmorBlueprint convert(ArmorBlueprintDto armorBlueprintDto) {
         return modelMapper.map(armorBlueprintDto, ArmorBlueprint.class);
     }
 
-    public ArmorBlueprintDto convert(ArmorBlueprint armorBlueprint) {
+    private ArmorBlueprintDto convert(ItemBlueprint armorBlueprint) {
         return modelMapper.map(armorBlueprint, ArmorBlueprintDto.class);
+    }
+
+    public Set<ArmorBlueprint> convertArmorBlueprintDtos(Set<ArmorBlueprintDto> armorBlueprintDtos) {
+        Set<ArmorBlueprint> armorBlueprints = new HashSet<>();
+        armorBlueprintDtos.forEach(armorBlueprintDto -> armorBlueprints.add(convert(armorBlueprintDto)));
+        return armorBlueprints;
+    }
+
+    public Set<ArmorBlueprintDto> convertArmorBlueprintEntities(Set<CharacterBlueprintItemBlueprint> armorBlueprintLinks) {
+        Set<ArmorBlueprintDto> armorBlueprintDtos = new HashSet<>();
+        armorBlueprintLinks.forEach(armorBlueprintLink -> armorBlueprintDtos.add(convert(armorBlueprintLink.getItemBlueprint())));
+        return armorBlueprintDtos;
     }
 }

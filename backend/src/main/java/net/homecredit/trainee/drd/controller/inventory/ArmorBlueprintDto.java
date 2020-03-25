@@ -9,6 +9,7 @@ public class ArmorBlueprintDto {
     private String name;
     private String publicDescription;
     private String privateDescription;
+    private String armorSize;
     private int weight;
     private int defense;
     private List<String> coverage;
@@ -76,5 +77,13 @@ public class ArmorBlueprintDto {
 
     public void setOwnedPieces(int ownedPieces) {
         this.ownedPieces = ownedPieces;
+    }
+
+    public String getArmorSize() {
+        return armorSize;
+    }
+
+    public void setArmorSize(String armorSize) {
+        this.armorSize = armorSize;
     }
 }

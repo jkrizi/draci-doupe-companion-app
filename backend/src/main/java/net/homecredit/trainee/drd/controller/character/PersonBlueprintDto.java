@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-public class PersonBlueprintDto {
+public class PersonBlueprintDto implements CharacterBlueprintDto {
 
     private UUID id;
     private String name;
@@ -75,38 +75,46 @@ public class PersonBlueprintDto {
         this.profession = profession;
     }
 
+    @Override
     public Set<WeaponBlueprintDto> getWeaponry() {
         return weaponry;
     }
 
+    @Override
     public void setWeaponry(Set<WeaponBlueprintDto> weaponry) {
         this.weaponry = weaponry;
     }
 
+    @Override
     public Set<ArmorBlueprintDto> getArmory() {
         return armory;
     }
 
+    @Override
     public void setArmory(Set<ArmorBlueprintDto> armory) {
         this.armory = armory;
     }
 
+    @Override
     public Set<TreasureBlueprintDto> getTreasury() {
         return treasury;
     }
 
+    @Override
     public void setTreasury(Set<TreasureBlueprintDto> treasury) {
         this.treasury = treasury;
     }
 
+    @Override
     public Set<GoodsBlueprintDto> getGoods() {
         return goods;
     }
 
+    @Override
     public void setGoods(Set<GoodsBlueprintDto> goods) {
         this.goods = goods;
     }
-
+    
     public int getGold() {
         return gold;
     }

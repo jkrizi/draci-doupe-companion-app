@@ -1,15 +1,15 @@
 package net.homecredit.trainee.drd.service.inventory;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import net.homecredit.trainee.drd.controller.inventory.GemstoneDto;
 import net.homecredit.trainee.drd.controller.inventory.TreasureBlueprintDto;
+import net.homecredit.trainee.drd.entity.inventory.ItemBlueprint;
 import net.homecredit.trainee.drd.entity.inventory.treasure.GemstoneBlueprint;
 import net.homecredit.trainee.drd.entity.inventory.treasure.TreasureBlueprint;
 import net.homecredit.trainee.drd.entity.inventory.treasure.Gemstone;
 import net.homecredit.trainee.drd.entity.shop.ItemType;
+import net.homecredit.trainee.drd.entity.util.CharacterBlueprintItemBlueprint;
 import net.homecredit.trainee.drd.repository.inventory.GemstoneBlueprintRepository;
 import net.homecredit.trainee.drd.repository.inventory.TreasureBlueprintRepository;
 import net.homecredit.trainee.drd.service.shop.ShopService;
@@ -66,7 +66,7 @@ public class TreasureBlueprintService {
         treasureBlueprintRepository.delete(id);
     }
 
-    public TreasureBlueprint convert(TreasureBlueprintDto treasureBlueprintDto) {
+    private TreasureBlueprint convert(TreasureBlueprintDto treasureBlueprintDto) {
         TreasureBlueprint treasureBlueprint = modelMapper.map(treasureBlueprintDto, TreasureBlueprint.class);
 
         treasureBlueprint.getGemstones().clear();
@@ -80,15 +80,28 @@ public class TreasureBlueprintService {
         return treasureBlueprint;
     }
 
-    public TreasureBlueprintDto convert(TreasureBlueprint treasureBlueprint) {
+    private TreasureBlueprintDto convert(ItemBlueprint treasureBlueprint) {
         TreasureBlueprintDto treasureBlueprintDto = modelMapper.map(treasureBlueprint, TreasureBlueprintDto.class);
 
         treasureBlueprintDto.getGemstones().clear();
-        treasureBlueprint.getGemstones().forEach(gemstone ->
+        ((TreasureBlueprint)treasureBlueprint).getGemstones().forEach(gemstone ->
                 treasureBlueprintDto.getGemstones().add(convert(gemstone))
         );
         return treasureBlueprintDto;
     }
+
+    public Set<TreasureBlueprintDto> convertTreasureBlueprintEntities(Set<CharacterBlueprintItemBlueprint> treasureBlueprintLinks) {
+        Set<TreasureBlueprintDto> treasureBlueprintDtos = new HashSet<>();
+        treasureBlueprintLinks.forEach(treasureBlueprintLink -> treasureBlueprintDtos.add(convert(treasureBlueprintLink.getItemBlueprint())));
+        return treasureBlueprintDtos;
+    }
+
+    public Set<TreasureBlueprint> convertTreasureBlueprintDtos(Set<TreasureBlueprintDto> treasureBlueprintDtos) {
+        Set<TreasureBlueprint> treasureBlueprints = new HashSet<>();
+        treasureBlueprints.forEach(treasureBlueprintDto -> treasureBlueprintDtos.add(convert(treasureBlueprintDto)));
+        return treasureBlueprints;
+    }
+
 
     // TODO: Gemstones should have probably their own service
 

@@ -1,8 +1,6 @@
 package net.homecredit.trainee.drd.controller.character;
 
-import net.homecredit.trainee.drd.entity.character.beast.BeastBlueprint;
-import net.homecredit.trainee.drd.service.inventory.BeastBlueprintService;
-import org.springframework.http.MediaType;
+import net.homecredit.trainee.drd.service.character.BeastBlueprintService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,22 +16,20 @@ public class BeastController {
         this.beastBlueprintService = beastBlueprintService;
     }
 
-    @GetMapping(value = "/beastBlueprints.json", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<BeastBlueprint> listBeastBlueprints() {
+    @GetMapping("/getAllBeastBlueprints.json")
+    public List<BeastBlueprintDto> listBeastBlueprints() {
         return beastBlueprintService.findAll();
     }
 
-//    @PostMapping("/saveBeastBlueprint.json")
-//    public void saveBeastBlueprint(@RequestBody BeastBlueprintsDto beastBlueprintsDto) {
-//        BeastBlueprint blueprint = beastBlueprintDtoConverter.convert(beastBlueprintsDto);
-//        beastBlueprintService.save(blueprint);
-//    }
+    @PostMapping("/saveBeastBlueprint.json")
+    public void saveBeastBlueprint(@RequestBody BeastBlueprintDto newBeastBlueprint) {
+        beastBlueprintService.save(newBeastBlueprint);
+    }
 
-//    @PostMapping("/updateBeastBlueprint.json")
-//    public void updateBeastBlueprint(@RequestBody BeastBlueprintsDto existingBeastBlueprintDto) {
-//        BeastBlueprint beastBlueprint = beastBlueprintDtoConverter.convert(existingBeastBlueprintDto);
-//        beastBlueprintService.update(beastBlueprint);
-//    }
+    @PostMapping("/updateBeastBlueprint.json")
+    public void updateBeastBlueprint(@RequestBody BeastBlueprintDto existingBeastBlueprint) {
+        beastBlueprintService.update(existingBeastBlueprint);
+    }
 
     @DeleteMapping("/deleteBeastBlueprint.json")
     public void deleteBeastBlueprint(@RequestParam UUID id) {

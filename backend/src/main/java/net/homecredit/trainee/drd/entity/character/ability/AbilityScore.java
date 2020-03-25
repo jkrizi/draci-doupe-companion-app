@@ -1,9 +1,5 @@
 package net.homecredit.trainee.drd.entity.character.ability;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import net.homecredit.trainee.drd.entity.character.beast.BeastBlueprint;
-import net.homecredit.trainee.drd.entity.character.person.Person;
-
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.UUID;
@@ -20,21 +16,13 @@ public class AbilityScore {
     private int abilityValue;
     @Column(name = "bonus")
     private int abilityBonusValue;
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
-    private BeastBlueprint beastBlueprint;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_id")
-    private Person person;
 
-    public AbilityScore() {
-    }
+    public AbilityScore() {}
 
-    public AbilityScore(Ability ability, int abilityValue, int abilityBonusValue) {
-        this.id = UUID.randomUUID();
+    public AbilityScore(Ability ability, int abilityValue, int abilityBonus) {
         this.ability = ability;
-        this.abilityValue = abilityValue;
-        this.abilityBonusValue = abilityBonusValue;
+        this.abilityValue= abilityValue;
+        this.abilityBonusValue = abilityBonus;
     }
 
     public UUID getId() {
@@ -67,22 +55,6 @@ public class AbilityScore {
 
     public void setAbilityBonusValue(int abilityBonusValue) {
         this.abilityBonusValue = abilityBonusValue;
-    }
-
-    public BeastBlueprint getBeastBlueprint() {
-        return beastBlueprint;
-    }
-
-    public void setBeastBlueprint(BeastBlueprint beastBlueprint) {
-        this.beastBlueprint = beastBlueprint;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
     }
 
     @Override

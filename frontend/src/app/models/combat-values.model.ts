@@ -3,5 +3,5 @@ export interface CombatValuesModel {
   hurt: number;
   activeDefense: number;
   passiveDefense: number;
-  initiativeBase: any;
+  initiativeBase: number;
 }

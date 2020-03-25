@@ -15,14 +15,12 @@ export class InventoryComponent implements OnInit {
   @Input() parentForm: FormGroup;
 
   // Backend blueprints lists
-  weaponBlueprints = [];
-  armorBlueprints = [];
-  treasureBlueprints = [];
-  goodBlueprints = [];
+  weaponBlueprints: WeaponBlueprintModel[];
+  armorBlueprints: ArmorBlueprintModel[];
+  treasureBlueprints: TreasureBlueprintModel[];
+  goodBlueprints: GoodsBlueprintModel[];
 
-  constructor(
-    private inventoryService: InventoryService
-  ) {}
+  constructor(private inventoryService: InventoryService) {}
 
   ngOnInit() {
     this.inventoryService.getAllItemBlueprints();
@@ -32,28 +30,16 @@ export class InventoryComponent implements OnInit {
     this.inventoryService.goodBlueprintList.subscribe((goodsBlueprints: GoodsBlueprintModel[]) => this.goodBlueprints = goodsBlueprints);
   }
 
-  addItemToForm(formArray: FormArray, item: any) {
+  addItemToFormArray(formArray: FormArray, item: any) {
     formArray.push(new FormControl(item));
   }
 
-  removeItemFromForm(formArray: FormArray, item: any) {
+  removeItemFromFormArray(formArray: FormArray, item: any) {
     const itemIndex = formArray.controls.findIndex((control: FormControl) => control.value.id === item.id);
     formArray.removeAt(itemIndex);
   }
 
-  getWeaponry(): FormArray {
-    return (this.parentForm.get('weaponry') as FormArray);
-  }
-
-  getArmory(): FormArray {
-    return (this.parentForm.get('armory') as FormArray);
-  }
-
-  getTreasury(): FormArray {
-    return (this.parentForm.get('treasury') as FormArray);
-  }
-
-  getGoods(): FormArray {
-    return (this.parentForm.get('goods') as FormArray);
+  getFormArray(arrayName: string, parentForm: AbstractControl): FormArray {
+    return (parentForm.get(arrayName) as FormArray);
   }
 }
