@@ -6,16 +6,16 @@ import {CalculatorComponent} from './features/calculator/calculator.component';
 import {BattlegroundComponent} from './features/battleground/battleground.component';
 import {ShopComponent} from './features/shop/shop.component';
 import {InputComponent} from './features/input/input.component';
-import {SpellInputComponent} from './features/input/spell-input/spell-input.component';
-import {SkillInputComponent} from './features/input/skill-input/skill-input.component';
-import {SwordMoveInputComponent} from './features/input/sword-move-input/sword-move-input.component';
-import {BeastBlueprintInputComponent} from './features/input/beast-blueprint-input/beast-blueprint-input.component';
-import {RaceInputComponent} from './features/input/race-input/race-input.component';
-import {WeaponBlueprintInputComponent} from './features/input/weapon-blueprint-input/weapon-blueprint-input.component';
-import {ArmorBlueprintInputComponent} from './features/input/armor-blueprint-input/armor-blueprint-input.component';
-import {TreasureBlueprintInputComponent} from './features/input/treasure-blueprint-input/treasure-blueprint-input.component';
-import {GoodsBlueprintInputComponent} from './features/input/goods-blueprint-input/goods-blueprint-input.component';
-import {PersonBlueprintInputComponent} from './features/input/person-blueprint-input/person-blueprint-input.component';
+import {SpellInputComponent} from './features/input/container/spell-input/spell-input.component';
+import {SkillInputComponent} from './features/input/container/skill-input/skill-input.component';
+import {SwordMoveInputComponent} from './features/input/container/sword-move-input/sword-move-input.component';
+import {BeastBlueprintInputComponent} from './features/input/container/beast-blueprint-input/beast-blueprint-input.component';
+import {RaceInputComponent} from './features/input/container/race-input/race-input.component';
+import {WeaponBlueprintInputComponent} from './features/input/container/weapon-blueprint-input/weapon-blueprint-input.component';
+import {ArmorBlueprintInputComponent} from './features/input/container/armor-blueprint-input/armor-blueprint-input.component';
+import {TreasureBlueprintInputComponent} from './features/input/container/treasure-blueprint-input/treasure-blueprint-input.component';
+import {GoodsBlueprintInputComponent} from './features/input/container/goods-blueprint-input/goods-blueprint-input.component';
+import {PersonBlueprintInputComponent} from './features/input/container/person-blueprint-input/person-blueprint-input.component';
 
 const appRoutes: Routes = [
   {path: 'generator', component: GeneratorComponent},
