@@ -38,9 +38,7 @@ export class SpellFormComponent implements OnInit {
     );
   }
 
-  onSubmit() {
-    this.save();
-  }
+  onSubmit() {}
 
   save() {
     this.spellForm.patchValue({id: uuid()});

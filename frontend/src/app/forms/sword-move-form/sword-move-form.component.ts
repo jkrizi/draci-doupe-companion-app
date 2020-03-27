@@ -20,12 +20,7 @@ export class SwordMoveFormComponent implements OnInit {
   userWeaponsForm: FormArray;
   opponentWeaponsForm: FormArray;
 
-  constructor(
-    private swordMoveService: SwordMoveService,
-    private weaponFamilyService: WeaponFamilyService
-  ) {
-    this.weaponFamilies = [];
-  }
+  constructor(private swordMoveService: SwordMoveService, private weaponFamilyService: WeaponFamilyService) {}
 
   ngOnInit() {
     this.initForm();
@@ -54,12 +49,10 @@ export class SwordMoveFormComponent implements OnInit {
     );
   }
 
-  onSubmit(): void {
-    this.save();
-  }
+  onSubmit(): void {}
 
   save(): void {
-    this.swordMoveForm.get('id').patchValue(uuid());
+    this.swordMoveForm.patchValue({id: uuid()});
     this.swordMoveService.save(this.swordMoveForm.value);
     this.clearForm();
   }
@@ -83,10 +76,10 @@ export class SwordMoveFormComponent implements OnInit {
   }
 
   clearForm(): void {
+    this.editMode = false;
     this.swordMoveForm.reset();
     this.userWeaponsForm.clear();
     this.opponentWeaponsForm.clear();
-    this.editMode = false;
   }
 
   updateWeapons(weaponsFormArray: FormArray, weaponFamily: WeaponFamilyModel): void {

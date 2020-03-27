@@ -16,20 +16,16 @@ import {GemstoneModel} from '../../../models/gemstone.model';
   styleUrls: ['./treasure-blueprint-form.component.css']
 })
 export class TreasureBlueprintFormComponent implements OnInit, OnDestroy {
-  // Component controls
   editMode = false;
 
-  // Backend enums
   materials: string[];
   qualityScale: string[];
   colors: string[];
 
   // TODO: Solve issue of repeating gemstone names and related stoneColor filter base on selected stone
-  // Blueprint lists
   filteredGemstones: GemstoneBlueprintModel[];
   unfilteredGemstones: GemstoneBlueprintModel[];
 
-  // Form parts
   treasureBlueprintForm: FormGroup;
   currGemstoneForm: FormGroup;
   gemstonesForm: FormArray;
@@ -45,15 +41,9 @@ export class TreasureBlueprintFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initTreasureBlueprintForm();
 
-    this.enumsService.getMaterials().subscribe((materials: string[]) => {
-      this.materials = materials;
-    });
-    this.enumsService.getQualityLevels().subscribe((qualityLevels: string[]) => {
-      this.qualityScale = qualityLevels;
-    });
-    this.enumsService.getColors().subscribe((colors: string[]) => {
-      this.colors = colors;
-    });
+    this.enumsService.getMaterials().subscribe((materials: string[]) => this.materials = materials);
+    this.enumsService.getQualityLevels().subscribe((qualityLevels: string[]) => this.qualityScale = qualityLevels);
+    this.enumsService.getColors().subscribe((colors: string[]) => this.colors = colors);
 
     this.gemstoneBlueprintService.getAll();
     this.gemstoneBlueprintService.gemstoneBlueprintsList.subscribe((gemstoneBlueprints: GemstoneBlueprintModel[]) => {
@@ -100,33 +90,24 @@ export class TreasureBlueprintFormComponent implements OnInit, OnDestroy {
     });
   }
 
-
-  // TODO: If necessary add unsubscribe
   ngOnDestroy(): void {
 
   }
 
-  onSubmit(): void {
-    this.save();
-  }
+  onSubmit(): void {}
 
   save(): void {
     this.gemstonesForm.controls.forEach((gemstoneFormGroup: FormGroup) => {
-      gemstoneFormGroup.get('id').setValue(uuid());
+      gemstoneFormGroup.patchValue({id: uuid()});
     });
-    this.treasureBlueprintService.save(this.prepareTreasureBlueprint(uuid()));
+    this.treasureBlueprintForm.patchValue({id: uuid()});
+    this.treasureBlueprintService.save(this.treasureBlueprintForm.value);
     this.clearForm();
   }
 
   update(): void {
-    this.treasureBlueprintService.update(this.prepareTreasureBlueprint(this.treasureBlueprintForm.get('id').value));
+    this.treasureBlueprintService.update(this.treasureBlueprintForm.value);
     this.clearForm();
-  }
-
-  prepareTreasureBlueprint(id: string): TreasureBlueprintModel {
-    this.treasureBlueprintForm.removeControl('currGem');
-    this.treasureBlueprintForm.get('id').setValue(id);
-    return this.treasureBlueprintForm.value;
   }
 
   delete(): void {
@@ -146,7 +127,9 @@ export class TreasureBlueprintFormComponent implements OnInit, OnDestroy {
 
   clearForm() {
     this.editMode = false;
-    this.initTreasureBlueprintForm();
+    this.treasureBlueprintForm.reset();
+    this.currGemstoneForm.reset();
+    this.gemstonesForm.clear();
   }
 
   addGemstone() {

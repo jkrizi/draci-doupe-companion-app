@@ -37,51 +37,46 @@ export class WeaponBlueprintFormComponent implements OnInit {
     this.initForm();
 
     this.weaponFamilyService.getAll();
-    this.weaponFamilyService.weaponFamilyList.subscribe((weaponFamilies: WeaponFamilyModel[]) => {
-        this.weaponFamilyDescriptions = weaponFamilies;
-    });
+    this.weaponFamilyService.weaponFamilyList.subscribe((weaponFamilies: WeaponFamilyModel[]) => this.weaponFamilyDescriptions = weaponFamilies);
 
-    this.weaponBlueprintService.selectedWeaponBlueprint.subscribe( weaponBlueprint => {
-      this.fillForm(weaponBlueprint);
-    });
+    this.weaponBlueprintService.selectedWeaponBlueprint.subscribe( weaponBlueprint => this.fillForm(weaponBlueprint));
   }
 
   initForm() {
     this.weaponBlueprintForm = new FormGroup(
       {
-        id: new FormControl(null),
-        name: new FormControl(null),
-        publicDescription: new FormControl(null),
-        privateDescription: new FormControl(null),
-        weight: new FormControl(null),
+        id: new FormControl(),
+        name: new FormControl(),
+        publicDescription: new FormControl(),
+        privateDescription: new FormControl(),
+        weight: new FormControl(),
 
-        weaponFamily: new FormControl(null),
+        weaponFamily: new FormControl(),
 
-        attack: new FormControl(null),
-        hurt: new FormControl(null),
-        defense: new FormControl(null),
-        initiativeModifier: new FormControl(null),
+        attack: new FormControl(),
+        hurt: new FormControl(),
+        defense: new FormControl(),
+        initiativeModifier: new FormControl(),
 
-        shortRangeLimit: new FormControl(null),
-        midRangeLimit: new FormControl(null),
-        longRangeLimit: new FormControl(null),
-        minMeleeReach: new FormControl(null),
-        maxMeleeReach: new FormControl(null),
+        shortRangeLimit: new FormControl(),
+        midRangeLimit: new FormControl(),
+        longRangeLimit: new FormControl(),
+        minMeleeReach: new FormControl(),
+        maxMeleeReach: new FormControl(),
       }
     );
   }
 
-  onSubmit() {
-    this.save();
-  }
+  onSubmit() {}
 
   save() {
-    this.weaponBlueprintService.save(this.prepareWeaponBlueprint(uuid()));
+    this.weaponBlueprintForm.patchValue({id: uuid()});
+    this.weaponBlueprintService.save(this.weaponBlueprintForm.value);
     this.clearForm();
   }
 
   update() {
-    this.weaponBlueprintService.update(this.prepareWeaponBlueprint(this.weaponBlueprintForm.get('id').value));
+    this.weaponBlueprintService.update(this.weaponBlueprintForm.value);
     this.clearForm();
   }
 
@@ -90,17 +85,10 @@ export class WeaponBlueprintFormComponent implements OnInit {
     this.clearForm();
   }
 
-  prepareWeaponBlueprint(id: string): WeaponBlueprintModel {
-    const weaponBlueprint: WeaponBlueprintModel = this.weaponBlueprintForm.value;
-    weaponBlueprint.id = id;
-    return weaponBlueprint;
-  }
-
   fillForm(weaponBlueprint: WeaponBlueprintModel) {
     this.clearForm();
     this.editMode = true;
     this.weaponBlueprintForm.patchValue(weaponBlueprint);
-    console.log(this.weaponBlueprintForm.get('weaponFamily').value.name);
   }
 
   clearForm() {

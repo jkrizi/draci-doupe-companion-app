@@ -24,6 +24,15 @@ export class SkillFormComponent implements OnInit {
   constructor(private enumsService: EnumsService, private skillService: SkillService) { }
 
   ngOnInit() {
+    this.initForm();
+
+    this.skillService.selectedSkill.subscribe( skill => this.fillForm(skill));
+
+    this.enumsService.getDifficulties().subscribe( difficulties => this.difficulties = difficulties);
+    this.enumsService.getAbilities().subscribe( abilities => this.abilities = abilities);
+  }
+
+  initForm() {
     this.skillForm = new FormGroup(
       {
         id: new FormControl(null),
@@ -36,23 +45,12 @@ export class SkillFormComponent implements OnInit {
         fatalFailure: new FormControl(null)
       }
     );
-
-    this.skillService.selectedSkill.subscribe( skill => {
-      this.editMode = true;
-      this.fillForm(skill);
-    });
-
-    this.enumsService.getDifficulties().subscribe( difficulties => this.difficulties = difficulties);
-    this.enumsService.getAbilities().subscribe( abilities => this.abilities = abilities);
   }
 
-  onSubmit() {
-    this.save();
-  }
+  onSubmit() {}
 
   save() {
     this.skillForm.patchValue({id: uuid()});
-    console.log(this.skillForm.value);
     this.skillService.save(this.skillForm.value);
     this.clearForm();
   }
@@ -68,6 +66,8 @@ export class SkillFormComponent implements OnInit {
   }
 
   fillForm(skill: SkillModel) {
+    this.clearForm();
+    this.editMode = true;
     this.skillForm.patchValue(skill);
   }
 

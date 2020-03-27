@@ -17,23 +17,14 @@ import {GoodsBlueprintModel} from '../../../models/goods-blueprint.model';
   styleUrls: ['./person-blueprint-form.component.css']
 })
 export class PersonBlueprintFormComponent implements OnInit {
-  // Component controls
   editMode = false;
 
-  // Backend blueprint list
   races: RaceModel[];
-
-  // Backend enum
   professions: string[];
 
-  // Component forms
   personBlueprintForm: FormGroup;
 
-  constructor(
-    private enumsService: EnumsService,
-    private raceService: RaceService,
-    private personBlueprintService: PersonBlueprintService
-  ) {}
+  constructor(private enumsService: EnumsService, private raceService: RaceService, private personBlueprintService: PersonBlueprintService) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -70,13 +61,12 @@ export class PersonBlueprintFormComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    this.save();
-  }
+  onSubmit() {}
 
   save() {
     this.personBlueprintForm.patchValue({id: uuid()});
     this.personBlueprintService.save(this.personBlueprintForm.value);
+    this.clearForm();
   }
 
   update() {

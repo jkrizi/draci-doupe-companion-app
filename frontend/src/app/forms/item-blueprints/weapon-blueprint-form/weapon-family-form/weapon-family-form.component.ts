@@ -4,7 +4,6 @@ import {EnumsService} from '../../../../services/enums.service';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {WeaponFamilyService} from '../../../../services/weapon-family.service';
 import {v4 as uuid} from 'uuid';
-import {WeaponFamilyModel} from '../../../../models/weapon-family.model';
 
 @Component({
   selector: 'app-weapon-family-form',
@@ -51,8 +50,8 @@ export class WeaponFamilyFormComponent implements OnInit {
   onSubmit(): void {}
 
   save() {
-    const weaponFamily: WeaponFamilyModel = this.weaponFamilyForm.value;
-    this.weaponFamilyService.save(weaponFamily);
+    this.weaponFamilyForm.patchValue({id: uuid()});
+    this.weaponFamilyService.save(this.weaponFamilyForm.value);
     this.close();
   }
 

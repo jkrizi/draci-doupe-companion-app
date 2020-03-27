@@ -5,7 +5,7 @@
   <div class="form-group mb-4">
     <label for="itemType">Goods type</label>
     <select class="form-control" formControlName="itemType" id="itemType">
-      <option *ngFor ="let itemType of itemTypes"> {{itemType}} </option>
+      <option *ngFor ="let itemType of itemTypes" [value]="itemType"> {{itemType}} </option>
     </select>
   </div>
 

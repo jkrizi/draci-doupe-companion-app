@@ -13,28 +13,19 @@ import {WeaponFamilyModel} from '../../models/weapon-family.model';
   styleUrls: ['./race-form.component.css']
 })
 export class RaceFormComponent implements OnInit {
-  // Component controls
   editMode = false;
+  
+  sizes: string[];
+  weaponFamilies: WeaponFamilyModel[];
 
   raceForm: FormGroup;
 
-  // Backend enums
-  sizes: string[];
-
-  // Blueprint lists
-  weaponFamilies: WeaponFamilyModel[];
-
-  constructor(
-    private enumsService: EnumsService,
-    private raceService: RaceService,
-    private weaponFamilyService: WeaponFamilyService
-  ) {}
+  constructor(private enumsService: EnumsService, private raceService: RaceService, private weaponFamilyService: WeaponFamilyService) {}
 
   ngOnInit() {
     this.initForm();
 
     this.enumsService.getSizes().subscribe( sizes => this.sizes = sizes);
-    this.weaponFamilyService.getAll();
     this.weaponFamilyService.weaponFamilyList.subscribe( weaponFamilies => this.weaponFamilies = weaponFamilies);
 
     this.raceService.selectedRace.subscribe( race => this.fillForm(race));
@@ -43,37 +34,35 @@ export class RaceFormComponent implements OnInit {
   initForm() {
     this.raceForm = new FormGroup(
       {
-        id: new FormControl(null),
-        name: new FormControl(null),
-        description: new FormControl(null),
-        size: new FormControl(null),
-        minWeight: new FormControl(null),
-        maxWeight: new FormControl(null),
-        minHeight: new FormControl(null),
-        maxHeight: new FormControl(null),
-        weaponFamilyId: new FormControl(null),
-        strengthThrows: new FormControl(null),
-        dexterityThrows: new FormControl(null),
-        resistanceThrows: new FormControl(null),
-        intelligenceThrows: new FormControl(null),
-        charismaThrows: new FormControl(null),
-        strengthBase: new FormControl(null),
-        dexterityBase: new FormControl(null),
-        resistanceBase: new FormControl(null),
-        intelligenceBase: new FormControl(null),
-        charismaBase: new FormControl(null),
-        strengthCorrection: new FormControl(null),
-        dexterityCorrection: new FormControl(null),
-        resistanceCorrection: new FormControl(null),
-        intelligenceCorrection: new FormControl(null),
-        charismaCorrection: new FormControl(null)
+        id: new FormControl(),
+        name: new FormControl(),
+        description: new FormControl(),
+        size: new FormControl(),
+        minWeight: new FormControl(),
+        maxWeight: new FormControl(),
+        minHeight: new FormControl(),
+        maxHeight: new FormControl(),
+        weaponFamilyId: new FormControl(),
+        strengthThrows: new FormControl(),
+        dexterityThrows: new FormControl(),
+        resistanceThrows: new FormControl(),
+        intelligenceThrows: new FormControl(),
+        charismaThrows: new FormControl(),
+        strengthBase: new FormControl(),
+        dexterityBase: new FormControl(),
+        resistanceBase: new FormControl(),
+        intelligenceBase: new FormControl(),
+        charismaBase: new FormControl(),
+        strengthCorrection: new FormControl(),
+        dexterityCorrection: new FormControl(),
+        resistanceCorrection: new FormControl(),
+        intelligenceCorrection: new FormControl(),
+        charismaCorrection: new FormControl()
       }
     );
   }
 
-  onSubmit() {
-    this.save();
-  }
+  onSubmit() {}
 
   save() {
     this.raceForm.patchValue({id: uuid()});
@@ -92,6 +81,7 @@ export class RaceFormComponent implements OnInit {
   }
 
   fillForm(race: RaceModel) {
+    this.clearForm();
     this.editMode = true;
     this.raceForm.patchValue(race);
   }

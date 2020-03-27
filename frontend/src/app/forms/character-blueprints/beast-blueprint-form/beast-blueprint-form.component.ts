@@ -16,25 +16,18 @@ import {TreasureBlueprintModel} from '../../../models/treasure-blueprint.model';
   styleUrls: ['./beast-blueprint-form.component.css']
 })
 export class BeastBlueprintFormComponent implements OnInit {
-  // Component controls
   editMode = false;
 
-  // Component forms
   beastBlueprintForm: FormGroup;
   itemSelectorForm: FormGroup;
   abilitiesForm: FormArray = new FormArray([]);
   sizesForm: FormArray = new FormArray([]);
   vulnerabilitiesForm: FormArray = new FormArray([]);
 
-  // Enums
   characterSizes: string[];
   characterVulnerabilities: string[];
 
-  constructor(
-    private beastBlueprintService: BeastBlueprintService,
-    private enumService: EnumsService,
-    private abilityService: AbilityService,
-  ) {}
+  constructor(private beastBlueprintService: BeastBlueprintService, private enumService: EnumsService, private abilityService: AbilityService) {}
 
   ngOnInit() {
     this.initParentForm();
@@ -108,9 +101,7 @@ export class BeastBlueprintFormComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    this.save();
-  }
+  onSubmit() {}
 
   save() {
     this.beastBlueprintForm.patchValue({id: uuid()});
@@ -134,6 +125,7 @@ export class BeastBlueprintFormComponent implements OnInit {
     this.beastBlueprintForm.reset();
     this.sizesForm.clear();
     this.vulnerabilitiesForm.clear();
+    // TODO: Could this perhaps be externalized to inventory component? Also used in PersonBlueprint.
     (this.beastBlueprintForm.get('weaponry') as FormArray).clear();
     (this.beastBlueprintForm.get('armory') as FormArray).clear();
     (this.beastBlueprintForm.get('treasury') as FormArray).clear();
@@ -147,6 +139,7 @@ export class BeastBlueprintFormComponent implements OnInit {
     this.beastBlueprintForm.patchValue(beastBlueprint);
     beastBlueprint.sizes.forEach((size: string) => this.updateFormArray(size, this.sizesForm));
     beastBlueprint.vulnerabilities.forEach((vulnerability: string) => this.updateFormArray(vulnerability, this.vulnerabilitiesForm));
+    // TODO: Could this perhaps be externalized to inventory component? Also used in PersonBlueprint.
     beastBlueprint.armory.forEach((armorBlueprint: ArmorBlueprintModel) => (this.beastBlueprintForm.get('armory') as FormArray).push(new FormControl(armorBlueprint)));
     beastBlueprint.weaponry.forEach((weaponBlueprint: WeaponBlueprintModel) => (this.beastBlueprintForm.get('weaponry') as FormArray).push(new FormControl(weaponBlueprint)));
     beastBlueprint.goods.forEach((goodsBlueprint: GoodsBlueprintModel) => (this.beastBlueprintForm.get('goods') as FormArray).push(new FormControl(goodsBlueprint)));
@@ -155,7 +148,7 @@ export class BeastBlueprintFormComponent implements OnInit {
 
   findIndex(formValue: any, formArray: FormArray): number {
     return formArray.controls.findIndex((control: AbstractControl) => control.value === formValue);
-  }
+}
 
   updateFormArray(formValue: any, formArray: FormArray) {
     const index = this.findIndex(formValue, formArray);

@@ -13,16 +13,21 @@ import {v4 as uuid} from 'uuid';
 export class GoodsBlueprintFormComponent implements OnInit {
   editMode = false;
 
-  // Backend enum
   itemTypes;
 
   goodsBlueprintForm: FormGroup;
 
-  constructor(private enumsService: EnumsService, private goodsBlueprintService: GoodsBlueprintService) {
-    this.itemTypes = [];
-  }
+  constructor(private enumsService: EnumsService, private goodsBlueprintService: GoodsBlueprintService) {}
 
   ngOnInit() {
+    this.initForm();
+
+    this.enumsService.getItemTypes().subscribe( itemTypes => this.itemTypes = itemTypes);
+
+    this.goodsBlueprintService.selectedGoodsBlueprint.subscribe( selectedGoodsBlueprint => this.fillForm(selectedGoodsBlueprint));
+  }
+
+  initForm() {
     this.goodsBlueprintForm = new FormGroup(
       {
         id: new FormControl(null),
@@ -33,20 +38,13 @@ export class GoodsBlueprintFormComponent implements OnInit {
         itemType: new FormControl(null)
       }
     );
-
-    this.enumsService.getItemTypes().subscribe( itemTypes => this.itemTypes = itemTypes);
-
-    this.goodsBlueprintService.selectedGoodsBlueprint.subscribe( selectedGoodsBlueprint => this.fillForm(selectedGoodsBlueprint));
   }
 
-  onSubmit() {
-    this.save();
-  }
+  onSubmit() {}
 
   save() {
     this.goodsBlueprintForm.patchValue({id: uuid()});
     this.goodsBlueprintService.save(this.goodsBlueprintForm.value);
-    console.log(this.goodsBlueprintForm.value);
     this.clearForm();
   }
 

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {AbstractControl, FormArray, FormControl, FormGroup} from '@angular/forms';
 import {ArmorBlueprintModel} from '../../../models/armor-blueprint.model';
 import {EnumsService} from '../../../services/enums.service';
 import {ArmorBlueprintService} from '../../../services/armor-blueprint.service';
@@ -18,15 +18,24 @@ export class ArmorBlueprintFormComponent implements OnInit {
   sizes: string[];
 
   armorBlueprintForm: FormGroup;
-  bodyCoverageForm: FormGroup;
+  bodyCoverageForm: FormArray;
 
-  constructor(private enumsService: EnumsService, private armorBlueprintService: ArmorBlueprintService) {
-    this.bodyCoverage = [];
-    this.sizes = [];
-  }
+  constructor(private enumsService: EnumsService, private armorBlueprintService: ArmorBlueprintService) {}
 
   ngOnInit() {
-    this.bodyCoverageForm =  new FormGroup({});
+    this.initForm();
+
+    this.enumsService.getSizes().subscribe( sizes => this.sizes = sizes);
+
+    this.enumsService.getBodySections().subscribe(bodySections => {this.bodyCoverage = bodySections;});
+
+    this.armorBlueprintService.selectedArmorBlueprint.subscribe( selectedArmorBlueprint => {
+      this.fillForm(selectedArmorBlueprint);
+    });
+  }
+
+  initForm() {
+    this.bodyCoverageForm =  new FormArray([]);
     this.armorBlueprintForm = new FormGroup(
       {
         id: new FormControl(null),
@@ -39,36 +48,22 @@ export class ArmorBlueprintFormComponent implements OnInit {
         bodyCoverage: this.bodyCoverageForm
       }
     );
-
-    this.enumsService.getSizes().subscribe( sizes => this.sizes = sizes);
-
-    this.enumsService.getBodySections().subscribe(bodySections => {
-      bodySections.forEach( bodySection => {
-        this.bodyCoverage.push(bodySection);
-        this.bodyCoverageForm.addControl(bodySection, new FormControl(false));
-      });
-    });
-
-    this.armorBlueprintService.selectedArmorBlueprint.subscribe( selectedArmorBlueprint => {
-      this.fillForm(selectedArmorBlueprint);
-    });
   }
 
-  onSubmit() {
-    this.save();
-  }
+  onSubmit(): void {}
 
-  save() {
-    this.armorBlueprintService.save(this.prepareArmorBlueprint(uuid()));
+  save(): void {
+    this.armorBlueprintForm.patchValue({id: uuid()});
+    this.armorBlueprintService.save(this.armorBlueprintForm.value);
     this.clearForm();
   }
 
-  update() {
-    this.armorBlueprintService.update(this.prepareArmorBlueprint(this.armorBlueprintForm.get('id').value));
+  update(): void {
+    this.armorBlueprintService.update(this.armorBlueprintForm.value);
     this.clearForm();
   }
 
-  delete() {
+  delete(): void {
     this.armorBlueprintService.delete(this.armorBlueprintForm.get('id').value);
     this.clearForm();
   }
@@ -78,24 +73,26 @@ export class ArmorBlueprintFormComponent implements OnInit {
     this.editMode = true;
     this.armorBlueprintForm.patchValue(selectedArmorBlueprint);
     selectedArmorBlueprint.coverage.forEach( coverage => {
-      this.bodyCoverageForm.get(coverage).setValue(true);
+      this.bodyCoverageForm.push(new FormControl(coverage));
     });
   }
 
-  clearForm() {
+  clearForm(): void {
     this.editMode = false;
     this.armorBlueprintForm.reset();
+    this.bodyCoverageForm.clear();
   }
 
-  private prepareArmorBlueprint(id: string): ArmorBlueprintModel {
-    const armorBlueprint: ArmorBlueprintModel = this.armorBlueprintForm.value;
-    armorBlueprint.id = id;
-    armorBlueprint.coverage = [];
-    this.bodyCoverage.forEach( bodySection => {
-      if (this.bodyCoverageForm.get(bodySection).value) {
-        armorBlueprint.coverage.push(bodySection);
-      }
-    });
-    return armorBlueprint;
+  findIndex(formValue: any, formArray: FormArray): number {
+    return formArray.controls.findIndex((control: AbstractControl) => control.value === formValue);
+  }
+
+  updateFormArray(formValue: any, formArray: FormArray) {
+    const index = this.findIndex(formValue, formArray);
+    if (index === -1) {
+      formArray.push(new FormControl(formValue));
+    } else {
+      formArray.removeAt(index);
+    }
   }
 }
