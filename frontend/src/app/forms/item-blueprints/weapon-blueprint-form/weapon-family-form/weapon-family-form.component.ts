@@ -1,25 +1,26 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {EnumsService} from '../../../../services/enums.service';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {WeaponFamilyService} from '../../../../services/weapon-family.service';
 import {v4 as uuid} from 'uuid';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-weapon-family-form',
   templateUrl: './weapon-family-form.component.html',
   styleUrls: ['./weapon-family-form.component.css']
 })
-export class WeaponFamilyFormComponent implements OnInit {
-  // Component controls
+export class WeaponFamilyFormComponent implements OnInit, OnDestroy {
+  private damageSub: Subscription;
+  private weightSub: Subscription;
+
   isMelee = true;
   isSingleHanded = true;
 
-  // Backend enums
   damageTypes: string[];
   weightCategories: string[];
 
-  // Form parts
   weaponFamilyForm: FormGroup;
   damageTypeForm: FormArray;
 
@@ -43,8 +44,13 @@ export class WeaponFamilyFormComponent implements OnInit {
       }),
     });
 
-    this.enumsService.getWeaponDamageTypes().subscribe((damageTypes: string[]) => this.damageTypes = damageTypes);
-    this.enumsService.getWeightCategories().subscribe((weightCategories: string[]) => this.weightCategories = weightCategories);
+    this.damageSub = this.enumsService.getWeaponDamageTypes().subscribe((damageTypes: string[]) => this.damageTypes = damageTypes);
+    this.weightSub = this.enumsService.getWeightCategories().subscribe((weightCategories: string[]) => this.weightCategories = weightCategories);
+  }
+
+  ngOnDestroy(): void {
+    this.damageSub.unsubscribe();
+    this.weightSub.unsubscribe();
   }
 
   onSubmit(): void {}

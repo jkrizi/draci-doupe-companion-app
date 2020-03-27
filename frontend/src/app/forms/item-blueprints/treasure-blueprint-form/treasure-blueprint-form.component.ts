@@ -9,6 +9,7 @@ import {GemstoneBlueprintFormComponent} from './gemstone-blueprint-form/gemstone
 import {GemstoneBlueprintService} from '../../../services/gemstone-blueprint.service';
 import {v4 as uuid} from 'uuid';
 import {GemstoneModel} from '../../../models/gemstone.model';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-treasure-blueprint-form',
@@ -16,6 +17,12 @@ import {GemstoneModel} from '../../../models/gemstone.model';
   styleUrls: ['./treasure-blueprint-form.component.css']
 })
 export class TreasureBlueprintFormComponent implements OnInit, OnDestroy {
+  private materialSub: Subscription;
+  private qualitySub: Subscription;
+  private colorSub: Subscription;
+  private gemListSub: Subscription;
+  private treasureListSub: Subscription;
+
   editMode = false;
 
   materials: string[];
@@ -41,17 +48,25 @@ export class TreasureBlueprintFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initTreasureBlueprintForm();
 
-    this.enumsService.getMaterials().subscribe((materials: string[]) => this.materials = materials);
-    this.enumsService.getQualityLevels().subscribe((qualityLevels: string[]) => this.qualityScale = qualityLevels);
-    this.enumsService.getColors().subscribe((colors: string[]) => this.colors = colors);
+    this.materialSub = this.enumsService.getMaterials().subscribe((materials: string[]) => this.materials = materials);
+    this.qualitySub = this.enumsService.getQualityLevels().subscribe((qualityLevels: string[]) => this.qualityScale = qualityLevels);
+    this.colorSub = this.enumsService.getColors().subscribe((colors: string[]) => this.colors = colors);
 
     this.gemstoneBlueprintService.getAll();
-    this.gemstoneBlueprintService.gemstoneBlueprintsList.subscribe((gemstoneBlueprints: GemstoneBlueprintModel[]) => {
+    this.gemListSub = this.gemstoneBlueprintService.gemstoneBlueprintsList.subscribe((gemstoneBlueprints: GemstoneBlueprintModel[]) => {
       this.unfilteredGemstones = gemstoneBlueprints;
       this.filteredGemstones = gemstoneBlueprints;
     });
 
-    this.treasureBlueprintService.selectedTreasureBlueprint.subscribe(selectedTreasureBlueprint => this.fillForm(selectedTreasureBlueprint));
+    this.treasureListSub = this.treasureBlueprintService.selectedTreasureBlueprint.subscribe(selectedTreasureBlueprint => this.fillForm(selectedTreasureBlueprint));
+  }
+
+  ngOnDestroy(): void {
+    this.materialSub.unsubscribe();
+    this.qualitySub.unsubscribe();
+    this.colorSub.unsubscribe();
+    this.gemListSub.unsubscribe();
+    this.treasureListSub.unsubscribe();
   }
 
   initTreasureBlueprintForm(): void {
@@ -88,10 +103,6 @@ export class TreasureBlueprintFormComponent implements OnInit, OnDestroy {
       stonePolished: new FormControl(false),
       blueprintId: new FormControl(null)
     });
-  }
-
-  ngOnDestroy(): void {
-
   }
 
   onSubmit(): void {}

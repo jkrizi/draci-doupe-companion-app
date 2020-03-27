@@ -1,17 +1,21 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AbstractControl, FormArray, FormControl, FormGroup} from '@angular/forms';
 import {SwordMoveService} from '../../services/sword-move.service';
 import {SwordMoveModel} from '../../models/sword-move.model';
 import {v4 as uuid} from 'uuid';
 import {WeaponFamilyService} from '../../services/weapon-family.service';
 import {WeaponFamilyModel} from '../../models/weapon-family.model';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-sword-move-form',
   templateUrl: './sword-move-form.component.html',
   styleUrls: ['./sword-move-form.component.css']
 })
-export class SwordMoveFormComponent implements OnInit {
+export class SwordMoveFormComponent implements OnInit, OnDestroy {
+  private weaponFamilySub: Subscription;
+  private listSub: Subscription;
+
   editMode = false;
 
   weaponFamilies: WeaponFamilyModel[];
@@ -26,9 +30,14 @@ export class SwordMoveFormComponent implements OnInit {
     this.initForm();
 
     this.weaponFamilyService.getAll();
-    this.weaponFamilyService.weaponFamilyList.subscribe((weaponFamilies: WeaponFamilyModel[]) => this.weaponFamilies = weaponFamilies);
+    this.weaponFamilySub = this.weaponFamilyService.weaponFamilyList.subscribe((weaponFamilies: WeaponFamilyModel[]) => this.weaponFamilies = weaponFamilies);
 
-    this.swordMoveService.selectedSwordMove.subscribe( swordMove => this.fillForm(swordMove));
+    this.listSub = this.swordMoveService.selectedSwordMove.subscribe( swordMove => this.fillForm(swordMove));
+  }
+
+  ngOnDestroy(): void {
+    this.weaponFamilySub.unsubscribe();
+    this.listSub.unsubscribe();
   }
 
   initForm(): void {

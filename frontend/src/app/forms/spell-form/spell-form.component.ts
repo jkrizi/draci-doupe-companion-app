@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {SpellModel} from '../../models/spell.model';
 import {SpellService} from '../../services/spell.service';
 import {v4 as uuid} from 'uuid';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -10,7 +11,9 @@ import {v4 as uuid} from 'uuid';
   templateUrl: './spell-form.component.html',
   styleUrls: ['./spell-form.component.css']
 })
-export class SpellFormComponent implements OnInit {
+export class SpellFormComponent implements OnInit, OnDestroy {
+  private listSub: Subscription;
+
   // Component controls
   editMode = false;
 
@@ -21,7 +24,11 @@ export class SpellFormComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
-    this.spellService.selectedSpell.subscribe( spell => this.fillForm(spell));
+    this.listSub = this.spellService.selectedSpell.subscribe( spell => this.fillForm(spell));
+  }
+
+  ngOnDestroy(): void {
+    this.listSub.unsubscribe();
   }
 
   initForm() {

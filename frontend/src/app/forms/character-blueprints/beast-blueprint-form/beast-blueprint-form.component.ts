@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AbstractControl, FormArray, FormControl, FormGroup} from '@angular/forms';
 import {BeastBlueprintService} from '../../../services/beast-blueprint.service';
 import {BeastBlueprintModel} from '../../../models/beast-blueprint.model';
@@ -9,13 +9,18 @@ import {ArmorBlueprintModel} from '../../../models/armor-blueprint.model';
 import {WeaponBlueprintModel} from '../../../models/weapon-blueprint.model';
 import {GoodsBlueprintModel} from '../../../models/goods-blueprint.model';
 import {TreasureBlueprintModel} from '../../../models/treasure-blueprint.model';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-beast-blueprint',
   templateUrl: './beast-blueprint-form.component.html',
   styleUrls: ['./beast-blueprint-form.component.css']
 })
-export class BeastBlueprintFormComponent implements OnInit {
+export class BeastBlueprintFormComponent implements OnInit, OnDestroy {
+  private sizeSub: Subscription;
+  private vulnerabilitiesSub: Subscription;
+  private listSub: Subscription;
+
   editMode = false;
 
   beastBlueprintForm: FormGroup;
@@ -32,14 +37,20 @@ export class BeastBlueprintFormComponent implements OnInit {
   ngOnInit() {
     this.initParentForm();
 
-    this.enumService.getSizes().subscribe(sizes => this.characterSizes = sizes);
-    this.enumService.getVulnerabilities().subscribe(vulnerabilities => this.characterVulnerabilities = vulnerabilities);
+    this.sizeSub = this.enumService.getSizes().subscribe(sizes => this.characterSizes = sizes);
+    this.vulnerabilitiesSub = this.enumService.getVulnerabilities().subscribe(vulnerabilities => this.characterVulnerabilities = vulnerabilities);
 
-    this.beastBlueprintService.selectedBeastBlueprint.subscribe(beastBlueprint => this.fillForm(beastBlueprint));
+    this.listSub = this.beastBlueprintService.selectedBeastBlueprint.subscribe(beastBlueprint => this.fillForm(beastBlueprint));
 
     this.abilityService.setAbilityValueTracking(this.beastBlueprintForm, 'mobility', 'mobilityBonus');
     this.abilityService.setAbilityValueTracking(this.beastBlueprintForm, 'persistence', 'persistenceBonus');
 
+  }
+
+  ngOnDestroy(): void {
+    this.sizeSub.unsubscribe();
+    this.vulnerabilitiesSub.unsubscribe();
+    this.listSub.unsubscribe();
   }
 
   initParentForm() {

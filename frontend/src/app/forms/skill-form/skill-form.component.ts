@@ -1,16 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {EnumsService} from '../../services/enums.service';
 import {SkillModel} from '../../models/skill.model';
 import {SkillService} from '../../services/skill.service';
 import {v4 as uuid} from 'uuid';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-skill-form',
   templateUrl: './skill-form.component.html',
   styleUrls: ['./skill-form.component.css']
 })
-export class SkillFormComponent implements OnInit {
+export class SkillFormComponent implements OnInit, OnDestroy {
+  private abilitySub: Subscription;
+  private difficultySub: Subscription;
+  private listSub: Subscription;
+
   // Component controls
   editMode = false;
 
@@ -26,10 +31,16 @@ export class SkillFormComponent implements OnInit {
   ngOnInit() {
     this.initForm();
 
-    this.skillService.selectedSkill.subscribe( skill => this.fillForm(skill));
+    this.listSub = this.skillService.selectedSkill.subscribe( skill => this.fillForm(skill));
 
-    this.enumsService.getDifficulties().subscribe( difficulties => this.difficulties = difficulties);
-    this.enumsService.getAbilities().subscribe( abilities => this.abilities = abilities);
+    this.difficultySub = this.enumsService.getDifficulties().subscribe( difficulties => this.difficulties = difficulties);
+    this.abilitySub = this.enumsService.getAbilities().subscribe( abilities => this.abilities = abilities);
+  }
+
+  ngOnDestroy(): void {
+    this.difficultySub.unsubscribe();
+    this.abilitySub.unsubscribe();
+    this.listSub.unsubscribe();
   }
 
   initForm() {

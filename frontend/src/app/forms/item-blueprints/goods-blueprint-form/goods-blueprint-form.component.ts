@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {EnumsService} from '../../../services/enums.service';
 import {GoodsBlueprintService} from '../../../services/goods-blueprint.service';
 import {GoodsBlueprintModel} from '../../../models/goods-blueprint.model';
 import {v4 as uuid} from 'uuid';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-goods-blueprint-form',
   templateUrl: './goods-blueprint-form.component.html',
   styleUrls: ['./goods-blueprint-form.component.css']
 })
-export class GoodsBlueprintFormComponent implements OnInit {
+export class GoodsBlueprintFormComponent implements OnInit, OnDestroy {
+  private itemSub: Subscription;
+  private listSub: Subscription;
+
   editMode = false;
 
   itemTypes;
@@ -22,9 +26,14 @@ export class GoodsBlueprintFormComponent implements OnInit {
   ngOnInit() {
     this.initForm();
 
-    this.enumsService.getItemTypes().subscribe( itemTypes => this.itemTypes = itemTypes);
+    this.itemSub = this.enumsService.getItemTypes().subscribe( itemTypes => this.itemTypes = itemTypes);
 
-    this.goodsBlueprintService.selectedGoodsBlueprint.subscribe( selectedGoodsBlueprint => this.fillForm(selectedGoodsBlueprint));
+    this.listSub = this.goodsBlueprintService.selectedGoodsBlueprint.subscribe( selectedGoodsBlueprint => this.fillForm(selectedGoodsBlueprint));
+  }
+
+  ngOnDestroy(): void {
+    this.itemSub.unsubscribe();
+    this.listSub.unsubscribe();
   }
 
   initForm() {

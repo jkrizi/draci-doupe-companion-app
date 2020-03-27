@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {PersonBlueprintModel} from '../../../models/person-blueprint.model';
 import {PersonBlueprintService} from '../../../services/person-blueprint.service';
@@ -10,13 +10,18 @@ import {WeaponBlueprintModel} from '../../../models/weapon-blueprint.model';
 import {ArmorBlueprintModel} from '../../../models/armor-blueprint.model';
 import {TreasureBlueprintModel} from '../../../models/treasure-blueprint.model';
 import {GoodsBlueprintModel} from '../../../models/goods-blueprint.model';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-person-blueprint-form',
   templateUrl: './person-blueprint-form.component.html',
   styleUrls: ['./person-blueprint-form.component.css']
 })
-export class PersonBlueprintFormComponent implements OnInit {
+export class PersonBlueprintFormComponent implements OnInit, OnDestroy {
+  private professionSub: Subscription;
+  private raceSub: Subscription;
+  private listSub: Subscription;
+
   editMode = false;
 
   races: RaceModel[];
@@ -29,12 +34,18 @@ export class PersonBlueprintFormComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
 
-    this.enumsService.getProfessions().subscribe((professions: string[]) => this.professions = professions);
+    this.professionSub = this.enumsService.getProfessions().subscribe((professions: string[]) => this.professions = professions);
 
     this.raceService.getAll();
-    this.raceService.raceList.subscribe((races: RaceModel[]) => this.races = races);
+    this.raceSub = this.raceService.raceList.subscribe((races: RaceModel[]) => this.races = races);
 
-    this.personBlueprintService.selectedPersonBlueprint.subscribe((personBlueprint: PersonBlueprintModel) => this.fillForm(personBlueprint));
+    this.listSub = this.personBlueprintService.selectedPersonBlueprint.subscribe((personBlueprint: PersonBlueprintModel) => this.fillForm(personBlueprint));
+  }
+
+  ngOnDestroy(): void {
+    this.professionSub.unsubscribe();
+    this.raceSub.unsubscribe();
+    this.listSub.unsubscribe();
   }
 
   initForm(): void {

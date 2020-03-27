@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {EnumsService} from '../../services/enums.service';
 import {RaceService} from '../../services/race.service';
@@ -6,13 +6,18 @@ import {RaceModel} from '../../models/race.model';
 import {v4 as uuid} from 'uuid';
 import {WeaponFamilyService} from '../../services/weapon-family.service';
 import {WeaponFamilyModel} from '../../models/weapon-family.model';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-race-form',
   templateUrl: './race-form.component.html',
   styleUrls: ['./race-form.component.css']
 })
-export class RaceFormComponent implements OnInit {
+export class RaceFormComponent implements OnInit, OnDestroy {
+  private sizeSub: Subscription;
+  private weaponFamilySub: Subscription;
+  private listSub: Subscription;
+
   editMode = false;
   
   sizes: string[];
@@ -25,10 +30,16 @@ export class RaceFormComponent implements OnInit {
   ngOnInit() {
     this.initForm();
 
-    this.enumsService.getSizes().subscribe( sizes => this.sizes = sizes);
-    this.weaponFamilyService.weaponFamilyList.subscribe( weaponFamilies => this.weaponFamilies = weaponFamilies);
+    this.sizeSub = this.enumsService.getSizes().subscribe( sizes => this.sizes = sizes);
+    this.weaponFamilySub = this.weaponFamilyService.weaponFamilyList.subscribe( weaponFamilies => this.weaponFamilies = weaponFamilies);
 
-    this.raceService.selectedRace.subscribe( race => this.fillForm(race));
+    this.listSub = this.raceService.selectedRace.subscribe( race => this.fillForm(race));
+  }
+
+  ngOnDestroy(): void {
+    this.sizeSub.unsubscribe();
+    this.weaponFamilySub.unsubscribe();
+    this.listSub.unsubscribe();
   }
 
   initForm() {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {WeaponBlueprintModel} from '../../../models/weapon-blueprint.model';
 import {EnumsService} from '../../../services/enums.service';
@@ -8,13 +8,17 @@ import {WeaponFamilyModel} from '../../../models/weapon-family.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {WeaponFamilyFormComponent} from './weapon-family-form/weapon-family-form.component';
 import {WeaponFamilyService} from '../../../services/weapon-family.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-weapon-blueprint-form',
   templateUrl: './weapon-blueprint-form.component.html',
   styleUrls: ['./weapon-blueprint-form.component.css']
 })
-export class WeaponBlueprintFormComponent implements OnInit {
+export class WeaponBlueprintFormComponent implements OnInit, OnDestroy {
+  private weaponFamilySub: Subscription;
+  private listSub: Subscription;
+
   // Component controls
   editMode = false;
   isMelee = true;
@@ -37,9 +41,14 @@ export class WeaponBlueprintFormComponent implements OnInit {
     this.initForm();
 
     this.weaponFamilyService.getAll();
-    this.weaponFamilyService.weaponFamilyList.subscribe((weaponFamilies: WeaponFamilyModel[]) => this.weaponFamilyDescriptions = weaponFamilies);
+    this.weaponFamilySub = this.weaponFamilyService.weaponFamilyList.subscribe((weaponFamilies: WeaponFamilyModel[]) => this.weaponFamilyDescriptions = weaponFamilies);
 
-    this.weaponBlueprintService.selectedWeaponBlueprint.subscribe( weaponBlueprint => this.fillForm(weaponBlueprint));
+    this.listSub = this.weaponBlueprintService.selectedWeaponBlueprint.subscribe( weaponBlueprint => this.fillForm(weaponBlueprint));
+  }
+
+  ngOnDestroy(): void {
+    this.weaponFamilySub.unsubscribe();
+    this.listSub.unsubscribe();
   }
 
   initForm() {

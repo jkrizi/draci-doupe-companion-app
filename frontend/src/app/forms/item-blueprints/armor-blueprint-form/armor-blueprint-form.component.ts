@@ -1,16 +1,21 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AbstractControl, FormArray, FormControl, FormGroup} from '@angular/forms';
 import {ArmorBlueprintModel} from '../../../models/armor-blueprint.model';
 import {EnumsService} from '../../../services/enums.service';
 import {ArmorBlueprintService} from '../../../services/armor-blueprint.service';
 import {v4 as uuid} from 'uuid';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-armor-blueprint-form',
   templateUrl: './armor-blueprint-form.component.html',
   styleUrls: ['./armor-blueprint-form.component.css']
 })
-export class ArmorBlueprintFormComponent implements OnInit {
+export class ArmorBlueprintFormComponent implements OnInit, OnDestroy {
+  private sizeSub: Subscription;
+  private coverageSub: Subscription;
+  private listSub: Subscription;
+
   editMode = false;
 
   // Backend enums
@@ -25,13 +30,16 @@ export class ArmorBlueprintFormComponent implements OnInit {
   ngOnInit() {
     this.initForm();
 
-    this.enumsService.getSizes().subscribe( sizes => this.sizes = sizes);
+    this.sizeSub = this.enumsService.getSizes().subscribe( sizes => this.sizes = sizes);
+    this.coverageSub = this.enumsService.getBodySections().subscribe(bodySections => this.bodyCoverage = bodySections);
 
-    this.enumsService.getBodySections().subscribe(bodySections => {this.bodyCoverage = bodySections;});
+    this.listSub = this.armorBlueprintService.selectedArmorBlueprint.subscribe( selectedArmorBlueprint => this.fillForm(selectedArmorBlueprint));
+  }
 
-    this.armorBlueprintService.selectedArmorBlueprint.subscribe( selectedArmorBlueprint => {
-      this.fillForm(selectedArmorBlueprint);
-    });
+  ngOnDestroy(): void {
+    this.sizeSub.unsubscribe();
+    this.coverageSub.unsubscribe();
+    this.listSub.unsubscribe();
   }
 
   initForm() {
