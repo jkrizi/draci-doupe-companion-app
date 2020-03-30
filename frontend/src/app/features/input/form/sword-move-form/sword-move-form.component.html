@@ -1,0 +1,59 @@
+<form class="mx-3 my-4" [formGroup]="swordMoveForm" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="col">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" formControlName="name" id="name">
+    </div>
+    <div class="col">
+      <label for="initiative">Initiative</label>
+      <input type="text" class="form-control" formControlName="initiative" id="initiative">
+    </div>
+    <div class="col">
+      <label for="actions">Actions</label>
+      <input type="text" class="form-control" formControlName="actions" id="actions">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea class="form-control" formControlName="description" id="description"></textarea>
+  </div>
+  <div class="form-check mb-3">
+    <label class="form-check-label" for="humanoid-opponent">
+      <input type="checkbox" class="form-check-input lg" formControlName="humanoidOpponent" id="humanoid-opponent">Humanoid opponent
+    </label>
+  </div>
+
+  <div class="form-row mb-3">
+    <div class="col">
+      <label for="user-weapon">User weapon</label>
+      <div id="user-weapon" class="d-flex flex-wrap">
+        <div *ngFor ="let weaponFamily of weaponFamilies">
+          <label class="btn btn-outline-success mr-1 mb-1"
+                 (change)="updateWeapons(userWeaponsForm, weaponFamily)"
+                 [ngClass]="{active: findWeaponIndex(userWeaponsForm ,weaponFamily) !== -1}"
+          >
+            <input type="checkbox" hidden> {{weaponFamily.name}}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row mb-3">
+    <div class="col">
+      <label for="opponent-weapon">Opponent weapon</label>
+      <div id="opponent-weapon" class="d-flex flex-wrap">
+        <div *ngFor ="let weaponFamily of weaponFamilies">
+          <label class="btn btn-outline-success mr-1 mb-1"
+                 (change)="updateWeapons(opponentWeaponsForm, weaponFamily)"
+                 [ngClass]="{active: findWeaponIndex(opponentWeaponsForm, weaponFamily) !== -1}"
+          >
+            <input type="checkbox" hidden> {{weaponFamily.name}}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-form-controls [editMode]="editMode" (update)="update()" (delete)="delete()" (cancel)="clearForm()"></app-form-controls>
+</form>

@@ -1,0 +1,29 @@
+<form class="my-4 mx-3" [formGroup]="spellForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" formControlName="name" id="name">
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea class="form-control" formControlName="description" id="description"></textarea>
+  </div>
+  <div class="form-row mb-4">
+    <div class="col">
+      <label for="manna">Manna</label>
+      <input type="text" class="form-control" formControlName="manna" id="manna">
+    </div>
+    <div class="col">
+      <label for="range">Range</label>
+      <input type="text" class="form-control" formControlName="range" id="range">
+    </div>
+    <div class="col">
+      <label for="conjuring">Conjuring</label>
+      <input type="text" class="form-control" formControlName="conjuring" id="conjuring">
+    </div>
+    <div class="col">
+      <label for="duration">Duration</label>
+      <input type="text" class="form-control" formControlName="duration" id="duration">
+    </div>
+  </div>
+  <app-form-controls [editMode]="editMode" (update)="update()" (delete)="delete()" (cancel)="clearForm()"></app-form-controls>
+</form>

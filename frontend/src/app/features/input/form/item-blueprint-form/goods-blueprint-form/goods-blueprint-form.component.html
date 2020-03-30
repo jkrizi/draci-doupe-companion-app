@@ -1,0 +1,13 @@
+<form class="mx-3 my-4" [formGroup]="goodsBlueprintForm" (ngSubmit)="onSubmit()">
+
+  <app-item-blueprint [parentForm]="goodsBlueprintForm"></app-item-blueprint>
+
+  <div class="form-group mb-4">
+    <label for="itemType">Goods type</label>
+    <select class="form-control" formControlName="itemType" id="itemType">
+      <option *ngFor ="let itemType of itemTypes" [value]="itemType"> {{itemType}} </option>
+    </select>
+  </div>
+
+  <app-form-controls [editMode]="editMode" (update)="update()" (cancel)="clearForm()" (delete)="delete()"></app-form-controls>
+</form>
